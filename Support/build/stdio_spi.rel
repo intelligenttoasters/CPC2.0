@@ -1,0 +1,553 @@
+;!FILE stdio_spi.asm
+XL2
+H 9 areas 16B global symbols
+M stdio_spi
+O -mz80
+S _spiExchange Ref0000
+S _process_events Ref0000
+S _spiSetHandler Ref0000
+S _spiGetOutBuffer Ref0000
+S .__.ABS. Def0000
+S _memcpy Ref0000
+S _spiLock Ref0000
+S _strlen Ref0000
+S _spiSetInUse Ref0000
+S _spiSetProcessed Ref0000
+A _CODE size 1EE flags 0 addr 0
+S A$stdio_spi$91 Def0009
+S C$stdio_spi.c$79$1$68 Def00B5
+S A$stdio_spi$92 Def000C
+S A$stdio_spi$93 Def000D
+S A$stdio_spi$84 Def0000
+S G$inbound_flush$0$0 Def01E0
+S XG$stdio_channel_handler$0$0 Def00B4
+S A$stdio_spi$85 Def0002
+S G$outbound_flush$0$0 Def018E
+S A$stdio_spi$86 Def0006
+S A$stdio_spi$87 Def0008
+S A$stdio_spi$97 Def000F
+S A$stdio_spi$98 Def0012
+S A$stdio_spi$99 Def0015
+S XG$spi_connected$0$0 Def01ED
+S XG$getchar$0$0 Def01DF
+S G$stdio_init$0$0 Def00B5
+S G$putchar$0$0 Def013A
+S G$spi_puts$0$0 Def00E0
+S G$spi_avail$0$0 Def01A4
+S XG$putchari$0$0 Def0137
+S _inbound_flush Def01E0
+S _outbound_flush Def018E
+S _stdio_init Def00B5
+S _putchar Def013A
+S _spi_puts Def00E0
+S _spi_avail Def01A4
+S XG$inbound_flush$0$0 Def01E5
+S XG$outbound_flush$0$0 Def01A3
+S C$stdio_spi.c$101$1$74 Def0100
+S C$stdio_spi.c$150$1$80 Def01AB
+S C$stdio_spi.c$111$1$74 Def012C
+S XG$stdio_init$0$0 Def00DF
+S XG$putchar$0$0 Def018D
+S XG$spi_puts$0$0 Def012B
+S C$stdio_spi.c$160$1$81 Def01B1
+S XG$spi_avail$0$0 Def01AB
+S C$stdio_spi.c$111$1$76 Def0137
+S C$stdio_spi.c$104$1$74 Def011C
+S C$stdio_spi.c$170$1$81 Def01DE
+S C$stdio_spi.c$171$1$81 Def01DF
+S C$stdio_spi.c$154$1$80 Def01AC
+S C$stdio_spi.c$106$1$74 Def012B
+S C$stdio_spi.c$163$1$81 Def01B9
+S C$stdio_spi.c$164$1$81 Def01C4
+S C$stdio_spi.c$122$1$78 Def0148
+S A$stdio_spi$100 Def0016
+S C$stdio_spi.c$116$1$76 Def013A
+S A$stdio_spi$200 Def0090
+S A$stdio_spi$101 Def0017
+S C$stdio_spi.c$157$1$81 Def01AC
+S C$stdio_spi.c$149$1$80 Def01A4
+S C$stdio_spi.c$133$1$78 Def018E
+S A$stdio_spi$300 Def00E6
+S A$stdio_spi$210 Def009D
+S A$stdio_spi$201 Def0091
+S A$stdio_spi$111 Def0020
+S A$stdio_spi$102 Def0019
+S C$stdio_spi.c$184$1$82 Def01E6
+S C$stdio_spi.c$176$1$81 Def01E0
+S C$stdio_spi.c$167$1$81 Def01DA
+S C$stdio_spi.c$142$1$79 Def019E
+S C$stdio_spi.c$125$1$78 Def015D
+S A$stdio_spi$301 Def00E7
+S A$stdio_spi$211 Def00A0
+S A$stdio_spi$202 Def0094
+S A$stdio_spi$121 Def002A
+S A$stdio_spi$112 Def0023
+S C$stdio_spi.c$143$1$79 Def01A3
+S G$stdio_channel_handler$0$0 Def0000
+S A$stdio_spi$401 Def0148
+S A$stdio_spi$320 Def00FB
+S A$stdio_spi$302 Def00E8
+S A$stdio_spi$221 Def00B0
+S A$stdio_spi$203 Def0097
+S A$stdio_spi$501 Def01AB
+S A$stdio_spi$402 Def014B
+S A$stdio_spi$330 Def0106
+S A$stdio_spi$321 Def00FE
+S A$stdio_spi$312 Def00F0
+S A$stdio_spi$303 Def00E9
+S A$stdio_spi$240 Def00B5
+S A$stdio_spi$222 Def00B2
+S A$stdio_spi$204 Def0098
+S A$stdio_spi$132 Def0032
+S C$stdio_spi.c$186$1$83 Def01E6
+S C$stdio_spi.c$178$1$82 Def01E0
+S C$stdio_spi.c$136$1$79 Def018E
+S C$stdio_spi.c$128$1$78 Def017D
+S C$stdio_spi.c$119$1$78 Def0142
+S A$stdio_spi$601 Def01ED
+S A$stdio_spi$520 Def01B1
+S A$stdio_spi$430 Def017B
+S A$stdio_spi$421 Def0169
+S A$stdio_spi$403 Def014F
+S A$stdio_spi$331 Def010A
+S A$stdio_spi$313 Def00F1
+S A$stdio_spi$304 Def00EC
+S A$stdio_spi$241 Def00B8
+S A$stdio_spi$142 Def003C
+S A$stdio_spi$133 Def0035
+S A$stdio_spi$106 Def001B
+S C$stdio_spi.c$187$1$83 Def01ED
+S C$stdio_spi.c$179$1$82 Def01E5
+S C$stdio_spi.c$129$1$78 Def018D
+S A$stdio_spi$530 Def01BB
+S A$stdio_spi$521 Def01B4
+S A$stdio_spi$440 Def0186
+S A$stdio_spi$422 Def016A
+S A$stdio_spi$413 Def015D
+S A$stdio_spi$404 Def0152
+S A$stdio_spi$350 Def0125
+S A$stdio_spi$332 Def010C
+S A$stdio_spi$314 Def00F2
+S A$stdio_spi$305 Def00ED
+S A$stdio_spi$251 Def00C1
+S A$stdio_spi$242 Def00B9
+S A$stdio_spi$215 Def00A1
+S A$stdio_spi$170 Def005C
+S A$stdio_spi$161 Def004E
+S A$stdio_spi$152 Def0043
+S A$stdio_spi$143 Def003F
+S A$stdio_spi$116 Def0025
+S A$stdio_spi$107 Def001E
+S C$stdio_spi.c$147$1$79 Def01A4
+S A$stdio_spi$540 Def01CB
+S A$stdio_spi$531 Def01BF
+S A$stdio_spi$522 Def01B5
+S A$stdio_spi$423 Def016B
+S A$stdio_spi$414 Def0160
+S A$stdio_spi$405 Def0155
+S A$stdio_spi$351 Def0126
+S A$stdio_spi$333 Def010F
+S A$stdio_spi$315 Def00F3
+S A$stdio_spi$306 Def00EE
+S A$stdio_spi$270 Def00D4
+S A$stdio_spi$261 Def00CB
+S A$stdio_spi$252 Def00C4
+S A$stdio_spi$243 Def00BA
+S A$stdio_spi$216 Def00A3
+S A$stdio_spi$180 Def006F
+S A$stdio_spi$171 Def005F
+S A$stdio_spi$162 Def0051
+S A$stdio_spi$153 Def0046
+S A$stdio_spi$126 Def002D
+S A$stdio_spi$117 Def0028
+S C$stdio_spi.c$139$1$79 Def0199
+S A$stdio_spi$541 Def01CC
+S A$stdio_spi$532 Def01C2
+S A$stdio_spi$523 Def01B7
+S A$stdio_spi$514 Def01AC
+S A$stdio_spi$442 Def0188
+S A$stdio_spi$424 Def016D
+S A$stdio_spi$415 Def0162
+S A$stdio_spi$406 Def0156
+S A$stdio_spi$370 Def0130
+S A$stdio_spi$352 Def0129
+S A$stdio_spi$343 Def011C
+S A$stdio_spi$334 Def0112
+S A$stdio_spi$316 Def00F6
+S A$stdio_spi$307 Def00EF
+S A$stdio_spi$271 Def00D5
+S A$stdio_spi$262 Def00CC
+S A$stdio_spi$244 Def00BB
+S A$stdio_spi$217 Def00A7
+S A$stdio_spi$208 Def0099
+S A$stdio_spi$190 Def007A
+S A$stdio_spi$181 Def0071
+S A$stdio_spi$172 Def0061
+S A$stdio_spi$163 Def0052
+S A$stdio_spi$154 Def0048
+S A$stdio_spi$127 Def002E
+S G$spi_connected$0$0 Def01E6
+S G$getchar$0$0 Def01AC
+S A$stdio_spi$542 Def01CD
+S A$stdio_spi$524 Def01B8
+S A$stdio_spi$515 Def01AF
+S A$stdio_spi$470 Def0199
+S A$stdio_spi$425 Def0171
+S A$stdio_spi$416 Def0164
+S A$stdio_spi$407 Def0158
+S A$stdio_spi$371 Def0131
+S A$stdio_spi$353 Def012A
+S A$stdio_spi$344 Def011F
+S A$stdio_spi$335 Def0113
+S A$stdio_spi$326 Def0100
+S A$stdio_spi$317 Def00F7
+S A$stdio_spi$272 Def00D6
+S A$stdio_spi$263 Def00CD
+S A$stdio_spi$245 Def00BC
+S A$stdio_spi$227 Def00B4
+S A$stdio_spi$218 Def00AA
+S A$stdio_spi$209 Def009C
+S A$stdio_spi$191 Def007D
+S A$stdio_spi$182 Def0072
+S A$stdio_spi$173 Def0062
+S A$stdio_spi$164 Def0054
+S A$stdio_spi$155 Def004A
+S A$stdio_spi$137 Def0037
+S A$stdio_spi$128 Def0030
+S A$stdio_spi$543 Def01D0
+S A$stdio_spi$516 Def01B0
+S A$stdio_spi$471 Def019A
+S A$stdio_spi$462 Def018E
+S A$stdio_spi$444 Def018B
+S A$stdio_spi$435 Def017D
+S A$stdio_spi$426 Def0174
+S A$stdio_spi$417 Def0166
+S A$stdio_spi$408 Def0159
+S A$stdio_spi$390 Def013C
+S A$stdio_spi$372 Def0132
+S A$stdio_spi$345 Def0120
+S A$stdio_spi$336 Def0114
+S A$stdio_spi$327 Def0103
+S A$stdio_spi$318 Def00F8
+S A$stdio_spi$273 Def00D9
+S A$stdio_spi$264 Def00CE
+S A$stdio_spi$246 Def00BF
+S A$stdio_spi$219 Def00AC
+S A$stdio_spi$192 Def0080
+S A$stdio_spi$174 Def0063
+S A$stdio_spi$165 Def0056
+S A$stdio_spi$156 Def004C
+S A$stdio_spi$147 Def0041
+S A$stdio_spi$138 Def003A
+S G$putchari$0$0 Def012C
+S A$stdio_spi$553 Def01DA
+S A$stdio_spi$544 Def01D1
+S A$stdio_spi$472 Def019D
+S A$stdio_spi$463 Def0191
+S A$stdio_spi$436 Def017E
+S A$stdio_spi$427 Def0177
+S A$stdio_spi$409 Def015C
+S A$stdio_spi$391 Def0140
+S A$stdio_spi$373 Def0133
+S A$stdio_spi$346 Def0121
+S A$stdio_spi$337 Def0117
+S A$stdio_spi$328 Def0104
+S A$stdio_spi$319 Def00F9
+S A$stdio_spi$283 Def00DF
+S A$stdio_spi$265 Def00D1
+S A$stdio_spi$256 Def00C6
+S A$stdio_spi$247 Def00C0
+S A$stdio_spi$193 Def0082
+S A$stdio_spi$184 Def0074
+S A$stdio_spi$175 Def0064
+S A$stdio_spi$166 Def0057
+S A$stdio_spi$563 Def01DF
+S A$stdio_spi$554 Def01DD
+S A$stdio_spi$545 Def01D4
+S A$stdio_spi$536 Def01C4
+S A$stdio_spi$482 Def01A3
+S A$stdio_spi$464 Def0194
+S A$stdio_spi$437 Def017F
+S A$stdio_spi$428 Def0178
+S A$stdio_spi$419 Def0168
+S A$stdio_spi$374 Def0136
+S A$stdio_spi$347 Def0122
+S A$stdio_spi$338 Def011A
+S A$stdio_spi$329 Def0105
+S A$stdio_spi$293 Def00E0
+S A$stdio_spi$257 Def00C9
+S A$stdio_spi$194 Def0083
+S A$stdio_spi$176 Def0067
+S A$stdio_spi$167 Def0058
+S A$stdio_spi$582 Def01E5
+S A$stdio_spi$546 Def01D7
+S A$stdio_spi$537 Def01C5
+S A$stdio_spi$465 Def0196
+S A$stdio_spi$438 Def0181
+S A$stdio_spi$429 Def017A
+S A$stdio_spi$348 Def0123
+S A$stdio_spi$339 Def011B
+S A$stdio_spi$195 Def0086
+S A$stdio_spi$186 Def0077
+S A$stdio_spi$168 Def005A
+S C$stdio_spi.c$82$1$72 Def00B5
+S C$stdio_spi.c$54$3$71 Def0032
+S C$stdio_spi.c$46$3$70 Def001B
+S C$stdio_spi.c$41$1$68 Def0009
+S A$stdio_spi$547 Def01D8
+S A$stdio_spi$538 Def01C8
+S A$stdio_spi$529 Def01B9
+S A$stdio_spi$466 Def0197
+S A$stdio_spi$439 Def0184
+S A$stdio_spi$358 Def012B
+S A$stdio_spi$349 Def0124
+S A$stdio_spi$277 Def00DA
+S A$stdio_spi$196 Def0089
+S A$stdio_spi$178 Def0069
+S A$stdio_spi$169 Def005B
+S C$stdio_spi.c$92$1$72 Def00E0
+S C$stdio_spi.c$83$1$72 Def00C1
+S C$stdio_spi.c$55$3$71 Def0037
+S C$stdio_spi.c$47$3$70 Def0020
+S _stdio_channel_handler Def0000
+S A$stdio_spi$548 Def01D9
+S A$stdio_spi$539 Def01CA
+S A$stdio_spi$476 Def019E
+S A$stdio_spi$449 Def018D
+S A$stdio_spi$395 Def0142
+S A$stdio_spi$368 Def012C
+S A$stdio_spi$278 Def00DD
+S A$stdio_spi$269 Def00D2
+S A$stdio_spi$197 Def008C
+S A$stdio_spi$179 Def006C
+S C$stdio_spi.c$84$1$72 Def00C6
+S C$stdio_spi.c$56$3$71 Def003C
+S C$stdio_spi.c$48$3$70 Def0025
+S A$stdio_spi$576 Def01E0
+S A$stdio_spi$558 Def01DE
+S A$stdio_spi$495 Def01A4
+S A$stdio_spi$477 Def01A1
+S A$stdio_spi$396 Def0145
+S A$stdio_spi$369 Def012F
+S A$stdio_spi$297 Def00E1
+S A$stdio_spi$198 Def008E
+S C$stdio_spi.c$85$1$72 Def00CB
+S C$stdio_spi.c$71$1$68 Def0099
+S C$stdio_spi.c$62$1$68 Def0043
+S C$stdio_spi.c$57$3$71 Def0041
+S C$stdio_spi.c$49$3$70 Def002A
+S A$stdio_spi$595 Def01E6
+S A$stdio_spi$577 Def01E3
+S A$stdio_spi$496 Def01A8
+S A$stdio_spi$397 Def0146
+S A$stdio_spi$379 Def0137
+S A$stdio_spi$298 Def00E4
+S A$stdio_spi$199 Def008F
+S C$stdio_spi.c$86$1$72 Def00D2
+S C$stdio_spi.c$52$2$69 Def002D
+S A$stdio_spi$596 Def01EA
+S A$stdio_spi$389 Def013A
+S A$stdio_spi$299 Def00E5
+S C$stdio_spi.c$87$1$72 Def00DA
+S C$stdio_spi.c$44$2$69 Def000F
+S C$stdio_spi.c$36$0$0 Def0000
+S C$stdio_spi.c$95$1$74 Def00E1
+S C$stdio_spi.c$88$1$72 Def00DF
+S C$stdio_spi.c$74$1$68 Def00A1
+S C$stdio_spi.c$65$1$68 Def004E
+S C$stdio_spi.c$75$1$68 Def00B4
+S _spi_connected Def01E6
+S _getchar Def01AC
+S C$stdio_spi.c$98$1$74 Def00F0
+S C$stdio_spi.c$68$1$68 Def007A
+S _putchari Def012C
+A _DATA size 5C flags 0 addr 0
+S Fstdio_spi$inbuffer_entries$0$0 Def005A
+S Fstdio_spi$outbuffer_entries$0$0 Def005B
+S Fstdio_spi$stdio_inbound_buffer$0$0 Def0000
+S Fstdio_spi$stdio_outbound_buffer$0$0 Def0008
+A _INITIALIZED size 1 flags 0 addr 0
+S Fstdio_spi$stdio_connected$0$0 Def0000
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 1 flags 0 addr 0
+S Fstdio_spi$__xinit_stdio_connected$0$0 Def0000
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 01 00
+T 08 00
+R 00 00 01 00
+T 08 00
+R 00 00 01 00
+T 5A 00
+R 00 00 01 00
+T 5A 00
+R 00 00 01 00
+T 5B 00
+R 00 00 01 00
+T 5B 00
+R 00 00 01 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 00 00
+T 00 00 DD E5 DD 21 00 00 DD 39 F5 DD 7E 06 3D 20
+R 00 00 00 00
+T 0E 00 34 DD 6E 04 DD 66 05 4E 79 D6 0F 20 12 21
+R 00 00 00 00
+T 1C 00 00 00 36 01 21 5A 00 36 00 21 5B 00 36 00
+R 00 00 00 00 00 02 02 00 00 07 01 00 00 0C 01 00
+T 2A 00 C3 B0 00
+R 00 00 00 00 00 03 00 00
+T 2D 00
+R 00 00 00 00
+T 2D 00 79 D6 11 20 11 21 00 00 36 00 21 5A 00 36
+R 00 00 00 00 00 08 02 00 00 0D 01 00
+T 3B 00 00 21 5B 00 36 00 18 6D
+R 00 00 00 00 00 04 01 00
+T 43 00
+R 00 00 00 00
+T 43 00 3A 5A 00 D6 08 28 66 18 02 18 62
+R 00 00 00 00 00 03 01 00
+T 4E 00
+R 00 00 00 00
+T 4E 00 21 5A 00 4E 06 00 3E 08 91 4F 3E 00 98 47
+R 00 00 00 00 00 03 01 00
+T 5C 00 DD 7E 06 16 00 91 7A 98 E2 69 00 EE 80
+R 00 00 00 00 00 0B 00 00
+T 69 00
+R 00 00 00 00
+T 69 00 FA 74 00 21 5A 00 3E 08 96 18 03
+R 00 00 00 00 00 03 00 00 00 06 01 00
+T 74 00
+R 00 00 00 00
+T 74 00 DD 7E 06
+R 00 00 00 00
+T 77 00
+R 00 00 00 00
+T 77 00 DD 77 FE 01 00 00 2A 5A 00 26 00 09 DD 4E
+R 00 00 00 00 00 06 01 00 00 09 01 00
+T 85 00 04 DD 46 05 DD 5E FE 16 00 D5 C5 E5 CD
+R 00 00 00 00
+T 92 00 00 00 21 06 00 39 F9 21 5A 00 7E DD 86 FE
+R 00 00 00 00 02 02 05 00 00 0A 01 00
+T A0 00 77 3E 08 FD 21 5A 00 FD 96 00 30 04 FD 36
+R 00 00 00 00 00 07 01 00
+T AE 00 00 08
+R 00 00 00 00
+T B0 00
+R 00 00 00 00
+T B0 00 DD F9 DD E1 C9
+R 00 00 00 00
+T B5 00
+R 00 00 00 00
+T B5 00 21 00 00 E5 AF F5 33 CD 00 00 F1 33 21
+R 00 00 00 00 00 03 00 00 02 0A 02 00
+T C2 00 5A 00 36 00 21 5B 00 36 00 AF F5 33 CD
+R 00 00 00 00 00 02 01 00 00 07 01 00
+T CF 00 00 00 33 3E 01 F5 33 CD 00 00 33 21 00 00
+R 00 00 00 00 02 02 08 00 02 0A 09 00 00 0E 02 00
+T DD 00 36 00 C9
+R 00 00 00 00
+T E0 00
+R 00 00 00 00
+T E0 00 F5 21 04 00 39 4E 23 46 C5 CD 00 00 F1 33
+R 00 00 00 00 02 0C 07 00
+T EE 00 33 E5
+R 00 00 00 00
+T F0 00
+R 00 00 00 00
+T F0 00 AF F5 33 CD 00 00 33 7D B7 20 05 CD 00 00
+R 00 00 00 00 02 06 06 00 02 0E 01 00
+T FE 00 18 F0
+R 00 00 00 00
+T 00 01
+R 00 00 00 00
+T 00 01 CD 00 00 C1 C5 C5 FD 21 06 00 FD 39 FD 4E
+R 00 00 00 00 02 03 03 00
+T 0E 01 00 FD 46 01 C5 E5 CD 00 00 21 06 00 39 F9
+R 00 00 00 00 02 09 05 00
+T 1C 01 21 00 00 39 46 C5 33 AF F5 33 CD 00 00 F1
+R 00 00 00 00 02 0D 00 00
+T 2A 01 F1 C9
+R 00 00 00 00
+T 2C 01
+R 00 00 00 00
+T 2C 01 21 02 00 39 7E F5 33 CD 3A 01 33 C3 8E 01
+R 00 00 00 00 00 0A 00 00 00 0E 00 00
+T 3A 01
+R 00 00 00 00
+T 3A 01 DD E5 DD 21 00 00 DD 39 3A 00 00 B7 28 43
+R 00 00 00 00 00 0B 02 00
+T 48 01 01 08 00 FD 21 5B 00 FD 5E 00 FD 34 00 6B
+R 00 00 00 00 00 03 01 00 00 07 01 00
+T 56 01 26 00 09 DD 7E 04 77 DD 7E 04 D6 0A 20 04
+R 00 00 00 00
+T 64 01 3E 01 18 01
+R 00 00 00 00
+T 68 01
+R 00 00 00 00
+T 68 01 AF
+R 00 00 00 00
+T 69 01
+R 00 00 00 00
+T 69 01 5F B7 28 10 FD 21 5B 00 FD 56 00 FD 34 00
+R 00 00 00 00 00 08 01 00
+T 77 01 6A 26 00 09 36 0D
+R 00 00 00 00
+T 7D 01
+R 00 00 00 00
+T 7D 01 7B B7 20 07 3A 5B 00 D6 50 38 03
+R 00 00 00 00 00 07 01 00
+T 88 01
+R 00 00 00 00
+T 88 01 CD 8E 01
+R 00 00 00 00 00 03 00 00
+T 8B 01
+R 00 00 00 00
+T 8B 01 DD E1 C9
+R 00 00 00 00
+T 8E 01
+R 00 00 00 00
+T 8E 01 01 08 00 2A 5B 00 26 00 09 36 00 C5 CD
+R 00 00 00 00 00 03 01 00 00 06 01 00
+T 9B 01 E0 00 F1 21 5B 00 36 00 C9
+R 00 00 00 00 00 02 00 00 00 06 01 00
+T A4 01
+R 00 00 00 00
+T A4 01 FD 21 5A 00 FD 6E 00 C9
+R 00 00 00 00 00 04 01 00
+T AC 01
+R 00 00 00 00
+T AC 01 01 00 00 0A 5F 3A 5A 00 B7 20 02 6F C9
+R 00 00 00 00 00 03 01 00 00 08 01 00
+T B9 01
+R 00 00 00 00
+T B9 01 3E 01 FD 21 5A 00 FD 96 00 30 16 03 FD 6E
+R 00 00 00 00 00 06 01 00
+T C7 01 00 26 00 D5 E5 C5 21 00 00 E5 CD 00 00 21
+R 00 00 00 00 00 09 01 00 02 0D 05 00
+T D5 01 06 00 39 F9 D1
+R 00 00 00 00
+T DA 01
+R 00 00 00 00
+T DA 01 21 5A 00 35 6B C9
+R 00 00 00 00 00 03 01 00
+T E0 01
+R 00 00 00 00
+T E0 01 21 5A 00 36 00 C9
+R 00 00 00 00 00 03 01 00
+T E6 01
+R 00 00 00 00
+T E6 01 FD 21 00 00 FD 6E 00 C9
+R 00 00 00 00 00 04 02 00
+T 00 00
+R 00 00 07 00
+T 00 00 00
+R 00 00 07 00

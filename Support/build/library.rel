@@ -1,0 +1,164 @@
+;!FILE library.asm
+XL2
+H 9 areas 60 global symbols
+M library
+O -mz80
+S _putchar Ref0000
+S .__.ABS. Def0000
+S _printf Ref0000
+S _spiProcessEvents Ref0000
+A _CODE size 88 flags 0 addr 0
+S _ul Def0066
+S _globals Def0000
+S G$console$0$0 Def0007
+S G$process_events$0$0 Def0004
+S XG$ul$0$0 Def0087
+S A$library$100 Def0009
+S XG$globals$0$0 Def0003
+S A$library$110 Def0016
+S A$library$101 Def000D
+S A$library$120 Def0031
+S A$library$111 Def0019
+S A$library$102 Def000F
+S A$library$130 Def0048
+S A$library$112 Def001C
+S A$library$103 Def0010
+S _console Def0007
+S _process_events Def0004
+S A$library$131 Def0049
+S A$library$122 Def0034
+S A$library$113 Def001E
+S A$library$132 Def004C
+S A$library$123 Def0037
+S A$library$114 Def0022
+S A$library$133 Def004D
+S A$library$124 Def003A
+S A$library$115 Def0025
+S A$library$170 Def0073
+S A$library$161 Def0066
+S A$library$143 Def0059
+S A$library$134 Def0050
+S A$library$125 Def003B
+S A$library$116 Def0027
+S A$library$107 Def0011
+S C$library.c$51$1$60 Def0066
+S A$library$171 Def0074
+S A$library$135 Def0053
+S A$library$126 Def003E
+S A$library$117 Def002A
+S A$library$108 Def0014
+S A$library$172 Def0075
+S A$library$163 Def0069
+S A$library$136 Def0054
+S A$library$127 Def0041
+S A$library$118 Def002C
+S A$library$109 Def0015
+S A$library$191 Def0087
+S A$library$182 Def007F
+S A$library$173 Def0077
+S A$library$164 Def006A
+S A$library$137 Def0055
+S A$library$128 Def0042
+S A$library$119 Def002F
+S A$library$183 Def0081
+S A$library$174 Def0078
+S A$library$165 Def006C
+S A$library$138 Def0057
+S A$library$129 Def0045
+S C$library.c$54$1$61 Def0066
+S A$library$184 Def0082
+S A$library$175 Def0079
+S A$library$166 Def006D
+S C$library.c$55$1$61 Def007F
+S C$library.c$47$1$60 Def0011
+S A$library$185 Def0083
+S A$library$176 Def007A
+S A$library$167 Def006E
+S C$library.c$56$1$61 Def0087
+S C$library.c$48$1$60 Def0059
+S C$library.c$41$1$58 Def0004
+S A$library$186 Def0086
+S A$library$177 Def007B
+S A$library$168 Def0071
+S C$library.c$42$1$58 Def0004
+S A$library$178 Def007D
+S A$library$169 Def0072
+S XG$console$0$0 Def0059
+S XG$process_events$0$0 Def0004
+S C$library.c$36$1$57 Def0000
+S C$library.c$45$1$58 Def0007
+S C$library.c$37$1$57 Def0003
+S C$library.c$34$0$0 Def0000
+S C$library.c$39$1$57 Def0004
+S A$library$72 Def0003
+S A$library$67 Def0000
+S Flibrary$__str_0$0$0 Def005A
+S A$library$89 Def0004
+S A$library$99 Def0007
+S G$ul$0$0 Def0066
+S G$globals$0$0 Def0000
+A _DATA size 423 flags 0 addr 0
+S Flibrary$global_variables$0$0 Def0000
+A _INITIALIZED size 4 flags 0 addr 0
+S Flibrary$msgno$0$0 Def0000
+A _DABS size 0 flags 8 addr 0
+A _HOME size 0 flags 0 addr 0
+A _GSINIT size 0 flags 0 addr 0
+A _GSFINAL size 0 flags 0 addr 0
+A _INITIALIZER size 4 flags 0 addr 0
+S Flibrary$__xinit_msgno$0$0 Def0000
+A _CABS size 0 flags 8 addr 0
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 01 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 02 00
+T 00 00
+R 00 00 00 00
+T 00 00 21 00 00 C9
+R 00 00 00 00 00 03 01 00
+T 04 00
+R 00 00 00 00
+T 04 00 C3 00 00
+R 00 00 00 00 02 03 03 00
+T 07 00
+R 00 00 00 00
+T 07 00 DD E5 DD 21 00 00 DD 39 F5 F5 21 00 00 39
+R 00 00 00 00
+T 15 00 EB 21 00 00 01 04 00 ED B0 FD 21 00 00 FD
+R 00 00 00 00 00 04 02 00 00 0D 02 00
+T 23 00 34 00 20 0D FD 34 01 20 08 FD 34 02 20 03
+R 00 00 00 00
+T 31 00 FD 34 03
+R 00 00 00 00
+T 34 00
+R 00 00 00 00
+T 34 00 DD 6E 04 DD 66 05 E5 DD 6E FE DD 66 FF E5
+R 00 00 00 00
+T 42 00 DD 6E FC DD 66 FD E5 21 5A 00 E5 CD 00 00
+R 00 00 00 00 00 0A 00 00 02 0E 02 00
+T 50 00 21 08 00 39 F9 DD F9 DD E1 C9
+R 00 00 00 00
+T 5A 00
+R 00 00 00 00
+T 5A 00 5B 25 30 38 6C 64 5D 20 25 73 0A 00
+R 00 00 00 00
+T 66 00
+R 00 00 00 00
+T 66 00 01 00 00
+R 00 00 00 00
+T 69 00
+R 00 00 00 00
+T 69 00 C5 3E 3D F5 33 CD 00 00 33 C1 03 79 D6 4F
+R 00 00 00 00 02 08 00 00
+T 77 00 78 17 3F 1F DE 80 38 EA 3E 0A F5 33 CD
+R 00 00 00 00
+T 84 00 00 00 33 C9
+R 00 00 00 00 02 02 00 00
+T 00 00
+R 00 00 07 00
+T 00 00 00 00 00 00
+R 00 00 07 00

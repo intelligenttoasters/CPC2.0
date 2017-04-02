@@ -1,0 +1,607 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.0 #9615 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module stdio_spi
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _stdio_channel_handler
+                             12 	.globl _strlen
+                             13 	.globl _process_events
+                             14 	.globl _spiExchange
+                             15 	.globl _spiGetOutBuffer
+                             16 	.globl _spiLock
+                             17 	.globl _spiSetHandler
+                             18 	.globl _spiSetProcessed
+                             19 	.globl _spiSetInUse
+                             20 	.globl _stdio_init
+                             21 	.globl _spi_puts
+                             22 	.globl _putchari
+                             23 	.globl _putchar
+                             24 	.globl _outbound_flush
+                             25 	.globl _spi_avail
+                             26 	.globl _getchar
+                             27 	.globl _inbound_flush
+                             28 	.globl _spi_connected
+                             29 ;--------------------------------------------------------
+                             30 ; special function registers
+                             31 ;--------------------------------------------------------
+                             32 ;--------------------------------------------------------
+                             33 ; ram data
+                             34 ;--------------------------------------------------------
+                             35 	.area _DATA
+                     0000    36 Fstdio_spi$stdio_inbound_buffer$0$0==.
+   0000                      37 _stdio_inbound_buffer:
+   0000                      38 	.ds 8
+                     0008    39 Fstdio_spi$stdio_outbound_buffer$0$0==.
+   0008                      40 _stdio_outbound_buffer:
+   0008                      41 	.ds 82
+                     005A    42 Fstdio_spi$inbuffer_entries$0$0==.
+   005A                      43 _inbuffer_entries:
+   005A                      44 	.ds 1
+                     005B    45 Fstdio_spi$outbuffer_entries$0$0==.
+   005B                      46 _outbuffer_entries:
+   005B                      47 	.ds 1
+                             48 ;--------------------------------------------------------
+                             49 ; ram data
+                             50 ;--------------------------------------------------------
+                             51 	.area _INITIALIZED
+                     0000    52 Fstdio_spi$stdio_connected$0$0==.
+   0000                      53 _stdio_connected:
+   0000                      54 	.ds 1
+                             55 ;--------------------------------------------------------
+                             56 ; absolute external ram data
+                             57 ;--------------------------------------------------------
+                             58 	.area _DABS (ABS)
+                             59 ;--------------------------------------------------------
+                             60 ; global & static initialisations
+                             61 ;--------------------------------------------------------
+                             62 	.area _HOME
+                             63 	.area _GSINIT
+                             64 	.area _GSFINAL
+                             65 	.area _GSINIT
+                             66 ;--------------------------------------------------------
+                             67 ; Home
+                             68 ;--------------------------------------------------------
+                             69 	.area _HOME
+                             70 	.area _HOME
+                             71 ;--------------------------------------------------------
+                             72 ; code
+                             73 ;--------------------------------------------------------
+                             74 	.area _CODE
+                     0000    75 	G$stdio_channel_handler$0$0	= .
+                             76 	.globl	G$stdio_channel_handler$0$0
+                     0000    77 	C$stdio_spi.c$36$0$0	= .
+                             78 	.globl	C$stdio_spi.c$36$0$0
+                             79 ;../src/stdio_spi/stdio_spi.c:36: void stdio_channel_handler(unsigned char *buffer, unsigned char size)
+                             80 ;	---------------------------------
+                             81 ; Function stdio_channel_handler
+                             82 ; ---------------------------------
+   0000                      83 _stdio_channel_handler::
+   0000 DD E5         [15]   84 	push	ix
+   0002 DD 21 00 00   [14]   85 	ld	ix,#0
+   0006 DD 39         [15]   86 	add	ix,sp
+   0008 F5            [11]   87 	push	af
+                     0009    88 	C$stdio_spi.c$41$1$68	= .
+                             89 	.globl	C$stdio_spi.c$41$1$68
+                             90 ;../src/stdio_spi/stdio_spi.c:41: if( size == 1 )
+   0009 DD 7E 06      [19]   91 	ld	a,6 (ix)
+   000C 3D            [ 4]   92 	dec	a
+   000D 20 34         [12]   93 	jr	NZ,00106$
+                     000F    94 	C$stdio_spi.c$44$2$69	= .
+                             95 	.globl	C$stdio_spi.c$44$2$69
+                             96 ;../src/stdio_spi/stdio_spi.c:44: if ( buffer[0] == SPI_START )
+   000F DD 6E 04      [19]   97 	ld	l,4 (ix)
+   0012 DD 66 05      [19]   98 	ld	h,5 (ix)
+   0015 4E            [ 7]   99 	ld	c,(hl)
+   0016 79            [ 4]  100 	ld	a,c
+   0017 D6 0F         [ 7]  101 	sub	a, #0x0f
+   0019 20 12         [12]  102 	jr	NZ,00102$
+                     001B   103 	C$stdio_spi.c$46$3$70	= .
+                            104 	.globl	C$stdio_spi.c$46$3$70
+                            105 ;../src/stdio_spi/stdio_spi.c:46: stdio_connected = true;
+   001B 21r00r00      [10]  106 	ld	hl,#_stdio_connected + 0
+   001E 36 01         [10]  107 	ld	(hl), #0x01
+                     0020   108 	C$stdio_spi.c$47$3$70	= .
+                            109 	.globl	C$stdio_spi.c$47$3$70
+                            110 ;../src/stdio_spi/stdio_spi.c:47: inbuffer_entries = 0;
+   0020 21r5Ar00      [10]  111 	ld	hl,#_inbuffer_entries + 0
+   0023 36 00         [10]  112 	ld	(hl), #0x00
+                     0025   113 	C$stdio_spi.c$48$3$70	= .
+                            114 	.globl	C$stdio_spi.c$48$3$70
+                            115 ;../src/stdio_spi/stdio_spi.c:48: outbuffer_entries = 0;
+   0025 21r5Br00      [10]  116 	ld	hl,#_outbuffer_entries + 0
+   0028 36 00         [10]  117 	ld	(hl), #0x00
+                     002A   118 	C$stdio_spi.c$49$3$70	= .
+                            119 	.globl	C$stdio_spi.c$49$3$70
+                            120 ;../src/stdio_spi/stdio_spi.c:49: return;
+   002A C3rB0r00      [10]  121 	jp	00111$
+   002D                     122 00102$:
+                     002D   123 	C$stdio_spi.c$52$2$69	= .
+                            124 	.globl	C$stdio_spi.c$52$2$69
+                            125 ;../src/stdio_spi/stdio_spi.c:52: if ( buffer[0] == SPI_END )
+   002D 79            [ 4]  126 	ld	a,c
+   002E D6 11         [ 7]  127 	sub	a, #0x11
+   0030 20 11         [12]  128 	jr	NZ,00106$
+                     0032   129 	C$stdio_spi.c$54$3$71	= .
+                            130 	.globl	C$stdio_spi.c$54$3$71
+                            131 ;../src/stdio_spi/stdio_spi.c:54: stdio_connected = false;
+   0032 21r00r00      [10]  132 	ld	hl,#_stdio_connected + 0
+   0035 36 00         [10]  133 	ld	(hl), #0x00
+                     0037   134 	C$stdio_spi.c$55$3$71	= .
+                            135 	.globl	C$stdio_spi.c$55$3$71
+                            136 ;../src/stdio_spi/stdio_spi.c:55: inbuffer_entries = 0;
+   0037 21r5Ar00      [10]  137 	ld	hl,#_inbuffer_entries + 0
+   003A 36 00         [10]  138 	ld	(hl), #0x00
+                     003C   139 	C$stdio_spi.c$56$3$71	= .
+                            140 	.globl	C$stdio_spi.c$56$3$71
+                            141 ;../src/stdio_spi/stdio_spi.c:56: outbuffer_entries = 0;
+   003C 21r5Br00      [10]  142 	ld	hl,#_outbuffer_entries + 0
+   003F 36 00         [10]  143 	ld	(hl), #0x00
+                     0041   144 	C$stdio_spi.c$57$3$71	= .
+                            145 	.globl	C$stdio_spi.c$57$3$71
+                            146 ;../src/stdio_spi/stdio_spi.c:57: return;
+   0041 18 6D         [12]  147 	jr	00111$
+   0043                     148 00106$:
+                     0043   149 	C$stdio_spi.c$62$1$68	= .
+                            150 	.globl	C$stdio_spi.c$62$1$68
+                            151 ;../src/stdio_spi/stdio_spi.c:62: if( inbuffer_entries == 8 ) return;
+   0043 3Ar5Ar00      [13]  152 	ld	a,(#_inbuffer_entries + 0)
+   0046 D6 08         [ 7]  153 	sub	a, #0x08
+   0048 28 66         [12]  154 	jr	Z,00111$
+   004A 18 02         [12]  155 	jr	00108$
+   004C 18 62         [12]  156 	jr	00111$
+   004E                     157 00108$:
+                     004E   158 	C$stdio_spi.c$65$1$68	= .
+                            159 	.globl	C$stdio_spi.c$65$1$68
+                            160 ;../src/stdio_spi/stdio_spi.c:65: sz = min(size, 8 - inbuffer_entries);
+   004E 21r5Ar00      [10]  161 	ld	hl,#_inbuffer_entries + 0
+   0051 4E            [ 7]  162 	ld	c, (hl)
+   0052 06 00         [ 7]  163 	ld	b,#0x00
+   0054 3E 08         [ 7]  164 	ld	a,#0x08
+   0056 91            [ 4]  165 	sub	a, c
+   0057 4F            [ 4]  166 	ld	c,a
+   0058 3E 00         [ 7]  167 	ld	a,#0x00
+   005A 98            [ 4]  168 	sbc	a, b
+   005B 47            [ 4]  169 	ld	b,a
+   005C DD 7E 06      [19]  170 	ld	a, 6 (ix)
+   005F 16 00         [ 7]  171 	ld	d, #0x00
+   0061 91            [ 4]  172 	sub	a, c
+   0062 7A            [ 4]  173 	ld	a,d
+   0063 98            [ 4]  174 	sbc	a, b
+   0064 E2r69r00      [10]  175 	jp	PO, 00147$
+   0067 EE 80         [ 7]  176 	xor	a, #0x80
+   0069                     177 00147$:
+   0069 FAr74r00      [10]  178 	jp	M,00113$
+   006C 21r5Ar00      [10]  179 	ld	hl,#_inbuffer_entries
+   006F 3E 08         [ 7]  180 	ld	a,#0x08
+   0071 96            [ 7]  181 	sub	a, (hl)
+   0072 18 03         [12]  182 	jr	00114$
+   0074                     183 00113$:
+   0074 DD 7E 06      [19]  184 	ld	a,6 (ix)
+   0077                     185 00114$:
+   0077 DD 77 FE      [19]  186 	ld	-2 (ix),a
+                     007A   187 	C$stdio_spi.c$68$1$68	= .
+                            188 	.globl	C$stdio_spi.c$68$1$68
+                            189 ;../src/stdio_spi/stdio_spi.c:68: memcpy( stdio_inbound_buffer + inbuffer_entries, buffer, sz);
+   007A 01r00r00      [10]  190 	ld	bc,#_stdio_inbound_buffer+0
+   007D 2Ar5Ar00      [16]  191 	ld	hl,(_inbuffer_entries)
+   0080 26 00         [ 7]  192 	ld	h,#0x00
+   0082 09            [11]  193 	add	hl,bc
+   0083 DD 4E 04      [19]  194 	ld	c,4 (ix)
+   0086 DD 46 05      [19]  195 	ld	b,5 (ix)
+   0089 DD 5E FE      [19]  196 	ld	e,-2 (ix)
+   008C 16 00         [ 7]  197 	ld	d,#0x00
+   008E D5            [11]  198 	push	de
+   008F C5            [11]  199 	push	bc
+   0090 E5            [11]  200 	push	hl
+   0091 CDr00r00      [17]  201 	call	_memcpy
+   0094 21 06 00      [10]  202 	ld	hl,#6
+   0097 39            [11]  203 	add	hl,sp
+   0098 F9            [ 6]  204 	ld	sp,hl
+                     0099   205 	C$stdio_spi.c$71$1$68	= .
+                            206 	.globl	C$stdio_spi.c$71$1$68
+                            207 ;../src/stdio_spi/stdio_spi.c:71: inbuffer_entries += sz;
+   0099 21r5Ar00      [10]  208 	ld	hl,#_inbuffer_entries
+   009C 7E            [ 7]  209 	ld	a,(hl)
+   009D DD 86 FE      [19]  210 	add	a, -2 (ix)
+   00A0 77            [ 7]  211 	ld	(hl),a
+                     00A1   212 	C$stdio_spi.c$74$1$68	= .
+                            213 	.globl	C$stdio_spi.c$74$1$68
+                            214 ;../src/stdio_spi/stdio_spi.c:74: if( inbuffer_entries > 8 ) inbuffer_entries = 8;
+   00A1 3E 08         [ 7]  215 	ld	a,#0x08
+   00A3 FD 21r5Ar00   [14]  216 	ld	iy,#_inbuffer_entries
+   00A7 FD 96 00      [19]  217 	sub	a, 0 (iy)
+   00AA 30 04         [12]  218 	jr	NC,00111$
+   00AC FD 36 00 08   [19]  219 	ld	0 (iy),#0x08
+   00B0                     220 00111$:
+   00B0 DD F9         [10]  221 	ld	sp, ix
+   00B2 DD E1         [14]  222 	pop	ix
+                     00B4   223 	C$stdio_spi.c$75$1$68	= .
+                            224 	.globl	C$stdio_spi.c$75$1$68
+                     00B4   225 	XG$stdio_channel_handler$0$0	= .
+                            226 	.globl	XG$stdio_channel_handler$0$0
+   00B4 C9            [10]  227 	ret
+                     00B5   228 	G$stdio_init$0$0	= .
+                            229 	.globl	G$stdio_init$0$0
+                     00B5   230 	C$stdio_spi.c$79$1$68	= .
+                            231 	.globl	C$stdio_spi.c$79$1$68
+                            232 ;../src/stdio_spi/stdio_spi.c:79: void stdio_init()
+                            233 ;	---------------------------------
+                            234 ; Function stdio_init
+                            235 ; ---------------------------------
+   00B5                     236 _stdio_init::
+                     00B5   237 	C$stdio_spi.c$82$1$72	= .
+                            238 	.globl	C$stdio_spi.c$82$1$72
+                            239 ;../src/stdio_spi/stdio_spi.c:82: spiSetHandler(0, &stdio_channel_handler);
+   00B5 21r00r00      [10]  240 	ld	hl,#_stdio_channel_handler
+   00B8 E5            [11]  241 	push	hl
+   00B9 AF            [ 4]  242 	xor	a, a
+   00BA F5            [11]  243 	push	af
+   00BB 33            [ 6]  244 	inc	sp
+   00BC CDr00r00      [17]  245 	call	_spiSetHandler
+   00BF F1            [10]  246 	pop	af
+   00C0 33            [ 6]  247 	inc	sp
+                     00C1   248 	C$stdio_spi.c$83$1$72	= .
+                            249 	.globl	C$stdio_spi.c$83$1$72
+                            250 ;../src/stdio_spi/stdio_spi.c:83: inbuffer_entries = 0;
+   00C1 21r5Ar00      [10]  251 	ld	hl,#_inbuffer_entries + 0
+   00C4 36 00         [10]  252 	ld	(hl), #0x00
+                     00C6   253 	C$stdio_spi.c$84$1$72	= .
+                            254 	.globl	C$stdio_spi.c$84$1$72
+                            255 ;../src/stdio_spi/stdio_spi.c:84: outbuffer_entries = 0;
+   00C6 21r5Br00      [10]  256 	ld	hl,#_outbuffer_entries + 0
+   00C9 36 00         [10]  257 	ld	(hl), #0x00
+                     00CB   258 	C$stdio_spi.c$85$1$72	= .
+                            259 	.globl	C$stdio_spi.c$85$1$72
+                            260 ;../src/stdio_spi/stdio_spi.c:85: spiSetInUse(false);
+   00CB AF            [ 4]  261 	xor	a, a
+   00CC F5            [11]  262 	push	af
+   00CD 33            [ 6]  263 	inc	sp
+   00CE CDr00r00      [17]  264 	call	_spiSetInUse
+   00D1 33            [ 6]  265 	inc	sp
+                     00D2   266 	C$stdio_spi.c$86$1$72	= .
+                            267 	.globl	C$stdio_spi.c$86$1$72
+                            268 ;../src/stdio_spi/stdio_spi.c:86: spiSetProcessed(true);
+   00D2 3E 01         [ 7]  269 	ld	a,#0x01
+   00D4 F5            [11]  270 	push	af
+   00D5 33            [ 6]  271 	inc	sp
+   00D6 CDr00r00      [17]  272 	call	_spiSetProcessed
+   00D9 33            [ 6]  273 	inc	sp
+                     00DA   274 	C$stdio_spi.c$87$1$72	= .
+                            275 	.globl	C$stdio_spi.c$87$1$72
+                            276 ;../src/stdio_spi/stdio_spi.c:87: stdio_connected = false;
+   00DA 21r00r00      [10]  277 	ld	hl,#_stdio_connected + 0
+   00DD 36 00         [10]  278 	ld	(hl), #0x00
+                     00DF   279 	C$stdio_spi.c$88$1$72	= .
+                            280 	.globl	C$stdio_spi.c$88$1$72
+                     00DF   281 	XG$stdio_init$0$0	= .
+                            282 	.globl	XG$stdio_init$0$0
+   00DF C9            [10]  283 	ret
+                     00E0   284 	G$spi_puts$0$0	= .
+                            285 	.globl	G$spi_puts$0$0
+                     00E0   286 	C$stdio_spi.c$92$1$72	= .
+                            287 	.globl	C$stdio_spi.c$92$1$72
+                            288 ;../src/stdio_spi/stdio_spi.c:92: void spi_puts( void * string )
+                            289 ;	---------------------------------
+                            290 ; Function spi_puts
+                            291 ; ---------------------------------
+   00E0                     292 _spi_puts::
+   00E0 F5            [11]  293 	push	af
+                     00E1   294 	C$stdio_spi.c$95$1$74	= .
+                            295 	.globl	C$stdio_spi.c$95$1$74
+                            296 ;../src/stdio_spi/stdio_spi.c:95: int size = strlen( string );
+   00E1 21 04 00      [10]  297 	ld	hl, #4
+   00E4 39            [11]  298 	add	hl, sp
+   00E5 4E            [ 7]  299 	ld	c, (hl)
+   00E6 23            [ 6]  300 	inc	hl
+   00E7 46            [ 7]  301 	ld	b, (hl)
+   00E8 C5            [11]  302 	push	bc
+   00E9 CDr00r00      [17]  303 	call	_strlen
+   00EC F1            [10]  304 	pop	af
+   00ED 33            [ 6]  305 	inc	sp
+   00EE 33            [ 6]  306 	inc	sp
+   00EF E5            [11]  307 	push	hl
+                     00F0   308 	C$stdio_spi.c$98$1$74	= .
+                            309 	.globl	C$stdio_spi.c$98$1$74
+                            310 ;../src/stdio_spi/stdio_spi.c:98: while(!spiLock(0)) process_events();
+   00F0                     311 00101$:
+   00F0 AF            [ 4]  312 	xor	a, a
+   00F1 F5            [11]  313 	push	af
+   00F2 33            [ 6]  314 	inc	sp
+   00F3 CDr00r00      [17]  315 	call	_spiLock
+   00F6 33            [ 6]  316 	inc	sp
+   00F7 7D            [ 4]  317 	ld	a,l
+   00F8 B7            [ 4]  318 	or	a, a
+   00F9 20 05         [12]  319 	jr	NZ,00103$
+   00FB CDr00r00      [17]  320 	call	_process_events
+   00FE 18 F0         [12]  321 	jr	00101$
+   0100                     322 00103$:
+                     0100   323 	C$stdio_spi.c$101$1$74	= .
+                            324 	.globl	C$stdio_spi.c$101$1$74
+                            325 ;../src/stdio_spi/stdio_spi.c:101: memcpy( spiGetOutBuffer(), string, size );	// Note it doesn't copy the terminating zero
+   0100 CDr00r00      [17]  326 	call	_spiGetOutBuffer
+   0103 C1            [10]  327 	pop	bc
+   0104 C5            [11]  328 	push	bc
+   0105 C5            [11]  329 	push	bc
+   0106 FD 21 06 00   [14]  330 	ld	iy,#6
+   010A FD 39         [15]  331 	add	iy,sp
+   010C FD 4E 00      [19]  332 	ld	c,0 (iy)
+   010F FD 46 01      [19]  333 	ld	b,1 (iy)
+   0112 C5            [11]  334 	push	bc
+   0113 E5            [11]  335 	push	hl
+   0114 CDr00r00      [17]  336 	call	_memcpy
+   0117 21 06 00      [10]  337 	ld	hl,#6
+   011A 39            [11]  338 	add	hl,sp
+   011B F9            [ 6]  339 	ld	sp,hl
+                     011C   340 	C$stdio_spi.c$104$1$74	= .
+                            341 	.globl	C$stdio_spi.c$104$1$74
+                            342 ;../src/stdio_spi/stdio_spi.c:104: spiExchange( SPI_CHANNEL, size );
+   011C 21 00 00      [10]  343 	ld	hl, #0+0
+   011F 39            [11]  344 	add	hl, sp
+   0120 46            [ 7]  345 	ld	b, (hl)
+   0121 C5            [11]  346 	push	bc
+   0122 33            [ 6]  347 	inc	sp
+   0123 AF            [ 4]  348 	xor	a, a
+   0124 F5            [11]  349 	push	af
+   0125 33            [ 6]  350 	inc	sp
+   0126 CDr00r00      [17]  351 	call	_spiExchange
+   0129 F1            [10]  352 	pop	af
+   012A F1            [10]  353 	pop	af
+                     012B   354 	C$stdio_spi.c$106$1$74	= .
+                            355 	.globl	C$stdio_spi.c$106$1$74
+                     012B   356 	XG$spi_puts$0$0	= .
+                            357 	.globl	XG$spi_puts$0$0
+   012B C9            [10]  358 	ret
+                     012C   359 	G$putchari$0$0	= .
+                            360 	.globl	G$putchari$0$0
+                     012C   361 	C$stdio_spi.c$111$1$74	= .
+                            362 	.globl	C$stdio_spi.c$111$1$74
+                            363 ;../src/stdio_spi/stdio_spi.c:111: inline void putchari( char data ) { putchar(data); outbound_flush(); }
+                            364 ;	---------------------------------
+                            365 ; Function putchari
+                            366 ; ---------------------------------
+   012C                     367 _putchari::
+   012C 21 02 00      [10]  368 	ld	hl, #2+0
+   012F 39            [11]  369 	add	hl, sp
+   0130 7E            [ 7]  370 	ld	a, (hl)
+   0131 F5            [11]  371 	push	af
+   0132 33            [ 6]  372 	inc	sp
+   0133 CDr3Ar01      [17]  373 	call	_putchar
+   0136 33            [ 6]  374 	inc	sp
+                     0137   375 	C$stdio_spi.c$111$1$76	= .
+                            376 	.globl	C$stdio_spi.c$111$1$76
+                     0137   377 	XG$putchari$0$0	= .
+                            378 	.globl	XG$putchari$0$0
+   0137 C3r8Er01      [10]  379 	jp  _outbound_flush
+                     013A   380 	G$putchar$0$0	= .
+                            381 	.globl	G$putchar$0$0
+                     013A   382 	C$stdio_spi.c$116$1$76	= .
+                            383 	.globl	C$stdio_spi.c$116$1$76
+                            384 ;../src/stdio_spi/stdio_spi.c:116: void putchar( char data )
+                            385 ;	---------------------------------
+                            386 ; Function putchar
+                            387 ; ---------------------------------
+   013A                     388 _putchar::
+   013A DD E5         [15]  389 	push	ix
+   013C DD 21 00 00   [14]  390 	ld	ix,#0
+   0140 DD 39         [15]  391 	add	ix,sp
+                     0142   392 	C$stdio_spi.c$119$1$78	= .
+                            393 	.globl	C$stdio_spi.c$119$1$78
+                            394 ;../src/stdio_spi/stdio_spi.c:119: if( !stdio_connected ) return;
+   0142 3Ar00r00      [13]  395 	ld	a,(#_stdio_connected + 0)
+   0145 B7            [ 4]  396 	or	a, a
+   0146 28 43         [12]  397 	jr	Z,00108$
+                     0148   398 	C$stdio_spi.c$122$1$78	= .
+                            399 	.globl	C$stdio_spi.c$122$1$78
+                            400 ;../src/stdio_spi/stdio_spi.c:122: stdio_outbound_buffer[outbuffer_entries++] = data;
+   0148 01r08r00      [10]  401 	ld	bc,#_stdio_outbound_buffer+0
+   014B FD 21r5Br00   [14]  402 	ld	iy,#_outbuffer_entries
+   014F FD 5E 00      [19]  403 	ld	e,0 (iy)
+   0152 FD 34 00      [23]  404 	inc	0 (iy)
+   0155 6B            [ 4]  405 	ld	l,e
+   0156 26 00         [ 7]  406 	ld	h,#0x00
+   0158 09            [11]  407 	add	hl,bc
+   0159 DD 7E 04      [19]  408 	ld	a,4 (ix)
+   015C 77            [ 7]  409 	ld	(hl),a
+                     015D   410 	C$stdio_spi.c$125$1$78	= .
+                            411 	.globl	C$stdio_spi.c$125$1$78
+                            412 ;../src/stdio_spi/stdio_spi.c:125: if( data == _LF_ ) stdio_outbound_buffer[outbuffer_entries++] = _CR_;
+   015D DD 7E 04      [19]  413 	ld	a,4 (ix)
+   0160 D6 0A         [ 7]  414 	sub	a, #0x0a
+   0162 20 04         [12]  415 	jr	NZ,00122$
+   0164 3E 01         [ 7]  416 	ld	a,#0x01
+   0166 18 01         [12]  417 	jr	00123$
+   0168                     418 00122$:
+   0168 AF            [ 4]  419 	xor	a,a
+   0169                     420 00123$:
+   0169 5F            [ 4]  421 	ld	e,a
+   016A B7            [ 4]  422 	or	a, a
+   016B 28 10         [12]  423 	jr	Z,00104$
+   016D FD 21r5Br00   [14]  424 	ld	iy,#_outbuffer_entries
+   0171 FD 56 00      [19]  425 	ld	d,0 (iy)
+   0174 FD 34 00      [23]  426 	inc	0 (iy)
+   0177 6A            [ 4]  427 	ld	l,d
+   0178 26 00         [ 7]  428 	ld	h,#0x00
+   017A 09            [11]  429 	add	hl,bc
+   017B 36 0D         [10]  430 	ld	(hl),#0x0d
+   017D                     431 00104$:
+                     017D   432 	C$stdio_spi.c$128$1$78	= .
+                            433 	.globl	C$stdio_spi.c$128$1$78
+                            434 ;../src/stdio_spi/stdio_spi.c:128: if( ( data == _LF_ ) || ( outbuffer_entries >= _STD_WIDTH_ ) ) outbound_flush();
+   017D 7B            [ 4]  435 	ld	a,e
+   017E B7            [ 4]  436 	or	a, a
+   017F 20 07         [12]  437 	jr	NZ,00105$
+   0181 3Ar5Br00      [13]  438 	ld	a,(#_outbuffer_entries + 0)
+   0184 D6 50         [ 7]  439 	sub	a, #0x50
+   0186 38 03         [12]  440 	jr	C,00108$
+   0188                     441 00105$:
+   0188 CDr8Er01      [17]  442 	call	_outbound_flush
+   018B                     443 00108$:
+   018B DD E1         [14]  444 	pop	ix
+                     018D   445 	C$stdio_spi.c$129$1$78	= .
+                            446 	.globl	C$stdio_spi.c$129$1$78
+                     018D   447 	XG$putchar$0$0	= .
+                            448 	.globl	XG$putchar$0$0
+   018D C9            [10]  449 	ret
+                     018E   450 	G$outbound_flush$0$0	= .
+                            451 	.globl	G$outbound_flush$0$0
+                     018E   452 	C$stdio_spi.c$133$1$78	= .
+                            453 	.globl	C$stdio_spi.c$133$1$78
+                            454 ;../src/stdio_spi/stdio_spi.c:133: void outbound_flush()
+                            455 ;	---------------------------------
+                            456 ; Function outbound_flush
+                            457 ; ---------------------------------
+   018E                     458 _outbound_flush::
+                     018E   459 	C$stdio_spi.c$136$1$79	= .
+                            460 	.globl	C$stdio_spi.c$136$1$79
+                            461 ;../src/stdio_spi/stdio_spi.c:136: stdio_outbound_buffer[outbuffer_entries] = 0;
+   018E 01r08r00      [10]  462 	ld	bc,#_stdio_outbound_buffer+0
+   0191 2Ar5Br00      [16]  463 	ld	hl,(_outbuffer_entries)
+   0194 26 00         [ 7]  464 	ld	h,#0x00
+   0196 09            [11]  465 	add	hl,bc
+   0197 36 00         [10]  466 	ld	(hl),#0x00
+                     0199   467 	C$stdio_spi.c$139$1$79	= .
+                            468 	.globl	C$stdio_spi.c$139$1$79
+                            469 ;../src/stdio_spi/stdio_spi.c:139: spi_puts(stdio_outbound_buffer);
+   0199 C5            [11]  470 	push	bc
+   019A CDrE0r00      [17]  471 	call	_spi_puts
+   019D F1            [10]  472 	pop	af
+                     019E   473 	C$stdio_spi.c$142$1$79	= .
+                            474 	.globl	C$stdio_spi.c$142$1$79
+                            475 ;../src/stdio_spi/stdio_spi.c:142: outbuffer_entries = 0;
+   019E 21r5Br00      [10]  476 	ld	hl,#_outbuffer_entries + 0
+   01A1 36 00         [10]  477 	ld	(hl), #0x00
+                     01A3   478 	C$stdio_spi.c$143$1$79	= .
+                            479 	.globl	C$stdio_spi.c$143$1$79
+                     01A3   480 	XG$outbound_flush$0$0	= .
+                            481 	.globl	XG$outbound_flush$0$0
+   01A3 C9            [10]  482 	ret
+                     01A4   483 	G$spi_avail$0$0	= .
+                            484 	.globl	G$spi_avail$0$0
+                     01A4   485 	C$stdio_spi.c$147$1$79	= .
+                            486 	.globl	C$stdio_spi.c$147$1$79
+                            487 ;../src/stdio_spi/stdio_spi.c:147: unsigned char spi_avail()
+                            488 ;	---------------------------------
+                            489 ; Function spi_avail
+                            490 ; ---------------------------------
+   01A4                     491 _spi_avail::
+                     01A4   492 	C$stdio_spi.c$149$1$80	= .
+                            493 	.globl	C$stdio_spi.c$149$1$80
+                            494 ;../src/stdio_spi/stdio_spi.c:149: return inbuffer_entries;
+   01A4 FD 21r5Ar00   [14]  495 	ld	iy,#_inbuffer_entries
+   01A8 FD 6E 00      [19]  496 	ld	l,0 (iy)
+                     01AB   497 	C$stdio_spi.c$150$1$80	= .
+                            498 	.globl	C$stdio_spi.c$150$1$80
+                     01AB   499 	XG$spi_avail$0$0	= .
+                            500 	.globl	XG$spi_avail$0$0
+   01AB C9            [10]  501 	ret
+                     01AC   502 	G$getchar$0$0	= .
+                            503 	.globl	G$getchar$0$0
+                     01AC   504 	C$stdio_spi.c$154$1$80	= .
+                            505 	.globl	C$stdio_spi.c$154$1$80
+                            506 ;../src/stdio_spi/stdio_spi.c:154: char getchar()
+                            507 ;	---------------------------------
+                            508 ; Function getchar
+                            509 ; ---------------------------------
+   01AC                     510 _getchar::
+                     01AC   511 	C$stdio_spi.c$157$1$81	= .
+                            512 	.globl	C$stdio_spi.c$157$1$81
+                            513 ;../src/stdio_spi/stdio_spi.c:157: char r = stdio_inbound_buffer[0];
+   01AC 01r00r00      [10]  514 	ld	bc,#_stdio_inbound_buffer+0
+   01AF 0A            [ 7]  515 	ld	a,(bc)
+   01B0 5F            [ 4]  516 	ld	e,a
+                     01B1   517 	C$stdio_spi.c$160$1$81	= .
+                            518 	.globl	C$stdio_spi.c$160$1$81
+                            519 ;../src/stdio_spi/stdio_spi.c:160: if( inbuffer_entries == 0 ) return 0;
+   01B1 3Ar5Ar00      [13]  520 	ld	a,(#_inbuffer_entries + 0)
+   01B4 B7            [ 4]  521 	or	a,a
+   01B5 20 02         [12]  522 	jr	NZ,00102$
+   01B7 6F            [ 4]  523 	ld	l,a
+   01B8 C9            [10]  524 	ret
+   01B9                     525 00102$:
+                     01B9   526 	C$stdio_spi.c$163$1$81	= .
+                            527 	.globl	C$stdio_spi.c$163$1$81
+                            528 ;../src/stdio_spi/stdio_spi.c:163: if( inbuffer_entries > 1 )
+   01B9 3E 01         [ 7]  529 	ld	a,#0x01
+   01BB FD 21r5Ar00   [14]  530 	ld	iy,#_inbuffer_entries
+   01BF FD 96 00      [19]  531 	sub	a, 0 (iy)
+   01C2 30 16         [12]  532 	jr	NC,00104$
+                     01C4   533 	C$stdio_spi.c$164$1$81	= .
+                            534 	.globl	C$stdio_spi.c$164$1$81
+                            535 ;../src/stdio_spi/stdio_spi.c:164: memcpy( stdio_inbound_buffer, stdio_inbound_buffer + 1, inbuffer_entries);
+   01C4 03            [ 6]  536 	inc	bc
+   01C5 FD 6E 00      [19]  537 	ld	l,0 (iy)
+   01C8 26 00         [ 7]  538 	ld	h,#0x00
+   01CA D5            [11]  539 	push	de
+   01CB E5            [11]  540 	push	hl
+   01CC C5            [11]  541 	push	bc
+   01CD 21r00r00      [10]  542 	ld	hl,#_stdio_inbound_buffer
+   01D0 E5            [11]  543 	push	hl
+   01D1 CDr00r00      [17]  544 	call	_memcpy
+   01D4 21 06 00      [10]  545 	ld	hl,#6
+   01D7 39            [11]  546 	add	hl,sp
+   01D8 F9            [ 6]  547 	ld	sp,hl
+   01D9 D1            [10]  548 	pop	de
+   01DA                     549 00104$:
+                     01DA   550 	C$stdio_spi.c$167$1$81	= .
+                            551 	.globl	C$stdio_spi.c$167$1$81
+                            552 ;../src/stdio_spi/stdio_spi.c:167: inbuffer_entries--;
+   01DA 21r5Ar00      [10]  553 	ld	hl, #_inbuffer_entries+0
+   01DD 35            [11]  554 	dec	(hl)
+                     01DE   555 	C$stdio_spi.c$170$1$81	= .
+                            556 	.globl	C$stdio_spi.c$170$1$81
+                            557 ;../src/stdio_spi/stdio_spi.c:170: return r;
+   01DE 6B            [ 4]  558 	ld	l,e
+                     01DF   559 	C$stdio_spi.c$171$1$81	= .
+                            560 	.globl	C$stdio_spi.c$171$1$81
+                     01DF   561 	XG$getchar$0$0	= .
+                            562 	.globl	XG$getchar$0$0
+   01DF C9            [10]  563 	ret
+                     01E0   564 	G$inbound_flush$0$0	= .
+                            565 	.globl	G$inbound_flush$0$0
+                     01E0   566 	C$stdio_spi.c$176$1$81	= .
+                            567 	.globl	C$stdio_spi.c$176$1$81
+                            568 ;../src/stdio_spi/stdio_spi.c:176: void inbound_flush()
+                            569 ;	---------------------------------
+                            570 ; Function inbound_flush
+                            571 ; ---------------------------------
+   01E0                     572 _inbound_flush::
+                     01E0   573 	C$stdio_spi.c$178$1$82	= .
+                            574 	.globl	C$stdio_spi.c$178$1$82
+                            575 ;../src/stdio_spi/stdio_spi.c:178: inbuffer_entries = 0;
+   01E0 21r5Ar00      [10]  576 	ld	hl,#_inbuffer_entries + 0
+   01E3 36 00         [10]  577 	ld	(hl), #0x00
+                     01E5   578 	C$stdio_spi.c$179$1$82	= .
+                            579 	.globl	C$stdio_spi.c$179$1$82
+                     01E5   580 	XG$inbound_flush$0$0	= .
+                            581 	.globl	XG$inbound_flush$0$0
+   01E5 C9            [10]  582 	ret
+                     01E6   583 	G$spi_connected$0$0	= .
+                            584 	.globl	G$spi_connected$0$0
+                     01E6   585 	C$stdio_spi.c$184$1$82	= .
+                            586 	.globl	C$stdio_spi.c$184$1$82
+                            587 ;../src/stdio_spi/stdio_spi.c:184: inline Bool spi_connected()
+                            588 ;	---------------------------------
+                            589 ; Function spi_connected
+                            590 ; ---------------------------------
+   01E6                     591 _spi_connected::
+                     01E6   592 	C$stdio_spi.c$186$1$83	= .
+                            593 	.globl	C$stdio_spi.c$186$1$83
+                            594 ;../src/stdio_spi/stdio_spi.c:186: return stdio_connected;
+   01E6 FD 21r00r00   [14]  595 	ld	iy,#_stdio_connected
+   01EA FD 6E 00      [19]  596 	ld	l,0 (iy)
+                     01ED   597 	C$stdio_spi.c$187$1$83	= .
+                            598 	.globl	C$stdio_spi.c$187$1$83
+                     01ED   599 	XG$spi_connected$0$0	= .
+                            600 	.globl	XG$spi_connected$0$0
+   01ED C9            [10]  601 	ret
+                            602 	.area _CODE
+                            603 	.area _INITIALIZER
+                     0000   604 Fstdio_spi$__xinit_stdio_connected$0$0 == .
+   0000                     605 __xinit__stdio_connected:
+   0000 00                  606 	.db #0x00	; 0
+                            607 	.area _CABS (ABS)

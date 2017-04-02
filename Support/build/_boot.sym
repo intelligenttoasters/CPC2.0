@@ -1,0 +1,104 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.=  2710 L   |     .__.ABS.=  0000 G   |     .__.CPU.=  0000 L
+    .__.H$L.=  0000 L   |  15 A$_boot$   0000 GR  |  15 A$_boot$   0003 GR
+ 15 A$_boot$   0006 GR  |  15 A$_boot$   0008 GR  |  15 A$_boot$   0009 GR
+ 15 A$_boot$   000A GR  |  15 A$_boot$   000B GR  |  15 A$_boot$   000C GR
+ 15 A$_boot$   000D GR  |  15 A$_boot$   000F GR  |  15 A$_boot$   0012 GR
+ 15 A$_boot$   0015 GR  |  15 A$_boot$   0017 GR  |  16 A$_boot$   0000 GR
+ 16 A$_boot$   0003 GR  |  16 A$_boot$   0005 GR  |  16 A$_boot$   0008 GR
+ 16 A$_boot$   000A GR  |  16 A$_boot$   000C GR  |  16 A$_boot$   000D GR
+ 16 A$_boot$   0010 GR  |  16 A$_boot$   0012 GR  |  16 A$_boot$   0015 GR
+ 16 A$_boot$   0018 GR  |  16 A$_boot$   001B GR  |  16 A$_boot$   001C GR
+ 16 A$_boot$   001D GR  |  16 A$_boot$   001E GR  |  16 A$_boot$   0021 GR
+ 16 A$_boot$   0024 GR  |  16 A$_boot$   0027 GR  |  16 A$_boot$   0028 GR
+ 16 A$_boot$   0029 GR  |  16 A$_boot$   002D GR  |  16 A$_boot$   0031 GR
+ 16 A$_boot$   0032 GR  |  16 A$_boot$   0033 GR  |  16 A$_boot$   0034 GR
+ 16 A$_boot$   0035 GR  |  16 A$_boot$   0037 GR  |  16 A$_boot$   003B GR
+ 16 A$_boot$   003D GR  |  16 A$_boot$   0040 GR  |  16 A$_boot$   0043 GR
+ 16 A$_boot$   0045 GR  |  16 A$_boot$   0047 GR  |  16 A$_boot$   0048 GR
+ 16 A$_boot$   0049 GR  |  16 A$_boot$   004A GR  |  16 A$_boot$   004B GR
+ 16 A$_boot$   004C GR  |  16 A$_boot$   004E GR  |  16 A$_boot$   0052 GR
+ 16 A$_boot$   0054 GR  |  16 A$_boot$   0057 GR  |  16 A$_boot$   0059 GR
+ 16 A$_boot$   005B GR  |  16 A$_boot$   005C GR  |  16 A$_boot$   005E GR
+ 16 A$_boot$   005F GR  |  16 A$_boot$   0060 GR  |  16 A$_boot$   0061 GR
+ 16 A$_boot$   0062 GR  |  16 A$_boot$   0063 GR  |  16 A$_boot$   0064 GR
+ 16 A$_boot$   0066 GR  |  16 A$_boot$   006A GR  |  16 A$_boot$   006C GR
+ 16 A$_boot$   006F GR  |  16 A$_boot$   0072 GR  |  16 A$_boot$   0075 GR
+ 16 A$_boot$   0078 GR  |  16 A$_boot$   007A GR  |  16 A$_boot$   007C GR
+ 16 A$_boot$   007D GR  |  16 A$_boot$   007E GR  |  16 A$_boot$   007F GR
+ 16 A$_boot$   0080 GR  |  16 A$_boot$   0081 GR  |  16 A$_boot$   0082 GR
+ 16 A$_boot$   0083 GR  |  16 A$_boot$   0085 GR  |  16 A$_boot$   0089 GR
+ 16 A$_boot$   008B GR  |  16 A$_boot$   008E GR  |  16 A$_boot$   0091 GR
+ 16 A$_boot$   0094 GR  |  16 A$_boot$   0097 GR  |  16 A$_boot$   0099 GR
+ 16 A$_boot$   009B GR  |  16 A$_boot$   009C GR  |  16 A$_boot$   009D GR
+ 16 A$_boot$   009E GR  |  16 A$_boot$   009F GR  |  16 A$_boot$   00A0 GR
+ 16 A$_boot$   00A1 GR  |  16 A$_boot$   00A2 GR  |  16 A$_boot$   00A3 GR
+ 16 A$_boot$   00A5 GR  |  16 A$_boot$   00A9 GR  |  16 A$_boot$   00AB GR
+ 16 A$_boot$   00AE GR  |  16 A$_boot$   00B1 GR  |  16 A$_boot$   00B4 GR
+ 16 A$_boot$   00B7 GR  |  16 A$_boot$   00BA GR  |  16 A$_boot$   00BD GR
+ 16 A$_boot$   00C0 GR  |  16 A$_boot$   00C1 GR  |  16 A$_boot$   00C2 GR
+ 16 A$_boot$   00C3 GR  |  16 A$_boot$   00C4 GR  |  16 A$_boot$   00C5 GR
+ 16 A$_boot$   00C7 GR  |  16 A$_boot$   00C9 GR  |  16 A$_boot$   00CB GR
+  2 A$_boot$   0000 GR  |  16 A$_boot$   00CC GR  |  16 A$_boot$   00CD GR
+ 16 A$_boot$   00CE GR  |  16 A$_boot$   00CF GR  |  16 A$_boot$   00D1 GR
+ 16 A$_boot$   00D5 GR  |  16 A$_boot$   00D7 GR  |  16 A$_boot$   00DA GR
+ 16 A$_boot$   00DD GR  |   2 A$_boot$   0003 GR  |  16 A$_boot$   00E0 GR
+ 16 A$_boot$   00E3 GR  |  16 A$_boot$   00E6 GR  |  16 A$_boot$   00E9 GR
+ 16 A$_boot$   00EA GR  |  16 A$_boot$   00EB GR  |  16 A$_boot$   00ED GR
+ 16 A$_boot$   00EF GR  |  16 A$_boot$   00F1 GR  |  16 A$_boot$   00F2 GR
+ 16 A$_boot$   00F3 GR  |  16 A$_boot$   00F4 GR  |  16 A$_boot$   00F5 GR
+  4 A$_boot$   0008 GR  |   6 A$_boot$   0010 GR  |   8 A$_boot$   0018 GR
+  A A$_boot$   0020 GR  |   C A$_boot$   0028 GR  |   E A$_boot$   0030 GR
+ 10 A$_boot$   0038 GR  |  10 A$_boot$   003C GR  |  10 A$_boot$   003F GR
+ 10 A$_boot$   0040 GR  |  10 A$_boot$   0041 GR  |  10 A$_boot$   0044 GR
+ 10 A$_boot$   0045 GR  |  10 A$_boot$   0046 GR  |  10 A$_boot$   004A GR
+ 10 A$_boot$   004B GR  |  12 A$_boot$   0066 GR  |  12 A$_boot$   006A GR
+ 12 A$_boot$   006D GR  |  12 A$_boot$   006E GR  |  12 A$_boot$   006F GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+ 12 A$_boot$   0072 GR  |  12 A$_boot$   0073 GR  |  12 A$_boot$   0074 GR
+ 12 A$_boot$   0078 GR  |  16 BOOTSYS    0000 R   |  16 CLRREG     0012 R
+ 10 INT_SP     004D R   |  10 INT_STAC   0065 R   |  12 NMI_SP     007A R
+ 12 NMI_STAC   008C R   |  12 _CODE_ST=  008C R   |  16 _IN        004A GR
+ 16 _INI       0080 GR  |  16 _OUT       0033 GR  |  16 _OUTI      0061 GR
+    _int_han   **** GX  |     _main      **** GX  |  16 _memcpy    00CB GR
+ 16 _memset    009F GR  |     _nmi_han   **** GX  |  15 gsinit     0000 R
+ 15 gsinit_n   0017 R   |  16 mem_done   00EF R   |  14 s__INITI=  0000 R
+ 13 s__INITI=  0000 R
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE      size   8C   flags    0
+   1 _VECT0     size    0   flags    8
+   2 _VECT00    size    6   flags    8
+   3 _VECT1     size    0   flags    8
+   4 _VECT11    size    2   flags    8
+   5 _VECT2     size    0   flags    8
+   6 _VECT22    size    2   flags    8
+   7 _VECT3     size    0   flags    8
+   8 _VECT33    size    2   flags    8
+   9 _VECT4     size    0   flags    8
+   A _VECT44    size    2   flags    8
+   B _VECT5     size    0   flags    8
+   C _VECT55    size    2   flags    8
+   D _VECT6     size    0   flags    8
+   E _VECT66    size    2   flags    8
+   F _VECT7     size    0   flags    8
+  10 _VECT77    size   2D   flags    8
+  11 _VECT_NM   size    0   flags    8
+  12 _VECT_NM   size   26   flags    8
+  13 _INITIAL   size    0   flags    0
+  14 _INITIAL   size    0   flags    0
+  15 _GSINIT    size   18   flags    0
+  16 _SYSTEM_   size   F6   flags    0
+

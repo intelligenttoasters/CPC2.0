@@ -1,0 +1,30 @@
+#!/opt/altera/quartus/14.0/quartus/bin/quartus_stp -t
+
+proc setup_blaster {} {
+        global usbblaster_name
+        global test_device
+
+        foreach hardware_name [get_hardware_names] {
+                if { [string match "USB-Blaster*" $hardware_name] } {
+                        set usbblaster_name $hardware_name
+                }
+        }
+
+	puts "Connecting to $usbblaster_name"
+
+        foreach device_name [get_device_names -hardware_name $usbblaster_name] {
+                if { [string match "@1*" $device_name] } {
+                        set test_device $device_name
+                }
+        }
+        puts "Selected device: $test_device.";
+
+}
+
+setup_blaster
+puts "Sending program to memory"
+puts "Instance: [get_editable_mem_instances -hardware_name $usbblaster_name -device_name $test_device]"
+begin_memory_edit -hardware_name "$usbblaster_name" -device_name "$test_device"
+update_content_to_memory_from_file -instance_index 0 -mem_file_path "build/ROM.mif" -mem_file_type mif 
+end_memory_edit
+

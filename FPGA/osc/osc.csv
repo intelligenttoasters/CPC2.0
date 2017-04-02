@@ -1,0 +1,18 @@
+# system info osc on 2016.12.29.18:16:38
+system_info:
+name,value
+DEVICE,5CEBA2F17C8
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1482995798
+#
+#
+# Files generated for osc on 2016.12.29.18:16:38
+files:
+filepath,kind,attributes,module,is_top
+simulation/osc.v,VERILOG,,osc,true
+simulation/submodules/osc_int_osc_0.v,VERILOG,,osc_int_osc_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+osc.int_osc_0,osc_int_osc_0

@@ -1,0 +1,619 @@
+ASxxxx Linker V03.00 + NoICE + sdld,  page 1.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+.  .ABS.               00000000    00000000 =           0. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  .__.ABS.  |    00000000  l__CABS   |    00000000  l__DABS  
+     00000000  l__GSFINA |    00000000  l__HOME   |    00000000  l__VECT0 
+     00000000  l__VECT1  |    00000000  l__VECT2  |    00000000  l__VECT3 
+     00000000  l__VECT4  |    00000000  l__VECT5  |    00000000  l__VECT6 
+     00000000  l__VECT7  |    00000000  l__VECT_N |    00000000  s__CABS  
+     00000000  s__CODE   |    00000000  s__DABS   |    00000000  s__VECT0 
+     00000000  s__VECT00 |    00000000  s__VECT1  |    00000000  s__VECT11
+     00000000  s__VECT2  |    00000000  s__VECT22 |    00000000  s__VECT3 
+     00000000  s__VECT33 |    00000000  s__VECT4  |    00000000  s__VECT44
+     00000000  s__VECT5  |    00000000  s__VECT55 |    00000000  s__VECT6 
+     00000000  s__VECT66 |    00000000  s__VECT7  |    00000000  s__VECT77
+     00000000  s__VECT_N |    00000000  s__VECT_N |    00000002  l__VECT11
+     00000002  l__VECT22 |    00000002  l__VECT33 |    00000002  l__VECT44
+     00000002  l__VECT55 |    00000002  l__VECT66 |    00000005  l__INITIA
+     00000005  l__INITIA |    00000006  l__VECT00 |    00000018  l__GSINIT
+     00000026  l__VECT_N |    0000002D  l__VECT77 |    000000F6  l__SYSTEM
+     0000047F  l__DATA   |    00001170  l__CODE   |    00001170  s__INITIA
+     00001175  s__INITIA |    0000117A  s__GSINIT |    00001192  s__SYSTEM
+     00001288  s__DATA   |    00001707  s__GSFINA |    00001707  s__HOME  
+ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000008C  A$interru |    0000008C  C$interru |    0000008C  C$interru
+     0000008C  G$nmi_han |    0000008C  XG$nmi_ha |    0000008C  _nmi_hand
+     0000008D  A$interru |    0000008D  C$interru |    0000008D  C$interru
+     0000008D  G$int_han |    0000008D  _int_hand |    0000008F  A$interru
+     00000090  A$interru |    00000091  A$interru |    00000094  A$interru
+     00000095  A$interru |    00000095  C$interru |    00000097  A$interru
+     00000098  A$interru |    00000098  C$spi.h$8 |    0000009A  A$interru
+     0000009B  A$interru |    0000009C  A$interru |    0000009F  A$interru
+     000000A0  A$interru |    000000A2  A$interru |    000000A3  A$interru
+     000000A3  C$interru |    000000A6  A$interru |    000000A7  A$interru
+     000000A8  A$interru |    000000A9  A$interru |    000000A9  C$interru
+     000000AA  A$interru |    000000AB  A$interru |    000000AC  A$interru
+     000000AF  A$interru |    000000B0  A$interru |    000000B0  C$interru
+     000000B1  A$interru |    000000B2  A$interru |    000000B3  A$interru
+     000000B6  A$interru |    000000B7  A$interru |    000000B7  C$interru
+     000000B7  XG$int_ha |    000000B8  A$library |    000000B8  C$library
+     000000B8  C$library |    000000B8  G$globals |    000000B8  _globals 
+     000000BB  A$library |    000000BB  C$library |    000000BB  XG$global
+     000000BC  A$library |    000000BC  C$library |    000000BC  C$library
+     000000BC  C$library |    000000BC  G$process |    000000BC  XG$proces
+     000000BC  _process_ |    000000BF  A$library |    000000BF  C$library
+     000000BF  G$console |    000000BF  _console  |    000000C1  A$library
+     000000C5  A$library |    000000C7  A$library |    000000C8  A$library
+     000000C9  A$library |    000000C9  C$library |    000000CC  A$library
+     000000CD  A$library |    000000CE  A$library |    000000D1  A$library
+     000000D4  A$library |    000000D6  A$library |    000000DA  A$library
+     000000DD  A$library |    000000DF  A$library |    000000E2  A$library
+     000000E4  A$library |    000000E7  A$library |    000000E9  A$library
+     000000EC  A$library |    000000EF  A$library |    000000F2  A$library
+     000000F3  A$library |    000000F6  A$library |    000000F9  A$library
+     000000FA  A$library |    000000FD  A$library |    00000100  A$library
+     00000101  A$library |    00000104  A$library |    00000105  A$library
+     00000108  A$library |    0000010B  A$library |    0000010C  A$library
+     0000010D  A$library |    0000010F  A$library |    00000111  A$library
+     00000111  C$library |    00000111  XG$consol |    00000112  Flibrary$
+     0000011E  A$library |    0000011E  C$library |    0000011E  C$library
+     0000011E  G$ul$0$0  |    0000011E  _ul       |    00000121  A$library
+     00000122  A$library |    00000124  A$library |    00000125  A$library
+     00000126  A$library |    00000129  A$library |    0000012A  A$library
+     0000012B  A$library |    0000012C  A$library |    0000012D  A$library
+     0000012F  A$library |    00000130  A$library |    00000131  A$library
+     00000132  A$library |    00000133  A$library |    00000135  A$library
+     00000137  A$library |    00000137  C$library |    00000139  A$library
+     0000013A  A$library |    0000013B  A$library |    0000013E  A$library
+     0000013F  A$library |    0000013F  C$library |    0000013F  XG$ul$0$0
+     00000140  A$main$66 |    00000140  C$main.c$ |    00000140  C$main.c$
+     00000140  G$init$0$ |    00000140  _init     |    00000143  A$main$67
+     00000145  A$main$68 |    00000146  A$main$69 |    00000147  A$main$70
+     00000148  A$main$71 |    0000014B  A$main$72 |    0000014D  A$main$80
+     0000014D  C$main.c$ |    0000014D  C$main.c$ |    0000014D  XG$init$0
+ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000150  A$main$93 |    00000150  C$main.c$ |    00000150  C$main.c$
+     00000150  G$main$0$ |    00000150  _main     |    00000153  A$main$98
+     00000153  C$main.c$ |    00000156  A$main$99 |    00000157  A$main$10
+     00000158  A$main$10 |    0000015A  A$main$10 |    0000015D  A$main$10
+     0000015F  A$main$10 |    0000015F  C$main.c$ |    00000162  A$main$10
+     00000163  A$main$11 |    00000166  A$main$11 |    00000167  A$main$11
+     0000016A  A$main$11 |    0000016A  C$main.c$ |    0000016D  A$main$11
+     0000016E  A$main$11 |    00000171  A$main$11 |    00000172  A$main$12
+     00000172  C$main.c$ |    00000175  A$main$12 |    00000176  A$main$12
+     00000177  A$main$12 |    00000179  A$main$12 |    0000017C  A$main$12
+     0000017E  A$main$13 |    0000017E  C$main.c$ |    00000181  A$main$13
+     00000182  A$main$13 |    00000183  A$main$13 |    00000184  A$main$13
+     00000187  A$main$13 |    00000188  A$main$14 |    00000188  C$main.c$
+     00000188  XG$main$0 |    0000018A  Fmain$__s |    000001BD  Fmain$__s
+     000001DA  A$spi$69  |    000001DA  C$spi.c$2 |    000001DA  C$spi.c$3
+     000001DA  G$spiSetH |    000001DA  _spiSetHa |    000001DD  A$spi$70 
+     000001E1  A$spi$71  |    000001E3  A$spi$72  |    000001E6  A$spi$73 
+     000001E7  A$spi$74  |    000001E8  A$spi$75  |    000001EA  A$spi$76 
+     000001EB  A$spi$77  |    000001EF  A$spi$78  |    000001F1  A$spi$79 
+     000001F4  A$spi$80  |    000001F5  A$spi$81  |    000001F6  A$spi$82 
+     000001F9  A$spi$83  |    000001FA  A$spi$88  |    000001FA  C$spi.c$3
+     000001FA  XG$spiSet |    000001FB  A$spi$98  |    000001FB  C$spi.c$3
+     000001FB  G$spiProc |    000001FB  _spiProce |    000001FD  A$spi$99 
+     00000201  A$spi$100 |    00000203  A$spi$101 |    00000204  A$spi$102
+     00000205  A$spi$106 |    00000205  C$spi.c$4 |    00000208  A$spi$110
+     00000208  C$spi.c$4 |    0000020B  A$spi$111 |    0000020C  A$spi$112
+     0000020D  A$spi$113 |    00000210  A$spi$117 |    00000210  C$spi.c$4
+     00000213  A$spi$118 |    00000214  A$spi$119 |    00000215  A$spi$120
+     00000218  A$spi$124 |    00000218  C$spi.c$5 |    0000021B  A$spi$125
+     0000021C  A$spi$126 |    0000021D  A$spi$130 |    0000021D  C$spi.c$5
+     0000021E  A$spi$131 |    00000220  A$spi$132 |    00000221  A$spi$133
+     00000222  A$spi$134 |    00000223  A$spi$135 |    00000224  A$spi$136
+     00000225  A$spi$137 |    00000226  A$spi$138 |    00000229  A$spi$139
+     0000022A  A$spi$140 |    0000022B  A$spi$141 |    0000022C  A$spi$145
+     0000022C  C$spi.c$5 |    0000022F  A$spi$146 |    00000230  A$spi$147
+     00000233  A$spi$148 |    00000236  A$spi$149 |    00000237  A$spi$150
+     00000239  A$spi$151 |    0000023A  A$spi$152 |    0000023B  A$spi$153
+     0000023E  A$spi$154 |    00000241  A$spi$155 |    00000242  A$spi$156
+     00000243  A$spi$157 |    00000244  A$spi$158 |    00000245  A$spi$159
+     00000248  A$spi$160 |    00000249  A$spi$161 |    0000024A  A$spi$162
+     0000024B  A$spi$166 |    0000024B  C$spi.c$5 |    0000024E  A$spi$167
+     0000024F  A$spi$168 |    00000250  A$spi$169 |    00000251  A$spi$170
+     00000253  A$spi$171 |    00000254  A$spi$172 |    00000255  A$spi$173
+     00000256  A$spi$174 |    00000257  A$spi$175 |    00000258  A$spi$176
+     00000259  A$spi$177 |    0000025C  A$spi$178 |    0000025D  A$spi$179
+     0000025E  A$spi$180 |    0000025F  A$spi$184 |    0000025F  C$spi.c$5
+     00000260  A$spi$185 |    00000263  A$spi$189 |    00000263  C$spi.c$6
+     00000264  A$spi$190 |    00000265  A$spi$191 |    00000266  A$spi$192
+     00000267  A$spi$196 |    00000267  C$spi.c$6 |    0000026A  A$spi$197
+     0000026C  A$spi$198 |    0000026E  A$spi$199 |    0000026F  A$spi$200
+     00000270  A$spi$201 |    00000271  A$spi$202 |    00000273  A$spi$206
+ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000273  C$spi.c$6 |    00000274  A$spi$207 |    00000277  A$spi$208
+     00000278  A$spi$209 |    0000027B  A$spi$210 |    0000027C  A$spi$211
+     0000027D  A$spi$212 |    0000027E  A$spi$213 |    00000280  A$spi$214
+     00000281  A$spi$215 |    00000282  A$spi$216 |    00000283  A$spi$217
+     00000284  A$spi$218 |    00000285  A$spi$219 |    00000287  A$spi$220
+     00000288  A$spi$221 |    0000028B  A$spi$222 |    0000028C  A$spi$223
+     0000028D  A$spi$224 |    0000028F  A$spi$225 |    00000290  A$spi$226
+     00000291  A$spi$227 |    00000292  A$spi$228 |    00000293  A$spi$229
+     00000294  A$spi$230 |    00000295  A$spi$231 |    00000296  A$spi$232
+     00000297  A$spi$233 |    00000298  A$spi$234 |    00000299  A$spi$235
+     0000029A  A$spi$236 |    0000029B  A$spi$237 |    0000029C  A$spi$238
+     0000029F  A$spi$239 |    000002A0  A$spi$240 |    000002A1  A$spi$245
+     000002A1  C$spi.c$6 |    000002A3  A$spi$246 |    000002A4  A$spi$247
+     000002A5  A$spi$248 |    000002A8  A$spi$249 |    000002A9  A$spi$250
+     000002AB  A$spi$255 |    000002AB  C$spi.h$7 |    000002AD  A$spi$256
+     000002AE  A$spi$257 |    000002AF  A$spi$258 |    000002B2  A$spi$259
+     000002B3  A$spi$260 |    000002B5  A$spi$261 |    000002B7  A$spi$262
+     000002B9  A$spi$263 |    000002BB  A$spi$265 |    000002BD  A$spi$270
+     000002BD  C$spi.c$7 |    000002BE  A$spi$271 |    000002BF  A$spi$272
+     000002C0  A$spi$273 |    000002C1  A$spi$274 |    000002C4  A$spi$275
+     000002C5  A$spi$276 |    000002C6  A$spi$277 |    000002C7  A$spi$278
+     000002C8  A$spi$279 |    000002CA  A$spi$280 |    000002CD  A$spi$281
+     000002CE  A$spi$282 |    000002D1  A$spi$283 |    000002D2  A$spi$285
+     000002D4  A$spi$286 |    000002D6  A$spi$291 |    000002D6  C$spi.c$7
+     000002D6  XG$spiPro |    000002D7  A$spi$304 |    000002D7  C$spi.c$7
+     000002D7  C$spi.c$8 |    000002D7  G$spiGetI |    000002D7  _spiGetIn
+     000002DA  A$spi$305 |    000002DD  A$spi$306 |    000002DE  A$spi$307
+     000002DF  A$spi$312 |    000002DF  C$spi.c$8 |    000002DF  XG$spiGet
+     000002E0  A$spi$325 |    000002E0  C$spi.c$8 |    000002E0  C$spi.c$8
+     000002E0  G$spiGetP |    000002E0  _spiGetPr |    000002E3  A$spi$326
+     000002E6  A$spi$327 |    000002E7  A$spi$328 |    000002E8  A$spi$329
+     000002E9  A$spi$330 |    000002EB  A$spi$331 |    000002ED  A$spi$332
+     000002EF  A$spi$334 |    000002F0  A$spi$336 |    000002F1  A$spi$341
+     000002F1  C$spi.c$9 |    000002F1  XG$spiGet |    000002F2  A$spi$354
+     000002F2  C$spi.c$9 |    000002F2  C$spi.c$9 |    000002F2  G$spiSetI
+     000002F2  _spiSetIn |    000002F5  A$spi$355 |    000002F8  A$spi$356
+     000002F9  A$spi$357 |    000002FD  A$spi$358 |    000002FF  A$spi$359
+     00000302  A$spi$360 |    00000303  A$spi$361 |    00000305  A$spi$362
+     00000306  A$spi$363 |    00000308  A$spi$365 |    0000030A  A$spi$367
+     0000030B  A$spi$372 |    0000030B  C$spi.c$9 |    0000030B  XG$spiSet
+     0000030C  A$spi$385 |    0000030C  C$spi.c$1 |    0000030C  C$spi.c$1
+     0000030C  G$spiSetP |    0000030C  _spiSetPr |    0000030F  A$spi$386
+     00000312  A$spi$387 |    00000313  A$spi$388 |    00000317  A$spi$389
+     00000319  A$spi$390 |    0000031C  A$spi$391 |    0000031D  A$spi$392
+     0000031F  A$spi$393 |    00000321  A$spi$394 |    00000323  A$spi$396
+     00000325  A$spi$398 |    00000326  A$spi$403 |    00000326  C$spi.c$1
+     00000326  XG$spiSet |    00000327  A$spi$416 |    00000327  C$spi.c$1
+     00000327  C$spi.c$1 |    00000327  G$spiLock |    00000327  _spiLock 
+     0000032A  A$spi$417 |    0000032B  A$spi$418 |    0000032C  A$spi$422
+     0000032C  C$spi.c$1 |    0000032D  A$spi$423 |    0000032F  A$spi$424
+     00000332  A$spi$425 |    00000333  A$spi$426 |    00000335  A$spi$427
+ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000337  A$spi$428 |    00000338  A$spi$433 |    00000338  C$spi.c$1
+     0000033B  A$spi$434 |    0000033C  A$spi$435 |    00000340  A$spi$436
+     00000342  A$spi$437 |    00000345  A$spi$438 |    00000346  A$spi$442
+     00000346  C$spi.c$1 |    00000348  A$spi$443 |    00000349  A$spi$444
+     0000034A  A$spi$445 |    0000034D  A$spi$446 |    0000034E  A$spi$450
+     0000034E  C$spi.c$1 |    0000034F  A$spi$451 |    00000350  A$spi$452
+     00000351  A$spi$453 |    00000354  A$spi$454 |    00000355  A$spi$458
+     00000355  C$spi.c$1 |    00000357  A$spi$463 |    00000357  C$spi.c$1
+     00000357  XG$spiLoc |    00000358  A$spi$476 |    00000358  C$spi.c$1
+     00000358  C$spi.c$1 |    00000358  G$spiGetO |    00000358  _spiGetOu
+     0000035B  A$spi$477 |    0000035E  A$spi$478 |    0000035F  A$spi$479
+     00000360  A$spi$480 |    00000361  A$spi$485 |    00000361  C$spi.c$1
+     00000361  XG$spiGet |    00000362  A$spi$498 |    00000362  C$spi.c$1
+     00000362  C$spi.c$1 |    00000362  G$spiGetI |    00000362  _spiGetIn
+     00000365  A$spi$499 |    00000368  A$spi$500 |    00000369  A$spi$501
+     0000036A  A$spi$502 |    0000036B  A$spi$507 |    0000036B  C$spi.c$1
+     0000036B  XG$spiGet |    0000036C  A$spi$517 |    0000036C  C$spi.c$1
+     0000036C  G$spiExch |    0000036C  _spiExcha |    0000036E  A$spi$518
+     00000372  A$spi$519 |    00000374  A$spi$523 |    00000374  C$spi.c$1
+     00000377  A$spi$524 |    00000378  A$spi$525 |    00000379  A$spi$529
+     00000379  C$spi.c$1 |    0000037C  A$spi$530 |    0000037D  A$spi$531
+     0000037E  A$spi$532 |    00000381  A$spi$533 |    00000382  A$spi$537
+     00000382  C$spi.c$1 |    00000385  A$spi$538 |    00000386  A$spi$539
+     00000389  A$spi$540 |    0000038A  A$spi$544 |    0000038A  C$spi.h$6
+     0000038B  A$spi$545 |    0000038C  A$spi$546 |    0000038F  A$spi$547
+     00000390  A$spi$548 |    00000393  A$spi$549 |    00000394  A$spi$550
+     00000395  A$spi$551 |    00000397  A$spi$552 |    00000398  A$spi$553
+     00000399  A$spi$554 |    0000039A  A$spi$555 |    0000039B  A$spi$556
+     0000039C  A$spi$557 |    0000039D  A$spi$558 |    000003A0  A$spi$559
+     000003A1  A$spi$560 |    000003A2  A$spi$561 |    000003A3  A$spi$565
+     000003A3  C$spi.c$1 |    000003A6  A$spi$566 |    000003A7  A$spi$567
+     000003A8  A$spi$568 |    000003A9  A$spi$569 |    000003AB  A$spi$570
+     000003AC  A$spi$571 |    000003AD  A$spi$572 |    000003AE  A$spi$573
+     000003B0  A$spi$574 |    000003B1  A$spi$575 |    000003B2  A$spi$576
+     000003B5  A$spi$577 |    000003B6  A$spi$578 |    000003B7  A$spi$579
+     000003B8  A$spi$583 |    000003B8  C$spi.c$1 |    000003BB  A$spi$584
+     000003BC  A$spi$585 |    000003BD  A$spi$586 |    000003BE  A$spi$587
+     000003C0  A$spi$588 |    000003C1  A$spi$589 |    000003C2  A$spi$590
+     000003C3  A$spi$591 |    000003C5  A$spi$592 |    000003C6  A$spi$593
+     000003C7  A$spi$594 |    000003CA  A$spi$595 |    000003CB  A$spi$599
+     000003CB  C$spi.h$6 |    000003CE  A$spi$600 |    000003CF  A$spi$601
+     000003D2  A$spi$602 |    000003D3  A$spi$606 |    000003D3  C$spi.c$1
+     000003D5  A$spi$611 |    000003D5  C$spi.c$1 |    000003D5  XG$spiExc
+     000003D6  A$stdio_s |    000003D6  C$stdio_s |    000003D6  G$stdio_c
+     000003D6  _stdio_ch |    000003D8  A$stdio_s |    000003DC  A$stdio_s
+     000003DE  A$stdio_s |    000003DF  A$stdio_s |    000003DF  C$stdio_s
+     000003E2  A$stdio_s |    000003E3  A$stdio_s |    000003E5  A$stdio_s
+     000003E5  C$stdio_s |    000003E8  A$stdio_s |    000003EB  A$stdio_s
+     000003EC  A$stdio_s |    000003ED  A$stdio_s |    000003EF  A$stdio_s
+     000003F1  A$stdio_s |    000003F1  C$stdio_s |    000003F4  A$stdio_s
+     000003F6  A$stdio_s |    000003F6  C$stdio_s |    000003F9  A$stdio_s
+ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000003FB  A$stdio_s |    000003FB  C$stdio_s |    000003FE  A$stdio_s
+     00000400  A$stdio_s |    00000400  C$stdio_s |    00000403  A$stdio_s
+     00000403  C$stdio_s |    00000404  A$stdio_s |    00000406  A$stdio_s
+     00000408  A$stdio_s |    00000408  C$stdio_s |    0000040B  A$stdio_s
+     0000040D  A$stdio_s |    0000040D  C$stdio_s |    00000410  A$stdio_s
+     00000412  A$stdio_s |    00000412  C$stdio_s |    00000415  A$stdio_s
+     00000417  A$stdio_s |    00000417  C$stdio_s |    00000419  A$stdio_s
+     00000419  C$stdio_s |    0000041C  A$stdio_s |    0000041E  A$stdio_s
+     00000420  A$stdio_s |    00000422  A$stdio_s |    00000424  A$stdio_s
+     00000424  C$stdio_s |    00000427  A$stdio_s |    00000428  A$stdio_s
+     0000042A  A$stdio_s |    0000042C  A$stdio_s |    0000042D  A$stdio_s
+     0000042E  A$stdio_s |    00000430  A$stdio_s |    00000431  A$stdio_s
+     00000432  A$stdio_s |    00000435  A$stdio_s |    00000437  A$stdio_s
+     00000438  A$stdio_s |    00000439  A$stdio_s |    0000043A  A$stdio_s
+     0000043D  A$stdio_s |    0000043F  A$stdio_s |    00000442  A$stdio_s
+     00000445  A$stdio_s |    00000447  A$stdio_s |    00000448  A$stdio_s
+     0000044A  A$stdio_s |    0000044D  A$stdio_s |    00000450  A$stdio_s
+     00000450  C$stdio_s |    00000453  A$stdio_s |    00000456  A$stdio_s
+     00000458  A$stdio_s |    00000459  A$stdio_s |    0000045C  A$stdio_s
+     0000045F  A$stdio_s |    00000462  A$stdio_s |    00000464  A$stdio_s
+     00000465  A$stdio_s |    00000466  A$stdio_s |    00000467  A$stdio_s
+     0000046A  A$stdio_s |    0000046D  A$stdio_s |    0000046E  A$stdio_s
+     0000046F  A$stdio_s |    0000046F  C$stdio_s |    00000472  A$stdio_s
+     00000473  A$stdio_s |    00000476  A$stdio_s |    00000477  A$stdio_s
+     00000477  C$stdio_s |    00000479  A$stdio_s |    0000047D  A$stdio_s
+     00000480  A$stdio_s |    00000482  A$stdio_s |    00000486  A$stdio_s
+     00000488  A$stdio_s |    0000048A  A$stdio_s |    0000048A  C$stdio_s
+     0000048A  XG$stdio_ |    0000048B  A$stdio_s |    0000048B  C$stdio_s
+     0000048B  C$stdio_s |    0000048B  G$stdio_i |    0000048B  _stdio_in
+     0000048E  A$stdio_s |    0000048F  A$stdio_s |    00000490  A$stdio_s
+     00000491  A$stdio_s |    00000492  A$stdio_s |    00000495  A$stdio_s
+     00000496  A$stdio_s |    00000497  A$stdio_s |    00000497  C$stdio_s
+     0000049A  A$stdio_s |    0000049C  A$stdio_s |    0000049C  C$stdio_s
+     0000049F  A$stdio_s |    000004A1  A$stdio_s |    000004A1  C$stdio_s
+     000004A2  A$stdio_s |    000004A3  A$stdio_s |    000004A4  A$stdio_s
+     000004A7  A$stdio_s |    000004A8  A$stdio_s |    000004A8  C$stdio_s
+     000004AA  A$stdio_s |    000004AB  A$stdio_s |    000004AC  A$stdio_s
+     000004AF  A$stdio_s |    000004B0  A$stdio_s |    000004B0  C$stdio_s
+     000004B3  A$stdio_s |    000004B5  A$stdio_s |    000004B5  C$stdio_s
+     000004B5  XG$stdio_ |    000004B6  A$stdio_s |    000004B6  C$stdio_s
+     000004B6  G$spi_put |    000004B6  _spi_puts |    000004B7  A$stdio_s
+     000004B7  C$stdio_s |    000004BA  A$stdio_s |    000004BB  A$stdio_s
+     000004BC  A$stdio_s |    000004BD  A$stdio_s |    000004BE  A$stdio_s
+     000004BF  A$stdio_s |    000004C2  A$stdio_s |    000004C3  A$stdio_s
+     000004C4  A$stdio_s |    000004C5  A$stdio_s |    000004C6  A$stdio_s
+     000004C6  C$stdio_s |    000004C7  A$stdio_s |    000004C8  A$stdio_s
+     000004C9  A$stdio_s |    000004CC  A$stdio_s |    000004CD  A$stdio_s
+     000004CE  A$stdio_s |    000004CF  A$stdio_s |    000004D1  A$stdio_s
+     000004D4  A$stdio_s |    000004D6  A$stdio_s |    000004D6  C$stdio_s
+     000004D9  A$stdio_s |    000004DA  A$stdio_s |    000004DB  A$stdio_s
+     000004DC  A$stdio_s |    000004E0  A$stdio_s |    000004E2  A$stdio_s
+ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000004E5  A$stdio_s |    000004E8  A$stdio_s |    000004E9  A$stdio_s
+     000004EA  A$stdio_s |    000004ED  A$stdio_s |    000004F0  A$stdio_s
+     000004F1  A$stdio_s |    000004F2  A$stdio_s |    000004F2  C$stdio_s
+     000004F5  A$stdio_s |    000004F6  A$stdio_s |    000004F7  A$stdio_s
+     000004F8  A$stdio_s |    000004F9  A$stdio_s |    000004FA  A$stdio_s
+     000004FB  A$stdio_s |    000004FC  A$stdio_s |    000004FF  A$stdio_s
+     00000500  A$stdio_s |    00000501  A$stdio_s |    00000501  C$stdio_s
+     00000501  XG$spi_pu |    00000502  A$stdio_s |    00000502  C$stdio_s
+     00000502  G$putchar |    00000502  _putchari |    00000505  A$stdio_s
+     00000506  A$stdio_s |    00000507  A$stdio_s |    00000508  A$stdio_s
+     00000509  A$stdio_s |    0000050C  A$stdio_s |    0000050D  A$stdio_s
+     0000050D  C$stdio_s |    0000050D  XG$putcha |    00000510  A$stdio_s
+     00000510  C$stdio_s |    00000510  G$putchar |    00000510  _putchar 
+     00000512  A$stdio_s |    00000516  A$stdio_s |    00000518  A$stdio_s
+     00000518  C$stdio_s |    0000051B  A$stdio_s |    0000051C  A$stdio_s
+     0000051E  A$stdio_s |    0000051E  C$stdio_s |    00000521  A$stdio_s
+     00000525  A$stdio_s |    00000528  A$stdio_s |    0000052B  A$stdio_s
+     0000052C  A$stdio_s |    0000052E  A$stdio_s |    0000052F  A$stdio_s
+     00000532  A$stdio_s |    00000533  A$stdio_s |    00000533  C$stdio_s
+     00000536  A$stdio_s |    00000538  A$stdio_s |    0000053A  A$stdio_s
+     0000053C  A$stdio_s |    0000053E  A$stdio_s |    0000053F  A$stdio_s
+     00000540  A$stdio_s |    00000541  A$stdio_s |    00000543  A$stdio_s
+     00000547  A$stdio_s |    0000054A  A$stdio_s |    0000054D  A$stdio_s
+     0000054E  A$stdio_s |    00000550  A$stdio_s |    00000551  A$stdio_s
+     00000553  A$stdio_s |    00000553  C$stdio_s |    00000554  A$stdio_s
+     00000555  A$stdio_s |    00000557  A$stdio_s |    0000055A  A$stdio_s
+     0000055C  A$stdio_s |    0000055E  A$stdio_s |    00000561  A$stdio_s
+     00000563  A$stdio_s |    00000563  C$stdio_s |    00000563  XG$putcha
+     00000564  A$stdio_s |    00000564  C$stdio_s |    00000564  C$stdio_s
+     00000564  G$outboun |    00000564  _outbound |    00000567  A$stdio_s
+     0000056A  A$stdio_s |    0000056C  A$stdio_s |    0000056D  A$stdio_s
+     0000056F  A$stdio_s |    0000056F  C$stdio_s |    00000570  A$stdio_s
+     00000573  A$stdio_s |    00000574  A$stdio_s |    00000574  C$stdio_s
+     00000577  A$stdio_s |    00000579  A$stdio_s |    00000579  C$stdio_s
+     00000579  XG$outbou |    0000057A  A$stdio_s |    0000057A  C$stdio_s
+     0000057A  C$stdio_s |    0000057A  G$spi_ava |    0000057A  _spi_avai
+     0000057E  A$stdio_s |    00000581  A$stdio_s |    00000581  C$stdio_s
+     00000581  XG$spi_av |    00000582  A$stdio_s |    00000582  C$stdio_s
+     00000582  C$stdio_s |    00000582  G$getchar |    00000582  _getchar 
+     00000585  A$stdio_s |    00000586  A$stdio_s |    00000587  A$stdio_s
+     00000587  C$stdio_s |    0000058A  A$stdio_s |    0000058B  A$stdio_s
+     0000058D  A$stdio_s |    0000058E  A$stdio_s |    0000058F  A$stdio_s
+     0000058F  C$stdio_s |    00000591  A$stdio_s |    00000595  A$stdio_s
+     00000598  A$stdio_s |    0000059A  A$stdio_s |    0000059A  C$stdio_s
+     0000059B  A$stdio_s |    0000059E  A$stdio_s |    000005A0  A$stdio_s
+     000005A1  A$stdio_s |    000005A2  A$stdio_s |    000005A3  A$stdio_s
+     000005A6  A$stdio_s |    000005A7  A$stdio_s |    000005AA  A$stdio_s
+     000005AD  A$stdio_s |    000005AE  A$stdio_s |    000005AF  A$stdio_s
+     000005B0  A$stdio_s |    000005B0  C$stdio_s |    000005B3  A$stdio_s
+     000005B4  A$stdio_s |    000005B4  C$stdio_s |    000005B5  A$stdio_s
+     000005B5  C$stdio_s |    000005B5  XG$getcha |    000005B6  A$stdio_s
+ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000005B6  C$stdio_s |    000005B6  C$stdio_s |    000005B6  G$inbound
+     000005B6  _inbound_ |    000005B9  A$stdio_s |    000005BB  A$stdio_s
+     000005BB  C$stdio_s |    000005BB  XG$inboun |    000005BC  A$stdio_s
+     000005BC  C$stdio_s |    000005BC  C$stdio_s |    000005BC  G$spi_con
+     000005BC  _spi_conn |    000005C0  A$stdio_s |    000005C3  A$stdio_s
+     000005C3  C$stdio_s |    000005C3  XG$spi_co |    000005C4  ___sdcc_c
+     000005C5  _puts     |    00000602  _vprintf  |    00000622  _printf  
+     0000063F  _strlen   |    00000751  __print_f
+ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT00                00000000    00000006 =           6. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000000  A$_boot$2 |    00000003  A$_boot$2
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT11                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000008  A$_boot$3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT22                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000010  A$_boot$3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT33                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000018  A$_boot$4
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT44                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000020  A$_boot$4
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT55                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000028  A$_boot$4
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT66                00000000    00000002 =           2. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000030  A$_boot$5
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT77                00000000    0000002D =          45. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000038  A$_boot$5 |    0000003C  A$_boot$5 |    0000003F  A$_boot$5
+     00000040  A$_boot$5 |    00000041  A$_boot$6 |    00000044  A$_boot$6
+     00000045  A$_boot$6 |    00000046  A$_boot$6 |    0000004A  A$_boot$6
+     0000004B  A$_boot$6
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_VECT_NMI8             00000000    00000026 =          38. bytes (ABS,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000066  A$_boot$7 |    0000006A  A$_boot$7 |    0000006D  A$_boot$7
+     0000006E  A$_boot$7 |    0000006F  A$_boot$7 |    00000072  A$_boot$8
+     00000073  A$_boot$8 |    00000074  A$_boot$8 |    00000078  A$_boot$8
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_INITIALIZER           00001170    00000005 =           5. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001170  Flibrary$ |    00001174  Fstdio_sp
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_INITIALIZED           00001175    00000005 =           5. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001175  Flibrary$ |    00001179  Fstdio_sp
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_GSINIT                0000117A    00000018 =          24. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000117A  A$_boot$1 |    0000117D  A$_boot$1 |    00001180  A$_boot$1
+     00001182  A$_boot$1 |    00001183  A$_boot$1 |    00001184  A$_boot$1
+     00001185  A$_boot$1 |    00001186  A$_boot$1 |    00001187  A$_boot$1
+     00001189  A$_boot$1 |    0000118C  A$_boot$1 |    0000118F  A$_boot$1
+     00001191  A$_boot$1
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_SYSTEM_CODE           00001192    000000F6 =         246. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001192  A$_boot$1 |    00001195  A$_boot$1 |    00001197  A$_boot$1
+     0000119A  A$_boot$1 |    0000119C  A$_boot$1 |    0000119E  A$_boot$1
+     0000119F  A$_boot$1 |    000011A2  A$_boot$1 |    000011A4  A$_boot$1
+     000011A7  A$_boot$1 |    000011AA  A$_boot$1 |    000011AD  A$_boot$1
+     000011AE  A$_boot$1 |    000011AF  A$_boot$1 |    000011B0  A$_boot$1
+     000011B3  A$_boot$1 |    000011B6  A$_boot$1 |    000011B9  A$_boot$1
+     000011BA  A$_boot$1 |    000011BB  A$_boot$1 |    000011BF  A$_boot$1
+     000011C3  A$_boot$1 |    000011C4  A$_boot$1 |    000011C5  A$_boot$1
+     000011C5  _OUT      |    000011C6  A$_boot$1 |    000011C7  A$_boot$1
+     000011C9  A$_boot$1 |    000011CD  A$_boot$1 |    000011CF  A$_boot$1
+     000011D2  A$_boot$1 |    000011D5  A$_boot$1 |    000011D7  A$_boot$1
+     000011D9  A$_boot$1 |    000011DA  A$_boot$1 |    000011DB  A$_boot$1
+     000011DC  A$_boot$1 |    000011DC  _IN       |    000011DD  A$_boot$1
+     000011DE  A$_boot$1 |    000011E0  A$_boot$1 |    000011E4  A$_boot$1
+     000011E6  A$_boot$1 |    000011E9  A$_boot$1 |    000011EB  A$_boot$1
+     000011ED  A$_boot$1 |    000011EE  A$_boot$1 |    000011F0  A$_boot$1
+     000011F1  A$_boot$1 |    000011F2  A$_boot$1 |    000011F3  A$_boot$2
+     000011F3  _OUTI     |    000011F4  A$_boot$2 |    000011F5  A$_boot$2
+     000011F6  A$_boot$2 |    000011F8  A$_boot$2 |    000011FC  A$_boot$2
+     000011FE  A$_boot$2 |    00001201  A$_boot$2 |    00001204  A$_boot$2
+     00001207  A$_boot$2 |    0000120A  A$_boot$2 |    0000120C  A$_boot$2
+     0000120E  A$_boot$2 |    0000120F  A$_boot$2 |    00001210  A$_boot$2
+     00001211  A$_boot$2 |    00001212  A$_boot$2 |    00001212  _INI     
+     00001213  A$_boot$2 |    00001214  A$_boot$2 |    00001215  A$_boot$2
+     00001217  A$_boot$2 |    0000121B  A$_boot$2 |    0000121D  A$_boot$2
+     00001220  A$_boot$2 |    00001223  A$_boot$2 |    00001226  A$_boot$2
+     00001229  A$_boot$2 |    0000122B  A$_boot$2 |    0000122D  A$_boot$2
+     0000122E  A$_boot$2 |    0000122F  A$_boot$2 |    00001230  A$_boot$2
+     00001231  A$_boot$2 |    00001231  _memset   |    00001232  A$_boot$2
+     00001233  A$_boot$2 |    00001234  A$_boot$2 |    00001235  A$_boot$2
+     00001237  A$_boot$2 |    0000123B  A$_boot$2 |    0000123D  A$_boot$2
+     00001240  A$_boot$2 |    00001243  A$_boot$2 |    00001246  A$_boot$2
+     00001249  A$_boot$2 |    0000124C  A$_boot$2 |    0000124F  A$_boot$2
+     00001252  A$_boot$2 |    00001253  A$_boot$2 |    00001254  A$_boot$2
+     00001255  A$_boot$2 |    00001256  A$_boot$2 |    00001257  A$_boot$2
+     00001259  A$_boot$2 |    0000125B  A$_boot$2 |    0000125D  A$_boot$2
+     0000125D  _memcpy   |    0000125E  A$_boot$2 |    0000125F  A$_boot$2
+     00001260  A$_boot$2 |    00001261  A$_boot$2 |    00001263  A$_boot$2
+     00001267  A$_boot$2 |    00001269  A$_boot$2 |    0000126C  A$_boot$2
+     0000126F  A$_boot$2 |    00001272  A$_boot$2 |    00001275  A$_boot$2
+     00001278  A$_boot$2 |    0000127B  A$_boot$2 |    0000127C  A$_boot$2
+     0000127D  A$_boot$2 |    0000127F  A$_boot$2 |    00001281  A$_boot$2
+     00001283  A$_boot$2 |    00001284  A$_boot$2 |    00001285  A$_boot$2
+     00001286  A$_boot$2 |    00001287  A$_boot$2
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_DATA                  00001288    0000047F =        1151. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001288  Flibrary$ |    000016AB  Fstdio_sp |    000016B3  Fstdio_sp
+     00001705  Fstdio_sp |    00001706  Fstdio_sp
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+
+Files Linked                              [ module(s) ]
+
+_boot.rel                                 [ bootblk ]
+interrupt.rel                             [ interrupt ]
+library.rel                               [ library ]
+main.rel                                  [ main ]
+spi.rel                                   [ spi ]
+stdio_spi.rel                             [ stdio_spi ]
+
+
+Libraries Linked                          [ object file ]
+
+/usr/share/sdcc/lib/z80/z80.lib           [ __sdcc_call_hl.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ puts.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ vprintf.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ strlen.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ printf_large.rel ]
+
+
+

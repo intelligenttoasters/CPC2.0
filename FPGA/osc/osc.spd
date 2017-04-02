@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/osc_int_osc_0.v"
+   type="VERILOG"
+   library="int_osc_0" />
+ <file path="simulation/osc.v" type="VERILOG" />
+ <topLevel name="osc" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

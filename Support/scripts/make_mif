@@ -1,0 +1,37 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+	echo "Must specify a filename make_mif <file> excluding extension"
+	exit 1;
+fi
+
+exec > $1.mif
+
+SIZE=`ls -l $1.bin | awk '{print $5}'`
+echo "WIDTH=8;"
+echo "DEPTH=$SIZE;"
+
+cat - <<here1
+ADDRESS_RADIX=HEX;
+DATA_RADIX=HEX;
+
+CONTENT BEGIN
+here1
+
+od -tx1 -w1 -Ax -v $1.bin | awk '{print $1 ; print $2}' > /tmp/make_mif.tmp
+
+exec < /tmp/make_mif.tmp
+while true
+do
+	read A
+	read V
+	if [ "$V" != "" ]
+	then
+		echo "	$A : $V;"
+	else
+		break
+	fi
+done
+echo "END;"
+rm /tmp/make_mif.tmp

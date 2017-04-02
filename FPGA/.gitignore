@@ -1,0 +1,9 @@
+simulation
+output_files
+incremental_db
+greybox_tmp
+db
+c5_pin_model_dump.txt
+CPC2_nativelink_simulation.rpt
+*.bak
+CPC2.srf

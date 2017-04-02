@@ -1,0 +1,423 @@
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 1.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+    .__.$$$.                                                    =  2710 L
+    .__.ABS.                                                    =  0000 G
+    .__.CPU.                                                    =  0000 L
+    .__.H$L.                                                    =  0000 L
+  0 A$stdio_spi$100                                                0016 GR
+  0 A$stdio_spi$101                                                0017 GR
+  0 A$stdio_spi$102                                                0019 GR
+  0 A$stdio_spi$106                                                001B GR
+  0 A$stdio_spi$107                                                001E GR
+  0 A$stdio_spi$111                                                0020 GR
+  0 A$stdio_spi$112                                                0023 GR
+  0 A$stdio_spi$116                                                0025 GR
+  0 A$stdio_spi$117                                                0028 GR
+  0 A$stdio_spi$121                                                002A GR
+  0 A$stdio_spi$126                                                002D GR
+  0 A$stdio_spi$127                                                002E GR
+  0 A$stdio_spi$128                                                0030 GR
+  0 A$stdio_spi$132                                                0032 GR
+  0 A$stdio_spi$133                                                0035 GR
+  0 A$stdio_spi$137                                                0037 GR
+  0 A$stdio_spi$138                                                003A GR
+  0 A$stdio_spi$142                                                003C GR
+  0 A$stdio_spi$143                                                003F GR
+  0 A$stdio_spi$147                                                0041 GR
+  0 A$stdio_spi$152                                                0043 GR
+  0 A$stdio_spi$153                                                0046 GR
+  0 A$stdio_spi$154                                                0048 GR
+  0 A$stdio_spi$155                                                004A GR
+  0 A$stdio_spi$156                                                004C GR
+  0 A$stdio_spi$161                                                004E GR
+  0 A$stdio_spi$162                                                0051 GR
+  0 A$stdio_spi$163                                                0052 GR
+  0 A$stdio_spi$164                                                0054 GR
+  0 A$stdio_spi$165                                                0056 GR
+  0 A$stdio_spi$166                                                0057 GR
+  0 A$stdio_spi$167                                                0058 GR
+  0 A$stdio_spi$168                                                005A GR
+  0 A$stdio_spi$169                                                005B GR
+  0 A$stdio_spi$170                                                005C GR
+  0 A$stdio_spi$171                                                005F GR
+  0 A$stdio_spi$172                                                0061 GR
+  0 A$stdio_spi$173                                                0062 GR
+  0 A$stdio_spi$174                                                0063 GR
+  0 A$stdio_spi$175                                                0064 GR
+  0 A$stdio_spi$176                                                0067 GR
+  0 A$stdio_spi$178                                                0069 GR
+  0 A$stdio_spi$179                                                006C GR
+  0 A$stdio_spi$180                                                006F GR
+  0 A$stdio_spi$181                                                0071 GR
+  0 A$stdio_spi$182                                                0072 GR
+  0 A$stdio_spi$184                                                0074 GR
+  0 A$stdio_spi$186                                                0077 GR
+  0 A$stdio_spi$190                                                007A GR
+  0 A$stdio_spi$191                                                007D GR
+  0 A$stdio_spi$192                                                0080 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$stdio_spi$193                                                0082 GR
+  0 A$stdio_spi$194                                                0083 GR
+  0 A$stdio_spi$195                                                0086 GR
+  0 A$stdio_spi$196                                                0089 GR
+  0 A$stdio_spi$197                                                008C GR
+  0 A$stdio_spi$198                                                008E GR
+  0 A$stdio_spi$199                                                008F GR
+  0 A$stdio_spi$200                                                0090 GR
+  0 A$stdio_spi$201                                                0091 GR
+  0 A$stdio_spi$202                                                0094 GR
+  0 A$stdio_spi$203                                                0097 GR
+  0 A$stdio_spi$204                                                0098 GR
+  0 A$stdio_spi$208                                                0099 GR
+  0 A$stdio_spi$209                                                009C GR
+  0 A$stdio_spi$210                                                009D GR
+  0 A$stdio_spi$211                                                00A0 GR
+  0 A$stdio_spi$215                                                00A1 GR
+  0 A$stdio_spi$216                                                00A3 GR
+  0 A$stdio_spi$217                                                00A7 GR
+  0 A$stdio_spi$218                                                00AA GR
+  0 A$stdio_spi$219                                                00AC GR
+  0 A$stdio_spi$221                                                00B0 GR
+  0 A$stdio_spi$222                                                00B2 GR
+  0 A$stdio_spi$227                                                00B4 GR
+  0 A$stdio_spi$240                                                00B5 GR
+  0 A$stdio_spi$241                                                00B8 GR
+  0 A$stdio_spi$242                                                00B9 GR
+  0 A$stdio_spi$243                                                00BA GR
+  0 A$stdio_spi$244                                                00BB GR
+  0 A$stdio_spi$245                                                00BC GR
+  0 A$stdio_spi$246                                                00BF GR
+  0 A$stdio_spi$247                                                00C0 GR
+  0 A$stdio_spi$251                                                00C1 GR
+  0 A$stdio_spi$252                                                00C4 GR
+  0 A$stdio_spi$256                                                00C6 GR
+  0 A$stdio_spi$257                                                00C9 GR
+  0 A$stdio_spi$261                                                00CB GR
+  0 A$stdio_spi$262                                                00CC GR
+  0 A$stdio_spi$263                                                00CD GR
+  0 A$stdio_spi$264                                                00CE GR
+  0 A$stdio_spi$265                                                00D1 GR
+  0 A$stdio_spi$269                                                00D2 GR
+  0 A$stdio_spi$270                                                00D4 GR
+  0 A$stdio_spi$271                                                00D5 GR
+  0 A$stdio_spi$272                                                00D6 GR
+  0 A$stdio_spi$273                                                00D9 GR
+  0 A$stdio_spi$277                                                00DA GR
+  0 A$stdio_spi$278                                                00DD GR
+  0 A$stdio_spi$283                                                00DF GR
+  0 A$stdio_spi$293                                                00E0 GR
+  0 A$stdio_spi$297                                                00E1 GR
+  0 A$stdio_spi$298                                                00E4 GR
+  0 A$stdio_spi$299                                                00E5 GR
+  0 A$stdio_spi$300                                                00E6 GR
+  0 A$stdio_spi$301                                                00E7 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$stdio_spi$302                                                00E8 GR
+  0 A$stdio_spi$303                                                00E9 GR
+  0 A$stdio_spi$304                                                00EC GR
+  0 A$stdio_spi$305                                                00ED GR
+  0 A$stdio_spi$306                                                00EE GR
+  0 A$stdio_spi$307                                                00EF GR
+  0 A$stdio_spi$312                                                00F0 GR
+  0 A$stdio_spi$313                                                00F1 GR
+  0 A$stdio_spi$314                                                00F2 GR
+  0 A$stdio_spi$315                                                00F3 GR
+  0 A$stdio_spi$316                                                00F6 GR
+  0 A$stdio_spi$317                                                00F7 GR
+  0 A$stdio_spi$318                                                00F8 GR
+  0 A$stdio_spi$319                                                00F9 GR
+  0 A$stdio_spi$320                                                00FB GR
+  0 A$stdio_spi$321                                                00FE GR
+  0 A$stdio_spi$326                                                0100 GR
+  0 A$stdio_spi$327                                                0103 GR
+  0 A$stdio_spi$328                                                0104 GR
+  0 A$stdio_spi$329                                                0105 GR
+  0 A$stdio_spi$330                                                0106 GR
+  0 A$stdio_spi$331                                                010A GR
+  0 A$stdio_spi$332                                                010C GR
+  0 A$stdio_spi$333                                                010F GR
+  0 A$stdio_spi$334                                                0112 GR
+  0 A$stdio_spi$335                                                0113 GR
+  0 A$stdio_spi$336                                                0114 GR
+  0 A$stdio_spi$337                                                0117 GR
+  0 A$stdio_spi$338                                                011A GR
+  0 A$stdio_spi$339                                                011B GR
+  0 A$stdio_spi$343                                                011C GR
+  0 A$stdio_spi$344                                                011F GR
+  0 A$stdio_spi$345                                                0120 GR
+  0 A$stdio_spi$346                                                0121 GR
+  0 A$stdio_spi$347                                                0122 GR
+  0 A$stdio_spi$348                                                0123 GR
+  0 A$stdio_spi$349                                                0124 GR
+  0 A$stdio_spi$350                                                0125 GR
+  0 A$stdio_spi$351                                                0126 GR
+  0 A$stdio_spi$352                                                0129 GR
+  0 A$stdio_spi$353                                                012A GR
+  0 A$stdio_spi$358                                                012B GR
+  0 A$stdio_spi$368                                                012C GR
+  0 A$stdio_spi$369                                                012F GR
+  0 A$stdio_spi$370                                                0130 GR
+  0 A$stdio_spi$371                                                0131 GR
+  0 A$stdio_spi$372                                                0132 GR
+  0 A$stdio_spi$373                                                0133 GR
+  0 A$stdio_spi$374                                                0136 GR
+  0 A$stdio_spi$379                                                0137 GR
+  0 A$stdio_spi$389                                                013A GR
+  0 A$stdio_spi$390                                                013C GR
+  0 A$stdio_spi$391                                                0140 GR
+  0 A$stdio_spi$395                                                0142 GR
+  0 A$stdio_spi$396                                                0145 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$stdio_spi$397                                                0146 GR
+  0 A$stdio_spi$401                                                0148 GR
+  0 A$stdio_spi$402                                                014B GR
+  0 A$stdio_spi$403                                                014F GR
+  0 A$stdio_spi$404                                                0152 GR
+  0 A$stdio_spi$405                                                0155 GR
+  0 A$stdio_spi$406                                                0156 GR
+  0 A$stdio_spi$407                                                0158 GR
+  0 A$stdio_spi$408                                                0159 GR
+  0 A$stdio_spi$409                                                015C GR
+  0 A$stdio_spi$413                                                015D GR
+  0 A$stdio_spi$414                                                0160 GR
+  0 A$stdio_spi$415                                                0162 GR
+  0 A$stdio_spi$416                                                0164 GR
+  0 A$stdio_spi$417                                                0166 GR
+  0 A$stdio_spi$419                                                0168 GR
+  0 A$stdio_spi$421                                                0169 GR
+  0 A$stdio_spi$422                                                016A GR
+  0 A$stdio_spi$423                                                016B GR
+  0 A$stdio_spi$424                                                016D GR
+  0 A$stdio_spi$425                                                0171 GR
+  0 A$stdio_spi$426                                                0174 GR
+  0 A$stdio_spi$427                                                0177 GR
+  0 A$stdio_spi$428                                                0178 GR
+  0 A$stdio_spi$429                                                017A GR
+  0 A$stdio_spi$430                                                017B GR
+  0 A$stdio_spi$435                                                017D GR
+  0 A$stdio_spi$436                                                017E GR
+  0 A$stdio_spi$437                                                017F GR
+  0 A$stdio_spi$438                                                0181 GR
+  0 A$stdio_spi$439                                                0184 GR
+  0 A$stdio_spi$440                                                0186 GR
+  0 A$stdio_spi$442                                                0188 GR
+  0 A$stdio_spi$444                                                018B GR
+  0 A$stdio_spi$449                                                018D GR
+  0 A$stdio_spi$462                                                018E GR
+  0 A$stdio_spi$463                                                0191 GR
+  0 A$stdio_spi$464                                                0194 GR
+  0 A$stdio_spi$465                                                0196 GR
+  0 A$stdio_spi$466                                                0197 GR
+  0 A$stdio_spi$470                                                0199 GR
+  0 A$stdio_spi$471                                                019A GR
+  0 A$stdio_spi$472                                                019D GR
+  0 A$stdio_spi$476                                                019E GR
+  0 A$stdio_spi$477                                                01A1 GR
+  0 A$stdio_spi$482                                                01A3 GR
+  0 A$stdio_spi$495                                                01A4 GR
+  0 A$stdio_spi$496                                                01A8 GR
+  0 A$stdio_spi$501                                                01AB GR
+  0 A$stdio_spi$514                                                01AC GR
+  0 A$stdio_spi$515                                                01AF GR
+  0 A$stdio_spi$516                                                01B0 GR
+  0 A$stdio_spi$520                                                01B1 GR
+  0 A$stdio_spi$521                                                01B4 GR
+  0 A$stdio_spi$522                                                01B5 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$stdio_spi$523                                                01B7 GR
+  0 A$stdio_spi$524                                                01B8 GR
+  0 A$stdio_spi$529                                                01B9 GR
+  0 A$stdio_spi$530                                                01BB GR
+  0 A$stdio_spi$531                                                01BF GR
+  0 A$stdio_spi$532                                                01C2 GR
+  0 A$stdio_spi$536                                                01C4 GR
+  0 A$stdio_spi$537                                                01C5 GR
+  0 A$stdio_spi$538                                                01C8 GR
+  0 A$stdio_spi$539                                                01CA GR
+  0 A$stdio_spi$540                                                01CB GR
+  0 A$stdio_spi$541                                                01CC GR
+  0 A$stdio_spi$542                                                01CD GR
+  0 A$stdio_spi$543                                                01D0 GR
+  0 A$stdio_spi$544                                                01D1 GR
+  0 A$stdio_spi$545                                                01D4 GR
+  0 A$stdio_spi$546                                                01D7 GR
+  0 A$stdio_spi$547                                                01D8 GR
+  0 A$stdio_spi$548                                                01D9 GR
+  0 A$stdio_spi$553                                                01DA GR
+  0 A$stdio_spi$554                                                01DD GR
+  0 A$stdio_spi$558                                                01DE GR
+  0 A$stdio_spi$563                                                01DF GR
+  0 A$stdio_spi$576                                                01E0 GR
+  0 A$stdio_spi$577                                                01E3 GR
+  0 A$stdio_spi$582                                                01E5 GR
+  0 A$stdio_spi$595                                                01E6 GR
+  0 A$stdio_spi$596                                                01EA GR
+  0 A$stdio_spi$601                                                01ED GR
+  0 A$stdio_spi$84                                                 0000 GR
+  0 A$stdio_spi$85                                                 0002 GR
+  0 A$stdio_spi$86                                                 0006 GR
+  0 A$stdio_spi$87                                                 0008 GR
+  0 A$stdio_spi$91                                                 0009 GR
+  0 A$stdio_spi$92                                                 000C GR
+  0 A$stdio_spi$93                                                 000D GR
+  0 A$stdio_spi$97                                                 000F GR
+  0 A$stdio_spi$98                                                 0012 GR
+  0 A$stdio_spi$99                                                 0015 GR
+  0 C$stdio_spi.c$101$1$74                                      =  0100 GR
+  0 C$stdio_spi.c$104$1$74                                      =  011C GR
+  0 C$stdio_spi.c$106$1$74                                      =  012B GR
+  0 C$stdio_spi.c$111$1$74                                      =  012C GR
+  0 C$stdio_spi.c$111$1$76                                      =  0137 GR
+  0 C$stdio_spi.c$116$1$76                                      =  013A GR
+  0 C$stdio_spi.c$119$1$78                                      =  0142 GR
+  0 C$stdio_spi.c$122$1$78                                      =  0148 GR
+  0 C$stdio_spi.c$125$1$78                                      =  015D GR
+  0 C$stdio_spi.c$128$1$78                                      =  017D GR
+  0 C$stdio_spi.c$129$1$78                                      =  018D GR
+  0 C$stdio_spi.c$133$1$78                                      =  018E GR
+  0 C$stdio_spi.c$136$1$79                                      =  018E GR
+  0 C$stdio_spi.c$139$1$79                                      =  0199 GR
+  0 C$stdio_spi.c$142$1$79                                      =  019E GR
+  0 C$stdio_spi.c$143$1$79                                      =  01A3 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 C$stdio_spi.c$147$1$79                                      =  01A4 GR
+  0 C$stdio_spi.c$149$1$80                                      =  01A4 GR
+  0 C$stdio_spi.c$150$1$80                                      =  01AB GR
+  0 C$stdio_spi.c$154$1$80                                      =  01AC GR
+  0 C$stdio_spi.c$157$1$81                                      =  01AC GR
+  0 C$stdio_spi.c$160$1$81                                      =  01B1 GR
+  0 C$stdio_spi.c$163$1$81                                      =  01B9 GR
+  0 C$stdio_spi.c$164$1$81                                      =  01C4 GR
+  0 C$stdio_spi.c$167$1$81                                      =  01DA GR
+  0 C$stdio_spi.c$170$1$81                                      =  01DE GR
+  0 C$stdio_spi.c$171$1$81                                      =  01DF GR
+  0 C$stdio_spi.c$176$1$81                                      =  01E0 GR
+  0 C$stdio_spi.c$178$1$82                                      =  01E0 GR
+  0 C$stdio_spi.c$179$1$82                                      =  01E5 GR
+  0 C$stdio_spi.c$184$1$82                                      =  01E6 GR
+  0 C$stdio_spi.c$186$1$83                                      =  01E6 GR
+  0 C$stdio_spi.c$187$1$83                                      =  01ED GR
+  0 C$stdio_spi.c$36$0$0                                        =  0000 GR
+  0 C$stdio_spi.c$41$1$68                                       =  0009 GR
+  0 C$stdio_spi.c$44$2$69                                       =  000F GR
+  0 C$stdio_spi.c$46$3$70                                       =  001B GR
+  0 C$stdio_spi.c$47$3$70                                       =  0020 GR
+  0 C$stdio_spi.c$48$3$70                                       =  0025 GR
+  0 C$stdio_spi.c$49$3$70                                       =  002A GR
+  0 C$stdio_spi.c$52$2$69                                       =  002D GR
+  0 C$stdio_spi.c$54$3$71                                       =  0032 GR
+  0 C$stdio_spi.c$55$3$71                                       =  0037 GR
+  0 C$stdio_spi.c$56$3$71                                       =  003C GR
+  0 C$stdio_spi.c$57$3$71                                       =  0041 GR
+  0 C$stdio_spi.c$62$1$68                                       =  0043 GR
+  0 C$stdio_spi.c$65$1$68                                       =  004E GR
+  0 C$stdio_spi.c$68$1$68                                       =  007A GR
+  0 C$stdio_spi.c$71$1$68                                       =  0099 GR
+  0 C$stdio_spi.c$74$1$68                                       =  00A1 GR
+  0 C$stdio_spi.c$75$1$68                                       =  00B4 GR
+  0 C$stdio_spi.c$79$1$68                                       =  00B5 GR
+  0 C$stdio_spi.c$82$1$72                                       =  00B5 GR
+  0 C$stdio_spi.c$83$1$72                                       =  00C1 GR
+  0 C$stdio_spi.c$84$1$72                                       =  00C6 GR
+  0 C$stdio_spi.c$85$1$72                                       =  00CB GR
+  0 C$stdio_spi.c$86$1$72                                       =  00D2 GR
+  0 C$stdio_spi.c$87$1$72                                       =  00DA GR
+  0 C$stdio_spi.c$88$1$72                                       =  00DF GR
+  0 C$stdio_spi.c$92$1$72                                       =  00E0 GR
+  0 C$stdio_spi.c$95$1$74                                       =  00E1 GR
+  0 C$stdio_spi.c$98$1$74                                       =  00F0 GR
+  7 Fstdio_spi$__xinit_stdio_connected$0$0                      =  0000 GR
+  1 Fstdio_spi$inbuffer_entries$0$0                             =  005A GR
+  1 Fstdio_spi$outbuffer_entries$0$0                            =  005B GR
+  2 Fstdio_spi$stdio_connected$0$0                              =  0000 GR
+  1 Fstdio_spi$stdio_inbound_buffer$0$0                         =  0000 GR
+  1 Fstdio_spi$stdio_outbound_buffer$0$0                        =  0008 GR
+  0 G$getchar$0$0                                               =  01AC GR
+  0 G$inbound_flush$0$0                                         =  01E0 GR
+  0 G$outbound_flush$0$0                                        =  018E GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 G$putchar$0$0                                               =  013A GR
+  0 G$putchari$0$0                                              =  012C GR
+  0 G$spi_avail$0$0                                             =  01A4 GR
+  0 G$spi_connected$0$0                                         =  01E6 GR
+  0 G$spi_puts$0$0                                              =  00E0 GR
+  0 G$stdio_channel_handler$0$0                                 =  0000 GR
+  0 G$stdio_init$0$0                                            =  00B5 GR
+  0 XG$getchar$0$0                                              =  01DF GR
+  0 XG$inbound_flush$0$0                                        =  01E5 GR
+  0 XG$outbound_flush$0$0                                       =  01A3 GR
+  0 XG$putchar$0$0                                              =  018D GR
+  0 XG$putchari$0$0                                             =  0137 GR
+  0 XG$spi_avail$0$0                                            =  01AB GR
+  0 XG$spi_connected$0$0                                        =  01ED GR
+  0 XG$spi_puts$0$0                                             =  012B GR
+  0 XG$stdio_channel_handler$0$0                                =  00B4 GR
+  0 XG$stdio_init$0$0                                           =  00DF GR
+  7 __xinit__stdio_connected                                       0000 R
+  0 _getchar                                                       01AC GR
+  0 _inbound_flush                                                 01E0 GR
+  1 _inbuffer_entries                                              005A R
+    _memcpy                                                        **** GX
+  0 _outbound_flush                                                018E GR
+  1 _outbuffer_entries                                             005B R
+    _process_events                                                **** GX
+  0 _putchar                                                       013A GR
+  0 _putchari                                                      012C GR
+    _spiExchange                                                   **** GX
+    _spiGetOutBuffer                                               **** GX
+    _spiLock                                                       **** GX
+    _spiSetHandler                                                 **** GX
+    _spiSetInUse                                                   **** GX
+    _spiSetProcessed                                               **** GX
+  0 _spi_avail                                                     01A4 GR
+  0 _spi_connected                                                 01E6 GR
+  0 _spi_puts                                                      00E0 GR
+  0 _stdio_channel_handler                                         0000 GR
+  2 _stdio_connected                                               0000 R
+  1 _stdio_inbound_buffer                                          0000 R
+  0 _stdio_init                                                    00B5 GR
+  1 _stdio_outbound_buffer                                         0008 R
+    _strlen                                                        **** GX
+
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 8.
+Hexadecimal [16-Bits]
+
+Area Table
+
+   0 _CODE                                      size  1EE   flags    0
+   1 _DATA                                      size   5C   flags    0
+   2 _INITIALIZED                               size    1   flags    0
+   3 _DABS                                      size    0   flags    8
+   4 _HOME                                      size    0   flags    0
+   5 _GSINIT                                    size    0   flags    0
+   6 _GSFINAL                                   size    0   flags    0
+   7 _INITIALIZER                               size    1   flags    0
+   8 _CABS                                      size    0   flags    8
+

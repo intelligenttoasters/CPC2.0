@@ -1,0 +1,614 @@
+                              1 ;--------------------------------------------------------
+                              2 ; File Created by SDCC : free open source ANSI-C Compiler
+                              3 ; Version 3.6.0 #9615 (Linux)
+                              4 ;--------------------------------------------------------
+                              5 	.module spi
+                              6 	.optsdcc -mz80
+                              7 	
+                              8 ;--------------------------------------------------------
+                              9 ; Public variables in this module
+                             10 ;--------------------------------------------------------
+                             11 	.globl _globals
+                             12 	.globl _INI
+                             13 	.globl _OUTI
+                             14 	.globl _IN
+                             15 	.globl _OUT
+                             16 	.globl _spiSetHandler
+                             17 	.globl _spiProcessEvents
+                             18 	.globl _spiGetInUse
+                             19 	.globl _spiGetProcessed
+                             20 	.globl _spiSetInUse
+                             21 	.globl _spiSetProcessed
+                             22 	.globl _spiLock
+                             23 	.globl _spiGetOutBuffer
+                             24 	.globl _spiGetInBuffer
+                             25 	.globl _spiExchange
+                             26 ;--------------------------------------------------------
+                             27 ; special function registers
+                             28 ;--------------------------------------------------------
+                             29 ;--------------------------------------------------------
+                             30 ; ram data
+                             31 ;--------------------------------------------------------
+                             32 	.area _DATA
+                             33 ;--------------------------------------------------------
+                             34 ; ram data
+                             35 ;--------------------------------------------------------
+                             36 	.area _INITIALIZED
+                             37 ;--------------------------------------------------------
+                             38 ; absolute external ram data
+                             39 ;--------------------------------------------------------
+                             40 	.area _DABS (ABS)
+                             41 ;--------------------------------------------------------
+                             42 ; global & static initialisations
+                             43 ;--------------------------------------------------------
+                             44 	.area _HOME
+                             45 	.area _GSINIT
+                             46 	.area _GSFINAL
+                             47 	.area _GSINIT
+                             48 ;--------------------------------------------------------
+                             49 ; Home
+                             50 ;--------------------------------------------------------
+                             51 	.area _HOME
+                             52 	.area _HOME
+                             53 ;--------------------------------------------------------
+                             54 ; code
+                             55 ;--------------------------------------------------------
+                             56 	.area _CODE
+                     0000    57 	G$spiSetHandler$0$0	= .
+                             58 	.globl	G$spiSetHandler$0$0
+                     0000    59 	C$spi.c$29$0$0	= .
+                             60 	.globl	C$spi.c$29$0$0
+                             61 ;../src/spi/spi.c:29: void spiSetHandler(char channel, void (*handler)(unsigned char *, unsigned char))
+                             62 ;	---------------------------------
+                             63 ; Function spiSetHandler
+                             64 ; ---------------------------------
+   0000                      65 _spiSetHandler::
+                     0000    66 	C$spi.c$31$1$69	= .
+                             67 	.globl	C$spi.c$31$1$69
+                             68 ;../src/spi/spi.c:31: globals()->channel_handler_p[channel] = handler;
+   0000 CDr00r00      [17]   69 	call	_globals
+   0003 FD 21 02 00   [14]   70 	ld	iy,#2
+   0007 FD 39         [15]   71 	add	iy,sp
+   0009 FD 7E 00      [19]   72 	ld	a,0 (iy)
+   000C 87            [ 4]   73 	add	a, a
+   000D 5F            [ 4]   74 	ld	e, a
+   000E 16 00         [ 7]   75 	ld	d,#0x00
+   0010 19            [11]   76 	add	hl,de
+   0011 FD 21 03 00   [14]   77 	ld	iy,#3
+   0015 FD 39         [15]   78 	add	iy,sp
+   0017 FD 7E 00      [19]   79 	ld	a,0 (iy)
+   001A 77            [ 7]   80 	ld	(hl),a
+   001B 23            [ 6]   81 	inc	hl
+   001C FD 7E 01      [19]   82 	ld	a,1 (iy)
+   001F 77            [ 7]   83 	ld	(hl),a
+                     0020    84 	C$spi.c$32$1$69	= .
+                             85 	.globl	C$spi.c$32$1$69
+                     0020    86 	XG$spiSetHandler$0$0	= .
+                             87 	.globl	XG$spiSetHandler$0$0
+   0020 C9            [10]   88 	ret
+                     0021    89 	G$spiProcessEvents$0$0	= .
+                             90 	.globl	G$spiProcessEvents$0$0
+                     0021    91 	C$spi.c$37$1$69	= .
+                             92 	.globl	C$spi.c$37$1$69
+                             93 ;../src/spi/spi.c:37: void spiProcessEvents()
+                             94 ;	---------------------------------
+                             95 ; Function spiProcessEvents
+                             96 ; ---------------------------------
+   0021                      97 _spiProcessEvents::
+   0021 DD E5         [15]   98 	push	ix
+   0023 DD 21 00 00   [14]   99 	ld	ix,#0
+   0027 DD 39         [15]  100 	add	ix,sp
+   0029 F5            [11]  101 	push	af
+   002A 3B            [ 6]  102 	dec	sp
+                     002B   103 	C$spi.c$41$1$70	= .
+                            104 	.globl	C$spi.c$41$1$70
+                            105 ;../src/spi/spi.c:41: struct global_vars * glob = globals();
+   002B CDr00r00      [17]  106 	call	_globals
+                     002E   107 	C$spi.c$45$1$70	= .
+                            108 	.globl	C$spi.c$45$1$70
+                            109 ;../src/spi/spi.c:45: if( !spiGetInUse() )
+   002E CDrFDr00      [17]  110 	call	_spiGetInUse
+   0031 7D            [ 4]  111 	ld	a, l
+   0032 B7            [ 4]  112 	or	a, a
+   0033 C2rF8r00      [10]  113 	jp	NZ,00113$
+                     0036   114 	C$spi.c$47$2$71	= .
+                            115 	.globl	C$spi.c$47$2$71
+                            116 ;../src/spi/spi.c:47: if( !spiGetProcessed() )
+   0036 CDr06r01      [17]  117 	call	_spiGetProcessed
+   0039 7D            [ 4]  118 	ld	a,l
+   003A B7            [ 4]  119 	or	a, a
+   003B C2rD1r00      [10]  120 	jp	NZ,00108$
+                     003E   121 	C$spi.c$50$3$72	= .
+                            122 	.globl	C$spi.c$50$3$72
+                            123 ;../src/spi/spi.c:50: buffer = spiGetInBuffer() - SPI_BUFFER_OFFSET;
+   003E CDr88r01      [17]  124 	call	_spiGetInBuffer
+   0041 4D            [ 4]  125 	ld	c,l
+   0042 44            [ 4]  126 	ld	b,h
+                     0043   127 	C$spi.c$53$3$72	= .
+                            128 	.globl	C$spi.c$53$3$72
+                            129 ;../src/spi/spi.c:53: INI( SPI_DATA, buffer, SPI_BUFFER_OFFSET );			// Read just the header first
+   0043 C5            [11]  130 	push	bc
+   0044 3E 02         [ 7]  131 	ld	a,#0x02
+   0046 F5            [11]  132 	push	af
+   0047 33            [ 6]  133 	inc	sp
+   0048 C5            [11]  134 	push	bc
+   0049 AF            [ 4]  135 	xor	a, a
+   004A F5            [11]  136 	push	af
+   004B 33            [ 6]  137 	inc	sp
+   004C CDr00r00      [17]  138 	call	_INI
+   004F F1            [10]  139 	pop	af
+   0050 F1            [10]  140 	pop	af
+   0051 C1            [10]  141 	pop	bc
+                     0052   142 	C$spi.c$54$1$70	= .
+                            143 	.globl	C$spi.c$54$1$70
+                            144 ;../src/spi/spi.c:54: INI( SPI_DATA, buffer + SPI_BUFFER_OFFSET, 128 );	// Then read 128 bytes of data
+   0052 21 02 00      [10]  145 	ld	hl,#0x0002
+   0055 09            [11]  146 	add	hl,bc
+   0056 DD 75 FE      [19]  147 	ld	-2 (ix),l
+   0059 DD 74 FF      [19]  148 	ld	-1 (ix),h
+   005C C5            [11]  149 	push	bc
+   005D 3E 80         [ 7]  150 	ld	a,#0x80
+   005F F5            [11]  151 	push	af
+   0060 33            [ 6]  152 	inc	sp
+   0061 DD 6E FE      [19]  153 	ld	l,-2 (ix)
+   0064 DD 66 FF      [19]  154 	ld	h,-1 (ix)
+   0067 E5            [11]  155 	push	hl
+   0068 AF            [ 4]  156 	xor	a, a
+   0069 F5            [11]  157 	push	af
+   006A 33            [ 6]  158 	inc	sp
+   006B CDr00r00      [17]  159 	call	_INI
+   006E F1            [10]  160 	pop	af
+   006F F1            [10]  161 	pop	af
+   0070 C1            [10]  162 	pop	bc
+                     0071   163 	C$spi.c$55$3$72	= .
+                            164 	.globl	C$spi.c$55$3$72
+                            165 ;../src/spi/spi.c:55: INI( SPI_DATA, buffer + SPI_BUFFER_OFFSET + 128, 128 );	// Then read 128 bytes of data
+   0071 21 82 00      [10]  166 	ld	hl,#0x0082
+   0074 09            [11]  167 	add	hl,bc
+   0075 EB            [ 4]  168 	ex	de,hl
+   0076 C5            [11]  169 	push	bc
+   0077 3E 80         [ 7]  170 	ld	a,#0x80
+   0079 F5            [11]  171 	push	af
+   007A 33            [ 6]  172 	inc	sp
+   007B D5            [11]  173 	push	de
+   007C AF            [ 4]  174 	xor	a, a
+   007D F5            [11]  175 	push	af
+   007E 33            [ 6]  176 	inc	sp
+   007F CDr00r00      [17]  177 	call	_INI
+   0082 F1            [10]  178 	pop	af
+   0083 F1            [10]  179 	pop	af
+   0084 C1            [10]  180 	pop	bc
+                     0085   181 	C$spi.c$59$3$72	= .
+                            182 	.globl	C$spi.c$59$3$72
+                            183 ;../src/spi/spi.c:59: channel = buffer[0];
+   0085 0A            [ 7]  184 	ld	a,(bc)
+   0086 DD 77 FD      [19]  185 	ld	-3 (ix),a
+                     0089   186 	C$spi.c$60$3$72	= .
+                            187 	.globl	C$spi.c$60$3$72
+                            188 ;../src/spi/spi.c:60: size = buffer[1];
+   0089 69            [ 4]  189 	ld	l, c
+   008A 60            [ 4]  190 	ld	h, b
+   008B 23            [ 6]  191 	inc	hl
+   008C 4E            [ 7]  192 	ld	c,(hl)
+                     008D   193 	C$spi.c$63$3$72	= .
+                            194 	.globl	C$spi.c$63$3$72
+                            195 ;../src/spi/spi.c:63: if(( size > 0 ) & ( channel < SPI_CHANNELS ))
+   008D DD 7E FD      [19]  196 	ld	a,-3 (ix)
+   0090 D6 10         [ 7]  197 	sub	a, #0x10
+   0092 3E 00         [ 7]  198 	ld	a,#0x00
+   0094 17            [ 4]  199 	rla
+   0095 41            [ 4]  200 	ld	b,c
+   0096 A0            [ 4]  201 	and	a,b
+   0097 28 2E         [12]  202 	jr	Z,00104$
+                     0099   203 	C$spi.c$64$3$72	= .
+                            204 	.globl	C$spi.c$64$3$72
+                            205 ;../src/spi/spi.c:64: if( globals()->channel_handler_p[channel] != NULL ) globals()->channel_handler_p[channel](buffer + SPI_BUFFER_OFFSET, size);
+   0099 C5            [11]  206 	push	bc
+   009A CDr00r00      [17]  207 	call	_globals
+   009D C1            [10]  208 	pop	bc
+   009E DD 7E FD      [19]  209 	ld	a,-3 (ix)
+   00A1 87            [ 4]  210 	add	a, a
+   00A2 47            [ 4]  211 	ld	b,a
+   00A3 58            [ 4]  212 	ld	e,b
+   00A4 16 00         [ 7]  213 	ld	d,#0x00
+   00A6 19            [11]  214 	add	hl,de
+   00A7 5E            [ 7]  215 	ld	e,(hl)
+   00A8 23            [ 6]  216 	inc	hl
+   00A9 7E            [ 7]  217 	ld	a, (hl)
+   00AA B3            [ 4]  218 	or	a,e
+   00AB 28 1A         [12]  219 	jr	Z,00104$
+   00AD C5            [11]  220 	push	bc
+   00AE CDr00r00      [17]  221 	call	_globals
+   00B1 C1            [10]  222 	pop	bc
+   00B2 58            [ 4]  223 	ld	e,b
+   00B3 16 00         [ 7]  224 	ld	d,#0x00
+   00B5 19            [11]  225 	add	hl,de
+   00B6 7E            [ 7]  226 	ld	a, (hl)
+   00B7 23            [ 6]  227 	inc	hl
+   00B8 66            [ 7]  228 	ld	h,(hl)
+   00B9 6F            [ 4]  229 	ld	l,a
+   00BA 79            [ 4]  230 	ld	a,c
+   00BB F5            [11]  231 	push	af
+   00BC 33            [ 6]  232 	inc	sp
+   00BD D1            [10]  233 	pop	de
+   00BE C1            [10]  234 	pop	bc
+   00BF C5            [11]  235 	push	bc
+   00C0 D5            [11]  236 	push	de
+   00C1 C5            [11]  237 	push	bc
+   00C2 CDr00r00      [17]  238 	call	___sdcc_call_hl
+   00C5 F1            [10]  239 	pop	af
+   00C6 33            [ 6]  240 	inc	sp
+   00C7                     241 00104$:
+                     00C7   242 	C$spi.c$67$3$72	= .
+                            243 	.globl	C$spi.c$67$3$72
+                            244 ;../src/spi/spi.c:67: spiSetProcessed(true);
+   00C7 3E 01         [ 7]  245 	ld	a,#0x01
+   00C9 F5            [11]  246 	push	af
+   00CA 33            [ 6]  247 	inc	sp
+   00CB CDr32r01      [17]  248 	call	_spiSetProcessed
+   00CE 33            [ 6]  249 	inc	sp
+   00CF 18 27         [12]  250 	jr	00113$
+   00D1                     251 00108$:
+                     00D1   252 	C$spi.h$76$6$76	= .
+                            253 	.globl	C$spi.h$76$6$76
+                            254 ;../include/spi.h:76: return IN(SPI_SR) & MASTER_RDY ? 0 : 1;
+   00D1 3E 01         [ 7]  255 	ld	a,#0x01
+   00D3 F5            [11]  256 	push	af
+   00D4 33            [ 6]  257 	inc	sp
+   00D5 CDr00r00      [17]  258 	call	_IN
+   00D8 33            [ 6]  259 	inc	sp
+   00D9 CB 65         [ 8]  260 	bit	4, l
+   00DB 28 04         [12]  261 	jr	Z,00115$
+   00DD 0E 00         [ 7]  262 	ld	c,#0x00
+   00DF 18 02         [12]  263 	jr	00116$
+   00E1                     264 00115$:
+   00E1 0E 01         [ 7]  265 	ld	c,#0x01
+   00E3                     266 00116$:
+                     00E3   267 	C$spi.c$71$3$73	= .
+                            268 	.globl	C$spi.c$71$3$73
+                            269 ;../src/spi/spi.c:71: if( spiMasterReady() & spiLock(0) ) spiExchange(0xff,0);	// Send NOP packet
+   00E3 C5            [11]  270 	push	bc
+   00E4 AF            [ 4]  271 	xor	a, a
+   00E5 F5            [11]  272 	push	af
+   00E6 33            [ 6]  273 	inc	sp
+   00E7 CDr4Dr01      [17]  274 	call	_spiLock
+   00EA 33            [ 6]  275 	inc	sp
+   00EB C1            [10]  276 	pop	bc
+   00EC 79            [ 4]  277 	ld	a,c
+   00ED A5            [ 4]  278 	and	a,l
+   00EE 28 08         [12]  279 	jr	Z,00113$
+   00F0 21 FF 00      [10]  280 	ld	hl,#0x00ff
+   00F3 E5            [11]  281 	push	hl
+   00F4 CDr92r01      [17]  282 	call	_spiExchange
+   00F7 F1            [10]  283 	pop	af
+   00F8                     284 00113$:
+   00F8 DD F9         [10]  285 	ld	sp, ix
+   00FA DD E1         [14]  286 	pop	ix
+                     00FC   287 	C$spi.c$74$1$70	= .
+                            288 	.globl	C$spi.c$74$1$70
+                     00FC   289 	XG$spiProcessEvents$0$0	= .
+                            290 	.globl	XG$spiProcessEvents$0$0
+   00FC C9            [10]  291 	ret
+                     00FD   292 	G$spiGetInUse$0$0	= .
+                            293 	.globl	G$spiGetInUse$0$0
+                     00FD   294 	C$spi.c$79$1$70	= .
+                            295 	.globl	C$spi.c$79$1$70
+                            296 ;../src/spi/spi.c:79: inline Bool spiGetInUse()
+                            297 ;	---------------------------------
+                            298 ; Function spiGetInUse
+                            299 ; ---------------------------------
+   00FD                     300 _spiGetInUse::
+                     00FD   301 	C$spi.c$81$1$77	= .
+                            302 	.globl	C$spi.c$81$1$77
+                            303 ;../src/spi/spi.c:81: return globals()->spi_in_use;
+   00FD CDr00r00      [17]  304 	call	_globals
+   0100 11 20 00      [10]  305 	ld	de, #0x0020
+   0103 19            [11]  306 	add	hl, de
+   0104 6E            [ 7]  307 	ld	l,(hl)
+                     0105   308 	C$spi.c$82$1$77	= .
+                            309 	.globl	C$spi.c$82$1$77
+                     0105   310 	XG$spiGetInUse$0$0	= .
+                            311 	.globl	XG$spiGetInUse$0$0
+   0105 C9            [10]  312 	ret
+                     0106   313 	G$spiGetProcessed$0$0	= .
+                            314 	.globl	G$spiGetProcessed$0$0
+                     0106   315 	C$spi.c$87$1$77	= .
+                            316 	.globl	C$spi.c$87$1$77
+                            317 ;../src/spi/spi.c:87: inline Bool spiGetProcessed()
+                            318 ;	---------------------------------
+                            319 ; Function spiGetProcessed
+                            320 ; ---------------------------------
+   0106                     321 _spiGetProcessed::
+                     0106   322 	C$spi.c$89$1$78	= .
+                            323 	.globl	C$spi.c$89$1$78
+                            324 ;../src/spi/spi.c:89: return globals()->spi_processed_n == 0;
+   0106 CDr00r00      [17]  325 	call	_globals
+   0109 11 21 00      [10]  326 	ld	de, #0x0021
+   010C 19            [11]  327 	add	hl, de
+   010D 7E            [ 7]  328 	ld	a,(hl)
+   010E B7            [ 4]  329 	or	a, a
+   010F 20 04         [12]  330 	jr	NZ,00103$
+   0111 3E 01         [ 7]  331 	ld	a,#0x01
+   0113 18 01         [12]  332 	jr	00104$
+   0115                     333 00103$:
+   0115 AF            [ 4]  334 	xor	a,a
+   0116                     335 00104$:
+   0116 6F            [ 4]  336 	ld	l,a
+                     0117   337 	C$spi.c$90$1$78	= .
+                            338 	.globl	C$spi.c$90$1$78
+                     0117   339 	XG$spiGetProcessed$0$0	= .
+                            340 	.globl	XG$spiGetProcessed$0$0
+   0117 C9            [10]  341 	ret
+                     0118   342 	G$spiSetInUse$0$0	= .
+                            343 	.globl	G$spiSetInUse$0$0
+                     0118   344 	C$spi.c$95$1$78	= .
+                            345 	.globl	C$spi.c$95$1$78
+                            346 ;../src/spi/spi.c:95: void spiSetInUse(unsigned char state)
+                            347 ;	---------------------------------
+                            348 ; Function spiSetInUse
+                            349 ; ---------------------------------
+   0118                     350 _spiSetInUse::
+                     0118   351 	C$spi.c$97$1$80	= .
+                            352 	.globl	C$spi.c$97$1$80
+                            353 ;../src/spi/spi.c:97: globals()->spi_in_use = (state == false) ? 0 : 1;
+   0118 CDr00r00      [17]  354 	call	_globals
+   011B 01 20 00      [10]  355 	ld	bc,#0x0020
+   011E 09            [11]  356 	add	hl,bc
+   011F FD 21 02 00   [14]  357 	ld	iy,#2
+   0123 FD 39         [15]  358 	add	iy,sp
+   0125 FD 7E 00      [19]  359 	ld	a,0 (iy)
+   0128 B7            [ 4]  360 	or	a,a
+   0129 20 03         [12]  361 	jr	NZ,00103$
+   012B 4F            [ 4]  362 	ld	c,a
+   012C 18 02         [12]  363 	jr	00104$
+   012E                     364 00103$:
+   012E 0E 01         [ 7]  365 	ld	c,#0x01
+   0130                     366 00104$:
+   0130 71            [ 7]  367 	ld	(hl),c
+                     0131   368 	C$spi.c$98$1$80	= .
+                            369 	.globl	C$spi.c$98$1$80
+                     0131   370 	XG$spiSetInUse$0$0	= .
+                            371 	.globl	XG$spiSetInUse$0$0
+   0131 C9            [10]  372 	ret
+                     0132   373 	G$spiSetProcessed$0$0	= .
+                            374 	.globl	G$spiSetProcessed$0$0
+                     0132   375 	C$spi.c$103$1$80	= .
+                            376 	.globl	C$spi.c$103$1$80
+                            377 ;../src/spi/spi.c:103: void spiSetProcessed(unsigned char state)
+                            378 ;	---------------------------------
+                            379 ; Function spiSetProcessed
+                            380 ; ---------------------------------
+   0132                     381 _spiSetProcessed::
+                     0132   382 	C$spi.c$105$1$82	= .
+                            383 	.globl	C$spi.c$105$1$82
+                            384 ;../src/spi/spi.c:105: globals()->spi_processed_n = (state == false) ? 1 : 0;
+   0132 CDr00r00      [17]  385 	call	_globals
+   0135 01 21 00      [10]  386 	ld	bc,#0x0021
+   0138 09            [11]  387 	add	hl,bc
+   0139 FD 21 02 00   [14]  388 	ld	iy,#2
+   013D FD 39         [15]  389 	add	iy,sp
+   013F FD 7E 00      [19]  390 	ld	a,0 (iy)
+   0142 B7            [ 4]  391 	or	a, a
+   0143 20 04         [12]  392 	jr	NZ,00103$
+   0145 0E 01         [ 7]  393 	ld	c,#0x01
+   0147 18 02         [12]  394 	jr	00104$
+   0149                     395 00103$:
+   0149 0E 00         [ 7]  396 	ld	c,#0x00
+   014B                     397 00104$:
+   014B 71            [ 7]  398 	ld	(hl),c
+                     014C   399 	C$spi.c$106$1$82	= .
+                            400 	.globl	C$spi.c$106$1$82
+                     014C   401 	XG$spiSetProcessed$0$0	= .
+                            402 	.globl	XG$spiSetProcessed$0$0
+   014C C9            [10]  403 	ret
+                     014D   404 	G$spiLock$0$0	= .
+                            405 	.globl	G$spiLock$0$0
+                     014D   406 	C$spi.c$111$1$82	= .
+                            407 	.globl	C$spi.c$111$1$82
+                            408 ;../src/spi/spi.c:111: unsigned char spiLock(unsigned char channel)
+                            409 ;	---------------------------------
+                            410 ; Function spiLock
+                            411 ; ---------------------------------
+   014D                     412 _spiLock::
+                     014D   413 	C$spi.c$113$1$84	= .
+                            414 	.globl	C$spi.c$113$1$84
+                            415 ;../src/spi/spi.c:113: struct global_vars * g = globals();
+   014D CDr00r00      [17]  416 	call	_globals
+   0150 4D            [ 4]  417 	ld	c,l
+   0151 44            [ 4]  418 	ld	b,h
+                     0152   419 	C$spi.c$116$1$84	= .
+                            420 	.globl	C$spi.c$116$1$84
+                            421 ;../src/spi/spi.c:116: if( g->spi_in_use ) return false;
+   0152 C5            [11]  422 	push	bc
+   0153 FD E1         [14]  423 	pop	iy
+   0155 FD 7E 20      [19]  424 	ld	a,32 (iy)
+   0158 B7            [ 4]  425 	or	a, a
+   0159 28 03         [12]  426 	jr	Z,00102$
+   015B 2E 00         [ 7]  427 	ld	l,#0x00
+   015D C9            [10]  428 	ret
+   015E                     429 00102$:
+                     015E   430 	C$spi.c$119$1$84	= .
+                            431 	.globl	C$spi.c$119$1$84
+                            432 ;../src/spi/spi.c:119: g->spi_channel = channel;
+   015E 21 22 00      [10]  433 	ld	hl,#0x0022
+   0161 09            [11]  434 	add	hl,bc
+   0162 FD 21 02 00   [14]  435 	ld	iy,#2
+   0166 FD 39         [15]  436 	add	iy,sp
+   0168 FD 7E 00      [19]  437 	ld	a,0 (iy)
+   016B 77            [ 7]  438 	ld	(hl),a
+                     016C   439 	C$spi.c$122$1$84	= .
+                            440 	.globl	C$spi.c$122$1$84
+                            441 ;../src/spi/spi.c:122: spiSetInUse(true);
+   016C 3E 01         [ 7]  442 	ld	a,#0x01
+   016E F5            [11]  443 	push	af
+   016F 33            [ 6]  444 	inc	sp
+   0170 CDr18r01      [17]  445 	call	_spiSetInUse
+   0173 33            [ 6]  446 	inc	sp
+                     0174   447 	C$spi.c$123$1$84	= .
+                            448 	.globl	C$spi.c$123$1$84
+                            449 ;../src/spi/spi.c:123: spiSetProcessed(false);
+   0174 AF            [ 4]  450 	xor	a, a
+   0175 F5            [11]  451 	push	af
+   0176 33            [ 6]  452 	inc	sp
+   0177 CDr32r01      [17]  453 	call	_spiSetProcessed
+   017A 33            [ 6]  454 	inc	sp
+                     017B   455 	C$spi.c$125$1$84	= .
+                            456 	.globl	C$spi.c$125$1$84
+                            457 ;../src/spi/spi.c:125: return true;
+   017B 2E 01         [ 7]  458 	ld	l,#0x01
+                     017D   459 	C$spi.c$126$1$84	= .
+                            460 	.globl	C$spi.c$126$1$84
+                     017D   461 	XG$spiLock$0$0	= .
+                            462 	.globl	XG$spiLock$0$0
+   017D C9            [10]  463 	ret
+                     017E   464 	G$spiGetOutBuffer$0$0	= .
+                            465 	.globl	G$spiGetOutBuffer$0$0
+                     017E   466 	C$spi.c$131$1$84	= .
+                            467 	.globl	C$spi.c$131$1$84
+                            468 ;../src/spi/spi.c:131: void * spiGetOutBuffer(void)
+                            469 ;	---------------------------------
+                            470 ; Function spiGetOutBuffer
+                            471 ; ---------------------------------
+   017E                     472 _spiGetOutBuffer::
+                     017E   473 	C$spi.c$134$1$86	= .
+                            474 	.globl	C$spi.c$134$1$86
+                            475 ;../src/spi/spi.c:134: return globals()->outbound_comm_buffer + SPI_BUFFER_OFFSET;
+   017E CDr00r00      [17]  476 	call	_globals
+   0181 01 23 02      [10]  477 	ld	bc,#0x0223
+   0184 09            [11]  478 	add	hl,bc
+   0185 23            [ 6]  479 	inc	hl
+   0186 23            [ 6]  480 	inc	hl
+                     0187   481 	C$spi.c$135$1$86	= .
+                            482 	.globl	C$spi.c$135$1$86
+                     0187   483 	XG$spiGetOutBuffer$0$0	= .
+                            484 	.globl	XG$spiGetOutBuffer$0$0
+   0187 C9            [10]  485 	ret
+                     0188   486 	G$spiGetInBuffer$0$0	= .
+                            487 	.globl	G$spiGetInBuffer$0$0
+                     0188   488 	C$spi.c$140$1$86	= .
+                            489 	.globl	C$spi.c$140$1$86
+                            490 ;../src/spi/spi.c:140: void * spiGetInBuffer(void)
+                            491 ;	---------------------------------
+                            492 ; Function spiGetInBuffer
+                            493 ; ---------------------------------
+   0188                     494 _spiGetInBuffer::
+                     0188   495 	C$spi.c$143$1$88	= .
+                            496 	.globl	C$spi.c$143$1$88
+                            497 ;../src/spi/spi.c:143: return globals()->inbound_comm_buffer + SPI_BUFFER_OFFSET;
+   0188 CDr00r00      [17]  498 	call	_globals
+   018B 01 23 00      [10]  499 	ld	bc,#0x0023
+   018E 09            [11]  500 	add	hl,bc
+   018F 23            [ 6]  501 	inc	hl
+   0190 23            [ 6]  502 	inc	hl
+                     0191   503 	C$spi.c$144$1$88	= .
+                            504 	.globl	C$spi.c$144$1$88
+                     0191   505 	XG$spiGetInBuffer$0$0	= .
+                            506 	.globl	XG$spiGetInBuffer$0$0
+   0191 C9            [10]  507 	ret
+                     0192   508 	G$spiExchange$0$0	= .
+                            509 	.globl	G$spiExchange$0$0
+                     0192   510 	C$spi.c$149$1$88	= .
+                            511 	.globl	C$spi.c$149$1$88
+                            512 ;../src/spi/spi.c:149: void spiExchange( unsigned char channel, unsigned char size )
+                            513 ;	---------------------------------
+                            514 ; Function spiExchange
+                            515 ; ---------------------------------
+   0192                     516 _spiExchange::
+   0192 DD E5         [15]  517 	push	ix
+   0194 DD 21 00 00   [14]  518 	ld	ix,#0
+   0198 DD 39         [15]  519 	add	ix,sp
+                     019A   520 	C$spi.c$152$1$90	= .
+                            521 	.globl	C$spi.c$152$1$90
+                            522 ;../src/spi/spi.c:152: struct global_vars * g = globals();
+   019A CDr00r00      [17]  523 	call	_globals
+   019D 4D            [ 4]  524 	ld	c,l
+   019E 44            [ 4]  525 	ld	b,h
+                     019F   526 	C$spi.c$155$3$95	= .
+                            527 	.globl	C$spi.c$155$3$95
+                            528 ;../src/spi/spi.c:155: g->outbound_comm_buffer[0] = channel;
+   019F 21 23 02      [10]  529 	ld	hl,#0x0223
+   01A2 09            [11]  530 	add	hl,bc
+   01A3 EB            [ 4]  531 	ex	de,hl
+   01A4 DD 7E 04      [19]  532 	ld	a,4 (ix)
+   01A7 12            [ 7]  533 	ld	(de),a
+                     01A8   534 	C$spi.c$156$1$90	= .
+                            535 	.globl	C$spi.c$156$1$90
+                            536 ;../src/spi/spi.c:156: g->outbound_comm_buffer[1] = size;
+   01A8 21 24 02      [10]  537 	ld	hl,#0x0224
+   01AB 09            [11]  538 	add	hl,bc
+   01AC DD 7E 05      [19]  539 	ld	a,5 (ix)
+   01AF 77            [ 7]  540 	ld	(hl),a
+                     01B0   541 	C$spi.h$66$4$93	= .
+                            542 	.globl	C$spi.h$66$4$93
+                            543 ;../include/spi.h:66: OUT(SPI_CR, FLUSH);	// Flush the inbound / outbound data
+   01B0 C5            [11]  544 	push	bc
+   01B1 D5            [11]  545 	push	de
+   01B2 21 01 80      [10]  546 	ld	hl,#0x8001
+   01B5 E5            [11]  547 	push	hl
+   01B6 CDr00r00      [17]  548 	call	_OUT
+   01B9 F1            [10]  549 	pop	af
+   01BA D1            [10]  550 	pop	de
+   01BB 3E 02         [ 7]  551 	ld	a,#0x02
+   01BD F5            [11]  552 	push	af
+   01BE 33            [ 6]  553 	inc	sp
+   01BF D5            [11]  554 	push	de
+   01C0 AF            [ 4]  555 	xor	a, a
+   01C1 F5            [11]  556 	push	af
+   01C2 33            [ 6]  557 	inc	sp
+   01C3 CDr00r00      [17]  558 	call	_OUTI
+   01C6 F1            [10]  559 	pop	af
+   01C7 F1            [10]  560 	pop	af
+   01C8 C1            [10]  561 	pop	bc
+                     01C9   562 	C$spi.c$163$1$90	= .
+                            563 	.globl	C$spi.c$163$1$90
+                            564 ;../src/spi/spi.c:163: OUTI( SPI_DATA + SPI_BUFFER_OFFSET, g->outbound_comm_buffer + SPI_BUFFER_OFFSET, 128);
+   01C9 21 25 02      [10]  565 	ld	hl,#0x0225
+   01CC 09            [11]  566 	add	hl,bc
+   01CD EB            [ 4]  567 	ex	de,hl
+   01CE C5            [11]  568 	push	bc
+   01CF 3E 80         [ 7]  569 	ld	a,#0x80
+   01D1 F5            [11]  570 	push	af
+   01D2 33            [ 6]  571 	inc	sp
+   01D3 D5            [11]  572 	push	de
+   01D4 3E 02         [ 7]  573 	ld	a,#0x02
+   01D6 F5            [11]  574 	push	af
+   01D7 33            [ 6]  575 	inc	sp
+   01D8 CDr00r00      [17]  576 	call	_OUTI
+   01DB F1            [10]  577 	pop	af
+   01DC F1            [10]  578 	pop	af
+   01DD C1            [10]  579 	pop	bc
+                     01DE   580 	C$spi.c$164$1$90	= .
+                            581 	.globl	C$spi.c$164$1$90
+                            582 ;../src/spi/spi.c:164: OUTI( SPI_DATA + SPI_BUFFER_OFFSET + 128, g->outbound_comm_buffer + SPI_BUFFER_OFFSET + 128, 128);
+   01DE 21 A5 02      [10]  583 	ld	hl,#0x02a5
+   01E1 09            [11]  584 	add	hl,bc
+   01E2 4D            [ 4]  585 	ld	c,l
+   01E3 44            [ 4]  586 	ld	b,h
+   01E4 3E 80         [ 7]  587 	ld	a,#0x80
+   01E6 F5            [11]  588 	push	af
+   01E7 33            [ 6]  589 	inc	sp
+   01E8 C5            [11]  590 	push	bc
+   01E9 3E 82         [ 7]  591 	ld	a,#0x82
+   01EB F5            [11]  592 	push	af
+   01EC 33            [ 6]  593 	inc	sp
+   01ED CDr00r00      [17]  594 	call	_OUTI
+   01F0 F1            [10]  595 	pop	af
+                     01F1   596 	C$spi.h$61$4$96	= .
+                            597 	.globl	C$spi.h$61$4$96
+                            598 ;../include/spi.h:61: OUT(SPI_CR, SLAVE_RDY);	// Indicate ready
+   01F1 21 01 01      [10]  599 	ld	hl, #0x0101
+   01F4 E3            [19]  600 	ex	(sp),hl
+   01F5 CDr00r00      [17]  601 	call	_OUT
+   01F8 F1            [10]  602 	pop	af
+                     01F9   603 	C$spi.c$168$3$95	= .
+                            604 	.globl	C$spi.c$168$3$95
+                            605 ;../src/spi/spi.c:168: spiReady();
+   01F9 DD E1         [14]  606 	pop	ix
+                     01FB   607 	C$spi.c$170$3$95	= .
+                            608 	.globl	C$spi.c$170$3$95
+                     01FB   609 	XG$spiExchange$0$0	= .
+                            610 	.globl	XG$spiExchange$0$0
+   01FB C9            [10]  611 	ret
+                            612 	.area _CODE
+                            613 	.area _INITIALIZER
+                            614 	.area _CABS (ABS)
