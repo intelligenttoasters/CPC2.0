@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <deploy
  date="2016.12.29.18:16:41"
- outputDirectory="/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/osc/">
+ outputDirectory="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/">
  <perimeter>
   <parameter
      name="AUTO_GENERATION_ID"
@@ -53,17 +53,17 @@
   <parameter name="AUTO_GENERATION_ID" value="1482995801" />
   <generatedFiles>
    <file
-       path="/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/osc.v"
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/osc.v"
        type="VERILOG" />
   </generatedFiles>
   <childGeneratedFiles>
    <file
-       path="/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
        type="VERILOG"
        attributes="" />
   </childGeneratedFiles>
   <sourceFiles>
-   <file path="/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/osc.qsys" />
+   <file path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc.qsys" />
   </sourceFiles>
   <childSourceFiles>
    <file
@@ -101,7 +101,7 @@
   <parameter name="CBX_AUTO_BLACKBOX" value="ALL" />
   <generatedFiles>
    <file
-       path="/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
        type="VERILOG"
        attributes="" />
   </generatedFiles>
