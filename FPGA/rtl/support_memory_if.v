@@ -23,32 +23,48 @@
  */
 `timescale 1ns/1ns
 
-module support_memory_if(
+module support_memory_if #( parameter wp_address = 0 )
+(
 	input clk,
-	input [15:0] A,
-	input [7:0] Din,
-	output [7:0] Dout,
-	input wr,
-	output mem_wait
+	// ============= Internal support Ram =============
+	input [15:0] 	support_A,
+	input [7:0] 	support_Din,
+	output [7:0] 	support_Dout,
+	input 			support_wr,
+	// ============= Internal support Ram - Write interface =============
+	input				sys_en,
+	input [15:0] 	sys_A,
+	input [7:0] 	sys_data,
+	input 			sys_wr
 );
-	assign mem_wait = 1'b0;
-	
-	// CPU Memory Interface
-	`ifndef SIM
-		ram	ram (
-			.address ( A ),
-			.clock ( clk ),
-			.data ( Din),
-			.wren ( wr ),
-			.q ( Dout )
-			);
-	`else
-		reg [7:0] ram[0:65535];
-		// Permanently wire rom to DIN
-		assign Dout = ram[A];
-		// RAM Write
-		always @(posedge wr)
-			ram[A] = Din;
-	`endif
 
+	wire allow_write = (support_A >= wp_address);
+	
+	wire [15:0] adr;
+	wire [7:0]	dat;
+	wire			wr;
+	
+	assign adr = (sys_en) ? sys_A : support_A;
+	assign dat = (sys_en) ? sys_data : support_Din;
+	assign wr = (sys_en) ? sys_wr : support_wr;
+	
+	`ifndef SIM
+	ram r (
+		.address(adr),
+		.clock(clk),
+		.data(dat),
+		.wren(wr & allow_write),
+		.q(support_Dout));	
+	`else
+		reg [7:0] support[0:65535] /* synthesis ramstyle = "M10K" */;
+	
+		assign support_Dout = support[adr];
+		
+		// Support RAM + Sys IF
+		always @(posedge clk)
+		begin
+			if( wr )
+				support[adr] = dat;			
+		end
+	`endif
 endmodule

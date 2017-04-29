@@ -13,25 +13,14 @@ static Bool spi_in_use = false;
 
 void spi_init()
 {
-	// Initialize MRAM at 40MHz
-	struct spi_device device = {0};
-	spi_master_init	( SPI );
-	spi_master_setup_device(SPI, &device, SPI_MODE_0, 40000000, 0);	// Change rate back to 40MHz
-	device.id = 1;
-	spi_master_setup_device(SPI, &device, SPI_MODE_0, 40000000, 0); // Change rate back to 40MHz
-	spi_enable( SPI );
+	struct spi_device device = {
+		.id = 1
+	};
 	
-	// Write enable
-	device.id = 0;
-	spi_select_device(SPI, &device);
-	spi_write_single ( SPI, 0x06 );
-	spi_deselect_device(SPI, &device);
-
-	// Write status to unprotect all banks
-	spi_select_device(SPI, &device);
-	spi_write_single ( SPI, 0x01 );
-	spi_write_single ( SPI, 0xf3 );
-	spi_deselect_device(SPI, &device);
+	// Initialize SPI
+    spi_master_init ( SPI );
+	spi_master_setup_device(SPI, &device, SPI_MODE_0, 1000000, 0);
+	spi_enable( SPI );
 }
 
 Ctrl_status spi_test_unit_ready_0(void)
@@ -127,12 +116,17 @@ void setResetState(Bool state)
 
 void spi_raw_exchange( char * out, char * in, uint16_t count )
 {
+	// Make sure the slave ready
+	while( !slave_ready() ) process_events();
+
+	spi_raw_exchange_no_handshake( out, in, count );
+}
+
+void spi_raw_exchange_no_handshake( char * out, char * in, uint16_t count )
+{
 	// transfer packets
 	pdc_packet_t pkt1;
 	pdc_packet_t pkt2;
-
-	// Make sure the slave ready
-	while( !slave_ready() ) process_events();
 
 	// Chip enable
 	struct spi_device device = {.id = 1};

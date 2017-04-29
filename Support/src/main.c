@@ -35,11 +35,17 @@ void init()
 
 	// Initialize STDIO
 	stdio_init();
+
+	// Initialize the HDMI adapter
+	hdmi_init();
+
 }
 
 // Main function
 void main(void)
 {
+	char buffer[80];
+
 	// Run system intitialization
 	init();
 
@@ -49,7 +55,13 @@ void main(void)
 
 	// Start the boot process
 	puts("\033[2J\033[HCPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
-	console("Bringing up video controller");
+
+	// Get HDMI chip ID
+	sprintf(buffer, "HDMI chip ID : 0x%02x%02x", hdmi_read( 0xf5 ), hdmi_read( 0xf6 ));
+	console(buffer);
+
+	puts("Echoing back");
+	putchari('>');
 
 	// Echo the characters back to the user
 	while( true )
@@ -57,4 +69,5 @@ void main(void)
 		while(spi_avail() == 0) process_events();
 		putchari( getchar() );
 	}
+
 }

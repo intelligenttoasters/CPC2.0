@@ -1,4 +1,4 @@
-all: build1 upload
+all: build1
 
 .SILENT: build1 build2 upload
 
@@ -16,6 +16,7 @@ build2: next_build_no
 	sdcc --no-std-crt0 -mz80 -c --debug -I ../include ../src/spi/spi.c
 	sdcc --no-std-crt0 -mz80 -c --debug -I ../include ../src/stdio_spi/stdio_spi.c
 	sdcc --no-std-crt0 -mz80 -c --debug -I ../include ../src/interrupt.c
+	sdcc --no-std-crt0 -mz80 -c --debug -I ../include ../src/hdmi/hdmi.c
 	sdasz80 -l -o -s -y _boot.rel ../asm/_boot.asm
 	
 	# Note that _BOOT.REL must be first to correctly set the ordering of the initialized data area

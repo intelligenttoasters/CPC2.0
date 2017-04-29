@@ -71,21 +71,21 @@
                              71 ; Function int_handler
                              72 ; ---------------------------------
    0001                      73 _int_handler::
-                     0001    74 	C$interrupt.c$37$1$50	= .
-                             75 	.globl	C$interrupt.c$37$1$50
-                             76 ;../src/interrupt.c:37: unsigned char int_src = IN(INTERRUPT_CONTROLLER_BASE);
+                     0001    74 	C$interrupt.c$39$1$55	= .
+                             75 	.globl	C$interrupt.c$39$1$55
+                             76 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
    0001 3E 10         [ 7]   77 	ld	a,#0x10
    0003 F5            [11]   78 	push	af
    0004 33            [ 6]   79 	inc	sp
    0005 CDr00r00      [17]   80 	call	_IN
    0008 33            [ 6]   81 	inc	sp
-                     0009    82 	C$interrupt.c$40$1$50	= .
-                             83 	.globl	C$interrupt.c$40$1$50
-                             84 ;../src/interrupt.c:40: if( int_src & INT_SPI )
+                     0009    82 	C$interrupt.c$41$1$55	= .
+                             83 	.globl	C$interrupt.c$41$1$55
+                             84 ;../src/interrupt.c:41: if( int_src & INT_SPI )
    0009 CB 45         [ 8]   85 	bit	0, l
    000B C8            [11]   86 	ret	Z
-                     000C    87 	C$spi.h$86$5$55	= .
-                             88 	.globl	C$spi.h$86$5$55
+                     000C    87 	C$spi.h$86$5$60	= .
+                             88 	.globl	C$spi.h$86$5$60
                              89 ;../include/spi.h:86: return IN(SPI_SR) & OUT_EMPTY ? 1 : 0;
    000C 3E 01         [ 7]   90 	ld	a,#0x01
    000E F5            [11]   91 	push	af
@@ -94,31 +94,31 @@
    0013 33            [ 6]   94 	inc	sp
    0014 CB 55         [ 8]   95 	bit	2, l
    0016 C8            [11]   96 	ret	Z
-                     0017    97 	C$interrupt.c$45$2$51	= .
-                             98 	.globl	C$interrupt.c$45$2$51
-                             99 ;../src/interrupt.c:45: if( spiEmptyOut() && spiGetInUse() )
+                     0017    97 	C$interrupt.c$43$2$56	= .
+                             98 	.globl	C$interrupt.c$43$2$56
+                             99 ;../src/interrupt.c:43: if( spiEmptyOut() && spiGetInUse() )
    0017 CDr00r00      [17]  100 	call	_spiGetInUse
    001A 7D            [ 4]  101 	ld	a,l
    001B B7            [ 4]  102 	or	a, a
    001C C8            [11]  103 	ret	Z
-                     001D   104 	C$interrupt.c$48$3$52	= .
-                            105 	.globl	C$interrupt.c$48$3$52
-                            106 ;../src/interrupt.c:48: spiSetInUse( false );
+                     001D   104 	C$interrupt.c$46$3$57	= .
+                            105 	.globl	C$interrupt.c$46$3$57
+                            106 ;../src/interrupt.c:46: spiSetInUse( false );
    001D AF            [ 4]  107 	xor	a, a
    001E F5            [11]  108 	push	af
    001F 33            [ 6]  109 	inc	sp
    0020 CDr00r00      [17]  110 	call	_spiSetInUse
    0023 33            [ 6]  111 	inc	sp
-                     0024   112 	C$interrupt.c$49$3$52	= .
-                            113 	.globl	C$interrupt.c$49$3$52
-                            114 ;../src/interrupt.c:49: spiSetProcessed( false );
+                     0024   112 	C$interrupt.c$47$3$57	= .
+                            113 	.globl	C$interrupt.c$47$3$57
+                            114 ;../src/interrupt.c:47: spiSetProcessed( false );
    0024 AF            [ 4]  115 	xor	a, a
    0025 F5            [11]  116 	push	af
    0026 33            [ 6]  117 	inc	sp
    0027 CDr00r00      [17]  118 	call	_spiSetProcessed
    002A 33            [ 6]  119 	inc	sp
-                     002B   120 	C$interrupt.c$52$1$50	= .
-                            121 	.globl	C$interrupt.c$52$1$50
+                     002B   120 	C$interrupt.c$50$1$55	= .
+                            121 	.globl	C$interrupt.c$50$1$55
                      002B   122 	XG$int_handler$0$0	= .
                             123 	.globl	XG$int_handler$0$0
    002B C9            [10]  124 	ret

@@ -9,32 +9,31 @@ S _IN Ref0000
 S _spiSetInUse Ref0000
 S _spiSetProcessed Ref0000
 A _CODE size 2C flags 0 addr 0
-S C$spi.h$86$5$55 Def000C
 S A$interrupt$100 Def0017
 S A$interrupt$110 Def0020
 S A$interrupt$101 Def001A
 S A$interrupt$111 Def0023
 S A$interrupt$102 Def001B
 S A$interrupt$103 Def001C
-S C$interrupt.c$40$1$50 Def0009
 S A$interrupt$124 Def002B
 S A$interrupt$115 Def0024
 S A$interrupt$116 Def0025
 S A$interrupt$107 Def001D
-S C$interrupt.c$52$1$50 Def002B
 S A$interrupt$117 Def0026
 S A$interrupt$108 Def001E
 S A$interrupt$118 Def0027
 S A$interrupt$109 Def001F
 S A$interrupt$119 Def002A
-S C$interrupt.c$37$1$50 Def0001
-S C$interrupt.c$45$2$51 Def0017
+S C$interrupt.c$50$1$55 Def002B
+S C$interrupt.c$41$1$55 Def0009
 S C$interrupt.c$30$0$0 Def0000
 S G$nmi_handler$0$0 Def0000
-S C$interrupt.c$48$3$52 Def001D
-S C$interrupt.c$49$3$52 Def0024
+S C$interrupt.c$43$2$56 Def0017
+S C$interrupt.c$39$1$55 Def0001
 S C$interrupt.c$35$0$0 Def0001
+S C$interrupt.c$46$3$57 Def001D
 S C$interrupt.c$27$0$0 Def0000
+S C$interrupt.c$47$3$57 Def0024
 S G$int_handler$0$0 Def0001
 S A$interrupt$80 Def0005
 S A$interrupt$90 Def000C
@@ -55,6 +54,7 @@ S A$interrupt$79 Def0004
 S _int_handler Def0001
 S XG$nmi_handler$0$0 Def0000
 S XG$int_handler$0$0 Def002B
+S C$spi.h$86$5$60 Def000C
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0

@@ -27,8 +27,9 @@
 
 module global_reset(
 	input clock_i,
-	input forced_reset_i,
-	output n_reset_o
+	input forced_reset_i,		// Data5 from supervisor, active high
+	output n_reset_o,				// Global reset, active low
+	output n_limited_reset_o	// Special limited reset, just for DMA program upload, not affected by forced_reset_i
 	);
 
 	// Wire definitions
@@ -37,7 +38,8 @@ module global_reset(
 	reg [7:0] reset_counter = 1;
 	
 	// Assignments
-	assign n_reset_o = (reset_counter <= 1) & !forced_reset_i;	
+	assign n_reset_o 				= (reset_counter <= 1) & !forced_reset_i;	
+	assign n_limited_reset_o 	= (reset_counter <= 1);	
 	// Reset held high from first tick, then low until register roll over
 
 	// Module connections

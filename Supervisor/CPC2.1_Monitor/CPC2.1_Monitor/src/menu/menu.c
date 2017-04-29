@@ -22,7 +22,7 @@ static const char *codes[] = {
 	"\e[u"
 };
 
-#define MENU_ITEMS 8
+#define MENU_ITEMS 9
 static const char *menu_item[] = {
 	" 0 - Connect to CPC",
 	" 1 - Upload FPGA image to device",
@@ -31,11 +31,12 @@ static const char *menu_item[] = {
 	" 4 - Upload FPGA image to flash and reset supervisor",
 	" 5 - Reset supervisor",
 	" 6 - Clear FPGA image from flash",
-	" 7 - Toggle support CPU reset signal"
+	" 7 - Toggle support CPU reset signal",
+	" 8 - Upload program to support memory"
 };
 
 static const char *messages[] = {
-	"CPC2.0 Monitor V0.1.1 - Main Menu",// 0
+	"CPC2.0 Monitor V0.1.2 - Main Menu",// 0
 	"Options: ",						// 1
 	"Select: ",							// 2
 	"Waiting for program...",			// 3
@@ -149,13 +150,17 @@ void menu()
 						break;
 					}
 					// Otherwise
-					memset( globals.flash_buffer, 0, SECTOR_SIZE );
-					ram_2_memory(LUN_ID_MRAM_MEM, 0, globals.flash_buffer);
+					memset( globals.flash_buffer, 255, PAGE_SIZE );
+					ram_2_memory(LUN_ID_FLASH_MEM, 768, globals.flash_buffer);
 					sprintf(globals.returnMessage, messages[4]);	// Reset flash
 					break;
 				case '7':
 					setResetState(!isResetState());
 					break;
+				case '8':
+				M(3);	// Reset flash
+				upload_memory();
+				break;
 			}
 		}
 	}

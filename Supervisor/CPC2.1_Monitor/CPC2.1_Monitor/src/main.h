@@ -17,6 +17,7 @@
 #include "string.h"
 #include "menu/menu.h"
 #include "vterm/vterm.h"
+#include "support_app/support_app.h"
 
 #define stdio_ready() udi_cdc_is_rx_ready()
 

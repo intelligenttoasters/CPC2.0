@@ -8,8 +8,7 @@
 #include "asf.h"
 #include "main.h"
 
-//#define BLOCK_OFFSET 100
-#define BLOCK_OFFSET 200
+#define BLOCK_OFFSET 100
 
 // NAND Flash management structure
 static struct nand_flash_ecc nf_ecc;

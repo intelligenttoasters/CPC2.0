@@ -85,14 +85,14 @@ _stdio_channel_handler::
 	ld	ix,#0
 	add	ix,sp
 	push	af
-	C$stdio_spi.c$41$1$68	= .
-	.globl	C$stdio_spi.c$41$1$68
+	C$stdio_spi.c$41$1$73	= .
+	.globl	C$stdio_spi.c$41$1$73
 ;../src/stdio_spi/stdio_spi.c:41: if( size == 1 )
 	ld	a,6 (ix)
 	dec	a
 	jr	NZ,00106$
-	C$stdio_spi.c$44$2$69	= .
-	.globl	C$stdio_spi.c$44$2$69
+	C$stdio_spi.c$44$2$74	= .
+	.globl	C$stdio_spi.c$44$2$74
 ;../src/stdio_spi/stdio_spi.c:44: if ( buffer[0] == SPI_START )
 	ld	l,4 (ix)
 	ld	h,5 (ix)
@@ -100,54 +100,54 @@ _stdio_channel_handler::
 	ld	a,c
 	sub	a, #0x0f
 	jr	NZ,00102$
-	C$stdio_spi.c$46$3$70	= .
-	.globl	C$stdio_spi.c$46$3$70
+	C$stdio_spi.c$46$3$75	= .
+	.globl	C$stdio_spi.c$46$3$75
 ;../src/stdio_spi/stdio_spi.c:46: stdio_connected = true;
 	ld	hl,#_stdio_connected + 0
 	ld	(hl), #0x01
-	C$stdio_spi.c$47$3$70	= .
-	.globl	C$stdio_spi.c$47$3$70
+	C$stdio_spi.c$47$3$75	= .
+	.globl	C$stdio_spi.c$47$3$75
 ;../src/stdio_spi/stdio_spi.c:47: inbuffer_entries = 0;
 	ld	hl,#_inbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$48$3$70	= .
-	.globl	C$stdio_spi.c$48$3$70
+	C$stdio_spi.c$48$3$75	= .
+	.globl	C$stdio_spi.c$48$3$75
 ;../src/stdio_spi/stdio_spi.c:48: outbuffer_entries = 0;
 	ld	hl,#_outbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$49$3$70	= .
-	.globl	C$stdio_spi.c$49$3$70
+	C$stdio_spi.c$49$3$75	= .
+	.globl	C$stdio_spi.c$49$3$75
 ;../src/stdio_spi/stdio_spi.c:49: return;
 	jp	00111$
 00102$:
-	C$stdio_spi.c$52$2$69	= .
-	.globl	C$stdio_spi.c$52$2$69
+	C$stdio_spi.c$52$2$74	= .
+	.globl	C$stdio_spi.c$52$2$74
 ;../src/stdio_spi/stdio_spi.c:52: if ( buffer[0] == SPI_END )
 	ld	a,c
 	sub	a, #0x11
 	jr	NZ,00106$
-	C$stdio_spi.c$54$3$71	= .
-	.globl	C$stdio_spi.c$54$3$71
+	C$stdio_spi.c$54$3$76	= .
+	.globl	C$stdio_spi.c$54$3$76
 ;../src/stdio_spi/stdio_spi.c:54: stdio_connected = false;
 	ld	hl,#_stdio_connected + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$55$3$71	= .
-	.globl	C$stdio_spi.c$55$3$71
+	C$stdio_spi.c$55$3$76	= .
+	.globl	C$stdio_spi.c$55$3$76
 ;../src/stdio_spi/stdio_spi.c:55: inbuffer_entries = 0;
 	ld	hl,#_inbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$56$3$71	= .
-	.globl	C$stdio_spi.c$56$3$71
+	C$stdio_spi.c$56$3$76	= .
+	.globl	C$stdio_spi.c$56$3$76
 ;../src/stdio_spi/stdio_spi.c:56: outbuffer_entries = 0;
 	ld	hl,#_outbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$57$3$71	= .
-	.globl	C$stdio_spi.c$57$3$71
+	C$stdio_spi.c$57$3$76	= .
+	.globl	C$stdio_spi.c$57$3$76
 ;../src/stdio_spi/stdio_spi.c:57: return;
 	jr	00111$
 00106$:
-	C$stdio_spi.c$62$1$68	= .
-	.globl	C$stdio_spi.c$62$1$68
+	C$stdio_spi.c$62$1$73	= .
+	.globl	C$stdio_spi.c$62$1$73
 ;../src/stdio_spi/stdio_spi.c:62: if( inbuffer_entries == 8 ) return;
 	ld	a,(#_inbuffer_entries + 0)
 	sub	a, #0x08
@@ -155,8 +155,8 @@ _stdio_channel_handler::
 	jr	00108$
 	jr	00111$
 00108$:
-	C$stdio_spi.c$65$1$68	= .
-	.globl	C$stdio_spi.c$65$1$68
+	C$stdio_spi.c$65$1$73	= .
+	.globl	C$stdio_spi.c$65$1$73
 ;../src/stdio_spi/stdio_spi.c:65: sz = min(size, 8 - inbuffer_entries);
 	ld	hl,#_inbuffer_entries + 0
 	ld	c, (hl)
@@ -184,9 +184,9 @@ _stdio_channel_handler::
 	ld	a,6 (ix)
 00114$:
 	ld	-2 (ix),a
-	C$stdio_spi.c$68$1$68	= .
-	.globl	C$stdio_spi.c$68$1$68
-;../src/stdio_spi/stdio_spi.c:68: memcpy( stdio_inbound_buffer + inbuffer_entries, buffer, sz);
+	C$stdio_spi.c$67$1$73	= .
+	.globl	C$stdio_spi.c$67$1$73
+;../src/stdio_spi/stdio_spi.c:67: memcpy( stdio_inbound_buffer + inbuffer_entries, buffer, sz);
 	ld	bc,#_stdio_inbound_buffer+0
 	ld	hl,(_inbuffer_entries)
 	ld	h,#0x00
@@ -202,16 +202,16 @@ _stdio_channel_handler::
 	ld	hl,#6
 	add	hl,sp
 	ld	sp,hl
-	C$stdio_spi.c$71$1$68	= .
-	.globl	C$stdio_spi.c$71$1$68
-;../src/stdio_spi/stdio_spi.c:71: inbuffer_entries += sz;
+	C$stdio_spi.c$70$1$73	= .
+	.globl	C$stdio_spi.c$70$1$73
+;../src/stdio_spi/stdio_spi.c:70: inbuffer_entries += sz;
 	ld	hl,#_inbuffer_entries
 	ld	a,(hl)
 	add	a, -2 (ix)
 	ld	(hl),a
-	C$stdio_spi.c$74$1$68	= .
-	.globl	C$stdio_spi.c$74$1$68
-;../src/stdio_spi/stdio_spi.c:74: if( inbuffer_entries > 8 ) inbuffer_entries = 8;
+	C$stdio_spi.c$73$1$73	= .
+	.globl	C$stdio_spi.c$73$1$73
+;../src/stdio_spi/stdio_spi.c:73: if( inbuffer_entries > 8 ) inbuffer_entries = 8;
 	ld	a,#0x08
 	ld	iy,#_inbuffer_entries
 	sub	a, 0 (iy)
@@ -220,23 +220,23 @@ _stdio_channel_handler::
 00111$:
 	ld	sp, ix
 	pop	ix
-	C$stdio_spi.c$75$1$68	= .
-	.globl	C$stdio_spi.c$75$1$68
+	C$stdio_spi.c$74$1$73	= .
+	.globl	C$stdio_spi.c$74$1$73
 	XG$stdio_channel_handler$0$0	= .
 	.globl	XG$stdio_channel_handler$0$0
 	ret
 	G$stdio_init$0$0	= .
 	.globl	G$stdio_init$0$0
-	C$stdio_spi.c$79$1$68	= .
-	.globl	C$stdio_spi.c$79$1$68
-;../src/stdio_spi/stdio_spi.c:79: void stdio_init()
+	C$stdio_spi.c$78$1$73	= .
+	.globl	C$stdio_spi.c$78$1$73
+;../src/stdio_spi/stdio_spi.c:78: void stdio_init()
 ;	---------------------------------
 ; Function stdio_init
 ; ---------------------------------
 _stdio_init::
-	C$stdio_spi.c$82$1$72	= .
-	.globl	C$stdio_spi.c$82$1$72
-;../src/stdio_spi/stdio_spi.c:82: spiSetHandler(0, &stdio_channel_handler);
+	C$stdio_spi.c$81$1$77	= .
+	.globl	C$stdio_spi.c$81$1$77
+;../src/stdio_spi/stdio_spi.c:81: spiSetHandler(0, &stdio_channel_handler);
 	ld	hl,#_stdio_channel_handler
 	push	hl
 	xor	a, a
@@ -245,54 +245,54 @@ _stdio_init::
 	call	_spiSetHandler
 	pop	af
 	inc	sp
-	C$stdio_spi.c$83$1$72	= .
-	.globl	C$stdio_spi.c$83$1$72
-;../src/stdio_spi/stdio_spi.c:83: inbuffer_entries = 0;
+	C$stdio_spi.c$82$1$77	= .
+	.globl	C$stdio_spi.c$82$1$77
+;../src/stdio_spi/stdio_spi.c:82: inbuffer_entries = 0;
 	ld	hl,#_inbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$84$1$72	= .
-	.globl	C$stdio_spi.c$84$1$72
-;../src/stdio_spi/stdio_spi.c:84: outbuffer_entries = 0;
+	C$stdio_spi.c$83$1$77	= .
+	.globl	C$stdio_spi.c$83$1$77
+;../src/stdio_spi/stdio_spi.c:83: outbuffer_entries = 0;
 	ld	hl,#_outbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$85$1$72	= .
-	.globl	C$stdio_spi.c$85$1$72
-;../src/stdio_spi/stdio_spi.c:85: spiSetInUse(false);
+	C$stdio_spi.c$84$1$77	= .
+	.globl	C$stdio_spi.c$84$1$77
+;../src/stdio_spi/stdio_spi.c:84: spiSetInUse(false);
 	xor	a, a
 	push	af
 	inc	sp
 	call	_spiSetInUse
 	inc	sp
-	C$stdio_spi.c$86$1$72	= .
-	.globl	C$stdio_spi.c$86$1$72
-;../src/stdio_spi/stdio_spi.c:86: spiSetProcessed(true);
+	C$stdio_spi.c$85$1$77	= .
+	.globl	C$stdio_spi.c$85$1$77
+;../src/stdio_spi/stdio_spi.c:85: spiSetProcessed(true);
 	ld	a,#0x01
 	push	af
 	inc	sp
 	call	_spiSetProcessed
 	inc	sp
-	C$stdio_spi.c$87$1$72	= .
-	.globl	C$stdio_spi.c$87$1$72
-;../src/stdio_spi/stdio_spi.c:87: stdio_connected = false;
+	C$stdio_spi.c$86$1$77	= .
+	.globl	C$stdio_spi.c$86$1$77
+;../src/stdio_spi/stdio_spi.c:86: stdio_connected = false;
 	ld	hl,#_stdio_connected + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$88$1$72	= .
-	.globl	C$stdio_spi.c$88$1$72
+	C$stdio_spi.c$87$1$77	= .
+	.globl	C$stdio_spi.c$87$1$77
 	XG$stdio_init$0$0	= .
 	.globl	XG$stdio_init$0$0
 	ret
 	G$spi_puts$0$0	= .
 	.globl	G$spi_puts$0$0
-	C$stdio_spi.c$92$1$72	= .
-	.globl	C$stdio_spi.c$92$1$72
-;../src/stdio_spi/stdio_spi.c:92: void spi_puts( void * string )
+	C$stdio_spi.c$91$1$77	= .
+	.globl	C$stdio_spi.c$91$1$77
+;../src/stdio_spi/stdio_spi.c:91: void spi_puts( void * string )
 ;	---------------------------------
 ; Function spi_puts
 ; ---------------------------------
 _spi_puts::
 	push	af
-	C$stdio_spi.c$95$1$74	= .
-	.globl	C$stdio_spi.c$95$1$74
+	C$stdio_spi.c$95$1$79	= .
+	.globl	C$stdio_spi.c$95$1$79
 ;../src/stdio_spi/stdio_spi.c:95: int size = strlen( string );
 	ld	hl, #4
 	add	hl, sp
@@ -305,8 +305,8 @@ _spi_puts::
 	inc	sp
 	inc	sp
 	push	hl
-	C$stdio_spi.c$98$1$74	= .
-	.globl	C$stdio_spi.c$98$1$74
+	C$stdio_spi.c$98$1$79	= .
+	.globl	C$stdio_spi.c$98$1$79
 ;../src/stdio_spi/stdio_spi.c:98: while(!spiLock(0)) process_events();
 00101$:
 	xor	a, a
@@ -320,8 +320,8 @@ _spi_puts::
 	call	_process_events
 	jr	00101$
 00103$:
-	C$stdio_spi.c$101$1$74	= .
-	.globl	C$stdio_spi.c$101$1$74
+	C$stdio_spi.c$101$1$79	= .
+	.globl	C$stdio_spi.c$101$1$79
 ;../src/stdio_spi/stdio_spi.c:101: memcpy( spiGetOutBuffer(), string, size );	// Note it doesn't copy the terminating zero
 	call	_spiGetOutBuffer
 	pop	bc
@@ -337,8 +337,8 @@ _spi_puts::
 	ld	hl,#6
 	add	hl,sp
 	ld	sp,hl
-	C$stdio_spi.c$104$1$74	= .
-	.globl	C$stdio_spi.c$104$1$74
+	C$stdio_spi.c$104$1$79	= .
+	.globl	C$stdio_spi.c$104$1$79
 ;../src/stdio_spi/stdio_spi.c:104: spiExchange( SPI_CHANNEL, size );
 	ld	hl, #0+0
 	add	hl, sp
@@ -351,15 +351,15 @@ _spi_puts::
 	call	_spiExchange
 	pop	af
 	pop	af
-	C$stdio_spi.c$106$1$74	= .
-	.globl	C$stdio_spi.c$106$1$74
+	C$stdio_spi.c$106$1$79	= .
+	.globl	C$stdio_spi.c$106$1$79
 	XG$spi_puts$0$0	= .
 	.globl	XG$spi_puts$0$0
 	ret
 	G$putchari$0$0	= .
 	.globl	G$putchari$0$0
-	C$stdio_spi.c$111$1$74	= .
-	.globl	C$stdio_spi.c$111$1$74
+	C$stdio_spi.c$111$1$79	= .
+	.globl	C$stdio_spi.c$111$1$79
 ;../src/stdio_spi/stdio_spi.c:111: inline void putchari( char data ) { putchar(data); outbound_flush(); }
 ;	---------------------------------
 ; Function putchari
@@ -372,15 +372,15 @@ _putchari::
 	inc	sp
 	call	_putchar
 	inc	sp
-	C$stdio_spi.c$111$1$76	= .
-	.globl	C$stdio_spi.c$111$1$76
+	C$stdio_spi.c$111$1$81	= .
+	.globl	C$stdio_spi.c$111$1$81
 	XG$putchari$0$0	= .
 	.globl	XG$putchari$0$0
 	jp  _outbound_flush
 	G$putchar$0$0	= .
 	.globl	G$putchar$0$0
-	C$stdio_spi.c$116$1$76	= .
-	.globl	C$stdio_spi.c$116$1$76
+	C$stdio_spi.c$116$1$81	= .
+	.globl	C$stdio_spi.c$116$1$81
 ;../src/stdio_spi/stdio_spi.c:116: void putchar( char data )
 ;	---------------------------------
 ; Function putchar
@@ -389,14 +389,14 @@ _putchar::
 	push	ix
 	ld	ix,#0
 	add	ix,sp
-	C$stdio_spi.c$119$1$78	= .
-	.globl	C$stdio_spi.c$119$1$78
+	C$stdio_spi.c$119$1$83	= .
+	.globl	C$stdio_spi.c$119$1$83
 ;../src/stdio_spi/stdio_spi.c:119: if( !stdio_connected ) return;
 	ld	a,(#_stdio_connected + 0)
 	or	a, a
 	jr	Z,00108$
-	C$stdio_spi.c$122$1$78	= .
-	.globl	C$stdio_spi.c$122$1$78
+	C$stdio_spi.c$122$1$83	= .
+	.globl	C$stdio_spi.c$122$1$83
 ;../src/stdio_spi/stdio_spi.c:122: stdio_outbound_buffer[outbuffer_entries++] = data;
 	ld	bc,#_stdio_outbound_buffer+0
 	ld	iy,#_outbuffer_entries
@@ -407,8 +407,8 @@ _putchar::
 	add	hl,bc
 	ld	a,4 (ix)
 	ld	(hl),a
-	C$stdio_spi.c$125$1$78	= .
-	.globl	C$stdio_spi.c$125$1$78
+	C$stdio_spi.c$125$1$83	= .
+	.globl	C$stdio_spi.c$125$1$83
 ;../src/stdio_spi/stdio_spi.c:125: if( data == _LF_ ) stdio_outbound_buffer[outbuffer_entries++] = _CR_;
 	ld	a,4 (ix)
 	sub	a, #0x0a
@@ -429,8 +429,8 @@ _putchar::
 	add	hl,bc
 	ld	(hl),#0x0d
 00104$:
-	C$stdio_spi.c$128$1$78	= .
-	.globl	C$stdio_spi.c$128$1$78
+	C$stdio_spi.c$128$1$83	= .
+	.globl	C$stdio_spi.c$128$1$83
 ;../src/stdio_spi/stdio_spi.c:128: if( ( data == _LF_ ) || ( outbuffer_entries >= _STD_WIDTH_ ) ) outbound_flush();
 	ld	a,e
 	or	a, a
@@ -442,80 +442,80 @@ _putchar::
 	call	_outbound_flush
 00108$:
 	pop	ix
-	C$stdio_spi.c$129$1$78	= .
-	.globl	C$stdio_spi.c$129$1$78
+	C$stdio_spi.c$129$1$83	= .
+	.globl	C$stdio_spi.c$129$1$83
 	XG$putchar$0$0	= .
 	.globl	XG$putchar$0$0
 	ret
 	G$outbound_flush$0$0	= .
 	.globl	G$outbound_flush$0$0
-	C$stdio_spi.c$133$1$78	= .
-	.globl	C$stdio_spi.c$133$1$78
+	C$stdio_spi.c$133$1$83	= .
+	.globl	C$stdio_spi.c$133$1$83
 ;../src/stdio_spi/stdio_spi.c:133: void outbound_flush()
 ;	---------------------------------
 ; Function outbound_flush
 ; ---------------------------------
 _outbound_flush::
-	C$stdio_spi.c$136$1$79	= .
-	.globl	C$stdio_spi.c$136$1$79
+	C$stdio_spi.c$136$1$84	= .
+	.globl	C$stdio_spi.c$136$1$84
 ;../src/stdio_spi/stdio_spi.c:136: stdio_outbound_buffer[outbuffer_entries] = 0;
 	ld	bc,#_stdio_outbound_buffer+0
 	ld	hl,(_outbuffer_entries)
 	ld	h,#0x00
 	add	hl,bc
 	ld	(hl),#0x00
-	C$stdio_spi.c$139$1$79	= .
-	.globl	C$stdio_spi.c$139$1$79
+	C$stdio_spi.c$139$1$84	= .
+	.globl	C$stdio_spi.c$139$1$84
 ;../src/stdio_spi/stdio_spi.c:139: spi_puts(stdio_outbound_buffer);
 	push	bc
 	call	_spi_puts
 	pop	af
-	C$stdio_spi.c$142$1$79	= .
-	.globl	C$stdio_spi.c$142$1$79
+	C$stdio_spi.c$142$1$84	= .
+	.globl	C$stdio_spi.c$142$1$84
 ;../src/stdio_spi/stdio_spi.c:142: outbuffer_entries = 0;
 	ld	hl,#_outbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$143$1$79	= .
-	.globl	C$stdio_spi.c$143$1$79
+	C$stdio_spi.c$143$1$84	= .
+	.globl	C$stdio_spi.c$143$1$84
 	XG$outbound_flush$0$0	= .
 	.globl	XG$outbound_flush$0$0
 	ret
 	G$spi_avail$0$0	= .
 	.globl	G$spi_avail$0$0
-	C$stdio_spi.c$147$1$79	= .
-	.globl	C$stdio_spi.c$147$1$79
+	C$stdio_spi.c$147$1$84	= .
+	.globl	C$stdio_spi.c$147$1$84
 ;../src/stdio_spi/stdio_spi.c:147: unsigned char spi_avail()
 ;	---------------------------------
 ; Function spi_avail
 ; ---------------------------------
 _spi_avail::
-	C$stdio_spi.c$149$1$80	= .
-	.globl	C$stdio_spi.c$149$1$80
+	C$stdio_spi.c$149$1$85	= .
+	.globl	C$stdio_spi.c$149$1$85
 ;../src/stdio_spi/stdio_spi.c:149: return inbuffer_entries;
 	ld	iy,#_inbuffer_entries
 	ld	l,0 (iy)
-	C$stdio_spi.c$150$1$80	= .
-	.globl	C$stdio_spi.c$150$1$80
+	C$stdio_spi.c$150$1$85	= .
+	.globl	C$stdio_spi.c$150$1$85
 	XG$spi_avail$0$0	= .
 	.globl	XG$spi_avail$0$0
 	ret
 	G$getchar$0$0	= .
 	.globl	G$getchar$0$0
-	C$stdio_spi.c$154$1$80	= .
-	.globl	C$stdio_spi.c$154$1$80
+	C$stdio_spi.c$154$1$85	= .
+	.globl	C$stdio_spi.c$154$1$85
 ;../src/stdio_spi/stdio_spi.c:154: char getchar()
 ;	---------------------------------
 ; Function getchar
 ; ---------------------------------
 _getchar::
-	C$stdio_spi.c$157$1$81	= .
-	.globl	C$stdio_spi.c$157$1$81
+	C$stdio_spi.c$157$1$86	= .
+	.globl	C$stdio_spi.c$157$1$86
 ;../src/stdio_spi/stdio_spi.c:157: char r = stdio_inbound_buffer[0];
 	ld	bc,#_stdio_inbound_buffer+0
 	ld	a,(bc)
 	ld	e,a
-	C$stdio_spi.c$160$1$81	= .
-	.globl	C$stdio_spi.c$160$1$81
+	C$stdio_spi.c$160$1$86	= .
+	.globl	C$stdio_spi.c$160$1$86
 ;../src/stdio_spi/stdio_spi.c:160: if( inbuffer_entries == 0 ) return 0;
 	ld	a,(#_inbuffer_entries + 0)
 	or	a,a
@@ -523,15 +523,15 @@ _getchar::
 	ld	l,a
 	ret
 00102$:
-	C$stdio_spi.c$163$1$81	= .
-	.globl	C$stdio_spi.c$163$1$81
+	C$stdio_spi.c$163$1$86	= .
+	.globl	C$stdio_spi.c$163$1$86
 ;../src/stdio_spi/stdio_spi.c:163: if( inbuffer_entries > 1 )
 	ld	a,#0x01
 	ld	iy,#_inbuffer_entries
 	sub	a, 0 (iy)
 	jr	NC,00104$
-	C$stdio_spi.c$164$1$81	= .
-	.globl	C$stdio_spi.c$164$1$81
+	C$stdio_spi.c$164$1$86	= .
+	.globl	C$stdio_spi.c$164$1$86
 ;../src/stdio_spi/stdio_spi.c:164: memcpy( stdio_inbound_buffer, stdio_inbound_buffer + 1, inbuffer_entries);
 	inc	bc
 	ld	l,0 (iy)
@@ -547,55 +547,55 @@ _getchar::
 	ld	sp,hl
 	pop	de
 00104$:
-	C$stdio_spi.c$167$1$81	= .
-	.globl	C$stdio_spi.c$167$1$81
+	C$stdio_spi.c$167$1$86	= .
+	.globl	C$stdio_spi.c$167$1$86
 ;../src/stdio_spi/stdio_spi.c:167: inbuffer_entries--;
 	ld	hl, #_inbuffer_entries+0
 	dec	(hl)
-	C$stdio_spi.c$170$1$81	= .
-	.globl	C$stdio_spi.c$170$1$81
+	C$stdio_spi.c$170$1$86	= .
+	.globl	C$stdio_spi.c$170$1$86
 ;../src/stdio_spi/stdio_spi.c:170: return r;
 	ld	l,e
-	C$stdio_spi.c$171$1$81	= .
-	.globl	C$stdio_spi.c$171$1$81
+	C$stdio_spi.c$171$1$86	= .
+	.globl	C$stdio_spi.c$171$1$86
 	XG$getchar$0$0	= .
 	.globl	XG$getchar$0$0
 	ret
 	G$inbound_flush$0$0	= .
 	.globl	G$inbound_flush$0$0
-	C$stdio_spi.c$176$1$81	= .
-	.globl	C$stdio_spi.c$176$1$81
+	C$stdio_spi.c$176$1$86	= .
+	.globl	C$stdio_spi.c$176$1$86
 ;../src/stdio_spi/stdio_spi.c:176: void inbound_flush()
 ;	---------------------------------
 ; Function inbound_flush
 ; ---------------------------------
 _inbound_flush::
-	C$stdio_spi.c$178$1$82	= .
-	.globl	C$stdio_spi.c$178$1$82
+	C$stdio_spi.c$178$1$87	= .
+	.globl	C$stdio_spi.c$178$1$87
 ;../src/stdio_spi/stdio_spi.c:178: inbuffer_entries = 0;
 	ld	hl,#_inbuffer_entries + 0
 	ld	(hl), #0x00
-	C$stdio_spi.c$179$1$82	= .
-	.globl	C$stdio_spi.c$179$1$82
+	C$stdio_spi.c$179$1$87	= .
+	.globl	C$stdio_spi.c$179$1$87
 	XG$inbound_flush$0$0	= .
 	.globl	XG$inbound_flush$0$0
 	ret
 	G$spi_connected$0$0	= .
 	.globl	G$spi_connected$0$0
-	C$stdio_spi.c$184$1$82	= .
-	.globl	C$stdio_spi.c$184$1$82
+	C$stdio_spi.c$184$1$87	= .
+	.globl	C$stdio_spi.c$184$1$87
 ;../src/stdio_spi/stdio_spi.c:184: inline Bool spi_connected()
 ;	---------------------------------
 ; Function spi_connected
 ; ---------------------------------
 _spi_connected::
-	C$stdio_spi.c$186$1$83	= .
-	.globl	C$stdio_spi.c$186$1$83
+	C$stdio_spi.c$186$1$88	= .
+	.globl	C$stdio_spi.c$186$1$88
 ;../src/stdio_spi/stdio_spi.c:186: return stdio_connected;
 	ld	iy,#_stdio_connected
 	ld	l,0 (iy)
-	C$stdio_spi.c$187$1$83	= .
-	.globl	C$stdio_spi.c$187$1$83
+	C$stdio_spi.c$187$1$88	= .
+	.globl	C$stdio_spi.c$187$1$88
 	XG$spi_connected$0$0	= .
 	.globl	XG$spi_connected$0$0
 	ret

@@ -27,6 +27,7 @@ Bool slave_ready(void);
 void spi_runtime(void);
 void master_ready(Bool);
 void spi_raw_exchange( char * out, char * in, uint16_t count );
+void spi_raw_exchange_no_handshake( char * out, char * in, uint16_t count );
 Bool isResetState(void);
 void setResetState(Bool state);
 void set_channel_handler(char channel, void (*handler)(void));

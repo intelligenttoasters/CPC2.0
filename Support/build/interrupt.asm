@@ -71,21 +71,21 @@ _nmi_handler::
 ; Function int_handler
 ; ---------------------------------
 _int_handler::
-	C$interrupt.c$37$1$50	= .
-	.globl	C$interrupt.c$37$1$50
-;../src/interrupt.c:37: unsigned char int_src = IN(INTERRUPT_CONTROLLER_BASE);
+	C$interrupt.c$39$1$55	= .
+	.globl	C$interrupt.c$39$1$55
+;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
 	ld	a,#0x10
 	push	af
 	inc	sp
 	call	_IN
 	inc	sp
-	C$interrupt.c$40$1$50	= .
-	.globl	C$interrupt.c$40$1$50
-;../src/interrupt.c:40: if( int_src & INT_SPI )
+	C$interrupt.c$41$1$55	= .
+	.globl	C$interrupt.c$41$1$55
+;../src/interrupt.c:41: if( int_src & INT_SPI )
 	bit	0, l
 	ret	Z
-	C$spi.h$86$5$55	= .
-	.globl	C$spi.h$86$5$55
+	C$spi.h$86$5$60	= .
+	.globl	C$spi.h$86$5$60
 ;../include/spi.h:86: return IN(SPI_SR) & OUT_EMPTY ? 1 : 0;
 	ld	a,#0x01
 	push	af
@@ -94,31 +94,31 @@ _int_handler::
 	inc	sp
 	bit	2, l
 	ret	Z
-	C$interrupt.c$45$2$51	= .
-	.globl	C$interrupt.c$45$2$51
-;../src/interrupt.c:45: if( spiEmptyOut() && spiGetInUse() )
+	C$interrupt.c$43$2$56	= .
+	.globl	C$interrupt.c$43$2$56
+;../src/interrupt.c:43: if( spiEmptyOut() && spiGetInUse() )
 	call	_spiGetInUse
 	ld	a,l
 	or	a, a
 	ret	Z
-	C$interrupt.c$48$3$52	= .
-	.globl	C$interrupt.c$48$3$52
-;../src/interrupt.c:48: spiSetInUse( false );
+	C$interrupt.c$46$3$57	= .
+	.globl	C$interrupt.c$46$3$57
+;../src/interrupt.c:46: spiSetInUse( false );
 	xor	a, a
 	push	af
 	inc	sp
 	call	_spiSetInUse
 	inc	sp
-	C$interrupt.c$49$3$52	= .
-	.globl	C$interrupt.c$49$3$52
-;../src/interrupt.c:49: spiSetProcessed( false );
+	C$interrupt.c$47$3$57	= .
+	.globl	C$interrupt.c$47$3$57
+;../src/interrupt.c:47: spiSetProcessed( false );
 	xor	a, a
 	push	af
 	inc	sp
 	call	_spiSetProcessed
 	inc	sp
-	C$interrupt.c$52$1$50	= .
-	.globl	C$interrupt.c$52$1$50
+	C$interrupt.c$50$1$55	= .
+	.globl	C$interrupt.c$50$1$55
 	XG$int_handler$0$0	= .
 	.globl	XG$int_handler$0$0
 	ret

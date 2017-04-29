@@ -26,6 +26,7 @@
 
 	ld sp,#0h0000	; Stack is top of memory
 	jp BOOTSYS
+;	jp debug
 
 	.area _VECT1 (ABS)
 	.org	0x0008
@@ -137,7 +138,7 @@ BOOTSYS:
 	call gsinit
 	ld c, #0x10	; Clear the interrupt register
 	in a,(c)
-	ei
+;	ei
 	call _main
 	jr #BOOTSYS
 
@@ -292,6 +293,33 @@ mem_done:
         pop bc
         pop af
         ret
+
+debug:
+		ld bc, #0x8001	; Clear buffer
+		out(c),b
+		ld bc, #0x4100	; Write 0x55 three times
+		out(c),b
+		inc b
+		out(c),b
+		inc b
+		out(c),b
+		inc b
+		out(c),b
+		ld bc, #0x0101	; Slave ready
+		out(c),b
+self:
+		in a,(c)
+		bit 0,a
+		jr nz, self
+		in a,(0)
+		out(c),a
+		in a,(0)
+		out(c),a
+		in a,(0)
+		out(c),a
+self1:
+		jr self1
+	.globl debug
 
 ; Export/Import global functions
 	.globl _main

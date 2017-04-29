@@ -3,10 +3,10 @@ S:Llibrary.spiWrite$data$1$8({1}SC:U),B,1,4
 F:G$globals$0$0({2}DF,DG,STglobal_vars:S),Z,0,0,0,0,0
 F:G$process_events$0$0({2}DF,SV:S),Z,0,0,0,0,0
 F:G$console$0$0({2}DF,SV:S),Z,0,0,0,0,0
-S:Llibrary.console$msg$1$59({2}DG,SC:U),B,1,4
+S:Llibrary.console$msg$1$64({2}DG,SC:U),B,1,4
 S:Llibrary.console$sloc0$1$0({4}SL:U),B,1,-4
 F:G$ul$0$0({2}DF,SV:S),Z,0,0,0,0,0
-S:Llibrary.ul$cntr$1$61({2}SI:S),R,0,0,[c,b]
+S:Llibrary.ul$cntr$1$66({2}SI:S),R,0,0,[c,b]
 T:Flibrary$global_vars[({0}S:S$channel_handler_p$0$0({32}DA16d,DC,DF,SV:S),Z,0,0)({32}S:S$spi_in_use$0$0({1}SC:U),Z,0,0)({33}S:S$spi_processed_n$0$0({1}SC:U),Z,0,0)({34}S:S$spi_channel$0$0({1}SC:U),Z,0,0)({35}S:S$inbound_comm_buffer$0$0({512}DA512d,SC:U),Z,0,0)({547}S:S$outbound_comm_buffer$0$0({512}DA512d,SC:U),Z,0,0)]
 S:Flibrary$msgno$0$0({4}SL:U),E,0,0
 S:Flibrary$global_variables$0$0({1059}STglobal_vars:S),E,0,0
@@ -41,6 +41,12 @@ S:G$spi_avail$0$0({2}DF,SC:U),C,0,0
 S:G$inbound_flush$0$0({2}DF,SV:S),C,0,0
 S:G$outbound_flush$0$0({2}DF,SV:S),C,0,0
 S:G$spi_connected$0$0({2}DF,SC:U),C,0,0
+S:G$i2cWait$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_init$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_read$0$0({2}DF,SC:U),C,0,0
+S:G$hdmi_write$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_powerup$0$0({2}DF,SV:S),C,0,0
+S:G$hdmiProcessEvents$0$0({2}DF,SV:S),C,0,0
 S:G$_print_format$0$0({2}DF,SI:S),C,0,0
 S:G$printf_small$0$0({2}DF,SV:S),C,0,0
 S:G$printf$0$0({2}DF,SI:S),C,0,0

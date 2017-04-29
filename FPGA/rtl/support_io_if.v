@@ -38,7 +38,13 @@ module support_io_if(
 	output [15:0]	nrd_o,		// One read line per device
 	output [15:0]	nwr_o,		// One write line per device
 	output [7:0]	io_o,		// Shared data out
-	input [8*16-1:0] io_i	// Merged data path - 16 streams
+	input [8*16-1:0] io_i,	// Merged data path - 16 streams
+	// WB Write Interface
+	input  			ack_i,	// WB Ack in
+	output [15:0]	we_o,		// WB Write out
+	output [15:0]	stb_o,		// WB Strobe out
+	output [7:0]	adr_o,	// WB Registered addr
+	output [7:0]	dat_o		// WB Registered data
 );
 
 	// Wire definitions ==================================================
@@ -47,6 +53,10 @@ module support_io_if(
 	wire [15:0] four_to_sixteen;
 	
 	// Registers ==================================================
+	reg [15:0]		wb_we		= 0;
+	reg [15:0]		wb_stb	= 0;
+	reg [7:0]		wb_adr = 8'hff;
+	reg [7:0]		wb_dat = 8'hff;
 	
 	// Assignments ==================================================
 	assign clk_o = clk_i;	// Passthrough
@@ -55,6 +65,13 @@ module support_io_if(
 	assign a_decode = A_i[7:4];
 	assign b_decode = A_i[3:0];
 	assign io_o = D_i;
+	
+	// WB Assignments
+	assign we_o = wb_we;
+	assign stb_o = wb_stb;
+	assign adr_o = wb_adr;
+	assign dat_o = wb_dat;
+	
 	// 4-16 line converter
 	assign four_to_sixteen = {
 				(a_decode != 4'd15),
@@ -99,5 +116,24 @@ module support_io_if(
 	// Simulation branches and control ==================================================
 	
 	// Other logic	==================================================
+
+	// Process WB signals into Z80 Bus signals
+	always @(posedge clk_i)
+	begin
+		if( ack_i )
+		begin
+			wb_stb <= 16'b0;			
+			wb_we <= 16'b0;
+		end
+		else begin
+			if( !(io_nrd & io_nwr) )
+			begin
+				wb_adr <= A_i;
+				wb_dat <= D_i;
+				wb_stb[a_decode] <= 1'b1;
+				wb_we[a_decode] <= !io_nwr;
+			end
+		end
+	end
 	
 endmodule

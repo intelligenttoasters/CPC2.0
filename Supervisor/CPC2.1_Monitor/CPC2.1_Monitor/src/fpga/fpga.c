@@ -117,7 +117,7 @@ void store_flash_image(void)
 	U8 buffer[1<<LOG2_PAGE_SIZE], *ptr, *ptr2;
 	U32 total = 0, thispage = 0, result;	
 	U32 page = START_PAGE;
-	
+
 	while(1)
 	{
 		// Point to buffer
@@ -165,9 +165,9 @@ void store_flash_image(void)
 	}
 
 	// Store total in MRAM
-	memset( buffer, 0, SECTOR_SIZE );
+	memset( buffer, START_PAGE, PAGE_SIZE );
 	memcpy( buffer, &total, sizeof( total ) );
-	ram_2_memory(LUN_ID_MRAM_MEM, 0, &buffer);
+	ram_2_memory(LUN_ID_FLASH_MEM, START_PAGE + 768, &buffer);
 };
 
 void load_flash_image(void)
@@ -176,7 +176,7 @@ void load_flash_image(void)
 	U32 page = START_PAGE;
 	
 	// Get flash image size
-	memory_2_ram(LUN_ID_MRAM_MEM, 0, globals.flash_buffer);
+	memory_2_ram(LUN_ID_FLASH_MEM, START_PAGE + 768, globals.flash_buffer);
 	memcpy( &size, globals.flash_buffer, sizeof( size ) );
 
 	// No image is stored

@@ -1,7 +1,8 @@
 M:main
 S:Lmain.spiWrite$data$1$38({1}SC:U),B,1,4
 F:G$init$0$0({2}DF,SV:S),C,0,0,0,0,0
-F:G$main$0$0({2}DF,SV:S),C,0,0,0,0,0
+F:G$main$0$0({2}DF,SV:S),C,0,80,0,0,0
+S:Lmain.main$buffer$1$84({80}DA80d,SC:U),B,1,-80
 T:Fmain$global_vars[({0}S:S$channel_handler_p$0$0({32}DA16d,DC,DF,SV:S),Z,0,0)({32}S:S$spi_in_use$0$0({1}SC:U),Z,0,0)({33}S:S$spi_processed_n$0$0({1}SC:U),Z,0,0)({34}S:S$spi_channel$0$0({1}SC:U),Z,0,0)({35}S:S$inbound_comm_buffer$0$0({512}DA512d,SC:U),Z,0,0)({547}S:S$outbound_comm_buffer$0$0({512}DA512d,SC:U),Z,0,0)]
 S:G$_print_format$0$0({2}DF,SI:S),C,0,0
 S:G$printf_small$0$0({2}DF,SV:S),C,0,0
@@ -67,5 +68,11 @@ S:G$spi_avail$0$0({2}DF,SC:U),C,0,0
 S:G$inbound_flush$0$0({2}DF,SV:S),C,0,0
 S:G$outbound_flush$0$0({2}DF,SV:S),C,0,0
 S:G$spi_connected$0$0({2}DF,SC:U),C,0,0
+S:G$i2cWait$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_init$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_read$0$0({2}DF,SC:U),C,0,0
+S:G$hdmi_write$0$0({2}DF,SV:S),C,0,0
+S:G$hdmi_powerup$0$0({2}DF,SV:S),C,0,0
+S:G$hdmiProcessEvents$0$0({2}DF,SV:S),C,0,0
 S:G$init$0$0({2}DF,SV:S),C,0,0
-S:G$main$0$0({2}DF,SV:S),C,0,0
+S:G$main$0$0({2}DF,SV:S),C,0,80

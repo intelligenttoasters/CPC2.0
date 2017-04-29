@@ -39,6 +39,7 @@ inline struct global_vars * globals()
 inline void process_events()
 {
 	spiProcessEvents();
+	hdmiProcessEvents();
 }
 
 // Log a console message

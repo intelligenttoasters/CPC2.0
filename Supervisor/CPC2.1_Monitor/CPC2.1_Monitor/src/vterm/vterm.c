@@ -8,8 +8,8 @@
 #include "main.h"
 //#include "pdc.h"
 
-static char buffer_out[512] = {1,2,4,8,16,32,64};
-static char buffer_in[512] = {0,0,0,0,0,0,0};
+static char buffer_out[512];
+static char buffer_in[512];
 
 void process_buffer(void);
 

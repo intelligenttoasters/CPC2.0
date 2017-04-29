@@ -25,6 +25,18 @@
 #ifndef INCLUDE_INCLUDE_H_
 #define INCLUDE_INCLUDE_H_
 
+// Debug/SIM flag
+#define DEBUG
+//#define SIM
+
+#ifdef DEBUG
+	#define DBG(msg) if( spi_connected() ) puts("DBG:" msg)
+	#define DBG1(msg, param) if( spi_connected() ) printf("DBG: " msg "\n", param)
+#else
+	#define DBG(msg)
+	#define DBG1(msg, param)
+#endif
+
 // System definitions
 #define SPI_CHANNELS 16
 
@@ -52,8 +64,10 @@ struct global_vars {
 	char outbound_comm_buffer[512];
 };
 
+#include "stdint.h"
 #include "spi.h"
 #include "library.h"
 #include "stdio_spi.h"
+#include "hdmi.h"
 
 #endif /* INCLUDE_INCLUDE_H_ */
