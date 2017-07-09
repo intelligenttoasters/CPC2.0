@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file
+   path="simulation/submodules/mmio_if_hps_0.v"
+   type="VERILOG"
+   library="hps_0" />
+ <file path="simulation/mmio_if.v" type="VERILOG" />
+ <topLevel name="mmio_if" />
+ <deviceFamily name="cyclonev" />
+ <modelMap controllerPath="mmio_if.hps_0" modelPath="mmio_if.hps_0" />
+ <modelMap
+   controllerPath="mmio_if.hps_0.fpga_interfaces"
+   modelPath="mmio_if.hps_0.fpga_interfaces" />
+ <modelMap
+   controllerPath="mmio_if.hps_0.hps_io"
+   modelPath="mmio_if.hps_0.hps_io" />
+</simPackage>

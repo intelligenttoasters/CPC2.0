@@ -1,60 +1,30 @@
 ;!FILE interrupt.asm
 XL2
-H 9 areas 33 global symbols
+H 9 areas 15 global symbols
 M interrupt
 O -mz80
 S .__.ABS. Def0000
-S _spiGetInUse Ref0000
 S _IN Ref0000
-S _spiSetInUse Ref0000
-S _spiSetProcessed Ref0000
-A _CODE size 2C flags 0 addr 0
-S A$interrupt$100 Def0017
-S A$interrupt$110 Def0020
-S A$interrupt$101 Def001A
-S A$interrupt$111 Def0023
-S A$interrupt$102 Def001B
-S A$interrupt$103 Def001C
-S A$interrupt$124 Def002B
-S A$interrupt$115 Def0024
-S A$interrupt$116 Def0025
-S A$interrupt$107 Def001D
-S A$interrupt$117 Def0026
-S A$interrupt$108 Def001E
-S A$interrupt$118 Def0027
-S A$interrupt$109 Def001F
-S A$interrupt$119 Def002A
-S C$interrupt.c$50$1$55 Def002B
-S C$interrupt.c$41$1$55 Def0009
+A _CODE size A flags 0 addr 0
+S C$interrupt.c$41$1$44 Def0009
+S C$interrupt.c$44$1$44 Def0009
 S C$interrupt.c$30$0$0 Def0000
 S G$nmi_handler$0$0 Def0000
-S C$interrupt.c$43$2$56 Def0017
-S C$interrupt.c$39$1$55 Def0001
+S C$interrupt.c$39$1$44 Def0001
 S C$interrupt.c$35$0$0 Def0001
-S C$interrupt.c$46$3$57 Def001D
 S C$interrupt.c$27$0$0 Def0000
-S C$interrupt.c$47$3$57 Def0024
 S G$int_handler$0$0 Def0001
-S A$interrupt$80 Def0005
-S A$interrupt$90 Def000C
-S A$interrupt$81 Def0008
-S A$interrupt$91 Def000E
-S A$interrupt$64 Def0000
+S A$interrupt$61 Def0000
 S _nmi_handler Def0000
-S A$interrupt$92 Def000F
-S A$interrupt$93 Def0010
-S A$interrupt$94 Def0013
-S A$interrupt$85 Def0009
-S A$interrupt$95 Def0014
-S A$interrupt$86 Def000B
-S A$interrupt$77 Def0001
-S A$interrupt$96 Def0016
-S A$interrupt$78 Def0003
-S A$interrupt$79 Def0004
+S A$interrupt$74 Def0001
+S A$interrupt$75 Def0003
+S A$interrupt$76 Def0004
+S A$interrupt$86 Def0009
+S A$interrupt$77 Def0005
+S A$interrupt$78 Def0008
 S _int_handler Def0001
 S XG$nmi_handler$0$0 Def0000
-S XG$int_handler$0$0 Def002B
-S C$spi.h$86$5$60 Def000C
+S XG$int_handler$0$0 Def0009
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0
@@ -69,11 +39,5 @@ T 00 00 C9
 R 00 00 00 00
 T 01 00
 R 00 00 00 00
-T 01 00 3E 10 F5 33 CD 00 00 33 CB 45 C8 3E 01 F5
-R 00 00 00 00 02 07 02 00
-T 0F 00 33 CD 00 00 33 CB 55 C8 CD 00 00 7D B7 C8
-R 00 00 00 00 02 04 02 00 02 0B 01 00
-T 1D 00 AF F5 33 CD 00 00 33 AF F5 33 CD 00 00 33
-R 00 00 00 00 02 06 03 00 02 0D 04 00
-T 2B 00 C9
-R 00 00 00 00
+T 01 00 3E 10 F5 33 CD 00 00 33 C9
+R 00 00 00 00 02 07 01 00

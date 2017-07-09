@@ -10,9 +10,6 @@
 ;--------------------------------------------------------
 	.globl _int_handler
 	.globl _nmi_handler
-	.globl _spiSetProcessed
-	.globl _spiSetInUse
-	.globl _spiGetInUse
 	.globl _IN
 ;--------------------------------------------------------
 ; special function registers
@@ -71,54 +68,19 @@ _nmi_handler::
 ; Function int_handler
 ; ---------------------------------
 _int_handler::
-	C$interrupt.c$39$1$55	= .
-	.globl	C$interrupt.c$39$1$55
+	C$interrupt.c$39$1$44	= .
+	.globl	C$interrupt.c$39$1$44
 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
 	ld	a,#0x10
 	push	af
 	inc	sp
 	call	_IN
 	inc	sp
-	C$interrupt.c$41$1$55	= .
-	.globl	C$interrupt.c$41$1$55
-;../src/interrupt.c:41: if( int_src & INT_SPI )
-	bit	0, l
-	ret	Z
-	C$spi.h$86$5$60	= .
-	.globl	C$spi.h$86$5$60
-;../include/spi.h:86: return IN(SPI_SR) & OUT_EMPTY ? 1 : 0;
-	ld	a,#0x01
-	push	af
-	inc	sp
-	call	_IN
-	inc	sp
-	bit	2, l
-	ret	Z
-	C$interrupt.c$43$2$56	= .
-	.globl	C$interrupt.c$43$2$56
-;../src/interrupt.c:43: if( spiEmptyOut() && spiGetInUse() )
-	call	_spiGetInUse
-	ld	a,l
-	or	a, a
-	ret	Z
-	C$interrupt.c$46$3$57	= .
-	.globl	C$interrupt.c$46$3$57
-;../src/interrupt.c:46: spiSetInUse( false );
-	xor	a, a
-	push	af
-	inc	sp
-	call	_spiSetInUse
-	inc	sp
-	C$interrupt.c$47$3$57	= .
-	.globl	C$interrupt.c$47$3$57
-;../src/interrupt.c:47: spiSetProcessed( false );
-	xor	a, a
-	push	af
-	inc	sp
-	call	_spiSetProcessed
-	inc	sp
-	C$interrupt.c$50$1$55	= .
-	.globl	C$interrupt.c$50$1$55
+	C$interrupt.c$41$1$44	= .
+	.globl	C$interrupt.c$41$1$44
+;../src/interrupt.c:41: if( int_src & INT_UART )
+	C$interrupt.c$44$1$44	= .
+	.globl	C$interrupt.c$44$1$44
 	XG$int_handler$0$0	= .
 	.globl	XG$int_handler$0$0
 	ret

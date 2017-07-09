@@ -1,6 +1,6 @@
 ;!FILE ../asm/_boot.asm
 XL2
-H 17 areas C5 global symbols
+H 19 areas B4 global symbols
 M bootblk
 S _main Ref0000
 S .__.ABS. Def0000
@@ -52,180 +52,165 @@ S A$_boot$76 Def0066
 S A$_boot$77 Def006A
 S A$_boot$78 Def006D
 S A$_boot$79 Def006E
-A _INITIALIZER size 0 flags 0 addr 0
-A _INITIALIZED size 0 flags 0 addr 0
-A _GSINIT size 18 flags 0 addr 0
-S A$_boot$120 Def000A
-S A$_boot$122 Def000B
-S A$_boot$123 Def000C
-S A$_boot$124 Def000D
-S A$_boot$115 Def0000
-S A$_boot$125 Def000F
-S A$_boot$116 Def0003
-S A$_boot$126 Def0012
-S A$_boot$117 Def0006
-S A$_boot$127 Def0015
-S A$_boot$118 Def0008
-S A$_boot$119 Def0009
-S A$_boot$129 Def0017
-A _SYSTEM_CODE size 121 flags 0 addr 0
-S A$_boot$299 Def00F8
+A _SYSTEM_CODE size 100 flags 0 addr 0
+S A$_boot$299 Def00F0
 S debug Def00F5
 S _OUT Def0032
 S _OUTI Def0060
 S _memcpy Def00CA
 S _memset Def009E
-S A$_boot$300 Def00FA
-S A$_boot$210 Def006B
-S A$_boot$301 Def00FD
-S A$_boot$211 Def006E
-S A$_boot$311 Def010D
-S A$_boot$302 Def00FF
-S A$_boot$230 Def0088
-S A$_boot$212 Def0071
-S A$_boot$203 Def0060
-S A$_boot$140 Def000A
-S A$_boot$321 Def011F
-S A$_boot$312 Def010F
-S A$_boot$303 Def0100
-S A$_boot$240 Def009D
-S A$_boot$231 Def008A
-S A$_boot$213 Def0074
-S A$_boot$204 Def0061
-S A$_boot$150 Def001A
-S A$_boot$313 Def0111
-S A$_boot$304 Def0102
-S A$_boot$250 Def00A4
-S A$_boot$232 Def008D
-S A$_boot$214 Def0077
-S A$_boot$205 Def0062
-S A$_boot$160 Def0030
-S A$_boot$151 Def001B
-S A$_boot$142 Def000C
-S A$_boot$314 Def0113
-S A$_boot$305 Def0103
-S A$_boot$260 Def00C0
-S A$_boot$251 Def00A8
-S A$_boot$233 Def0090
-S A$_boot$224 Def007F
-S A$_boot$215 Def0079
-S A$_boot$206 Def0063
-S A$_boot$170 Def0036
-S A$_boot$161 Def0031
-S A$_boot$152 Def001C
-S A$_boot$143 Def000F
-S A$_boot$315 Def0115
-S A$_boot$306 Def0105
-S A$_boot$270 Def00CA
-S A$_boot$261 Def00C1
-S A$_boot$252 Def00AA
-S A$_boot$234 Def0093
-S A$_boot$225 Def0080
-S A$_boot$216 Def007B
-S A$_boot$171 Def003A
-S A$_boot$153 Def001D
-S A$_boot$316 Def0117
-S A$_boot$307 Def0106
-S A$_boot$280 Def00DC
-S A$_boot$271 Def00CB
-S A$_boot$262 Def00C2
-S A$_boot$253 Def00AD
-S A$_boot$244 Def009E
-S A$_boot$235 Def0096
-S A$_boot$226 Def0081
-S A$_boot$217 Def007C
-S A$_boot$208 Def0065
-S A$_boot$190 Def0053
-S A$_boot$172 Def003C
-S A$_boot$154 Def0020
-S A$_boot$136 Def0000
+S A$_boot$200 Def0058
+S A$_boot$300 Def00F1
+S A$_boot$201 Def005A
+S A$_boot$310 Def00FB
+S A$_boot$301 Def00F2
+S A$_boot$220 Def0071
+S A$_boot$211 Def0060
+S A$_boot$302 Def00F3
+S A$_boot$221 Def0074
+S A$_boot$212 Def0061
+S A$_boot$203 Def005B
+S A$_boot$312 Def00FC
+S A$_boot$303 Def00F4
+S A$_boot$240 Def008D
+S A$_boot$222 Def0077
+S A$_boot$213 Def0062
+S A$_boot$204 Def005D
+S A$_boot$150 Def000C
+S A$_boot$313 Def00FE
+S A$_boot$241 Def0090
+S A$_boot$232 Def007F
+S A$_boot$223 Def0079
+S A$_boot$214 Def0063
+S A$_boot$205 Def005E
+S A$_boot$160 Def001C
+S A$_boot$151 Def000F
+S A$_boot$260 Def00AA
+S A$_boot$242 Def0093
+S A$_boot$233 Def0080
+S A$_boot$224 Def007B
+S A$_boot$206 Def005F
+S A$_boot$161 Def001D
+S A$_boot$270 Def00C2
+S A$_boot$261 Def00AD
+S A$_boot$252 Def009E
+S A$_boot$243 Def0096
+S A$_boot$234 Def0081
+S A$_boot$225 Def007C
+S A$_boot$216 Def0065
+S A$_boot$180 Def003C
+S A$_boot$162 Def0020
+S A$_boot$144 Def0000
+S A$_boot$307 Def00F5
+S A$_boot$280 Def00CC
+S A$_boot$271 Def00C3
+S A$_boot$262 Def00B0
+S A$_boot$253 Def009F
+S A$_boot$244 Def0098
+S A$_boot$235 Def0082
+S A$_boot$226 Def007D
+S A$_boot$217 Def0069
+S A$_boot$181 Def003F
+S A$_boot$163 Def0023
+S A$_boot$145 Def0003
 S _IN Def0049
-S A$_boot$317 Def0119
-S A$_boot$308 Def0108
-S A$_boot$290 Def00EE
-S A$_boot$281 Def00DF
-S A$_boot$272 Def00CC
-S A$_boot$263 Def00C3
-S A$_boot$254 Def00B0
-S A$_boot$245 Def009F
-S A$_boot$236 Def0098
-S A$_boot$227 Def0082
-S A$_boot$218 Def007D
-S A$_boot$209 Def0069
-S A$_boot$191 Def0056
-S A$_boot$173 Def003F
-S A$_boot$155 Def0023
-S A$_boot$137 Def0003
-S A$_boot$318 Def011B
-S A$_boot$309 Def010B
-S A$_boot$291 Def00F0
-S A$_boot$282 Def00E2
-S A$_boot$273 Def00CD
-S A$_boot$264 Def00C4
-S A$_boot$255 Def00B3
-S A$_boot$246 Def00A0
-S A$_boot$237 Def009A
-S A$_boot$219 Def007E
-S A$_boot$192 Def0058
-S A$_boot$183 Def0049
-S A$_boot$174 Def0042
-S A$_boot$156 Def0026
-S A$_boot$147 Def0011
-S A$_boot$138 Def0005
-S A$_boot$319 Def011D
-S A$_boot$292 Def00F1
-S A$_boot$283 Def00E5
-S A$_boot$274 Def00CE
-S A$_boot$265 Def00C6
-S A$_boot$256 Def00B6
-S A$_boot$247 Def00A1
-S A$_boot$238 Def009B
-S A$_boot$229 Def0084
-S A$_boot$193 Def005A
-S A$_boot$184 Def004A
-S A$_boot$175 Def0044
-S A$_boot$166 Def0032
-S A$_boot$157 Def0027
-S A$_boot$148 Def0014
-S A$_boot$139 Def0008
-S A$_boot$293 Def00F2
-S A$_boot$284 Def00E8
-S A$_boot$266 Def00C8
-S A$_boot$257 Def00B9
-S A$_boot$248 Def00A2
-S A$_boot$239 Def009C
-S A$_boot$185 Def004B
-S A$_boot$176 Def0046
-S A$_boot$167 Def0033
-S A$_boot$158 Def0028
-S A$_boot$149 Def0017
-S A$_boot$294 Def00F3
-S A$_boot$285 Def00E9
-S A$_boot$276 Def00D0
-S A$_boot$258 Def00BC
-S A$_boot$195 Def005B
-S A$_boot$177 Def0047
-S A$_boot$168 Def0034
-S A$_boot$159 Def002C
-S A$_boot$295 Def00F4
-S A$_boot$286 Def00EA
-S A$_boot$277 Def00D4
-S A$_boot$259 Def00BF
-S A$_boot$196 Def005D
-S A$_boot$187 Def004D
-S A$_boot$178 Def0048
-S A$_boot$287 Def00EC
-S A$_boot$278 Def00D6
-S A$_boot$197 Def005E
-S A$_boot$188 Def0051
-S A$_boot$279 Def00D9
-S A$_boot$198 Def005F
-S A$_boot$298 Def00F5
+S A$_boot$308 Def00F8
+S A$_boot$290 Def00E2
+S A$_boot$281 Def00CD
+S A$_boot$272 Def00C4
+S A$_boot$263 Def00B3
+S A$_boot$254 Def00A0
+S A$_boot$245 Def009A
+S A$_boot$227 Def007E
+S A$_boot$218 Def006B
+S A$_boot$191 Def0049
+S A$_boot$182 Def0042
+S A$_boot$164 Def0026
+S A$_boot$155 Def0011
+S A$_boot$146 Def0005
+S A$_boot$309 Def00FA
+S A$_boot$291 Def00E5
+S A$_boot$282 Def00CE
+S A$_boot$273 Def00C6
+S A$_boot$264 Def00B6
+S A$_boot$255 Def00A1
+S A$_boot$246 Def009B
+S A$_boot$237 Def0084
+S A$_boot$219 Def006E
+S A$_boot$192 Def004A
+S A$_boot$183 Def0044
+S A$_boot$174 Def0032
+S A$_boot$165 Def0027
+S A$_boot$156 Def0014
+S A$_boot$147 Def0008
+S A$_boot$292 Def00E8
+S A$_boot$274 Def00C8
+S A$_boot$265 Def00B9
+S A$_boot$256 Def00A2
+S A$_boot$247 Def009C
+S A$_boot$238 Def0088
+S A$_boot$193 Def004B
+S A$_boot$184 Def0046
+S A$_boot$175 Def0033
+S A$_boot$166 Def0028
+S A$_boot$157 Def0017
+S A$_boot$148 Def000A
+S A$_boot$293 Def00E9
+S A$_boot$284 Def00D0
+S A$_boot$266 Def00BC
+S A$_boot$248 Def009D
+S A$_boot$239 Def008A
+S A$_boot$185 Def0047
+S A$_boot$176 Def0034
+S A$_boot$167 Def002C
+S A$_boot$158 Def001A
+S A$_boot$294 Def00EA
+S A$_boot$285 Def00D4
+S A$_boot$267 Def00BF
+S A$_boot$258 Def00A4
+S A$_boot$195 Def004D
+S A$_boot$186 Def0048
+S A$_boot$168 Def0030
+S A$_boot$159 Def001B
+S A$_boot$295 Def00EC
+S A$_boot$286 Def00D6
+S A$_boot$268 Def00C0
+S A$_boot$259 Def00A8
+S A$_boot$196 Def0051
+S A$_boot$178 Def0036
+S A$_boot$169 Def0031
+S A$_boot$287 Def00D9
+S A$_boot$278 Def00CA
+S A$_boot$269 Def00C1
+S A$_boot$179 Def003A
+S A$_boot$288 Def00DC
+S A$_boot$279 Def00CB
+S A$_boot$198 Def0053
+S A$_boot$298 Def00EE
+S A$_boot$289 Def00DF
+S A$_boot$199 Def0056
 S _INI Def007F
+A _GSINIT size 17 flags 0 addr 0
+S A$_boot$130 Def000A
+S A$_boot$131 Def000B
+S A$_boot$132 Def000C
+S A$_boot$123 Def0000
+S A$_boot$133 Def000E
+S A$_boot$124 Def0003
+S A$_boot$134 Def0011
+S A$_boot$125 Def0006
+S A$_boot$135 Def0014
+S A$_boot$127 Def0008
+S A$_boot$137 Def0016
+S A$_boot$128 Def0009
+A _INITIALIZER size 0 flags 0 addr 0
+A _END_INITIALIZER size 0 flags 0 addr 0
+A _DATA size 0 flags 0 addr 0
+A _INITIALIZED size 0 flags 0 addr 0
 T 00 00
 R 00 00 02 00
 T 00 00 31 00 00 C3 00 00
-R 00 00 02 00 00 06 16 00
+R 00 00 02 00 00 06 13 00
 T 08 00
 R 00 00 04 00
 T 08 00 ED 4D
@@ -281,92 +266,84 @@ R 00 00 12 00
 T 00 00
 R 00 00 00 00
 T 00 00
-R 00 00 15 00
-T 00 00 21 00 00 11 00 00 ED 52 23 E5 C1 78 B1 28
-R 00 00 15 00 00 03 14 00 00 06 13 00
-T 0E 00 08 11 00 00 21 00 00 ED B0
-R 00 00 15 00 00 04 14 00 00 07 13 00
-T 17 00
-R 00 00 15 00
-T 17 00 C9
-R 00 00 15 00
+R 00 00 14 00
+T 00 00 21 00 00 11 00 00 ED 52 E5 C1 78 B1 28 08
+R 00 00 14 00 00 03 16 00 00 06 15 00
+T 0E 00 11 00 00 21 00 00 ED B0
+R 00 00 14 00 00 03 18 00 00 06 15 00
+T 16 00
+R 00 00 14 00
+T 16 00 C9
+R 00 00 14 00
 T 00 00
-R 00 00 16 00
+R 00 00 13 00
 T 00 00 CD 11 00 ED 56 CD 00 00 0E 10 ED 78 CD
-R 00 00 16 00 00 03 16 00 00 08 15 00
+R 00 00 13 00 00 03 13 00 00 08 14 00
 T 0D 00 00 00 18 EF
-R 00 00 16 00 02 02 00 00
+R 00 00 13 00 02 02 00 00
 T 11 00
-R 00 00 16 00
+R 00 00 13 00
 T 11 00 21 00 00 11 00 00 01 00 00 C5 F1 D9 21
-R 00 00 16 00
+R 00 00 13 00
 T 1E 00 00 00 11 00 00 01 00 00 C5 F1 DD 21 00 00
-R 00 00 16 00
+R 00 00 13 00
 T 2C 00 FD 21 00 00 D9 C9
-R 00 00 16 00
+R 00 00 13 00
 T 32 00
-R 00 00 16 00
+R 00 00 13 00
 T 32 00 F5 C5 DD E5 DD 21 08 00 DD 39 DD 4E 00 DD
-R 00 00 16 00
+R 00 00 13 00
 T 40 00 46 01 ED 41 DD E1 C1 F1 C9
-R 00 00 16 00
+R 00 00 13 00
 T 49 00
-R 00 00 16 00
+R 00 00 13 00
 T 49 00 F5 C5 DD E5 DD 21 08 00 DD 39 DD 4E 00 06
-R 00 00 16 00
+R 00 00 13 00
 T 57 00 FF ED 78 6F DD E1 C1 F1 C9
-R 00 00 16 00
+R 00 00 13 00
 T 60 00
-R 00 00 16 00
+R 00 00 13 00
 T 60 00 F5 C5 E5 DD E5 DD 21 0A 00 DD 39 DD 4E 00
-R 00 00 16 00
+R 00 00 13 00
 T 6E 00 DD 6E 01 DD 66 02 DD 46 03 ED B3 DD E1 E1
-R 00 00 16 00
+R 00 00 13 00
 T 7C 00 C1 F1 C9
-R 00 00 16 00
+R 00 00 13 00
 T 7F 00
-R 00 00 16 00
+R 00 00 13 00
 T 7F 00 F5 C5 E5 DD E5 DD 21 0A 00 DD 39 DD 4E 00
-R 00 00 16 00
+R 00 00 13 00
 T 8D 00 DD 6E 01 DD 66 02 DD 46 03 ED B2 DD E1 E1
-R 00 00 16 00
+R 00 00 13 00
 T 9B 00 C1 F1 C9
-R 00 00 16 00
+R 00 00 13 00
 T 9E 00
-R 00 00 16 00
+R 00 00 13 00
 T 9E 00 F5 C5 D5 E5 DD E5 DD 21 0C 00 DD 39 DD 5E
-R 00 00 16 00
+R 00 00 13 00
 T AC 00 00 DD 56 01 DD 6E 00 DD 66 01 DD 7E 02 DD
-R 00 00 16 00
+R 00 00 13 00
 T BA 00 4E 03 DD 46 04 12 13 0B 78 B1 28 28 ED B0
-R 00 00 16 00
+R 00 00 13 00
 T C8 00 18 24
-R 00 00 16 00
+R 00 00 13 00
 T CA 00
-R 00 00 16 00
+R 00 00 13 00
 T CA 00 F5 C5 D5 E5 DD E5 DD 21 0C 00 DD 39 DD 5E
-R 00 00 16 00
+R 00 00 13 00
 T D8 00 00 DD 56 01 DD 6E 02 DD 66 03 DD 4E 04 DD
-R 00 00 16 00
+R 00 00 13 00
 T E6 00 46 05 78 B1 28 02 ED B0
-R 00 00 16 00
+R 00 00 13 00
 T EE 00
-R 00 00 16 00
+R 00 00 13 00
 T EE 00 DD E1 E1 D1 C1 F1 C9
-R 00 00 16 00
+R 00 00 13 00
 T F5 00
-R 00 00 16 00
-T F5 00 01 01 80 ED 41 01 00 41 ED 41 04 ED 41 04
-R 00 00 16 00
-T 03 01 ED 41 04 ED 41 01 01 01 ED 41
-R 00 00 16 00
-T 0D 01
-R 00 00 16 00
-T 0D 01 ED 78 CB 47 20 FA DB 00 ED 79 DB 00 ED 79
-R 00 00 16 00
-T 1B 01 DB 00 ED 79
-R 00 00 16 00
-T 1F 01
-R 00 00 16 00
-T 1F 01 18 FE
-R 00 00 16 00
+R 00 00 13 00
+T F5 00 01 E0 03 ED 41 00 00
+R 00 00 13 00
+T FC 00
+R 00 00 13 00
+T FC 00 DB BE 18 FC
+R 00 00 13 00

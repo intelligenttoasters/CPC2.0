@@ -106,263 +106,249 @@ Hexadecimal [16-Bits]
                              96 ; ==================================================================
                              97 ;
                              98 ;; Ordering of segments for the linker so that initializing vars works
-                             99 	.area   _INITIALIZER
-                     0000   100 s__INITIALIZER = .
-                            101 	.area   _INITIALIZED
-                     0000   102 s__INITIALIZED = .
-                            103 ;
-                            104 ; ==================================================================
-                            105 ;
-                            106 	; Leave space for all of the ABS locations
-                            107 	.area	_CODE
-   0000                     108 	.ds		_CODE_START
-                            109 ;
-                            110 ; ==================================================================
+                             99 	.area   _SYSTEM_CODE
+                            100 
+                            101 	.area   _GSINIT
+                            102 
+                            103 	.area   _INITIALIZER
+                     0000   104 s__INITIALIZER = .
+                            105 	.area	_END_INITIALIZER
+                     0000   106 e__INITIALIZER = .
+                            107 	.area	_DATA
+                     0000   108 s__DATA = .
+                            109 	.area	_INITIALIZED
+                     0000   110 s__INITIALIZED = .
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 
 
                             111 ;
-                            112 	.area   _GSINIT
-                            113 ; Copy the initialized values to the working area
-   0000                     114 gsinit:
-   0000 21 00 00      [10]  115 	ld		hl, #s__INITIALIZED
-   0003 11 00 00      [10]  116 	ld		de, #s__INITIALIZER
-   0006 ED 52         [15]  117 	sbc		hl,de
-   0008 23            [ 6]  118 	inc 	hl
-   0009 E5            [11]  119 	push	hl
-   000A C1            [10]  120 	pop 	bc
-                            121 	; Got length of initializer section
-   000B 78            [ 4]  122 	ld      a, b
-   000C B1            [ 4]  123 	or      a, c
-   000D 28 08         [12]  124 	jr      Z, gsinit_next
-   000F 11 00 00      [10]  125 	ld      de, #s__INITIALIZED
-   0012 21 00 00      [10]  126 	ld      hl, #s__INITIALIZER
-   0015 ED B0         [21]  127 	ldir
-   0017                     128 gsinit_next:
-   0017 C9            [10]  129 	ret
-                            130 ;
-                            131 ; ==================================================================
-                            132 ;
-                            133 	.area   _SYSTEM_CODE
-                            134 
-   0000                     135 BOOTSYS:
-   0000 CD 11 00      [17]  136 	call CLRREG
-   0003 ED 56         [ 8]  137 	im 1
-   0005 CD 00 00      [17]  138 	call gsinit
-   0008 0E 10         [ 7]  139 	ld c, #0x10	; Clear the interrupt register
-   000A ED 78         [12]  140 	in a,(c)
-                            141 ;	ei
-   000C CD 00 00      [17]  142 	call _main
-   000F 18 EF         [12]  143 	jr #BOOTSYS
-                            144 
-                            145 ; Clear out all the registers so we're not pushing unknown values onto the stack (helps modelsim!)
-   0011                     146 CLRREG:
-   0011 21 00 00      [10]  147 	ld hl,#0
-   0014 11 00 00      [10]  148 	ld de,#0
-   0017 01 00 00      [10]  149 	ld bc,#0
-   001A C5            [11]  150 	push bc
-   001B F1            [10]  151 	pop af
-   001C D9            [ 4]  152 	exx
-   001D 21 00 00      [10]  153 	ld hl,#0
-   0020 11 00 00      [10]  154 	ld de,#0
-   0023 01 00 00      [10]  155 	ld bc,#0
-   0026 C5            [11]  156 	push bc
-   0027 F1            [10]  157 	pop af
-   0028 DD 21 00 00   [14]  158 	ld ix,#0
-   002C FD 21 00 00   [14]  159 	ld iy,#0
-   0030 D9            [ 4]  160 	exx
-   0031 C9            [10]  161 	ret
-                            162 
-                            163 ; This is a native routine to do proper I/O
-                            164 ; First parameter is address, second is data
-   0032                     165 _OUT:
+                            112 ; ==================================================================
+                            113 ;
+                            114 	; Leave space for all of the ABS locations
+                            115 	.area	_CODE
+   0000                     116 	.ds		_CODE_START
+                            117 ;
+                            118 ; ==================================================================
+                            119 ;
+                            120 	.area   _GSINIT
+                            121 ; Copy the initialized values to the working area
+   0000                     122 gsinit:
+   0000 21 00 00      [10]  123 	ld		hl, #e__INITIALIZER
+   0003 11 00 00      [10]  124 	ld		de, #s__INITIALIZER
+   0006 ED 52         [15]  125 	sbc		hl,de
+                            126 ;	inc 	hl
+   0008 E5            [11]  127 	push	hl
+   0009 C1            [10]  128 	pop 	bc
+                            129 	; Got length of initializer section
+   000A 78            [ 4]  130 	ld      a, b
+   000B B1            [ 4]  131 	or      a, c
+   000C 28 08         [12]  132 	jr      Z, gsinit_next
+   000E 11 00 00      [10]  133 	ld      de, #s__INITIALIZED
+   0011 21 00 00      [10]  134 	ld      hl, #s__INITIALIZER
+   0014 ED B0         [21]  135 	ldir
+   0016                     136 gsinit_next:
+   0016 C9            [10]  137 	ret
+                            138 ;
+                            139 ; ==================================================================
+                            140 ;
+                            141 	.area   _SYSTEM_CODE
+                            142 
+   0000                     143 BOOTSYS:
+   0000 CD 11 00      [17]  144 	call CLRREG
+   0003 ED 56         [ 8]  145 	im 1
+   0005 CD 00 00      [17]  146 	call gsinit
+   0008 0E 10         [ 7]  147 	ld c, #0x10	; Clear the interrupt register
+   000A ED 78         [12]  148 	in a,(c)
+                            149 ;	ei
+   000C CD 00 00      [17]  150 	call _main
+   000F 18 EF         [12]  151 	jr #BOOTSYS
+                            152 
+                            153 ; Clear out all the registers so we're not pushing unknown values onto the stack (helps modelsim!)
+   0011                     154 CLRREG:
+   0011 21 00 00      [10]  155 	ld hl,#0
+   0014 11 00 00      [10]  156 	ld de,#0
+   0017 01 00 00      [10]  157 	ld bc,#0
+   001A C5            [11]  158 	push bc
+   001B F1            [10]  159 	pop af
+   001C D9            [ 4]  160 	exx
+   001D 21 00 00      [10]  161 	ld hl,#0
+   0020 11 00 00      [10]  162 	ld de,#0
+   0023 01 00 00      [10]  163 	ld bc,#0
+   0026 C5            [11]  164 	push bc
+   0027 F1            [10]  165 	pop af
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
 
 
-   0032 F5            [11]  166         push af
-   0033 C5            [11]  167         push bc
-   0034 DD E5         [15]  168         push ix
-                            169         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
-   0036 DD 21 08 00   [14]  170         ld ix,#8        ; Add 5 word parameters plus the call return word
-   003A DD 39         [15]  171         add ix,sp
-   003C DD 4E 00      [19]  172         ld c,0(ix)      ; Get the port
-   003F DD 46 01      [19]  173         ld b,1(ix)      ; and the data
-   0042 ED 41         [12]  174         out (c),b       ; Send the data
-   0044 DD E1         [14]  175         pop ix
-   0046 C1            [10]  176         pop bc
-   0047 F1            [10]  177         pop af
-   0048 C9            [10]  178         ret
-                            179 
-                            180 ; This is a native route to do proper I/O
-                            181 ; First parameter is the port, returning data
-   0049                     182 _IN:
-   0049 F5            [11]  183         push af
-   004A C5            [11]  184         push bc
-   004B DD E5         [15]  185         push ix
-                            186 
-   004D DD 21 08 00   [14]  187         ld ix, #8
-   0051 DD 39         [15]  188         add ix,sp       ; Get parameters off stack
-                            189 
-   0053 DD 4E 00      [19]  190         ld c,0(ix)      ; Get port #
-   0056 06 FF         [ 7]  191         ld b,#0xff
-   0058 ED 78         [12]  192         in a,(c)        ; Read the port
-   005A 6F            [ 4]  193         ld l,a          ; Returns a single character in l
+   0028 DD 21 00 00   [14]  166 	ld ix,#0
+   002C FD 21 00 00   [14]  167 	ld iy,#0
+   0030 D9            [ 4]  168 	exx
+   0031 C9            [10]  169 	ret
+                            170 
+                            171 ; This is a native routine to do proper I/O
+                            172 ; First parameter is address, second is data
+   0032                     173 _OUT:
+   0032 F5            [11]  174         push af
+   0033 C5            [11]  175         push bc
+   0034 DD E5         [15]  176         push ix
+                            177         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   0036 DD 21 08 00   [14]  178         ld ix,#8        ; Add 5 word parameters plus the call return word
+   003A DD 39         [15]  179         add ix,sp
+   003C DD 4E 00      [19]  180         ld c,0(ix)      ; Get the port
+   003F DD 46 01      [19]  181         ld b,1(ix)      ; and the data
+   0042 ED 41         [12]  182         out (c),b       ; Send the data
+   0044 DD E1         [14]  183         pop ix
+   0046 C1            [10]  184         pop bc
+   0047 F1            [10]  185         pop af
+   0048 C9            [10]  186         ret
+                            187 
+                            188 ; This is a native route to do proper I/O
+                            189 ; First parameter is the port, returning data
+   0049                     190 _IN:
+   0049 F5            [11]  191         push af
+   004A C5            [11]  192         push bc
+   004B DD E5         [15]  193         push ix
                             194 
-   005B DD E1         [14]  195         pop ix
-   005D C1            [10]  196         pop bc
-   005E F1            [10]  197         pop af
-   005F C9            [10]  198         ret
-                            199 
-                            200 ; This is a native route to do proper I/O
-                            201 ; First parameter is the port, second is the buffer ptr, third is the count
-   0060                     202 _OUTI:
-   0060 F5            [11]  203         push af
-   0061 C5            [11]  204         push bc
-   0062 E5            [11]  205         push hl
-   0063 DD E5         [15]  206         push ix
-                            207         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
-   0065 DD 21 0A 00   [14]  208         ld ix,	#10		; Skip over what we've just pushed onto the stack (inc the return address)
-   0069 DD 39         [15]  209         add ix,sp
-   006B DD 4E 00      [19]  210         ld c,0(ix)      ; Get the port
-   006E DD 6E 01      [19]  211         ld l,1(ix)      ; and the data addr
-   0071 DD 66 02      [19]  212         ld h,2(ix)      ; and the data addr
-   0074 DD 46 03      [19]  213         ld b,3(ix)		; and the count
-   0077 ED B3         [21]  214         otir			; Send the data
-   0079 DD E1         [14]  215         pop ix
-   007B E1            [10]  216         pop hl
-   007C C1            [10]  217         pop bc
-   007D F1            [10]  218         pop af
-   007E C9            [10]  219         ret
-                            220 
+   004D DD 21 08 00   [14]  195         ld ix, #8
+   0051 DD 39         [15]  196         add ix,sp       ; Get parameters off stack
+                            197 
+   0053 DD 4E 00      [19]  198         ld c,0(ix)      ; Get port #
+   0056 06 FF         [ 7]  199         ld b,#0xff
+   0058 ED 78         [12]  200         in a,(c)        ; Read the port
+   005A 6F            [ 4]  201         ld l,a          ; Returns a single character in l
+                            202 
+   005B DD E1         [14]  203         pop ix
+   005D C1            [10]  204         pop bc
+   005E F1            [10]  205         pop af
+   005F C9            [10]  206         ret
+                            207 
+                            208 ; This is a native route to do proper I/O
+                            209 ; First parameter is the port, second is the buffer ptr, third is the count
+   0060                     210 _OUTI:
+   0060 F5            [11]  211         push af
+   0061 C5            [11]  212         push bc
+   0062 E5            [11]  213         push hl
+   0063 DD E5         [15]  214         push ix
+                            215         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   0065 DD 21 0A 00   [14]  216         ld ix,	#10		; Skip over what we've just pushed onto the stack (inc the return address)
+   0069 DD 39         [15]  217         add ix,sp
+   006B DD 4E 00      [19]  218         ld c,0(ix)      ; Get the port
+   006E DD 6E 01      [19]  219         ld l,1(ix)      ; and the data addr
+   0071 DD 66 02      [19]  220         ld h,2(ix)      ; and the data addr
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
 
 
-                            221 ; This is a native route to do proper I/O
-                            222 ; First parameter is the port, second is the buffer ptr, third is the count
-   007F                     223 _INI:
-   007F F5            [11]  224         push af
-   0080 C5            [11]  225         push bc
-   0081 E5            [11]  226         push hl
-   0082 DD E5         [15]  227         push ix
-                            228         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
-   0084 DD 21 0A 00   [14]  229         ld ix,	#10		; Skip over what we've just pushed onto the stack (inc the return address)
-   0088 DD 39         [15]  230         add ix,sp
-   008A DD 4E 00      [19]  231         ld c,0(ix)      ; Get the port
-   008D DD 6E 01      [19]  232         ld l,1(ix)      ; and the data addr
-   0090 DD 66 02      [19]  233         ld h,2(ix)      ; and the data addr
-   0093 DD 46 03      [19]  234         ld b,3(ix)		; and the count
-   0096 ED B2         [21]  235         inir			; Get the data
-   0098 DD E1         [14]  236         pop ix
-   009A E1            [10]  237         pop hl
-   009B C1            [10]  238         pop bc
-   009C F1            [10]  239         pop af
-   009D C9            [10]  240         ret
-                            241 
-                            242 ; Native memset routine for performance
-   009E                     243 _memset:
-   009E F5            [11]  244         push af
-   009F C5            [11]  245         push bc
-   00A0 D5            [11]  246         push de
-   00A1 E5            [11]  247         push hl
-   00A2 DD E5         [15]  248         push ix
-                            249         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
-   00A4 DD 21 0C 00   [14]  250         ld ix, #12		; Skip over what we've just pushed onto the stack (inc the return address)
-   00A8 DD 39         [15]  251         add ix,sp
-   00AA DD 5E 00      [19]  252         ld e,0(ix)      ; Get the address
-   00AD DD 56 01      [19]  253         ld d,1(ix)
-   00B0 DD 6E 00      [19]  254         ld l,0(ix)      ; Get the address again
-   00B3 DD 66 01      [19]  255         ld h,1(ix)
-   00B6 DD 7E 02      [19]  256         ld a,2(ix)		; Value
-   00B9 DD 4E 03      [19]  257         ld c,3(ix)		; Count
-   00BC DD 46 04      [19]  258         ld b,4(ix)
-   00BF 12            [ 7]  259 		ld (de), a		; Set first byte
-   00C0 13            [ 6]  260 		inc de
-   00C1 0B            [ 6]  261 		dec bc			; Reduce BC by one (we did that byte already)
-   00C2 78            [ 4]  262 		ld a,b			; Check it's not zero
-   00C3 B1            [ 4]  263 		or c
-   00C4 28 28         [12]  264 		jr z, mem_done
-   00C6 ED B0         [21]  265 		ldir			; Reset memory
-   00C8 18 24         [12]  266 		jr mem_done
-                            267 
-                            268 ; Native memcpy routine for performance
-   00CA                     269 _memcpy:
-   00CA F5            [11]  270         push af
-   00CB C5            [11]  271         push bc
-   00CC D5            [11]  272         push de
-   00CD E5            [11]  273         push hl
-   00CE DD E5         [15]  274         push ix
-                            275         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   0074 DD 46 03      [19]  221         ld b,3(ix)		; and the count
+   0077 ED B3         [21]  222         otir			; Send the data
+   0079 DD E1         [14]  223         pop ix
+   007B E1            [10]  224         pop hl
+   007C C1            [10]  225         pop bc
+   007D F1            [10]  226         pop af
+   007E C9            [10]  227         ret
+                            228 
+                            229 ; This is a native route to do proper I/O
+                            230 ; First parameter is the port, second is the buffer ptr, third is the count
+   007F                     231 _INI:
+   007F F5            [11]  232         push af
+   0080 C5            [11]  233         push bc
+   0081 E5            [11]  234         push hl
+   0082 DD E5         [15]  235         push ix
+                            236         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   0084 DD 21 0A 00   [14]  237         ld ix,	#10		; Skip over what we've just pushed onto the stack (inc the return address)
+   0088 DD 39         [15]  238         add ix,sp
+   008A DD 4E 00      [19]  239         ld c,0(ix)      ; Get the port
+   008D DD 6E 01      [19]  240         ld l,1(ix)      ; and the data addr
+   0090 DD 66 02      [19]  241         ld h,2(ix)      ; and the data addr
+   0093 DD 46 03      [19]  242         ld b,3(ix)		; and the count
+   0096 ED B2         [21]  243         inir			; Get the data
+   0098 DD E1         [14]  244         pop ix
+   009A E1            [10]  245         pop hl
+   009B C1            [10]  246         pop bc
+   009C F1            [10]  247         pop af
+   009D C9            [10]  248         ret
+                            249 
+                            250 ; Native memset routine for performance
+   009E                     251 _memset:
+   009E F5            [11]  252         push af
+   009F C5            [11]  253         push bc
+   00A0 D5            [11]  254         push de
+   00A1 E5            [11]  255         push hl
+   00A2 DD E5         [15]  256         push ix
+                            257         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   00A4 DD 21 0C 00   [14]  258         ld ix, #12		; Skip over what we've just pushed onto the stack (inc the return address)
+   00A8 DD 39         [15]  259         add ix,sp
+   00AA DD 5E 00      [19]  260         ld e,0(ix)      ; Get the address
+   00AD DD 56 01      [19]  261         ld d,1(ix)
+   00B0 DD 6E 00      [19]  262         ld l,0(ix)      ; Get the address again
+   00B3 DD 66 01      [19]  263         ld h,1(ix)
+   00B6 DD 7E 02      [19]  264         ld a,2(ix)		; Value
+   00B9 DD 4E 03      [19]  265         ld c,3(ix)		; Count
+   00BC DD 46 04      [19]  266         ld b,4(ix)
+   00BF 12            [ 7]  267 		ld (de), a		; Set first byte
+   00C0 13            [ 6]  268 		inc de
+   00C1 0B            [ 6]  269 		dec bc			; Reduce BC by one (we did that byte already)
+   00C2 78            [ 4]  270 		ld a,b			; Check it's not zero
+   00C3 B1            [ 4]  271 		or c
+   00C4 28 28         [12]  272 		jr z, mem_done
+   00C6 ED B0         [21]  273 		ldir			; Reset memory
+   00C8 18 24         [12]  274 		jr mem_done
+                            275 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 
 
-   00D0 DD 21 0C 00   [14]  276         ld ix, #12		; Skip over what we've just pushed onto the stack (inc the return address)
-   00D4 DD 39         [15]  277         add ix,sp
-   00D6 DD 5E 00      [19]  278         ld e,0(ix)      ; Get the destination address
-   00D9 DD 56 01      [19]  279         ld d,1(ix)
-   00DC DD 6E 02      [19]  280         ld l,2(ix)      ; Get the source address
-   00DF DD 66 03      [19]  281         ld h,3(ix)
-   00E2 DD 4E 04      [19]  282         ld c,4(ix)		; Count
-   00E5 DD 46 05      [19]  283         ld b,5(ix)
-   00E8 78            [ 4]  284 		ld a,b			; Check it's not zero
-   00E9 B1            [ 4]  285 		or c
-   00EA 28 02         [12]  286 		jr z, mem_done
-   00EC ED B0         [21]  287 		ldir			; Reset memory
-                            288 
-   00EE                     289 mem_done:
-   00EE DD E1         [14]  290         pop ix
-   00F0 E1            [10]  291         pop hl
-   00F1 D1            [10]  292         pop de
-   00F2 C1            [10]  293         pop bc
-   00F3 F1            [10]  294         pop af
-   00F4 C9            [10]  295         ret
+                            276 ; Native memcpy routine for performance
+   00CA                     277 _memcpy:
+   00CA F5            [11]  278         push af
+   00CB C5            [11]  279         push bc
+   00CC D5            [11]  280         push de
+   00CD E5            [11]  281         push hl
+   00CE DD E5         [15]  282         push ix
+                            283         ; Add x params plus ret addr to the current stack pointer and we should be looking at the first parameter word
+   00D0 DD 21 0C 00   [14]  284         ld ix, #12		; Skip over what we've just pushed onto the stack (inc the return address)
+   00D4 DD 39         [15]  285         add ix,sp
+   00D6 DD 5E 00      [19]  286         ld e,0(ix)      ; Get the destination address
+   00D9 DD 56 01      [19]  287         ld d,1(ix)
+   00DC DD 6E 02      [19]  288         ld l,2(ix)      ; Get the source address
+   00DF DD 66 03      [19]  289         ld h,3(ix)
+   00E2 DD 4E 04      [19]  290         ld c,4(ix)		; Count
+   00E5 DD 46 05      [19]  291         ld b,5(ix)
+   00E8 78            [ 4]  292 		ld a,b			; Check it's not zero
+   00E9 B1            [ 4]  293 		or c
+   00EA 28 02         [12]  294 		jr z, mem_done
+   00EC ED B0         [21]  295 		ldir			; Reset memory
                             296 
-   00F5                     297 debug:
-   00F5 01 01 80      [10]  298 		ld bc, #0x8001	; Clear buffer
-   00F8 ED 41         [12]  299 		out(c),b
-   00FA 01 00 41      [10]  300 		ld bc, #0x4100	; Write 0x55 three times
-   00FD ED 41         [12]  301 		out(c),b
-   00FF 04            [ 4]  302 		inc b
-   0100 ED 41         [12]  303 		out(c),b
-   0102 04            [ 4]  304 		inc b
-   0103 ED 41         [12]  305 		out(c),b
-   0105 04            [ 4]  306 		inc b
-   0106 ED 41         [12]  307 		out(c),b
-   0108 01 01 01      [10]  308 		ld bc, #0x0101	; Slave ready
-   010B ED 41         [12]  309 		out(c),b
-   010D                     310 self:
-   010D ED 78         [12]  311 		in a,(c)
-   010F CB 47         [ 8]  312 		bit 0,a
-   0111 20 FA         [12]  313 		jr nz, self
-   0113 DB 00         [11]  314 		in a,(0)
-   0115 ED 79         [12]  315 		out(c),a
-   0117 DB 00         [11]  316 		in a,(0)
-   0119 ED 79         [12]  317 		out(c),a
-   011B DB 00         [11]  318 		in a,(0)
-   011D ED 79         [12]  319 		out(c),a
-   011F                     320 self1:
-   011F 18 FE         [12]  321 		jr self1
-                            322 	.globl debug
-                            323 
-                            324 ; Export/Import global functions
-                            325 	.globl _main
-                            326 	.globl _OUT
-                            327 	.globl _OUTI
-                            328 	.globl _IN
-                            329 	.globl _INI
-                            330 	.globl _memset
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
-Hexadecimal [16-Bits]
-
-
-
-                            331 	.globl _memcpy
-                            332 	.globl _nmi_handler
-                            333 	.globl _int_handler
+   00EE                     297 mem_done:
+   00EE DD E1         [14]  298         pop ix
+   00F0 E1            [10]  299         pop hl
+   00F1 D1            [10]  300         pop de
+   00F2 C1            [10]  301         pop bc
+   00F3 F1            [10]  302         pop af
+   00F4 C9            [10]  303         ret
+                            304 
+                            305 	.globl debug
+   00F5                     306 debug:
+   00F5 01 E0 03      [10]  307 		ld bc, #0x03e0
+   00F8 ED 41         [12]  308 		out (c),b
+   00FA 00            [ 4]  309 		nop
+   00FB 00            [ 4]  310 		nop
+   00FC                     311 debug1:
+   00FC DB BE         [11]  312 		in a,(0xbe)
+   00FE 18 FC         [12]  313 		jr debug1
+                            314 
+                            315 ; Export/Import global functions
+                            316 	.globl _main
+                            317 	.globl _OUT
+                            318 	.globl _OUTI
+                            319 	.globl _IN
+                            320 	.globl _INI
+                            321 	.globl _memset
+                            322 	.globl _memcpy
+                            323 	.globl _nmi_handler
+                            324 	.globl _int_handler

@@ -48,23 +48,11 @@ module support_memory_if #( parameter wp_address = 0 )
 	assign dat = (sys_en) ? sys_data : support_Din;
 	assign wr = (sys_en) ? sys_wr : support_wr;
 	
-	`ifndef SIM
 	ram r (
 		.address(adr),
 		.clock(clk),
 		.data(dat),
-		.wren(wr & allow_write),
+		// Write protect doesn't apply to system interface
+		.wren(wr & (allow_write | sys_en)),	
 		.q(support_Dout));	
-	`else
-		reg [7:0] support[0:65535] /* synthesis ramstyle = "M10K" */;
-	
-		assign support_Dout = support[adr];
-		
-		// Support RAM + Sys IF
-		always @(posedge clk)
-		begin
-			if( wr )
-				support[adr] = dat;			
-		end
-	`endif
 endmodule

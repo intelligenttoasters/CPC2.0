@@ -34,40 +34,59 @@ void init()
 	memset( globals(), 0, sizeof( struct global_vars ) );
 
 	// Initialize STDIO
-	stdio_init();
+	stdioInit();
+
+	// Start the boot process
+	puts("CPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
+	console("Starting");
+
+	// Initialise the keyboard emulator
+	key_clear();
 
 	// Initialize the HDMI adapter
 	hdmi_init();
 
+	// Initialise the usb interface
+	kbdInit();
 }
 
 // Main function
 void main(void)
 {
-	char buffer[80];
+	char c;
 
 	// Run system intitialization
 	init();
 
-	// Wait for the console to get connected
-	// Normally this won't happen as the system needs to run even without a console
-	while(!spi_connected()) process_events();
+/*
+	for( xx = 0; xx<250; xx++ )
+		processEvents();
 
-	// Start the boot process
-	puts("\033[2J\033[HCPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
+	// Scan the tape port
+	cc = 0; dd = 0;
+	while( true )
+	{
+		// Add the bit
+//		dd = (dd << 1) | ( IN(0x40) & 1 );
+		cc = (cc<5) ? cc + 1 : 0;	// 0-5
+		if( cc == 0 )
+		{
+//			printf("%c",dd+32);
+			printf("%x",(IN(0x40)>>4)&3);
+			dd = 0;
+		}
+	}
+*/
 
-	// Get HDMI chip ID
-	sprintf(buffer, "HDMI chip ID : 0x%02x%02x", hdmi_read( 0xf5 ), hdmi_read( 0xf6 ));
-	console(buffer);
-
-	puts("Echoing back");
-	putchari('>');
-
+//	printf("CTS Calculated : %02x %02x %02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06));
 	// Echo the characters back to the user
 	while( true )
 	{
-		while(spi_avail() == 0) process_events();
-		putchari( getchar() );
+		while(uartAvail() == 0) processEvents();
+		c = getchar();
+		hdmi_write(0x96,0);
+		printf("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
+		putchar( c );
 	}
 
 }

@@ -38,13 +38,7 @@ void int_handler(void)
 	// Read the interrupt source and reset the interupt line
 	int_src = IN(INTERRUPT_CONTROLLER_BASE);
 	// Did the SPI trigger this interrupt
-	if( int_src & INT_SPI )
+	if( int_src & INT_UART )
 	{
-		if( spiEmptyOut() && spiGetInUse() )
-		{
-			// Reset the variables
-			spiSetInUse( false );
-			spiSetProcessed( false );
-		}
 	}
 }

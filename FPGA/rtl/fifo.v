@@ -28,9 +28,10 @@ module fifo #(
 	parameter log2_addr = 3, data_width = 8
 	) ( 
 	input n_reset_i,
-	input clk_i,
+	input wclk_i,
 	input [data_width-1:0] data_i,
 	input wr_i,
+	input rclk_i,
 	output [data_width-1:0] data_o,
 	input rd_i,
 	output fifo_empty_o,
@@ -40,9 +41,11 @@ module fifo #(
 	// Wire definitions
 	wire [log2_addr-1:0] gray_head; 
 	wire [log2_addr-1:0] gray_tail; 
-
+	// Full/empty tracking
 	wire fifo_full;
 	wire fifo_empty;
+	// Rd/Wr edge tracking
+	wire rd_rise, rd_fall, wr_rise, wr_fall;
 	
 	// Registers
 	reg [data_width-1:0] out = 0;						// Output register
@@ -50,6 +53,7 @@ module fifo #(
 	reg [log2_addr:0] 	fifo_head = 0;				// Counters have one more bit to indicate full/empty
 	reg [log2_addr:0] 	fifo_tail = 0;				// If lowest bits are the same then the high bit inicates full (high bits different)
 																// Or empty (high bits same)
+	reg 						rd = 0, wr = 0;			// RD/WR tracking
 	
 	// Assignments
 	assign gray_head = fifo_head[log2_addr-1:0] ^ {1'b0, fifo_head[log2_addr-1:1]};
@@ -62,32 +66,32 @@ module fifo #(
 	
 	// Module connections
 	
-	// Simulation branches and control
+	// Rise/fall tracking
+	always @(posedge wclk_i) wr <= wr_i;
+	always @(posedge rclk_i) rd <= rd_i;
 	
 	// Move Write Pointers
-	always @(negedge n_reset_i or negedge wr_i)
+	always @(negedge wclk_i)
 	begin
 		if( n_reset_i == 0 ) fifo_head <= 0;	
-		else 
-		if( !fifo_full ) fifo_head = fifo_head + 1'b1;
+		else // Was the last op a write, then increment counter
+		if( !fifo_full && wr ) fifo_head = fifo_head + 1'b1;
 	end
 	
 	// Store data
-	always @(posedge wr_i)
-		if( !fifo_full ) fifo_buffer[fifo_head] = data_i;	
+	always @(posedge wclk_i)
+		if( !fifo_full && wr_i ) fifo_buffer[fifo_head] = data_i;	
 	
 	// Move Read Pointers
-	always @(negedge n_reset_i or negedge rd_i)
+	always @(negedge rclk_i)
 	begin
-		if( n_reset_i == 0 ) 
-			fifo_tail <= 0;
-		else 
-			if( !fifo_empty )
-				fifo_tail <= fifo_tail + 1'b1;
+		if( n_reset_i == 0 ) fifo_tail <= 0;
+		else // Was the last op a read, then increment counter
+		if( !fifo_empty && rd ) fifo_tail <= fifo_tail + 1'b1;
 	end
 	
 	// Retrieve data on posedge read signal
-	always @(posedge rd_i)
-		out <= fifo_buffer[fifo_tail];
+	always @(posedge rclk_i)
+		if( rd_i ) out <= fifo_buffer[fifo_tail];
 		
 endmodule

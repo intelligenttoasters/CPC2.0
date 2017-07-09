@@ -96,9 +96,17 @@ _CODE_START = .
 ; ==================================================================
 ;
 ;; Ordering of segments for the linker so that initializing vars works
+	.area   _SYSTEM_CODE
+
+	.area   _GSINIT
+
 	.area   _INITIALIZER
 s__INITIALIZER = .
-	.area   _INITIALIZED
+	.area	_END_INITIALIZER
+e__INITIALIZER = .
+	.area	_DATA
+s__DATA = .
+	.area	_INITIALIZED
 s__INITIALIZED = .
 ;
 ; ==================================================================
@@ -112,10 +120,10 @@ s__INITIALIZED = .
 	.area   _GSINIT
 ; Copy the initialized values to the working area
 gsinit:
-	ld		hl, #s__INITIALIZED
+	ld		hl, #e__INITIALIZER
 	ld		de, #s__INITIALIZER
 	sbc		hl,de
-	inc 	hl
+;	inc 	hl
 	push	hl
 	pop 	bc
 	; Got length of initializer section
@@ -294,32 +302,15 @@ mem_done:
         pop af
         ret
 
-debug:
-		ld bc, #0x8001	; Clear buffer
-		out(c),b
-		ld bc, #0x4100	; Write 0x55 three times
-		out(c),b
-		inc b
-		out(c),b
-		inc b
-		out(c),b
-		inc b
-		out(c),b
-		ld bc, #0x0101	; Slave ready
-		out(c),b
-self:
-		in a,(c)
-		bit 0,a
-		jr nz, self
-		in a,(0)
-		out(c),a
-		in a,(0)
-		out(c),a
-		in a,(0)
-		out(c),a
-self1:
-		jr self1
 	.globl debug
+debug:
+		ld bc, #0x03e0
+		out (c),b
+		nop
+		nop
+debug1:
+		in a,(0xbe)
+		jr debug1
 
 ; Export/Import global functions
 	.globl _main

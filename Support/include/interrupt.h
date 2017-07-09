@@ -25,6 +25,6 @@
 #define INCLUDE_INTERRUPT_H_
 
 #define INTERRUPT_CONTROLLER_BASE 	0x10
-#define INT_SPI						0x01
+#define INT_UART					0x01
 
 #endif /* INCLUDE_INTERRUPT_H_ */

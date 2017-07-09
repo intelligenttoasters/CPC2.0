@@ -1,7 +1,9 @@
 /*
- * <file> <desc> 
+ * video.v Fake video driver
  *
- * <fulldesc>
+ * This is a temporary display engine that simply renders the content of the 
+ * screen buffer, ignoring the CRTC. This will be replaced by a proper render
+ * when memory is available.
  *
  * Part of the CPC2 project: http://intelligenttoasters.blog
  *
@@ -32,27 +34,42 @@ module video(
 	output clk_o,
 	output [7:0] r,
 	output [7:0] g,
-	output [7:0] b
+	output [7:0] b,
+	output [15:0] A_o,
+	input [7:0] D_i,
+	input [15:0] video_offset_i
 	);
 
+	parameter offset_x = 80;
+	parameter offset_y = 100;
+	
 	// Wire definitions ===========================================================================
 
 	// Registers ==================================================================================
 	reg [10:0] hor = 0;
 	reg [9:0] ver = 0;
-	reg HSYNC,VSYNC,DE;
+	reg [10:0] pixel_x;
+	reg [9:0] pixel_y;
+	reg [15:0] video_offset;
+	reg [15:0] video_offset_delay;
 	
+	reg [15:0] A = 0;
 	reg [7:0] rs = 0;
 	reg [7:0] gs = 0;
 	reg [7:0] bs = 0;
 	// Assignments ================================================================================
 
+	assign A_o = A;
+	
 	// Module connections =========================================================================
 	
 	// Simulation branches and control ============================================================
 	
 	// Other logic ================================================================================
 
+	// Synchronizer chain for offset
+	always @(negedge clk_i) video_offset_delay <= video_offset_i;
+	
 	// Move the counters
 	always @(negedge clk_i)
 	begin
@@ -68,7 +85,8 @@ module video(
 			end else begin
 				ver <= 0;
 				bs <= 0;
-			end;
+				video_offset = video_offset_delay;
+			end
 		end
 	end
 
@@ -81,26 +99,45 @@ module video(
 	
 	// Clock
 	assign clk_o = clk_i;
-
-	// Generate colour bars
+	
+	// Generate picture here =========================
 	always @(posedge clk_i)
 	begin
-		if( !de )
-		begin
-			rs <= 0;
-			gs <= 0;
-		end else begin
-			rs <= rs + 1'b1;
-			gs <= gs - 1'b1;
-		end
+		// Display (DE) starts at pixel 216, so give us the timespan of 8 pixels
+		// To gather the data for the display, then pipeline the output
+		pixel_x <= hor - 11'd208;	// Not 216
+		pixel_y <= ver - 10'd27 - offset_y;
 	end
-
-wire [7:0] rs1 = {rs[7:3],3'd0};
-wire [7:0] gs1 = {gs[7:3],3'd0};
-wire [7:0] bs1 = {bs[7:3],3'd0};
-
-	assign r = (de) ? rs1 : 0;
-	assign g = (de) ? gs1 : 0;
-	assign b = (de) ? bs1 : 0;
-endmodule
 	
+	// Convert X/Y to Address
+	wire [8:0] row = pixel_y[9:1];	// Duplicate rows
+	// Weird CPC offsets, every row is 2048 bytes offset
+	wire [10:0] Ay = (row[7:3] * 80);
+	wire [10:0] Axy = Ay + pixel_x[9:3];	// Div pixels by 8
+	wire [10:0] Atotal = Axy + video_offset[10:0];
+	// Set the address on negative clock because memory is strobed on positive clock
+	always @(negedge clk_i) A <= {video_offset[15:14], row[2:0], Atotal};
+	
+	// Calculate the pixel (assume mode 1, so pixels 1+2,3+4,5+6,7+8 are duplicated)
+	// Don't care which color, so OR the bits, if not pen 0 then display
+	reg [0:7] pixels;
+	always @(negedge clk_i)
+		if ( pixel_x[2:0] == 3'd0 )
+			pixels <= 
+				{
+					D_i[7] | D_i[3], D_i[7] | D_i[3],
+					D_i[6] | D_i[2], D_i[6] | D_i[2],
+					D_i[5] | D_i[1], D_i[5] | D_i[1],
+					D_i[4] | D_i[0], D_i[4] | D_i[0]
+				};
+		else
+			pixels <= {pixels[1:7],1'b0};	// Shift
+	
+	// Use 648 as the last pixel location because pipeline needs 8 bits to read the memory
+	// So the end of the display is 8 pixels after the last pixel set has been obtained
+	wire en = de && (pixel_x < 10'd648) && (pixel_y < 10'd400);
+	
+	assign r = (en) ? ((pixels[0]) ? 8'hf8 : 8'h0) : 8'd0;
+	assign g = (en) ? ((pixels[0]) ? 8'hf8 : 8'h0) : 8'd0;
+	assign b = (en) ? ((pixels[0]) ? 8'h00 : 8'h7d) : 8'd0;
+endmodule

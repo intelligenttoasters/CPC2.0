@@ -7,63 +7,33 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 A$interrupt$100                                                0017 GR
-  0 A$interrupt$101                                                001A GR
-  0 A$interrupt$102                                                001B GR
-  0 A$interrupt$103                                                001C GR
-  0 A$interrupt$107                                                001D GR
-  0 A$interrupt$108                                                001E GR
-  0 A$interrupt$109                                                001F GR
-  0 A$interrupt$110                                                0020 GR
-  0 A$interrupt$111                                                0023 GR
-  0 A$interrupt$115                                                0024 GR
-  0 A$interrupt$116                                                0025 GR
-  0 A$interrupt$117                                                0026 GR
-  0 A$interrupt$118                                                0027 GR
-  0 A$interrupt$119                                                002A GR
-  0 A$interrupt$124                                                002B GR
-  0 A$interrupt$64                                                 0000 GR
-  0 A$interrupt$77                                                 0001 GR
-  0 A$interrupt$78                                                 0003 GR
-  0 A$interrupt$79                                                 0004 GR
-  0 A$interrupt$80                                                 0005 GR
-  0 A$interrupt$81                                                 0008 GR
-  0 A$interrupt$85                                                 0009 GR
-  0 A$interrupt$86                                                 000B GR
-  0 A$interrupt$90                                                 000C GR
-  0 A$interrupt$91                                                 000E GR
-  0 A$interrupt$92                                                 000F GR
-  0 A$interrupt$93                                                 0010 GR
-  0 A$interrupt$94                                                 0013 GR
-  0 A$interrupt$95                                                 0014 GR
-  0 A$interrupt$96                                                 0016 GR
+  0 A$interrupt$61                                                 0000 GR
+  0 A$interrupt$74                                                 0001 GR
+  0 A$interrupt$75                                                 0003 GR
+  0 A$interrupt$76                                                 0004 GR
+  0 A$interrupt$77                                                 0005 GR
+  0 A$interrupt$78                                                 0008 GR
+  0 A$interrupt$86                                                 0009 GR
   0 C$interrupt.c$27$0$0                                        =  0000 GR
   0 C$interrupt.c$30$0$0                                        =  0000 GR
   0 C$interrupt.c$35$0$0                                        =  0001 GR
-  0 C$interrupt.c$39$1$55                                       =  0001 GR
-  0 C$interrupt.c$41$1$55                                       =  0009 GR
-  0 C$interrupt.c$43$2$56                                       =  0017 GR
-  0 C$interrupt.c$46$3$57                                       =  001D GR
-  0 C$interrupt.c$47$3$57                                       =  0024 GR
-  0 C$interrupt.c$50$1$55                                       =  002B GR
-  0 C$spi.h$86$5$60                                             =  000C GR
+  0 C$interrupt.c$39$1$44                                       =  0001 GR
+  0 C$interrupt.c$41$1$44                                       =  0009 GR
+  0 C$interrupt.c$44$1$44                                       =  0009 GR
   0 G$int_handler$0$0                                           =  0001 GR
   0 G$nmi_handler$0$0                                           =  0000 GR
-  0 XG$int_handler$0$0                                          =  002B GR
+  0 XG$int_handler$0$0                                          =  0009 GR
   0 XG$nmi_handler$0$0                                          =  0000 GR
     _IN                                                            **** GX
   0 _int_handler                                                   0001 GR
   0 _nmi_handler                                                   0000 GR
-    _spiGetInUse                                                   **** GX
-    _spiSetInUse                                                   **** GX
-    _spiSetProcessed                                               **** GX
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   2C   flags    0
+   0 _CODE                                      size    A   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 14.0 200 linux 2017.04.25.19:59:00
+# ACDS 14.0 200 linux 2017.07.06.22:52:50
 
 # ----------------------------------------
 # vcsmx - auto-generated simulation script

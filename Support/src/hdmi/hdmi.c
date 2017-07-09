@@ -35,6 +35,10 @@ inline void i2cWait(void)
 
 void hdmi_init()
 {
+	// Get HDMI chip ID
+	sprintf(CB, "HDMI chip ID : 0x%02x%02x", hdmi_read( 0xf5 ), hdmi_read( 0xf6 ));
+	console(CB);
+
 	// Disable core and interrupts
 	DBG("Disable I2C core");
 	OUT( I2C_PORT | I2C_CTR, !(I2C_EN | I2C_IEN));
@@ -176,12 +180,39 @@ void hdmi_powerup()
 	hdmi_write( 0xe0, 0xd0 );
 	hdmi_write( 0xf9, 0x00 );
 	// Video mode
-	hdmi_write( 0x15, 0x00 );		// 24-bit 4:4:4
+//SEE_AUDIO	hdmi_write( 0x15, 0x00 );		// 24-bit 4:4:4
 	hdmi_write( 0x16, 0x34 );
 	hdmi_write( 0x17, 0x00 );		// 4:3 aspect
 
 	// HDCP Encryption/DVI mode
-	hdmi_write( 0xaf, 0x04 );		// DVI mode
+//	hdmi_write( 0xaf, 0x04 );		// DVI mode
+	hdmi_write( 0xaf, 0x06 );		// HDMI mode
+
+	// Set up sound
+//	hdmi_write( 0x0a, 0x01 );		// I2S mode, CTS Calculation Auto
+	hdmi_write( 0x0a, 0x81 );		// I2S mode, CTS Calculation Manual - stops sound jittering
+	hdmi_write( 0x0b, 0x0e );		// Data latched on rising edge
+	hdmi_write( 0x0c, 0x84 );		// Enable I2S channel 1, standard I2S mode
+	hdmi_write( 0x12, 0x22 );		// NOT copy protected, (inacurate clock)
+	hdmi_write( 0x14, 0x02 );		// 16 bits per sample
+	hdmi_write( 0x15, 0x20 );		// 48KHz clock
+	hdmi_write( 0x73, 0x01 );		// 2 Channels
+	// SET Audio N = 6144
+	hdmi_write( 0x01, 0x00 );
+	hdmi_write( 0x02, 0x19 );
+	hdmi_write( 0x03, 0x0b );
+	// SET Audio CTS = 40000		// 40MHz video
+	//hdmi_write( 0x07, 0x00 );
+	//hdmi_write( 0x08, 0x9c );
+	//hdmi_write( 0x09, 0x40 );
+	// Copied from automatically calculated values - manual set stops jittering see 0x0a
+	hdmi_write( 0x07, 0x20 );
+	hdmi_write( 0x08, 0xa3 );
+	hdmi_write( 0x09, 0xd2 );
+
+
+	// Clock delay
+//	hdmi_write( 0xba, 0x70 );		// Zero delay - needed?
 
 	// Hot plug detection
 	hdmi_write( 0x94, 0xc0 );		// Hot plug and monitor sense detection

@@ -33,7 +33,7 @@
 #define max( x, y ) (( x>=y ) ? x : y)
 
 inline struct global_vars * globals(void);
-inline void process_events(void);
+inline void processEvents(void);
 void console(char *);
 void ul(void);
 

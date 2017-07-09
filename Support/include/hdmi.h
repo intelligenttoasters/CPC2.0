@@ -38,6 +38,6 @@ void hdmi_write( uint8_t port, uint8_t value );
 void hdmi_powerup(void);
 void hdmiProcessEvents(void);
 
-#include "oc_i2c_master.h"
+#include "i2c_master.h"
 
 #endif /* INCLUDE_HDMI_H_ */

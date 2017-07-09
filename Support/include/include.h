@@ -26,19 +26,18 @@
 #define INCLUDE_INCLUDE_H_
 
 // Debug/SIM flag
-#define DEBUG
+//#define DEBUG
 //#define SIM
 
 #ifdef DEBUG
-	#define DBG(msg) if( spi_connected() ) puts("DBG:" msg)
-	#define DBG1(msg, param) if( spi_connected() ) printf("DBG: " msg "\n", param)
+	#define DBG(...) {printf(__VA_ARGS__); putchar(10);}
+	#define UDBG(...) {printf(__VA_ARGS__); putchar(10);}
+	#define UDBGNR(...) printf(__VA_ARGS__);
 #else
-	#define DBG(msg)
-	#define DBG1(msg, param)
+	#define DBG
+	#define UDBG
+	#define UDBGNR
 #endif
-
-// System definitions
-#define SPI_CHANNELS 16
 
 // Some type definitions
 #define Bool unsigned char
@@ -52,22 +51,23 @@ unsigned char IN(char);
 void OUTI( char port, char * buffer, unsigned char size);
 void INI( char port, char * buffer, unsigned char size);
 
-inline void NOP() { __asm__("nop"); }
-inline void HALT() { __asm__("halt"); }
+#define NOP() __asm__("nop")
+#define HALT() __asm__("halt")
 
 struct global_vars {
-	void (*channel_handler_p[SPI_CHANNELS])(unsigned char *, unsigned char);
-	volatile unsigned char spi_in_use;
-	volatile unsigned char spi_processed_n;
-	unsigned char spi_channel;
-	char inbound_comm_buffer[512];
-	char outbound_comm_buffer[512];
+	char console_buffer[132];
+	Bool usb_connected;
+	Bool usb_enumerated;
+	unsigned int usb_timeout;
 };
 
+#define CB (globals()->console_buffer)
+
 #include "stdint.h"
-#include "spi.h"
 #include "library.h"
-#include "stdio_spi.h"
+#include "stdio_uart.h"
 #include "hdmi.h"
+#include "keyboard.h"
+#include "usb.h"
 
 #endif /* INCLUDE_INCLUDE_H_ */
