@@ -68,19 +68,19 @@ _nmi_handler::
 ; Function int_handler
 ; ---------------------------------
 _int_handler::
-	C$interrupt.c$39$1$44	= .
-	.globl	C$interrupt.c$39$1$44
+	C$interrupt.c$39$1$46	= .
+	.globl	C$interrupt.c$39$1$46
 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
 	ld	a,#0x10
 	push	af
 	inc	sp
 	call	_IN
 	inc	sp
-	C$interrupt.c$41$1$44	= .
-	.globl	C$interrupt.c$41$1$44
+	C$interrupt.c$41$1$46	= .
+	.globl	C$interrupt.c$41$1$46
 ;../src/interrupt.c:41: if( int_src & INT_UART )
-	C$interrupt.c$44$1$44	= .
-	.globl	C$interrupt.c$44$1$44
+	C$interrupt.c$44$1$46	= .
+	.globl	C$interrupt.c$44$1$46
 	XG$int_handler$0$0	= .
 	.globl	XG$int_handler$0$0
 	ret

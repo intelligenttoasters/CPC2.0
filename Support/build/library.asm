@@ -10,6 +10,7 @@
 ;--------------------------------------------------------
 	.globl _putchar
 	.globl _printf
+	.globl _fdcProcessEvents
 	.globl _kbdProcessEvents
 	.globl _hdmiProcessEvents
 	.globl _uartProcessEvents
@@ -63,45 +64,49 @@ _msgno:
 ; Function globals
 ; ---------------------------------
 _globals::
-	C$library.c$36$1$51	= .
-	.globl	C$library.c$36$1$51
+	C$library.c$36$1$53	= .
+	.globl	C$library.c$36$1$53
 ;../src/library/library.c:36: return &global_variables;
 	ld	hl,#_global_variables
-	C$library.c$37$1$51	= .
-	.globl	C$library.c$37$1$51
+	C$library.c$37$1$53	= .
+	.globl	C$library.c$37$1$53
 	XG$globals$0$0	= .
 	.globl	XG$globals$0$0
 	ret
 	G$processEvents$0$0	= .
 	.globl	G$processEvents$0$0
-	C$library.c$39$1$51	= .
-	.globl	C$library.c$39$1$51
+	C$library.c$39$1$53	= .
+	.globl	C$library.c$39$1$53
 ;../src/library/library.c:39: inline void processEvents()
 ;	---------------------------------
 ; Function processEvents
 ; ---------------------------------
 _processEvents::
-	C$library.c$41$1$52	= .
-	.globl	C$library.c$41$1$52
+	C$library.c$41$1$54	= .
+	.globl	C$library.c$41$1$54
 ;../src/library/library.c:41: uartProcessEvents();
 	call	_uartProcessEvents
-	C$library.c$42$1$52	= .
-	.globl	C$library.c$42$1$52
+	C$library.c$42$1$54	= .
+	.globl	C$library.c$42$1$54
 ;../src/library/library.c:42: hdmiProcessEvents();
 	call	_hdmiProcessEvents
-	C$library.c$43$1$52	= .
-	.globl	C$library.c$43$1$52
+	C$library.c$43$1$54	= .
+	.globl	C$library.c$43$1$54
 ;../src/library/library.c:43: kbdProcessEvents();
-	C$library.c$44$1$52	= .
-	.globl	C$library.c$44$1$52
+	call	_kbdProcessEvents
+	C$library.c$44$1$54	= .
+	.globl	C$library.c$44$1$54
+;../src/library/library.c:44: fdcProcessEvents();
+	C$library.c$45$1$54	= .
+	.globl	C$library.c$45$1$54
 	XG$processEvents$0$0	= .
 	.globl	XG$processEvents$0$0
-	jp  _kbdProcessEvents
+	jp  _fdcProcessEvents
 	G$console$0$0	= .
 	.globl	G$console$0$0
-	C$library.c$47$1$52	= .
-	.globl	C$library.c$47$1$52
-;../src/library/library.c:47: void console(char *msg)
+	C$library.c$48$1$54	= .
+	.globl	C$library.c$48$1$54
+;../src/library/library.c:48: void console(char *msg)
 ;	---------------------------------
 ; Function console
 ; ---------------------------------
@@ -111,9 +116,9 @@ _console::
 	add	ix,sp
 	push	af
 	push	af
-	C$library.c$49$1$54	= .
-	.globl	C$library.c$49$1$54
-;../src/library/library.c:49: printf("[%08ld] %s\n", msgno++, msg);
+	C$library.c$50$1$56	= .
+	.globl	C$library.c$50$1$56
+;../src/library/library.c:50: printf("[%08ld] %s\n", msgno++, msg);
 	ld	hl, #0
 	add	hl, sp
 	ex	de, hl
@@ -146,8 +151,8 @@ _console::
 	ld	sp,hl
 	ld	sp, ix
 	pop	ix
-	C$library.c$50$1$54	= .
-	.globl	C$library.c$50$1$54
+	C$library.c$51$1$56	= .
+	.globl	C$library.c$51$1$56
 	XG$console$0$0	= .
 	.globl	XG$console$0$0
 	ret
@@ -158,16 +163,16 @@ ___str_0:
 	.db 0x00
 	G$ul$0$0	= .
 	.globl	G$ul$0$0
-	C$library.c$53$1$54	= .
-	.globl	C$library.c$53$1$54
-;../src/library/library.c:53: void ul()
+	C$library.c$54$1$56	= .
+	.globl	C$library.c$54$1$56
+;../src/library/library.c:54: void ul()
 ;	---------------------------------
 ; Function ul
 ; ---------------------------------
 _ul::
-	C$library.c$56$1$55	= .
-	.globl	C$library.c$56$1$55
-;../src/library/library.c:56: for( cntr=0; cntr<_STD_WIDTH_ - 1; cntr++) putchar('=');
+	C$library.c$57$1$57	= .
+	.globl	C$library.c$57$1$57
+;../src/library/library.c:57: for( cntr=0; cntr<_STD_WIDTH_ - 1; cntr++) putchar('=');
 	ld	bc,#0x0000
 00102$:
 	push	bc
@@ -186,16 +191,16 @@ _ul::
 	rra
 	sbc	a, #0x80
 	jr	C,00102$
-	C$library.c$57$1$55	= .
-	.globl	C$library.c$57$1$55
-;../src/library/library.c:57: putchar('\n');
+	C$library.c$58$1$57	= .
+	.globl	C$library.c$58$1$57
+;../src/library/library.c:58: putchar('\n');
 	ld	a,#0x0a
 	push	af
 	inc	sp
 	call	_putchar
 	inc	sp
-	C$library.c$58$1$55	= .
-	.globl	C$library.c$58$1$55
+	C$library.c$59$1$57	= .
+	.globl	C$library.c$59$1$57
 	XG$ul$0$0	= .
 	.globl	XG$ul$0$0
 	ret

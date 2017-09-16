@@ -93,8 +93,8 @@ module i2s_audio (
 	// Synchronizer for input
 	always @(posedge clk_i)
 	begin
-		{left_buffer[0],left_buffer[1],left_buffer[2]} <= {left_buffer[1],left_buffer[2],(!squelch_l) ? left_i : 0};
-		{right_buffer[0],right_buffer[1],right_buffer[2]} <= {right_buffer[1],right_buffer[2],(!squelch_r) ? right_i : 0};
+		{left_buffer[0],left_buffer[1],left_buffer[2]} <= {left_buffer[1],left_buffer[2],(!squelch_l) ? left_i : 16'd0};
+		{right_buffer[0],right_buffer[1],right_buffer[2]} <= {right_buffer[1],right_buffer[2],(!squelch_r) ? right_i : 16'd0};
 	end
 
 	// Other logic ================================================================================

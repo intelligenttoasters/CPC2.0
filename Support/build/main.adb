@@ -2,9 +2,9 @@ M:main
 S:Lmain.uartWrite$data$1$39({1}SC:U),B,1,4
 F:G$init$0$0({2}DF,SV:S),C,0,0,0,0,0
 F:G$main$0$0({2}DF,SV:S),C,0,1,0,0,0
-S:Lmain.main$c$1$73({1}SC:U),B,1,-5
-S:Lmain.main$sloc0$1$0({2}SI:S),B,1,-4
-S:Lmain.main$sloc1$1$0({2}SI:S),B,1,-2
+S:Lmain.main$c$1$75({1}SC:U),B,1,-5
+S:Lmain.main$sloc0$1$0({2}SI:S),B,1,-2
+S:Lmain.main$sloc1$1$0({2}SI:S),B,1,-4
 T:Fmain$usbGeneric[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)]
 T:Fmain$usbHID[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)({2}S:S$version$0$0({2}SI:U),Z,0,0)({4}S:S$country$0$0({1}SC:U),Z,0,0)({5}S:S$count$0$0({1}SC:U),Z,0,0)({6}S:S$descType$0$0({1}SC:U),Z,0,0)({7}S:S$descLength$0$0({2}SI:U),Z,0,0)]
 T:Fmain$usbEndPt[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)({2}S:S$ep$0$0({1}SC:U),Z,0,0)({3}S:S$attr$0$0({1}SC:U),Z,0,0)({4}S:S$maxpkt$0$0({1}SC:U),Z,0,0)({5}S:S$interval$0$0({1}SC:U),Z,0,0)]
@@ -80,5 +80,9 @@ S:G$usbGetString$0$0({2}DF,DG,SC:U),C,0,0
 S:G$setConfig$0$0({2}DF,SC:U),C,0,0
 S:G$enumerate$0$0({2}DF,SC:U),C,0,0
 S:G$getReport$0$0({2}DF,DG,SC:U),C,0,0
+S:G$fdcProcessEvents$0$0({2}DF,SV:S),C,0,0
+S:G$fdcInit$0$0({2}DF,SV:S),C,0,0
+S:G$fdcMount$0$0({2}DF,SV:S),C,0,0
+S:G$fdcUnmount$0$0({2}DF,SV:S),C,0,0
 S:G$init$0$0({2}DF,SV:S),C,0,0
 S:G$main$0$0({2}DF,SV:S),C,0,1

@@ -69,5 +69,6 @@ struct global_vars {
 #include "hdmi.h"
 #include "keyboard.h"
 #include "usb.h"
+#include "fdc.h"
 
 #endif /* INCLUDE_INCLUDE_H_ */

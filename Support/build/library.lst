@@ -10,199 +10,204 @@
                              10 ;--------------------------------------------------------
                              11 	.globl _putchar
                              12 	.globl _printf
-                             13 	.globl _kbdProcessEvents
-                             14 	.globl _hdmiProcessEvents
-                             15 	.globl _uartProcessEvents
-                             16 	.globl _globals
-                             17 	.globl _processEvents
-                             18 	.globl _console
-                             19 	.globl _ul
-                             20 ;--------------------------------------------------------
-                             21 ; special function registers
-                             22 ;--------------------------------------------------------
+                             13 	.globl _fdcProcessEvents
+                             14 	.globl _kbdProcessEvents
+                             15 	.globl _hdmiProcessEvents
+                             16 	.globl _uartProcessEvents
+                             17 	.globl _globals
+                             18 	.globl _processEvents
+                             19 	.globl _console
+                             20 	.globl _ul
+                             21 ;--------------------------------------------------------
+                             22 ; special function registers
                              23 ;--------------------------------------------------------
-                             24 ; ram data
-                             25 ;--------------------------------------------------------
-                             26 	.area _DATA
-                     0000    27 Flibrary$global_variables$0$0==.
-   0000                      28 _global_variables:
-   0000                      29 	.ds 136
-                             30 ;--------------------------------------------------------
-                             31 ; ram data
-                             32 ;--------------------------------------------------------
-                             33 	.area _INITIALIZED
-                     0000    34 Flibrary$msgno$0$0==.
-   0000                      35 _msgno:
-   0000                      36 	.ds 4
-                             37 ;--------------------------------------------------------
-                             38 ; absolute external ram data
-                             39 ;--------------------------------------------------------
-                             40 	.area _DABS (ABS)
-                             41 ;--------------------------------------------------------
-                             42 ; global & static initialisations
-                             43 ;--------------------------------------------------------
-                             44 	.area _HOME
-                             45 	.area _GSINIT
-                             46 	.area _GSFINAL
-                             47 	.area _GSINIT
-                             48 ;--------------------------------------------------------
-                             49 ; Home
-                             50 ;--------------------------------------------------------
-                             51 	.area _HOME
+                             24 ;--------------------------------------------------------
+                             25 ; ram data
+                             26 ;--------------------------------------------------------
+                             27 	.area _DATA
+                     0000    28 Flibrary$global_variables$0$0==.
+   0000                      29 _global_variables:
+   0000                      30 	.ds 136
+                             31 ;--------------------------------------------------------
+                             32 ; ram data
+                             33 ;--------------------------------------------------------
+                             34 	.area _INITIALIZED
+                     0000    35 Flibrary$msgno$0$0==.
+   0000                      36 _msgno:
+   0000                      37 	.ds 4
+                             38 ;--------------------------------------------------------
+                             39 ; absolute external ram data
+                             40 ;--------------------------------------------------------
+                             41 	.area _DABS (ABS)
+                             42 ;--------------------------------------------------------
+                             43 ; global & static initialisations
+                             44 ;--------------------------------------------------------
+                             45 	.area _HOME
+                             46 	.area _GSINIT
+                             47 	.area _GSFINAL
+                             48 	.area _GSINIT
+                             49 ;--------------------------------------------------------
+                             50 ; Home
+                             51 ;--------------------------------------------------------
                              52 	.area _HOME
-                             53 ;--------------------------------------------------------
-                             54 ; code
-                             55 ;--------------------------------------------------------
-                             56 	.area _CODE
-                     0000    57 	G$globals$0$0	= .
-                             58 	.globl	G$globals$0$0
-                     0000    59 	C$library.c$34$0$0	= .
-                             60 	.globl	C$library.c$34$0$0
-                             61 ;../src/library/library.c:34: inline struct global_vars * globals()
-                             62 ;	---------------------------------
-                             63 ; Function globals
-                             64 ; ---------------------------------
-   0000                      65 _globals::
-                     0000    66 	C$library.c$36$1$51	= .
-                             67 	.globl	C$library.c$36$1$51
-                             68 ;../src/library/library.c:36: return &global_variables;
-   0000 21r00r00      [10]   69 	ld	hl,#_global_variables
-                     0003    70 	C$library.c$37$1$51	= .
-                             71 	.globl	C$library.c$37$1$51
-                     0003    72 	XG$globals$0$0	= .
-                             73 	.globl	XG$globals$0$0
-   0003 C9            [10]   74 	ret
-                     0004    75 	G$processEvents$0$0	= .
-                             76 	.globl	G$processEvents$0$0
-                     0004    77 	C$library.c$39$1$51	= .
-                             78 	.globl	C$library.c$39$1$51
-                             79 ;../src/library/library.c:39: inline void processEvents()
-                             80 ;	---------------------------------
-                             81 ; Function processEvents
-                             82 ; ---------------------------------
-   0004                      83 _processEvents::
-                     0004    84 	C$library.c$41$1$52	= .
-                             85 	.globl	C$library.c$41$1$52
-                             86 ;../src/library/library.c:41: uartProcessEvents();
-   0004 CDr00r00      [17]   87 	call	_uartProcessEvents
-                     0007    88 	C$library.c$42$1$52	= .
-                             89 	.globl	C$library.c$42$1$52
-                             90 ;../src/library/library.c:42: hdmiProcessEvents();
-   0007 CDr00r00      [17]   91 	call	_hdmiProcessEvents
-                     000A    92 	C$library.c$43$1$52	= .
-                             93 	.globl	C$library.c$43$1$52
-                             94 ;../src/library/library.c:43: kbdProcessEvents();
-                     000A    95 	C$library.c$44$1$52	= .
-                             96 	.globl	C$library.c$44$1$52
-                     000A    97 	XG$processEvents$0$0	= .
-                             98 	.globl	XG$processEvents$0$0
-   000A C3r00r00      [10]   99 	jp  _kbdProcessEvents
-                     000D   100 	G$console$0$0	= .
-                            101 	.globl	G$console$0$0
-                     000D   102 	C$library.c$47$1$52	= .
-                            103 	.globl	C$library.c$47$1$52
-                            104 ;../src/library/library.c:47: void console(char *msg)
-                            105 ;	---------------------------------
-                            106 ; Function console
-                            107 ; ---------------------------------
-   000D                     108 _console::
-   000D DD E5         [15]  109 	push	ix
-   000F DD 21 00 00   [14]  110 	ld	ix,#0
-   0013 DD 39         [15]  111 	add	ix,sp
-   0015 F5            [11]  112 	push	af
-   0016 F5            [11]  113 	push	af
-                     0017   114 	C$library.c$49$1$54	= .
-                            115 	.globl	C$library.c$49$1$54
-                            116 ;../src/library/library.c:49: printf("[%08ld] %s\n", msgno++, msg);
-   0017 21 00 00      [10]  117 	ld	hl, #0
-   001A 39            [11]  118 	add	hl, sp
-   001B EB            [ 4]  119 	ex	de, hl
-   001C 21r00r00      [10]  120 	ld	hl, #_msgno
-   001F 01 04 00      [10]  121 	ld	bc, #4
-   0022 ED B0         [21]  122 	ldir
-   0024 FD 21r00r00   [14]  123 	ld	iy,#_msgno
-   0028 FD 34 00      [23]  124 	inc	0 (iy)
-   002B 20 0D         [12]  125 	jr	NZ,00103$
-   002D FD 34 01      [23]  126 	inc	1 (iy)
-   0030 20 08         [12]  127 	jr	NZ,00103$
-   0032 FD 34 02      [23]  128 	inc	2 (iy)
-   0035 20 03         [12]  129 	jr	NZ,00103$
-   0037 FD 34 03      [23]  130 	inc	3 (iy)
-   003A                     131 00103$:
-   003A DD 6E 04      [19]  132 	ld	l,4 (ix)
-   003D DD 66 05      [19]  133 	ld	h,5 (ix)
-   0040 E5            [11]  134 	push	hl
-   0041 DD 6E FE      [19]  135 	ld	l,-2 (ix)
-   0044 DD 66 FF      [19]  136 	ld	h,-1 (ix)
-   0047 E5            [11]  137 	push	hl
-   0048 DD 6E FC      [19]  138 	ld	l,-4 (ix)
-   004B DD 66 FD      [19]  139 	ld	h,-3 (ix)
-   004E E5            [11]  140 	push	hl
-   004F 21r60r00      [10]  141 	ld	hl,#___str_0
-   0052 E5            [11]  142 	push	hl
-   0053 CDr00r00      [17]  143 	call	_printf
-   0056 21 08 00      [10]  144 	ld	hl,#8
-   0059 39            [11]  145 	add	hl,sp
-   005A F9            [ 6]  146 	ld	sp,hl
-   005B DD F9         [10]  147 	ld	sp, ix
-   005D DD E1         [14]  148 	pop	ix
-                     005F   149 	C$library.c$50$1$54	= .
-                            150 	.globl	C$library.c$50$1$54
-                     005F   151 	XG$console$0$0	= .
-                            152 	.globl	XG$console$0$0
-   005F C9            [10]  153 	ret
-                     0060   154 Flibrary$__str_0$0$0 == .
-   0060                     155 ___str_0:
-   0060 5B 25 30 38 6C 64   156 	.ascii "[%08ld] %s"
+                             53 	.area _HOME
+                             54 ;--------------------------------------------------------
+                             55 ; code
+                             56 ;--------------------------------------------------------
+                             57 	.area _CODE
+                     0000    58 	G$globals$0$0	= .
+                             59 	.globl	G$globals$0$0
+                     0000    60 	C$library.c$34$0$0	= .
+                             61 	.globl	C$library.c$34$0$0
+                             62 ;../src/library/library.c:34: inline struct global_vars * globals()
+                             63 ;	---------------------------------
+                             64 ; Function globals
+                             65 ; ---------------------------------
+   0000                      66 _globals::
+                     0000    67 	C$library.c$36$1$53	= .
+                             68 	.globl	C$library.c$36$1$53
+                             69 ;../src/library/library.c:36: return &global_variables;
+   0000 21r00r00      [10]   70 	ld	hl,#_global_variables
+                     0003    71 	C$library.c$37$1$53	= .
+                             72 	.globl	C$library.c$37$1$53
+                     0003    73 	XG$globals$0$0	= .
+                             74 	.globl	XG$globals$0$0
+   0003 C9            [10]   75 	ret
+                     0004    76 	G$processEvents$0$0	= .
+                             77 	.globl	G$processEvents$0$0
+                     0004    78 	C$library.c$39$1$53	= .
+                             79 	.globl	C$library.c$39$1$53
+                             80 ;../src/library/library.c:39: inline void processEvents()
+                             81 ;	---------------------------------
+                             82 ; Function processEvents
+                             83 ; ---------------------------------
+   0004                      84 _processEvents::
+                     0004    85 	C$library.c$41$1$54	= .
+                             86 	.globl	C$library.c$41$1$54
+                             87 ;../src/library/library.c:41: uartProcessEvents();
+   0004 CDr00r00      [17]   88 	call	_uartProcessEvents
+                     0007    89 	C$library.c$42$1$54	= .
+                             90 	.globl	C$library.c$42$1$54
+                             91 ;../src/library/library.c:42: hdmiProcessEvents();
+   0007 CDr00r00      [17]   92 	call	_hdmiProcessEvents
+                     000A    93 	C$library.c$43$1$54	= .
+                             94 	.globl	C$library.c$43$1$54
+                             95 ;../src/library/library.c:43: kbdProcessEvents();
+   000A CDr00r00      [17]   96 	call	_kbdProcessEvents
+                     000D    97 	C$library.c$44$1$54	= .
+                             98 	.globl	C$library.c$44$1$54
+                             99 ;../src/library/library.c:44: fdcProcessEvents();
+                     000D   100 	C$library.c$45$1$54	= .
+                            101 	.globl	C$library.c$45$1$54
+                     000D   102 	XG$processEvents$0$0	= .
+                            103 	.globl	XG$processEvents$0$0
+   000D C3r00r00      [10]  104 	jp  _fdcProcessEvents
+                     0010   105 	G$console$0$0	= .
+                            106 	.globl	G$console$0$0
+                     0010   107 	C$library.c$48$1$54	= .
+                            108 	.globl	C$library.c$48$1$54
+                            109 ;../src/library/library.c:48: void console(char *msg)
+                            110 ;	---------------------------------
+                            111 ; Function console
+                            112 ; ---------------------------------
+   0010                     113 _console::
+   0010 DD E5         [15]  114 	push	ix
+   0012 DD 21 00 00   [14]  115 	ld	ix,#0
+   0016 DD 39         [15]  116 	add	ix,sp
+   0018 F5            [11]  117 	push	af
+   0019 F5            [11]  118 	push	af
+                     001A   119 	C$library.c$50$1$56	= .
+                            120 	.globl	C$library.c$50$1$56
+                            121 ;../src/library/library.c:50: printf("[%08ld] %s\n", msgno++, msg);
+   001A 21 00 00      [10]  122 	ld	hl, #0
+   001D 39            [11]  123 	add	hl, sp
+   001E EB            [ 4]  124 	ex	de, hl
+   001F 21r00r00      [10]  125 	ld	hl, #_msgno
+   0022 01 04 00      [10]  126 	ld	bc, #4
+   0025 ED B0         [21]  127 	ldir
+   0027 FD 21r00r00   [14]  128 	ld	iy,#_msgno
+   002B FD 34 00      [23]  129 	inc	0 (iy)
+   002E 20 0D         [12]  130 	jr	NZ,00103$
+   0030 FD 34 01      [23]  131 	inc	1 (iy)
+   0033 20 08         [12]  132 	jr	NZ,00103$
+   0035 FD 34 02      [23]  133 	inc	2 (iy)
+   0038 20 03         [12]  134 	jr	NZ,00103$
+   003A FD 34 03      [23]  135 	inc	3 (iy)
+   003D                     136 00103$:
+   003D DD 6E 04      [19]  137 	ld	l,4 (ix)
+   0040 DD 66 05      [19]  138 	ld	h,5 (ix)
+   0043 E5            [11]  139 	push	hl
+   0044 DD 6E FE      [19]  140 	ld	l,-2 (ix)
+   0047 DD 66 FF      [19]  141 	ld	h,-1 (ix)
+   004A E5            [11]  142 	push	hl
+   004B DD 6E FC      [19]  143 	ld	l,-4 (ix)
+   004E DD 66 FD      [19]  144 	ld	h,-3 (ix)
+   0051 E5            [11]  145 	push	hl
+   0052 21r63r00      [10]  146 	ld	hl,#___str_0
+   0055 E5            [11]  147 	push	hl
+   0056 CDr00r00      [17]  148 	call	_printf
+   0059 21 08 00      [10]  149 	ld	hl,#8
+   005C 39            [11]  150 	add	hl,sp
+   005D F9            [ 6]  151 	ld	sp,hl
+   005E DD F9         [10]  152 	ld	sp, ix
+   0060 DD E1         [14]  153 	pop	ix
+                     0062   154 	C$library.c$51$1$56	= .
+                            155 	.globl	C$library.c$51$1$56
+                     0062   156 	XG$console$0$0	= .
+                            157 	.globl	XG$console$0$0
+   0062 C9            [10]  158 	ret
+                     0063   159 Flibrary$__str_0$0$0 == .
+   0063                     160 ___str_0:
+   0063 5B 25 30 38 6C 64   161 	.ascii "[%08ld] %s"
         5D 20 25 73
-   006A 0A                  157 	.db 0x0a
-   006B 00                  158 	.db 0x00
-                     006C   159 	G$ul$0$0	= .
-                            160 	.globl	G$ul$0$0
-                     006C   161 	C$library.c$53$1$54	= .
-                            162 	.globl	C$library.c$53$1$54
-                            163 ;../src/library/library.c:53: void ul()
-                            164 ;	---------------------------------
-                            165 ; Function ul
-                            166 ; ---------------------------------
-   006C                     167 _ul::
-                     006C   168 	C$library.c$56$1$55	= .
-                            169 	.globl	C$library.c$56$1$55
-                            170 ;../src/library/library.c:56: for( cntr=0; cntr<_STD_WIDTH_ - 1; cntr++) putchar('=');
-   006C 01 00 00      [10]  171 	ld	bc,#0x0000
-   006F                     172 00102$:
-   006F C5            [11]  173 	push	bc
-   0070 3E 3D         [ 7]  174 	ld	a,#0x3d
-   0072 F5            [11]  175 	push	af
-   0073 33            [ 6]  176 	inc	sp
-   0074 CDr00r00      [17]  177 	call	_putchar
-   0077 33            [ 6]  178 	inc	sp
-   0078 C1            [10]  179 	pop	bc
-   0079 03            [ 6]  180 	inc	bc
-   007A 79            [ 4]  181 	ld	a,c
-   007B D6 4F         [ 7]  182 	sub	a, #0x4f
-   007D 78            [ 4]  183 	ld	a,b
-   007E 17            [ 4]  184 	rla
-   007F 3F            [ 4]  185 	ccf
-   0080 1F            [ 4]  186 	rra
-   0081 DE 80         [ 7]  187 	sbc	a, #0x80
-   0083 38 EA         [12]  188 	jr	C,00102$
-                     0085   189 	C$library.c$57$1$55	= .
-                            190 	.globl	C$library.c$57$1$55
-                            191 ;../src/library/library.c:57: putchar('\n');
-   0085 3E 0A         [ 7]  192 	ld	a,#0x0a
-   0087 F5            [11]  193 	push	af
-   0088 33            [ 6]  194 	inc	sp
-   0089 CDr00r00      [17]  195 	call	_putchar
-   008C 33            [ 6]  196 	inc	sp
-                     008D   197 	C$library.c$58$1$55	= .
-                            198 	.globl	C$library.c$58$1$55
-                     008D   199 	XG$ul$0$0	= .
-                            200 	.globl	XG$ul$0$0
-   008D C9            [10]  201 	ret
-                            202 	.area _CODE
-                            203 	.area _INITIALIZER
-                     0000   204 Flibrary$__xinit_msgno$0$0 == .
-   0000                     205 __xinit__msgno:
-   0000 00 00 00 00         206 	.byte #0x00,#0x00,#0x00,#0x00	; 0
-                            207 	.area _CABS (ABS)
+   006D 0A                  162 	.db 0x0a
+   006E 00                  163 	.db 0x00
+                     006F   164 	G$ul$0$0	= .
+                            165 	.globl	G$ul$0$0
+                     006F   166 	C$library.c$54$1$56	= .
+                            167 	.globl	C$library.c$54$1$56
+                            168 ;../src/library/library.c:54: void ul()
+                            169 ;	---------------------------------
+                            170 ; Function ul
+                            171 ; ---------------------------------
+   006F                     172 _ul::
+                     006F   173 	C$library.c$57$1$57	= .
+                            174 	.globl	C$library.c$57$1$57
+                            175 ;../src/library/library.c:57: for( cntr=0; cntr<_STD_WIDTH_ - 1; cntr++) putchar('=');
+   006F 01 00 00      [10]  176 	ld	bc,#0x0000
+   0072                     177 00102$:
+   0072 C5            [11]  178 	push	bc
+   0073 3E 3D         [ 7]  179 	ld	a,#0x3d
+   0075 F5            [11]  180 	push	af
+   0076 33            [ 6]  181 	inc	sp
+   0077 CDr00r00      [17]  182 	call	_putchar
+   007A 33            [ 6]  183 	inc	sp
+   007B C1            [10]  184 	pop	bc
+   007C 03            [ 6]  185 	inc	bc
+   007D 79            [ 4]  186 	ld	a,c
+   007E D6 4F         [ 7]  187 	sub	a, #0x4f
+   0080 78            [ 4]  188 	ld	a,b
+   0081 17            [ 4]  189 	rla
+   0082 3F            [ 4]  190 	ccf
+   0083 1F            [ 4]  191 	rra
+   0084 DE 80         [ 7]  192 	sbc	a, #0x80
+   0086 38 EA         [12]  193 	jr	C,00102$
+                     0088   194 	C$library.c$58$1$57	= .
+                            195 	.globl	C$library.c$58$1$57
+                            196 ;../src/library/library.c:58: putchar('\n');
+   0088 3E 0A         [ 7]  197 	ld	a,#0x0a
+   008A F5            [11]  198 	push	af
+   008B 33            [ 6]  199 	inc	sp
+   008C CDr00r00      [17]  200 	call	_putchar
+   008F 33            [ 6]  201 	inc	sp
+                     0090   202 	C$library.c$59$1$57	= .
+                            203 	.globl	C$library.c$59$1$57
+                     0090   204 	XG$ul$0$0	= .
+                            205 	.globl	XG$ul$0$0
+   0090 C9            [10]  206 	ret
+                            207 	.area _CODE
+                            208 	.area _INITIALIZER
+                     0000   209 Flibrary$__xinit_msgno$0$0 == .
+   0000                     210 __xinit__msgno:
+   0000 00 00 00 00         211 	.byte #0x00,#0x00,#0x00,#0x00	; 0
+                            212 	.area _CABS (ABS)

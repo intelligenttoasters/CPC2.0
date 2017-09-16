@@ -254,7 +254,6 @@ set_global_assignment -name VERILOG_FILE ../../rtl/fifo.v
 set_global_assignment -name SOURCE_FILE CPC2.qsf
 set_global_assignment -name SDC_FILE CPC2.sdc
 set_global_assignment -name VERILOG_FILE ../../rtl/CPC2.v
-set_global_assignment -name QIP_FILE ../../rtl/Altera/ram.qip
 set_global_assignment -name CDF_FILE ProgramChain.cdf
 set_global_assignment -name VERILOG_FILE ../../rtl/support_dma.v
 set_global_assignment -name QIP_FILE ../../rtl/Altera/master_clock.qip
@@ -264,4 +263,22 @@ set_global_assignment -name VERILOG_FILE ../../rtl/usart.v
 set_global_assignment -name VERILOG_FILE ../../rtl/keyboard.v
 set_global_assignment -name MIF_FILE ../../rtl/Altera/../../../roms/custom.mif
 set_global_assignment -name VERILOG_FILE ../../rtl/i2s_audio.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/ram2.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/fdc.v
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH FDC -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME FDC -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME fdc -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 us" -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sim_fdc -section_id FDC
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY OFF -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE "../../../Eclipse/CPC2-Sim/sim_fdc.v" -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/cpc/fdc.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_alu.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_core.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_mcode.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_reg.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80s.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/fifo.v -section_id FDC
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT simulation/modelsim/wave.do -section_id eda_simulation
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -48,6 +48,9 @@ void init()
 
 	// Initialise the usb interface
 	kbdInit();
+
+	// Initialize the FDC
+	fdcInit();
 }
 
 // Main function
@@ -58,32 +61,15 @@ void main(void)
 	// Run system intitialization
 	init();
 
-/*
-	for( xx = 0; xx<250; xx++ )
-		processEvents();
-
-	// Scan the tape port
-	cc = 0; dd = 0;
-	while( true )
-	{
-		// Add the bit
-//		dd = (dd << 1) | ( IN(0x40) & 1 );
-		cc = (cc<5) ? cc + 1 : 0;	// 0-5
-		if( cc == 0 )
-		{
-//			printf("%c",dd+32);
-			printf("%x",(IN(0x40)>>4)&3);
-			dd = 0;
-		}
-	}
-*/
-
-//	printf("CTS Calculated : %02x %02x %02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06));
 	// Echo the characters back to the user
 	while( true )
 	{
 		while(uartAvail() == 0) processEvents();
 		c = getchar();
+
+		if( c == 'm' ) { fdcMount(); continue; }
+		if( c == 'u' ) { fdcUnmount(); continue; }
+
 		hdmi_write(0x96,0);
 		printf("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
 		putchar( c );

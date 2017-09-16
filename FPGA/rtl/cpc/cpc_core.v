@@ -42,14 +42,29 @@ module cpc_core (
 		output [15:0]	video_offset_o,
 		// Keyboard signals
 		input	[79:0] keyboard_i,
-		output [7:0] audio_o
+		output [7:0] audio_o,
+		// Shared ROM data
+		input [7:0] shared_rom_data_i,
+		output [14:0] shared_rom_addr_o,
+		// FDC Interface
+		output reg fdc_motor = 0,
+		output fdc_activity,
+		// Support CPU Signals for FDC
+		input 			S_clk_i,
+		input [3:0]		S_A_i,
+		input [7:0]		S_D_i,
+		output [7:0]		S_D_o,
+		input				S_rd_i,
+		input				S_wr_i,
+		input				S_enable_i,
+		output			S_fdc_int_o
 	);
 
 	// Wire definitions ===========================================================================
 	wire [15:0] A;
-	wire [7:0] DO, DI, l_rom_o, u_rom_o, u_rom0_o, ram_o, vram_o, Dpio, D8255_o;
-	wire [7:0] ppia_o, ppia_i, ppic_o, u_rom5_o, u_rom6_o;
-	wire nWR, nRD, nMREQ, nIORQ, nROMEN, nM1, cpu_int, l_rom_e, u_rom_e, ram_e;
+	wire [7:0] DO, DI, l_rom_o, u_rom_o, u_rom0_o, ram_o, vram_o, Dpio, D8255_o, Dfdc;
+	wire [7:0] ppia_o, ppia_i, ppic_o, u_rom5_o, u_rom6_o, u_rom7_o, fdc_o;
+	wire nWR, nRD, nMREQ, nIORQ, nROMEN, nM1, cpu_int, l_rom_e, u_rom_e, ram_e, fdc_e;
 	wire vsync_signal, hsync_signal;
 	wire nIORD = (nIORQ | nRD);
 	wire nIOWR = (nIORQ | nWR);
@@ -66,11 +81,12 @@ module cpc_core (
 	wire printer_port_e = (A[12] == `LO);
 	wire [1:0] pio_selected_port;
 	wire [7:0] portc_dat;	// Used to split port
-
+	wire D8255_e = ( A[11] == `LO );
+	
 	// Registers ==================================================================================
 	
 	// Assignments ================================================================================
-	
+
 	// Module connections =========================================================================
 	
 	// Simulation branches and control ============================================================
@@ -104,23 +120,32 @@ module cpc_core (
 	// Data bus arbiter
 	dat_i_arbiter di_arbiter(
 		.D( DI ),
+		// LROM
 		.l_rom(l_rom_o),
 		.l_rom_e(l_rom_e),
+		// UROM
 		.u_rom(u_rom_o),
 		.u_rom_e(u_rom_e),
+		// RAM
 		.ram(ram_o),
 		.ram_e(ram_e),
+		// PIO
 		.pio8255(D8255_o),
-		.pio8255_e( !A[11] && !nIORD ),
+		.pio8255_e( /*~nIORD &*/ D8255_e ),
+		// Printer
 		.io(Dpio),
-		.io_e(!nIORD && printer_port_e)
+		.io_e(/*~nIORD &*/ printer_port_e),
+		// FDC
+		.fdc(fdc_o),
+		.fdc_e(/*~nIORD &*/ fdc_e)
 		);
 		
 	// Arbiter rules
-	assign l_rom_e = (A[15:14] == 2'b00) && (nROMEN == 0);
-	assign u_rom_e = (A[15:14] == 2'b11) && (nROMEN == 0);
 	assign ram_e = !nMEMRD;
-
+	assign l_rom_e = (A[15:14] == 2'b00) && (nROMEN == 0) && ram_e;
+	assign u_rom_e = (A[15:14] == 2'b11) && (nROMEN == 0) && ram_e;
+	assign fdc_e = (A[15:1] == (16'hfb7f>>1)) && ~nIORD;
+	
 	// CPC Ram
 	dpram cpc_ram(
 		.address_a(A),
@@ -136,9 +161,8 @@ module cpc_core (
 		);	
 		
 	rom #(
-		.init_file("../../../roms/lower.mif"),
-//		.init_file("../../../roms/OS464-edited.mif"),
-		.ram_type("M10K")
+		.init_file("../../../roms/cpc6128.mif"),
+		.ram_type("AUTO")
 		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = lrom")
 		) 
 	lower_rom(
@@ -147,8 +171,8 @@ module cpc_core (
 		.q(l_rom_o));	
 
 	rom #(
-		.init_file("../../../roms/upper.mif"),
- 		.ram_type("M10K")
+		.init_file("../../../roms/basic1-1.mif"),
+ 		.ram_type("AUTO")
 		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = ur00")
 		) 
 	upper_rom0(
@@ -156,32 +180,27 @@ module cpc_core (
 		.clock(clk_16),
 		.q(u_rom0_o));	
 
-	small_rom #(
-		.init_file("../../../roms/custom.mif"),
-		.ram_type("M10K")
-		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = max")
-		)
-	upper_rom5(
-		.address(A[13:0]),
-		.clock(clk_16),
-		.q(u_rom5_o));	
-
-	rom #(
-		.init_file("../../../roms/maxam.mif"),
-		.ram_type("MLAB")
-		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = max")
-		) 
-	upper_rom6(
-		.address(A[13:0]),
-		.clock(clk_16),
-		.q(u_rom6_o));	
+	assign shared_rom_addr_o = {(romsel_o == 4'd7) ? 1'b1 : 1'b0, A[13:0]};
 		
 	romsel romsel(
 		.selector_i(romsel_o),
 		.d_o( u_rom_o ),
 		.d0_i( u_rom0_o ),
-		.d5_i( u_rom5_o ),
-		.d6_i( u_rom6_o )
+		.d1_i( 8'hff ),
+		.d2_i( 8'hff ),
+		.d3_i( 8'hff ),
+		.d4_i( 8'hff ),
+		.d5_i( 8'hff ),
+		.d6_i( shared_rom_data_i ),
+		.d7_i( shared_rom_data_i ),
+		.d8_i( 8'hff ),
+		.d9_i( 8'hff ),
+		.d10_i( 8'hff ),
+		.d11_i( 8'hff ),
+		.d12_i( 8'hff ),
+		.d13_i( 8'hff ),
+		.d14_i( 8'hff ),
+		.d15_i( 8'hff )
 		);
 
 	// CRTC 6845
@@ -306,5 +325,42 @@ YM2149 sounddev(
   .CLK(clk_1)
   );
 `endif
+
+	// FDC Logic
+	fdc floppy (
+		// CPC Interface
+		.clk_i(clk_4),
+		.reset_i(~nreset_i),
+		.enable_i(A[15:1] == (16'hfb7f>>1)),
+		.data_i(DO),
+		.data_o(fdc_o),
+		.regsel_i(A[0]),
+		.rd_i(!nIORD),
+		.wr_i(!nIOWR),
+		.activity_o(fdc_activity),
+		.motor_i(fdc_motor),
+		// Drive interface
+		.sup_clk_i(S_clk_i),
+		.A(S_A_i),
+		.D_i(S_D_i),
+		.D_o(S_D_o),
+		.sup_rd_i(S_rd_i),
+		.sup_wr_i(S_wr_i),
+		.sup_enable_i(S_enable_i),
+		.sup_int_o(S_fdc_int_o)	// Interrupt		
+	);
+
+
+	// Motor control
+	reg [1:0] track_motor_rise = 2'd0;
+
+	always @(posedge clk_16)
+		track_motor_rise = {track_motor_rise[0], !nIOWR && (A[15:0] == 16'hfa7e)};
+	
+	wire motor_rise = (track_motor_rise == 2'b01);
+	
+	always @(negedge clk_16)
+		if( motor_rise ) fdc_motor <= DO[0];
+
 endmodule
 

@@ -2,7 +2,7 @@ M:interrupt
 S:Linterrupt.uartWrite$data$1$9({1}SC:U),B,1,4
 F:G$nmi_handler$0$0({2}DF,SV:S),C,0,0,0,0,0
 F:G$int_handler$0$0({2}DF,SV:S),C,0,0,0,0,0
-S:Linterrupt.int_handler$int_src$1$44({1}SC:U),R,0,0,[]
+S:Linterrupt.int_handler$int_src$1$46({1}SC:U),R,0,0,[]
 T:Finterrupt$usbGeneric[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)]
 T:Finterrupt$usbHID[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)({2}S:S$version$0$0({2}SI:U),Z,0,0)({4}S:S$country$0$0({1}SC:U),Z,0,0)({5}S:S$count$0$0({1}SC:U),Z,0,0)({6}S:S$descType$0$0({1}SC:U),Z,0,0)({7}S:S$descLength$0$0({2}SI:U),Z,0,0)]
 T:Finterrupt$usbEndPt[({0}S:S$length$0$0({1}SC:U),Z,0,0)({1}S:S$type$0$0({1}SC:U),Z,0,0)({2}S:S$ep$0$0({1}SC:U),Z,0,0)({3}S:S$attr$0$0({1}SC:U),Z,0,0)({4}S:S$maxpkt$0$0({1}SC:U),Z,0,0)({5}S:S$interval$0$0({1}SC:U),Z,0,0)]
@@ -51,5 +51,9 @@ S:G$usbGetString$0$0({2}DF,DG,SC:U),C,0,0
 S:G$setConfig$0$0({2}DF,SC:U),C,0,0
 S:G$enumerate$0$0({2}DF,SC:U),C,0,0
 S:G$getReport$0$0({2}DF,DG,SC:U),C,0,0
+S:G$fdcProcessEvents$0$0({2}DF,SV:S),C,0,0
+S:G$fdcInit$0$0({2}DF,SV:S),C,0,0
+S:G$fdcMount$0$0({2}DF,SV:S),C,0,0
+S:G$fdcUnmount$0$0({2}DF,SV:S),C,0,0
 S:G$nmi_handler$0$0({2}DF,SV:S),C,0,0
 S:G$int_handler$0$0({2}DF,SV:S),C,0,0

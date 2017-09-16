@@ -42,9 +42,13 @@ module dat_i_arbiter(
 		input [7:0] pio8255,
 		input pio8255_e,
 		
-		// IO
+		// Printer IO
 		input [7:0] io,
-		input io_e
+		input io_e,
+		
+		// FDC IO
+		input [7:0] fdc,
+		input fdc_e
 	);
 
 	// Wire definitions ===========================================================================
@@ -62,7 +66,8 @@ module dat_i_arbiter(
 	assign D =  (l_rom_e) ? l_rom :
 					(u_rom_e) ? u_rom :
 					(ram_e) ? ram :
-					(io_e) ? io :
 					(pio8255_e) ? pio8255 :
+					(io_e) ? io :
+					(fdc_e) ? fdc :
 					8'd255;
 endmodule

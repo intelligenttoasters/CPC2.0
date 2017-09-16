@@ -41,6 +41,7 @@ inline void processEvents()
 	uartProcessEvents();
 	hdmiProcessEvents();
 	kbdProcessEvents();
+	fdcProcessEvents();
 }
 
 // Log a console message

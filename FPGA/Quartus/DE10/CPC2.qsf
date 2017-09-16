@@ -435,46 +435,6 @@ set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id auto_signaltap_0
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
-set_global_assignment -name VERILOG_FILE ../../rtl/usart.v
-set_global_assignment -name QIP_FILE mmio_if/synthesis/mmio_if.qip
-set_global_assignment -name VERILOG_FILE mmio.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/ppi8255.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/crtc6845.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/romsel.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/rom.v
-set_global_assignment -name QIP_FILE ../../rtl/cpc/rom.qip
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dpram.v
-set_global_assignment -name QIP_FILE ../../rtl/cpc/dpram.qip
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/a40010.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dat_i_arbiter.v
-set_global_assignment -name VERILOG_FILE ../../rtl/cpc/cpc_core.v
-set_global_assignment -name VERILOG_FILE ../../rtl/interrupt.v
-set_global_assignment -name VERILOG_FILE ../../rtl/i2c/timescale.v
-set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_top.v
-set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_defines.v
-set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_byte_ctrl.v
-set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_bit_ctrl.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80s.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80n.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_reg.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_mcode.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_core.v
-set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_alu.v
-set_global_assignment -name VERILOG_FILE ../../rtl/support_io_if.v
-set_global_assignment -name VERILOG_FILE ../../rtl/support_memory_if.v
-set_global_assignment -name VERILOG_FILE ../../rtl/global_reset.v
-set_global_assignment -name VERILOG_FILE ../../rtl/fifo.v
-set_global_assignment -name SOURCE_FILE CPC2.qsf
-set_global_assignment -name SDC_FILE CPC2.sdc
-set_global_assignment -name VERILOG_FILE ../../rtl/CPC2.v
-set_global_assignment -name QIP_FILE ../../rtl/Altera/ram.qip
-set_global_assignment -name VERILOG_FILE ../../rtl/support_dma.v
-set_global_assignment -name QIP_FILE ../../rtl/Altera/master_clock.qip
-set_global_assignment -name SIP_FILE ../../rtl/Altera/master_clock.sip
-set_global_assignment -name VERILOG_FILE ../../rtl/video.v
-set_global_assignment -name VERILOG_FILE HAL.v
-set_global_assignment -name CDF_FILE Chain1.cdf
-set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
@@ -826,5 +786,50 @@ set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to auto_signaltap_0|gnd -section_id auto_signaltap_0
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to auto_signaltap_0|vcc -section_id auto_signaltap_0
+set_global_assignment -name VERILOG_FILE ../../rtl/Altera/ram2.v
+set_global_assignment -name VHDL_FILE ../../rtl/cpc/YM2149/YM2149_linmix.vhd
+set_global_assignment -name VERILOG_FILE ../../rtl/i2s_audio.v
+set_global_assignment -name VERILOG_FILE ../../rtl/keyboard.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/fdc.v
+set_global_assignment -name VERILOG_FILE ../../rtl/usart.v
+set_global_assignment -name QIP_FILE mmio_if/synthesis/mmio_if.qip
+set_global_assignment -name VERILOG_FILE mmio.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/ppi8255.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/crtc6845.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/romsel.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/rom.v
+set_global_assignment -name QIP_FILE ../../rtl/cpc/rom.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dpram.v
+set_global_assignment -name QIP_FILE ../../rtl/cpc/dpram.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/a40010.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dat_i_arbiter.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/cpc_core.v
+set_global_assignment -name VERILOG_FILE ../../rtl/interrupt.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/timescale.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_top.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_defines.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_byte_ctrl.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_bit_ctrl.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80s.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80n.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_reg.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_mcode.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_core.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_alu.v
+set_global_assignment -name VERILOG_FILE ../../rtl/support_io_if.v
+set_global_assignment -name VERILOG_FILE ../../rtl/support_memory_if.v
+set_global_assignment -name VERILOG_FILE ../../rtl/global_reset.v
+set_global_assignment -name VERILOG_FILE ../../rtl/fifo.v
+set_global_assignment -name SOURCE_FILE CPC2.qsf
+set_global_assignment -name SDC_FILE CPC2.sdc
+set_global_assignment -name VERILOG_FILE ../../rtl/CPC2.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/ram.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/support_dma.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/master_clock.qip
+set_global_assignment -name SIP_FILE ../../rtl/Altera/master_clock.sip
+set_global_assignment -name VERILOG_FILE ../../rtl/video.v
+set_global_assignment -name VERILOG_FILE HAL.v
+set_global_assignment -name CDF_FILE Chain1.cdf
+set_global_assignment -name SIGNALTAP_FILE stp1.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

@@ -23,9 +23,10 @@
  */
 `timescale 1ns/1ns
 
-module support_memory_if #( parameter wp_address = 0 )
+module support_memory_if //#( parameter wp_address = 0 )
 (
 	input clk,
+	input [7:0] wp_address,		// Upper 8-bits of non-write protected space
 	// ============= Internal support Ram =============
 	input [15:0] 	support_A,
 	input [7:0] 	support_Din,
@@ -35,10 +36,13 @@ module support_memory_if #( parameter wp_address = 0 )
 	input				sys_en,
 	input [15:0] 	sys_A,
 	input [7:0] 	sys_data,
-	input 			sys_wr
+	input 			sys_wr,
+	// ============= Internal support Ram - Write interface =============
+	input	[14:0]	rom_A,
+	output [7:0]	rom_D
 );
 
-	wire allow_write = (support_A >= wp_address);
+	wire allow_write = (support_A[15:8] >= wp_address);
 	
 	wire [15:0] adr;
 	wire [7:0]	dat;
@@ -47,7 +51,8 @@ module support_memory_if #( parameter wp_address = 0 )
 	assign adr = (sys_en) ? sys_A : support_A;
 	assign dat = (sys_en) ? sys_data : support_Din;
 	assign wr = (sys_en) ? sys_wr : support_wr;
-	
+
+/*	Single port RAM
 	ram r (
 		.address(adr),
 		.clock(clk),
@@ -55,4 +60,21 @@ module support_memory_if #( parameter wp_address = 0 )
 		// Write protect doesn't apply to system interface
 		.wren(wr & (allow_write | sys_en)),	
 		.q(support_Dout));	
+*/
+
+// Dual port ram - sharing top of memory with ROM
+	ram2 r (
+	.address_a ( adr ),
+	.address_b ( {1'b1,rom_A} ),
+	.clock_a ( clk ),
+	.clock_b ( clk ),
+	.data_a ( dat ),
+	.data_b ( 8'd0 ),
+	.wren_a ( wr & (allow_write | sys_en) ),
+	.wren_b ( 1'b0 ),
+	.q_a ( support_Dout ),
+	.q_b ( rom_D )
+	);	
+
+		
 endmodule

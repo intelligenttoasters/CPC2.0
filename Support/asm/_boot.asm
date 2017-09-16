@@ -24,7 +24,8 @@
 	.area _VECT0 (ABS)
 	.org	0x0000
 
-	ld sp,#0h0000	; Stack is top of memory
+;	ld sp,#0h0000	; Stack is top of memory
+	ld sp,#0h8000	; Stack is before shared memory space
 	jp BOOTSYS
 ;	jp debug
 
@@ -104,6 +105,7 @@ _CODE_START = .
 s__INITIALIZER = .
 	.area	_END_INITIALIZER
 e__INITIALIZER = .
+;	.ds		256				; Ensure we're in a new page for write-protect
 	.area	_DATA
 s__DATA = .
 	.area	_INITIALIZED
@@ -141,11 +143,18 @@ gsinit_next:
 	.area   _SYSTEM_CODE
 
 BOOTSYS:
+	; Write protect the memory
+	ld a,#(s__DATA>>8)
+	out(0x50),a				; Memory controller write protect boundary
+
+	; Now initialize
 	call CLRREG
 	im 1
 	call gsinit
 	ld c, #0x10	; Clear the interrupt register
 	in a,(c)
+
+	; Start main process
 ;	ei
 	call _main
 	jr #BOOTSYS

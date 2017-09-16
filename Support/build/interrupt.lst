@@ -68,19 +68,19 @@
                              68 ; Function int_handler
                              69 ; ---------------------------------
    0001                      70 _int_handler::
-                     0001    71 	C$interrupt.c$39$1$44	= .
-                             72 	.globl	C$interrupt.c$39$1$44
+                     0001    71 	C$interrupt.c$39$1$46	= .
+                             72 	.globl	C$interrupt.c$39$1$46
                              73 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
    0001 3E 10         [ 7]   74 	ld	a,#0x10
    0003 F5            [11]   75 	push	af
    0004 33            [ 6]   76 	inc	sp
    0005 CDr00r00      [17]   77 	call	_IN
    0008 33            [ 6]   78 	inc	sp
-                     0009    79 	C$interrupt.c$41$1$44	= .
-                             80 	.globl	C$interrupt.c$41$1$44
+                     0009    79 	C$interrupt.c$41$1$46	= .
+                             80 	.globl	C$interrupt.c$41$1$46
                              81 ;../src/interrupt.c:41: if( int_src & INT_UART )
-                     0009    82 	C$interrupt.c$44$1$44	= .
-                             83 	.globl	C$interrupt.c$44$1$44
+                     0009    82 	C$interrupt.c$44$1$46	= .
+                             83 	.globl	C$interrupt.c$44$1$46
                      0009    84 	XG$int_handler$0$0	= .
                              85 	.globl	XG$int_handler$0$0
    0009 C9            [10]   86 	ret

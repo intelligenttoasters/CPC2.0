@@ -1,3 +1,5 @@
+`timescale 1ns/1ns
+
 //
 // TV80 8-Bit Microprocessor Core
 // Based on the VHDL T80 core by Daniel Wallner (jesus@opencores.org)

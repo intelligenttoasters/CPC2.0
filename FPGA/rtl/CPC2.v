@@ -26,7 +26,7 @@
 
 module CPC2(
 		input CLK_50,
-		// SPI Ports
+		// Control Ports
 		output DATA7,				// Heartbeat
 		input DATA6,				// Unassigned
 		// Hard coded de-assert data lines, a high on this line prevents data 6+7 from being asserted
@@ -69,19 +69,20 @@ module CPC2(
 	
 	// support cpu wiring
 	wire [15:0]	support_address, sys_address;
-	wire [7:0]	support_dout, support_din, support_mem, support_io, io_data;
+	wire [7:0]	support_dout, support_din, support_mem, support_io, io_data, fdc_dout;
 	wire [7:0]	sys_data;
 	wire			support_mreq, support_m1, support_iorq, support_rd, support_wr;
 	wire			sys_rd, sys_wr, dma_rd;
-	
+	wire [7:0]	write_protect_high;
+
 	// Support IO Wires
 	wire [15:0] io_nwr, io_nrd, wb_we, wb_stb;
 	wire [7:0]	wb_adr, wb_dat;
-	wire [7:0]	uart_dout, intmgr_dout, i2c_dout, kbd_dout, usb_dout;
+	wire [7:0]	uart_dout, intmgr_dout, i2c_dout, kbd_dout, usb_dout, memctl_dout;
 	wire [3:0]	io_a;
 	wire			io_clk;
 	wire			i2c_ack, usb_ack;
-	wire			uart_interrupt, cpu_interrupt, i2c_interrupt;
+	wire			uart_interrupt, cpu_interrupt, i2c_interrupt, fdc_interrupt;
 	
 	// Video wiring
 	wire [15:0]	vram_A;
@@ -91,6 +92,13 @@ module CPC2(
 	
 	// CPC Wiring
 	wire [79:0] keyboard_data;
+
+	// Shared ROM lines
+	wire [14:0] shared_rom_addr;
+	wire [7:0] shared_rom_data;
+	
+	// FDC
+	wire fdc_motor, fdc_activity;
 	
 	// Registers
 reg [7:0] usb_rdout = 0; 
@@ -161,10 +169,11 @@ reg [7:0] usb_rdout = 0;
 	`endif
 	// Module connections ========================================================================
 	
+	led_driver led( clock_48, fdc_motor, fdc_activity, LED );
 	// Dummy LED driver
 //	led_driver led( clock_48, !uart_rx_i, LED );
 //	led_driver2 led( clock_16, LED );
-	led_driver3 led( clock_audio, LED );
+//	led_driver3 led( clock_audio, LED );
 
 
 	// Global reset
@@ -240,8 +249,10 @@ reg [7:0] usb_rdout = 0;
 	);
 	
 	// Interface to support memory, write protect except for data area
-	support_memory_if #( .wp_address(16'hc000) ) memif (
+//	support_memory_if #( .wp_address(16'hc000) ) memif (
+	support_memory_if memif (
 		.clk(clock_48),
+		.wp_address(write_protect_high),
 		// Support memory interface
 		.support_A(support_address),
 		.support_Din(support_dout),
@@ -251,7 +262,21 @@ reg [7:0] usb_rdout = 0;
 		.sys_en(DATA5),		// If the soft reset is active, then enable the system memory interface
 		.sys_A(sys_address),
 		.sys_data(sys_data),
-		.sys_wr(sys_wr)
+		.sys_wr(sys_wr),
+		// Shared ROM data
+		.rom_A(shared_rom_addr),
+		.rom_D(shared_rom_data)
+	);
+	
+	memctl memory_control(
+		.clk_i(io_clk),
+		.reset_i(~global_reset_n),
+		.wr_i( ~io_nwr[5] ),
+		.rd_i( ~io_nrd[5] ),
+		.A_i(io_a),
+		.D_i(io_data),
+		.D_o(memctl_dout),
+		.wp_o(write_protect_high)
 	);
 	
 	// Switching IO interface
@@ -271,12 +296,12 @@ reg [7:0] usb_rdout = 0;
 		.nwr_o(io_nwr),		// One write bit per device
 		.io_o(io_data),		// Shared data out
 		.io_i({					// Demux the input here
-				uart_dout,		// Port 0x00 - 0x0f	SPI
+				uart_dout,		// Port 0x00 - 0x0f	Uart
 				intmgr_dout,	// Port 0x10 - 0x1f	Interrupt manager
 				i2c_dout,		// Port 0x20 - 0x2f	I2C interface
 				kbd_dout,		// Port 0x30 - 0x3f	Keyboard interface
-				8'd0,
-				8'd0,
+				fdc_dout,		// Port 0x40 - 0x4f	FDC Interface
+				memctl_dout,	// Port 0x50 - 0x5f	Memory control space
 				8'd0,
 				8'd0,
 				8'd0,
@@ -298,7 +323,7 @@ reg [7:0] usb_rdout = 0;
 	// Interrupt manager, address 0x10-0x1f
 	interrupt_manager intmgr (
 		.fast_clock_i(clock_40),
-		.interrupt_lines_i({6'd0,i2c_interrupt,uart_interrupt}),
+		.interrupt_lines_i({5'd0,fdc_interrupt,i2c_interrupt,uart_interrupt}),
 		.rd_i(!io_nrd[1]),
 		.n_int_o(cpu_interrupt),
 		.dat_o(intmgr_dout)
@@ -422,7 +447,21 @@ wire [15:0] signal = (ccc[13]) ? 16'h7f00 : 16'h8000;
 		.video_D_o(vram_D),
 		.video_offset_o(video_offset),
 		.keyboard_i(keyboard_data),
-		.audio_o(audio_signal)
+		.audio_o(audio_signal),
+		// Shared ROM
+		.shared_rom_addr_o(shared_rom_addr),
+		.shared_rom_data_i(shared_rom_data),
+		// FDC Interface
+		.fdc_motor(fdc_motor),
+		.fdc_activity(fdc_activity),
+		.S_clk_i(clock_48),
+		.S_A_i(io_a[3:0]),
+		.S_D_i(support_dout),
+		.S_D_o(fdc_dout),
+		.S_rd_i(~io_nrd[4]),
+		.S_wr_i(~io_nwr[4]),
+		.S_enable_i(~(io_nrd[4] & io_nwr[4])),
+		.S_fdc_int_o(fdc_interrupt)
 		);
 	// ===============================================================================
 endmodule
@@ -441,41 +480,45 @@ endmodule
 
 module led_driver(
 	input clk_i,
-	input trigger_i,
+	input fdc_motor_i,
+	input fdc_activity_i,
 	output led_o
 );
-	reg [21:0] cntr = 0;
+	reg [20:0] cntr = 0;
 	always @(posedge clk_i)
 	begin
-		if( trigger_i == 1 ) 
+		if( fdc_activity_i == 1 ) 
 			cntr = 1;
 		else
 			if( cntr > 0 ) cntr = cntr + 1'b1;
 	end
-	assign led_o = (cntr > 0);
+	assign led_o = (cntr > 0) ^ fdc_motor_i;
 	
 endmodule
 
-module led_driver2(
+module memctl(
 	input clk_i,
-	output led_o
+	input reset_i,
+	input rd_i,
+	input wr_i,
+	input [3:0] A_i,
+	input [7:0] D_i,
+	output reg [7:0] D_o,
+	output reg [7:0] wp_o = 8'h00
 );
-	reg[31:0] cntr = 0;
-	
 	always @(posedge clk_i)
-		cntr <= (cntr < 32'd16000000) ? cntr + 1 : 0;
-		
-	assign led_o = ( cntr < 32'd8000000 );
-endmodule
-
-module led_driver3(
-	input clk_i,
-	output led_o
-);
-	reg[31:0] cntr = 0;
-	
-	always @(posedge clk_i)
-		cntr <= (cntr < 32'd3072000) ? cntr + 1 : 0;
-		
-	assign led_o = ( cntr < (32'd3072000>>1) );
+	if( reset_i )
+	begin
+		wp_o <= 8'd0;
+	end
+	else
+	begin 
+		case( A_i )
+			0: begin
+				if( wr_i ) wp_o <= D_i;
+				if( rd_i ) D_o <= wp_o;
+			end
+			default: ;
+		endcase
+	end
 endmodule
