@@ -1,0 +1,215 @@
+Archive Project report for CPC2
+Wed Oct 11 20:26:59 2017
+Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Archive Project Summary
+  3. Archive Project Messages
+  4. Files Archived
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++----------------------------------------------------------------+
+; Archive Project Summary                                        ;
++------------------------+---------------------------------------+
+; Archive Project Status ; Successful - Wed Oct 11 20:26:59 2017 ;
+; Revision Name          ; CPC2                                  ;
+; Top-level Entity Name  ; CPC2                                  ;
+; Family                 ; Cyclone V                             ;
++------------------------+---------------------------------------+
+
+
++--------------------------+
+; Archive Project Messages ;
++--------------------------+
+Info: File Set 'Source control' contains:
+    Info: Project source and settings files
+    Info: Automatically detected source files
+Info: Archive will store files relative to the closest common parent directory
+Info (13213): Using common directory /home/intelligent/Desktop/Ongoing_Projects/CPC2/
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated archive '/home/intelligent/Desktop/cpc2_2.qar'
+Info: ----------------------------------------------------------
+Info: ----------------------------------------------------------
+Info: Generated report 'CPC2.archive.rpt'
+Info (23030): Evaluation of Tcl script /opt/altera/14.0/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus II 64-Bit Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 817 megabytes
+    Info: Processing ended: Wed Oct 11 20:26:59 2017
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++-------------------------------------------------------------------------------------------------+
+; Files Archived                                                                                  ;
++-------------------------------------------------------------------------------------------------+
+; File Name                                                                                       ;
++-------------------------------------------------------------------------------------------------+
+; ../../../Eclipse/CPC2-Sim/sim_fdc.v                                                             ;
+; ../../rtl/Altera/../../../roms/custom.mif                                                       ;
+; ../../rtl/Altera/master_clock.cmp                                                               ;
+; ../../rtl/Altera/master_clock.qip                                                               ;
+; ../../rtl/Altera/master_clock.sip                                                               ;
+; ../../rtl/Altera/master_clock.spd                                                               ;
+; ../../rtl/Altera/master_clock.v                                                                 ;
+; ../../rtl/Altera/master_clock/master_clock_0002.qip                                             ;
+; ../../rtl/Altera/master_clock/master_clock_0002.v                                               ;
+; ../../rtl/Altera/master_clock_sim/master_clock.vo                                               ;
+; ../../rtl/Altera/ram2.qip                                                                       ;
+; ../../rtl/Altera/ram2.v                                                                         ;
+; ../../rtl/Altera/ram2_inst.v                                                                    ;
+; ../../rtl/Altera/SignalTap.stp                                                                  ;
+; ../../rtl/Altera/small_rom.v                                                                    ;
+; ../../rtl/cpc/a40010.v                                                                          ;
+; ../../rtl/cpc/cpc_core.v                                                                        ;
+; ../../rtl/cpc/crtc6845.v                                                                        ;
+; ../../rtl/cpc/dat_i_arbiter.v                                                                   ;
+; ../../rtl/cpc/dpram.qip                                                                         ;
+; ../../rtl/cpc/dpram.v                                                                           ;
+; ../../rtl/cpc/fdc.v                                                                             ;
+; ../../rtl/cpc/ppi8255.v                                                                         ;
+; ../../rtl/cpc/rom.qip                                                                           ;
+; ../../rtl/cpc/rom.v                                                                             ;
+; ../../rtl/cpc/romsel.v                                                                          ;
+; ../../rtl/cpc/YM2149/YM2149_linmix.vhd                                                          ;
+; ../../rtl/CPC2.v                                                                                ;
+; ../../rtl/fifo.v                                                                                ;
+; ../../rtl/global_reset.v                                                                        ;
+; ../../rtl/i2c/i2c_master_bit_ctrl.v                                                             ;
+; ../../rtl/i2c/i2c_master_byte_ctrl.v                                                            ;
+; ../../rtl/i2c/i2c_master_defines.v                                                              ;
+; ../../rtl/i2c/i2c_master_top.v                                                                  ;
+; ../../rtl/i2c/timescale.v                                                                       ;
+; ../../rtl/i2s_audio.v                                                                           ;
+; ../../rtl/interrupt.v                                                                           ;
+; ../../rtl/keyboard.v                                                                            ;
+; ../../rtl/support_dma.v                                                                         ;
+; ../../rtl/support_io_if.v                                                                       ;
+; ../../rtl/support_memory_if.v                                                                   ;
+; ../../rtl/usart.v                                                                               ;
+; ../../rtl/video.v                                                                               ;
+; ../../rtl/z80/tv80_alu.v                                                                        ;
+; ../../rtl/z80/tv80_core.v                                                                       ;
+; ../../rtl/z80/tv80_mcode.v                                                                      ;
+; ../../rtl/z80/tv80_reg.v                                                                        ;
+; ../../rtl/z80/tv80n.v                                                                           ;
+; ../../rtl/z80/tv80s.v                                                                           ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/master_clock.qip                   ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/master_clock.sip                   ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/master_clock.v                     ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/master_clock/master_clock_0002.qip ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/master_clock/master_clock_0002.v   ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/ram2.qip                           ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/ram2.v                             ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/Altera/small_rom.v                        ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/a40010.v                              ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/cpc_core.v                            ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/crtc6845.v                            ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/dat_i_arbiter.v                       ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/dpram.qip                             ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/dpram.v                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/fdc.v                                 ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/ppi8255.v                             ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/rom.qip                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/rom.v                                 ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/romsel.v                              ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/cpc/YM2149/YM2149_linmix.vhd              ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/CPC2.v                                    ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/fifo.v                                    ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/global_reset.v                            ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2c/i2c_master_bit_ctrl.v                 ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2c/i2c_master_byte_ctrl.v                ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2c/i2c_master_defines.v                  ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2c/i2c_master_top.v                      ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2c/timescale.v                           ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/i2s_audio.v                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/interrupt.v                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/keyboard.v                                ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/support_dma.v                             ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/support_io_if.v                           ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/support_memory_if.v                       ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/usart.v                                   ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/video.v                                   ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80_alu.v                            ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80_core.v                           ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80_mcode.v                          ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80_reg.v                            ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80n.v                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/rtl/z80/tv80s.v                               ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/roms/basic1-1.mif                                     ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/roms/cpc6128.mif                                      ;
+; /home/intelligent/Desktop/Ongoing_Projects/CPC2/roms/custom.mif                                       ;
+; /opt/altera/14.0/quartus/linux64/assignment_defaults.qdf                                        ;
+; CPC2.qpf                                                                                        ;
+; CPC2.qsf                                                                                        ;
+; CPC2.sdc                                                                                        ;
+; ROM.mif                                                                                         ;
+; simulation/modelsim/wave.do                                                                     ;
+; timescale.v                                                                                     ;
+; usb/buffers/dpMem_dc.v                                                                          ;
+; usb/buffers/fifoRTL.v                                                                           ;
+; usb/buffers/RxFifo.v                                                                            ;
+; usb/buffers/RxFifoBI.v                                                                          ;
+; usb/buffers/TxFifo.v                                                                            ;
+; usb/buffers/TxFifoBI.v                                                                          ;
+; usb/busInterface/wishBoneBI.v                                                                   ;
+; usb/hostController/directcontrol.v                                                              ;
+; usb/hostController/getpacket.v                                                                  ;
+; usb/hostController/hctxportarbiter.v                                                            ;
+; usb/hostController/hostcontroller.v                                                             ;
+; usb/hostController/rxStatusMonitor.v                                                            ;
+; usb/hostController/sendpacket.v                                                                 ;
+; usb/hostController/sendpacketarbiter.v                                                          ;
+; usb/hostController/sendpacketcheckpreamble.v                                                    ;
+; usb/hostController/sofcontroller.v                                                              ;
+; usb/hostController/softransmit.v                                                                ;
+; usb/hostController/speedCtrlMux.v                                                               ;
+; usb/hostController/usbHostControl.v                                                             ;
+; usb/hostController/USBHostControlBI.v                                                           ;
+; usb/hostSlaveMux/hostSlaveMuxBI.v                                                               ;
+; usb/serialInterfaceEngine/lineControlUpdate.v                                                   ;
+; usb/serialInterfaceEngine/processRxBit.v                                                        ;
+; usb/serialInterfaceEngine/processRxByte.v                                                       ;
+; usb/serialInterfaceEngine/processTxByte.v                                                       ;
+; usb/serialInterfaceEngine/readUSBWireData.v                                                     ;
+; usb/serialInterfaceEngine/siereceiver.v                                                         ;
+; usb/serialInterfaceEngine/SIETransmitter.v                                                      ;
+; usb/serialInterfaceEngine/updateCRC5.v                                                          ;
+; usb/serialInterfaceEngine/updateCRC16.v                                                         ;
+; usb/serialInterfaceEngine/usbSerialInterfaceEngine.v                                            ;
+; usb/serialInterfaceEngine/usbTxWireArbiter.v                                                    ;
+; usb/serialInterfaceEngine/writeUSBWireData.v                                                    ;
+; usb/wrapper/usbHost.v                                                                           ;
+; usbConstants_h.v                                                                                ;
+; usbHostControl_h.v                                                                              ;
+; usbHostSlave_h.v                                                                                ;
+; usbSerialInterfaceEngine_h.v                                                                    ;
+; wishBoneBus_h.v                                                                                 ;
++-------------------------------------------------------------------------------------------------+
+
+

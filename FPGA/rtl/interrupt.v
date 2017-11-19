@@ -25,10 +25,12 @@
 `timescale 1ns/1ns
 
 module interrupt_manager ( 
+		// Fast clock input
+		input fast_clock_i,
 		// These are the individual interrupt lines
 		input [7:0] interrupt_lines_i,
 		// Read interrupt state
-		input n_rd_i,		
+		input rd_i,		
 		// Interrupt line
 		output n_int_o,
 		// Interrupt register
@@ -36,9 +38,11 @@ module interrupt_manager (
 	);
 
 	// Wire definitions ===========================================================================
-	wire [7:0] lines;
-
+	wire [7:0] 	lines;
+	wire			rd;
+	
 	// Registers ==================================================================================
+	reg [2:0] track_rd;
 	
 	// Assignments ================================================================================
 	assign n_int_o = (lines == 0);	// Cause an interrupt if one line is active
@@ -47,21 +51,25 @@ module interrupt_manager (
 	// Module connections =========================================================================
 	
 	// Simulation branches and control ============================================================
+	always @(posedge fast_clock_i) track_rd <= {track_rd[1:0],rd_i};
+	assign rd = (track_rd[2:1] == 2'b10);
+	
 	// Note that when RD cycle finishes then it resets all latches
-	SR sr1( .S( interrupt_lines_i[0]), .R(n_rd_i), .Q(lines[0]) );
-	SR sr2( .S( interrupt_lines_i[1]), .R(n_rd_i), .Q(lines[1]) );
-	SR sr3( .S( interrupt_lines_i[2]), .R(n_rd_i), .Q(lines[2]) );
-	SR sr4( .S( interrupt_lines_i[3]), .R(n_rd_i), .Q(lines[3]) );
-	SR sr5( .S( interrupt_lines_i[4]), .R(n_rd_i), .Q(lines[4]) );
-	SR sr6( .S( interrupt_lines_i[5]), .R(n_rd_i), .Q(lines[5]) );
-	SR sr7( .S( interrupt_lines_i[6]), .R(n_rd_i), .Q(lines[6]) );
-	SR sr8( .S( interrupt_lines_i[7]), .R(n_rd_i), .Q(lines[7]) );
+	SR sr1( .clock_i(fast_clock_i), .S( interrupt_lines_i[0]), .R(rd), .Q(lines[0]) );
+	SR sr2( .clock_i(fast_clock_i), .S( interrupt_lines_i[1]), .R(rd), .Q(lines[1]) );
+	SR sr3( .clock_i(fast_clock_i), .S( interrupt_lines_i[2]), .R(rd), .Q(lines[2]) );
+	SR sr4( .clock_i(fast_clock_i), .S( interrupt_lines_i[3]), .R(rd), .Q(lines[3]) );
+	SR sr5( .clock_i(fast_clock_i), .S( interrupt_lines_i[4]), .R(rd), .Q(lines[4]) );
+	SR sr6( .clock_i(fast_clock_i), .S( interrupt_lines_i[5]), .R(rd), .Q(lines[5]) );
+	SR sr7( .clock_i(fast_clock_i), .S( interrupt_lines_i[6]), .R(rd), .Q(lines[6]) );
+	SR sr8( .clock_i(fast_clock_i), .S( interrupt_lines_i[7]), .R(rd), .Q(lines[7]) );
 	
 	// Other logic ================================================================================
 	
 endmodule
 	
 module SR(
+	input clock_i,
 	input S,
 	input R,
 	output Q
@@ -70,7 +78,7 @@ module SR(
 	
 	assign Q = out;
 	
-	always @(posedge S or posedge R)
+	always @(negedge clock_i)
 	begin
 		if( S ) 
 			out <= 1'b1;

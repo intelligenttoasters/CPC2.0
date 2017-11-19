@@ -1,0 +1,24 @@
+# system info mmio_if on 2017.05.11.21:51:42
+system_info:
+name,value
+DEVICE,5CSEBA6U23I7
+DEVICE_FAMILY,Cyclone V
+GENERATION_ID,1494503491
+#
+#
+# Files generated for mmio_if on 2017.05.11.21:51:42
+files:
+filepath,kind,attributes,module,is_top
+simulation/mmio_if.v,VERILOG,,mmio_if,true
+simulation/submodules/mmio_if_hps_0.v,VERILOG,,mmio_if_hps_0,false
+#
+# Map from instance-path to kind of module
+instances:
+instancePath,module
+mmio_if.hps_0,mmio_if_hps_0
+mmio_if.hps_0.fpga_interfaces,mmio_if_hps_0_fpga_interfaces
+mmio_if.hps_0.hps_io,mmio_if_hps_0_hps_io
+mmio_if.mmio_0,mmio_if_mmio_0
+mmio_if.mm_interconnect_0,mmio_if_mm_interconnect_0
+mmio_if.rst_controller,altera_reset_controller
+mmio_if.rst_controller_001,altera_reset_controller

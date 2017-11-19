@@ -1,0 +1,15 @@
+PLL_Name	master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~FRACTIONAL_PLL
+PLLJITTER	49
+PLLSPEmax	50
+PLLSPEmin	-50
+
+PLL_Name	master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+

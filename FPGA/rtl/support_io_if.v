@@ -38,7 +38,13 @@ module support_io_if(
 	output [15:0]	nrd_o,		// One read line per device
 	output [15:0]	nwr_o,		// One write line per device
 	output [7:0]	io_o,		// Shared data out
-	input [8*16-1:0] io_i	// Merged data path - 16 streams
+	input [8*16-1:0] io_i,	// Merged data path - 16 streams
+	// WB Write Interface
+	input  			ack_i,	// WB Ack in
+	output [15:0]	we_o,		// WB Write out
+	output [15:0]	stb_o,		// WB Strobe out
+	output [7:0]	adr_o,	// WB Registered addr
+	output [7:0]	dat_o		// WB Registered data
 );
 
 	// Wire definitions ==================================================
@@ -47,6 +53,10 @@ module support_io_if(
 	wire [15:0] four_to_sixteen;
 	
 	// Registers ==================================================
+	reg [15:0]		wb_we		= 0;
+	reg [15:0]		wb_stb	= 0;
+	reg [7:0]		wb_adr = 8'hff;
+	reg [7:0]		wb_dat = 8'hff;
 	
 	// Assignments ==================================================
 	assign clk_o = clk_i;	// Passthrough
@@ -55,6 +65,13 @@ module support_io_if(
 	assign a_decode = A_i[7:4];
 	assign b_decode = A_i[3:0];
 	assign io_o = D_i;
+	
+	// WB Assignments
+	assign we_o = wb_we;
+	assign stb_o = wb_stb;
+	assign adr_o = wb_adr;
+	assign dat_o = wb_dat;
+	
 	// 4-16 line converter
 	assign four_to_sixteen = {
 				(a_decode != 4'd15),
@@ -99,5 +116,41 @@ module support_io_if(
 	// Simulation branches and control ==================================================
 	
 	// Other logic	==================================================
+
+	// Process WB signals into Z80 Bus signals
+	wire is_rd = !(nrd_o == 16'hffff);
+	wire is_wr = !(nwr_o == 16'hffff);
+	reg track_rd, track_wr;
+	wire rd_rise = ({track_rd,is_rd} == 2'b01);
+	wire wr_rise = ({track_wr,is_wr} == 2'b01);
+	
+	// Force ACK after two clock cycles of no CPU activity, will apply is no WB port
+	reg [1:0] track_ack_res = 0;
+	always @(negedge clk_i) track_ack_res = {track_ack_res[0], !(is_rd | is_wr)};
+	wire force_ack = (track_ack_res == 2'd0);
+	
+	always @(negedge clk_i)
+	begin
+		track_rd <= is_rd;
+		track_wr <= is_wr;
+	end
+	
+	always @(posedge clk_i)
+	begin
+		if( ack_i | force_ack )	// Ack or ack timeout
+		begin
+			wb_stb <= 16'b0;			
+			wb_we <= 16'b0;
+		end
+		else begin
+			if( rd_rise | wr_rise )
+			begin
+				wb_adr <= A_i;
+				wb_dat <= D_i;
+				wb_stb[a_decode] <= 1'b1;
+				wb_we[a_decode] <= is_wr;
+			end
+		end
+	end
 	
 endmodule

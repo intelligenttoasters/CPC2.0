@@ -1,0 +1,22 @@
+{
+	"system" : {
+		"platform" : "linux64",
+		"os_name" : "Fedora Core",
+		"os_version" : ""
+	},
+	"error" : {
+		"error_message" : "Segment Violation at (nil)",
+		"source_file" : "unknown",
+		"line" : "0",
+		"stack_trace" : "\t0x7f943d826f88: synth_sutil + 0x54f88 (_Z18sutil_add_locationP8MSG_POSTP14CDB_SGATE_NODE + 0x28)\n\t0x7f94414bbce1: synth_opt + 0x27ace1 (_Z15opt_clock_synthP19CDB_SGATE_HIERARCHYP17CDB_SGATE_NETLISTP10CMP_FACADEb + 0x631)\n\t0x7f944146c77a: synth_opt + 0x22b77a (_ZN10RTL_SCRIPT19call_named_functionEPKcS1_S1_iii + 0xd8a)\n\t0x7f944146f142: synth_opt + 0x22e142 (_ZN10RTL_SCRIPT14process_scriptEP17CDB_SGATE_NETLISTP19CDB_SGATE_HIERARCHYP20BASEX_ELABORATE_INFOP10CMP_FACADE15RTL_SCRIPT_ENUMPA3_PKciP15RTL_SCRIPT_STEPSE_ + 0x1512)\n\t0x7f94412873b8: synth_opt + 0x463b8 (_Z28opt_process_netlist_scriptedP10CMP_FACADEP19CDB_SGATE_HIERARCHYP20BASEX_ELABORATE_INFO15RTL_SCRIPT_ENUMb + 0x598)\n\t0x7f9441288759: synth_opt + 0x47759 (_ZN8RTL_ROOT21process_sgate_netlistEP10CMP_FACADEP19CDB_SGATE_HIERARCHYP20BASEX_ELABORATE_INFO13RTL_PASS_ENUM + 0x779)\n\t0x7f944484bc02: synth_sgn + 0x173c02 (_ZN13SGN_SYNTHESIS20high_level_synthesisEv + 0x112)\n\t0x7f944484be7d: synth_sgn + 0x173e7d (_ZN13SGN_SYNTHESIS21process_current_stageEv + 0x12d)\n\t0x7f94448733af: synth_sgn + 0x19b3af (_ZN13SGN_EXTRACTOR20synthesize_partitionEm + 0x4af)\n\t0x7f94448742bc: synth_sgn + 0x19c2bc (_ZN13SGN_EXTRACTOR9synthesisEv + 0x1dc)\n\t0x7f94448746aa: synth_sgn + 0x19c6aa (_ZN13SGN_EXTRACTOR29synthesis_and_post_processingEv + 0x30a)\n\t0x7f9444883ba1: synth_sgn + 0x1abba1 (_Z12sgn_qic_fullP10CMP_FACADERN11_Dinkum_std6vectorINS1_12basic_stringIcNS1_11char_traitsIcEE17MEM_STL_ALLOCATORIcEEES6_IS8_EEERNS2_IdS6_IdEEE + 0x2e1)\n\t   0x428393: quartus_map + 0x28393 (_Z16qsyn_execute_sgnP10CMP_FACADERN11_Dinkum_std6vectorINS1_12basic_stringIcNS1_11char_traitsIcEE17MEM_STL_ALLOCATORIcEEES6_IS8_EEERKS8_P14THR_NAMED_PIPESF_ + 0x1d3)\n\t   0x4396ec: quartus_map + 0x396ec (_ZN14QSYN_FRAMEWORK12execute_coreEP14THR_NAMED_PIPES1_ + 0x23c)\n\t   0x43a286: quartus_map + 0x3a286 (_ZN14QSYN_FRAMEWORK7executeEv + 0x826)\n\t0x7f94337e5df5: comp_qexe + 0x17df5 (_Z18qexe_standard_mainP14QEXE_FRAMEWORKPPK22QEXE_OPTION_DEFINITIONiPPKc + 0x5ef)\n\t   0x420cdd: quartus_map + 0x20cdd (_Z9qsyn_mainiPPKc + 0x6d)\n\t0x7f94160932c2: ccl_msg + 0x3f2c2 (_Z15msg_main_threadPv + 0x10)\n\t0x7f94133256fc: ccl_thr + 0x76fc (thr_final_wrapper + 0xc)\n\t0x7f9416093ef3: ccl_msg + 0x3fef3 (_Z18msg_thread_wrapperPFPvS_ES_ + 0x5b)\n\t   0x459c3e: quartus_map + 0x59c3e (_Z18mem_thread_wrapperPFPvS_ES_ + 0xbe)\n\t0x7f941377c498: ccl_err + 0xc498 (_Z18err_thread_wrapperPFPvS_ES_ + 0x27)\n\t0x7f9413325adc: ccl_thr + 0x7adc (thr_thread_wrapper + 0x15)\n\t0x7f94160b7f1b: ccl_msg + 0x63f1b (_Z12msg_exe_mainiPPKcPFiiS1_E + 0x99)\n\t0x7f940f786401: c.so.6 + 0x20401 (__libc_start_main + 0xf1)\n\t   0x41a7a9: quartus_map + 0x1a7a9\n",
+		"subsystem" : "unknown",
+		"executable" : "quartus_map",
+		"comment" : "not_applicable"
+	},
+	"quartus" : {
+		"quartus_bits" : "64",
+		"version" : "14.0.0",
+		"build" : "200",
+		"edition" : "Web Edition"
+	}
+}

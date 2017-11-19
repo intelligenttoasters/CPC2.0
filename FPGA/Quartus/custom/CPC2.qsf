@@ -1,0 +1,285 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus II License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
+# Date created = 17:50:33  December 29, 2016
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		CPC2_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone V"
+set_global_assignment -name DEVICE 5CEBA2F17C8
+set_global_assignment -name TOP_LEVEL_ENTITY CPC2
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 14.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "10:11:15  DECEMBER 29, 2016"
+set_global_assignment -name LAST_QUARTUS_VERSION 14.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name DEVICE_FILTER_PIN_COUNT 256
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 8
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 256
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (Verilog)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT "VERILOG HDL" -section_id eda_simulation
+set_global_assignment -name AUTO_RESTART_CONFIGURATION OFF
+set_global_assignment -name ENABLE_CONFIGURATION_PINS OFF
+set_global_assignment -name ENABLE_BOOT_SEL_PIN OFF
+set_global_assignment -name STRATIXV_CONFIGURATION_SCHEME "PASSIVE PARALLEL X8"
+set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
+set_global_assignment -name GENERATE_TTF_FILE OFF
+set_global_assignment -name GENERATE_RBF_FILE ON
+set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
+set_global_assignment -name GENERATE_SVF_FILE ON
+set_global_assignment -name ON_CHIP_BITSTREAM_DECOMPRESSION ON
+set_global_assignment -name FORCE_CONFIGURATION_VCCIO ON
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVCMOS"
+set_global_assignment -name RESERVE_DATA7_THROUGH_DATA5_AFTER_CONFIGURATION "USE AS REGULAR IO"
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
+set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name EDA_BOARD_DESIGN_BOUNDARY_SCAN_TOOL "BSDL (Boundary Scan)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT BSDL -section_id eda_board_design_boundary_scan
+set_global_assignment -name EDA_BOARD_BOUNDARY_SCAN_OPERATION PRE_CONFIG -section_id eda_board_design_boundary_scan
+set_global_assignment -name VCCPGM_USER_VOLTAGE 3.3V
+set_global_assignment -name VCCBAT_USER_VOLTAGE 2.5V
+set_global_assignment -name VCCE_GXBL_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCE_GXBR_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCL_GXBL_USER_VOLTAGE 1.1V
+set_global_assignment -name VCCL_GXBR_USER_VOLTAGE 1.1V
+set_global_assignment -name EDA_TIME_SCALE "1 ps" -section_id eda_simulation
+set_location_assignment PIN_B3 -to LED
+set_global_assignment -name STRATIXIII_UPDATE_MODE STANDARD
+set_global_assignment -name GENERATE_HEX_FILE OFF
+set_global_assignment -name ENABLE_INIT_DONE_OUTPUT OFF
+set_global_assignment -name ENABLE_CRC_ERROR_PIN OFF
+set_global_assignment -name USE_CHECKSUM_AS_USERCODE ON
+set_global_assignment -name ACTIVE_SERIAL_CLOCK FREQ_100MHZ
+set_global_assignment -name ENABLE_SIGNALTAP OFF
+set_global_assignment -name USE_SIGNALTAP_FILE ../../rtl/Altera/SignalTap.stp
+
+
+set_location_assignment PIN_P1 -to DATA7
+set_location_assignment PIN_F8 -to CLK_50
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to LED
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to LED
+set_location_assignment PIN_N4 -to DATA6
+set_location_assignment PIN_N1 -to DATA5
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name SMART_RECOMPILE OFF
+set_global_assignment -name OPTIMIZATION_TECHNIQUE BALANCED
+set_global_assignment -name SYNTH_TIMING_DRIVEN_SYNTHESIS ON
+set_global_assignment -name SYNTHESIS_EFFORT AUTO
+set_location_assignment PIN_B6 -to I2C_SCL
+set_location_assignment PIN_C9 -to I2C_SDA
+set_global_assignment -name SAVE_DISK_SPACE OFF
+set_global_assignment -name PHYSICAL_SYNTHESIS_EFFORT NORMAL
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to I2C_SCL -comment "No pull up on board"
+set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to I2C_SDA -comment "No pull up on board"
+set_location_assignment PIN_C11 -to VSYNC
+set_location_assignment PIN_M12 -to HSYNC
+set_location_assignment PIN_L14 -to VDE
+set_location_assignment PIN_N14 -to VCLK
+set_location_assignment PIN_A12 -to R[0] -comment D16
+set_location_assignment PIN_B11 -to R[1]
+set_location_assignment PIN_A10 -to R[2]
+set_location_assignment PIN_A9 -to R[3]
+set_location_assignment PIN_B8 -to R[4]
+set_location_assignment PIN_A8 -to R[5]
+set_location_assignment PIN_B7 -to R[6]
+set_location_assignment PIN_A7 -to R[7] -comment D23
+set_location_assignment PIN_F12 -to G[0] -comment D8
+set_location_assignment PIN_D11 -to G[1]
+set_location_assignment PIN_G13 -to G[2]
+set_location_assignment PIN_E12 -to G[3]
+set_location_assignment PIN_A15 -to G[4]
+set_location_assignment PIN_A14 -to G[5]
+set_location_assignment PIN_A13 -to G[6]
+set_location_assignment PIN_B12 -to G[7]
+set_location_assignment PIN_K12 -to B[0] -comment D0
+set_location_assignment PIN_K14 -to B[1]
+set_location_assignment PIN_J12 -to B[2]
+set_location_assignment PIN_J14 -to B[3]
+set_location_assignment PIN_F11 -to B[4]
+set_location_assignment PIN_F10 -to B[5]
+set_location_assignment PIN_H13 -to B[6]
+set_location_assignment PIN_G12 -to B[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to R[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to G[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[0]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[1]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[2]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[3]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[4]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[5]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[6]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to B[7]
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to HSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VDE
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VCLK
+
+
+
+set_location_assignment PIN_D14 -to uart_rx_i
+set_location_assignment PIN_T5 -to uart_tx_o
+set_location_assignment PIN_K5 -to usb_mode
+set_location_assignment PIN_K4 -to usb_speed
+set_location_assignment PIN_J3 -to usb_vmo
+set_location_assignment PIN_J2 -to usb_vpo
+set_location_assignment PIN_P7 -to usb_rcv
+set_location_assignment PIN_P8 -to usb_vm
+set_location_assignment PIN_M8 -to usb_vp
+set_location_assignment PIN_P11 -to usb_suspend
+set_location_assignment PIN_N11 -to usb_oen
+set_location_assignment PIN_A5 -to I2S[0]
+set_location_assignment PIN_A4 -to I2S[1]
+set_location_assignment PIN_C4 -to I2S[2]
+set_location_assignment PIN_C3 -to I2S[3]
+set_location_assignment PIN_F3 -to LRCLK
+set_location_assignment PIN_E2 -to ASCLK
+set_location_assignment PIN_R1 -to MCLK
+set_global_assignment -name VHDL_FILE ../../rtl/cpc/YM2149/YM2149_linmix.vhd
+set_global_assignment -name VERILOG_FILE ../../rtl/Altera/small_rom.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/writeUSBWireData.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/usbTxWireArbiter.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/usbSerialInterfaceEngine.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/updateCRC16.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/updateCRC5.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/SIETransmitter.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/siereceiver.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/readUSBWireData.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/processTxByte.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/processRxByte.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/processRxBit.v
+set_global_assignment -name VERILOG_FILE usb/serialInterfaceEngine/lineControlUpdate.v
+set_global_assignment -name VERILOG_FILE usb/hostController/speedCtrlMux.v
+set_global_assignment -name VERILOG_FILE usb/hostController/softransmit.v
+set_global_assignment -name VERILOG_FILE usb/hostController/sofcontroller.v
+set_global_assignment -name VERILOG_FILE usb/hostController/sendpacketcheckpreamble.v
+set_global_assignment -name VERILOG_FILE usb/hostController/sendpacketarbiter.v
+set_global_assignment -name VERILOG_FILE usb/hostController/sendpacket.v
+set_global_assignment -name VERILOG_FILE usb/hostController/rxStatusMonitor.v
+set_global_assignment -name VERILOG_FILE usb/hostController/hostcontroller.v
+set_global_assignment -name VERILOG_FILE usb/hostController/hctxportarbiter.v
+set_global_assignment -name VERILOG_FILE usb/hostController/getpacket.v
+set_global_assignment -name VERILOG_FILE usb/hostController/directcontrol.v
+set_global_assignment -name VERILOG_FILE usb/busInterface/wishBoneBI.v
+set_global_assignment -name VERILOG_FILE usb/buffers/TxFifoBI.v
+set_global_assignment -name VERILOG_FILE usb/buffers/RxFifoBI.v
+set_global_assignment -name VERILOG_FILE usb/buffers/fifoRTL.v
+set_global_assignment -name VERILOG_FILE usb/buffers/dpMem_dc.v
+set_global_assignment -name VERILOG_FILE usb/hostController/USBHostControlBI.v
+set_global_assignment -name VERILOG_FILE usb/hostSlaveMux/hostSlaveMuxBI.v
+set_global_assignment -name VERILOG_FILE usb/buffers/RxFifo.v
+set_global_assignment -name VERILOG_FILE usb/buffers/TxFifo.v
+set_global_assignment -name VERILOG_FILE usb/hostController/usbHostControl.v
+set_global_assignment -name VERILOG_FILE usb/wrapper/usbHost.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/ppi8255.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/crtc6845.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/romsel.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/rom.v
+set_global_assignment -name QIP_FILE ../../rtl/cpc/rom.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dpram.v
+set_global_assignment -name QIP_FILE ../../rtl/cpc/dpram.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/a40010.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/dat_i_arbiter.v
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/cpc_core.v
+set_global_assignment -name VERILOG_FILE ../../rtl/interrupt.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/timescale.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_top.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_defines.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_byte_ctrl.v
+set_global_assignment -name VERILOG_FILE ../../rtl/i2c/i2c_master_bit_ctrl.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80s.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80n.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_reg.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_mcode.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_core.v
+set_global_assignment -name VERILOG_FILE ../../rtl/z80/tv80_alu.v
+set_global_assignment -name VERILOG_FILE ../../rtl/support_io_if.v
+set_global_assignment -name VERILOG_FILE ../../rtl/support_memory_if.v
+set_global_assignment -name VERILOG_FILE ../../rtl/global_reset.v
+set_global_assignment -name VERILOG_FILE ../../rtl/fifo.v
+set_global_assignment -name SOURCE_FILE CPC2.qsf
+set_global_assignment -name SDC_FILE CPC2.sdc
+set_global_assignment -name VERILOG_FILE ../../rtl/CPC2.v
+set_global_assignment -name CDF_FILE ProgramChain.cdf
+set_global_assignment -name VERILOG_FILE ../../rtl/support_dma.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/master_clock.qip
+set_global_assignment -name SIP_FILE ../../rtl/Altera/master_clock.sip
+set_global_assignment -name VERILOG_FILE ../../rtl/video.v
+set_global_assignment -name VERILOG_FILE ../../rtl/usart.v
+set_global_assignment -name VERILOG_FILE ../../rtl/keyboard.v
+set_global_assignment -name MIF_FILE ../../rtl/Altera/../../../roms/custom.mif
+set_global_assignment -name VERILOG_FILE ../../rtl/i2s_audio.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/ram2.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cpc/fdc.v
+set_global_assignment -name EDA_TEST_BENCH_ENABLE_STATUS TEST_BENCH_MODE -section_id eda_simulation
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_TEST_BENCH FDC -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_NAME FDC -section_id eda_simulation
+set_global_assignment -name EDA_DESIGN_INSTANCE_NAME fdc -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_RUN_SIM_FOR "1 us" -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_MODULE_NAME sim_fdc -section_id FDC
+set_global_assignment -name EDA_RUN_TOOL_AUTOMATICALLY OFF -section_id eda_simulation
+set_global_assignment -name EDA_TEST_BENCH_FILE "../../../Eclipse/CPC2-Sim/sim_fdc.v" -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/cpc/fdc.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_alu.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_core.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_mcode.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80_reg.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80s.v -section_id FDC
+set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/fifo.v -section_id FDC
+set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT simulation/modelsim/wave.do -section_id eda_simulation
+set_global_assignment -name VERILOG_FILE sdram.v
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
