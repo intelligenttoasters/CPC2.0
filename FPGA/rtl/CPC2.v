@@ -23,10 +23,7 @@
  *
  */
 `timescale 1ns/1ns
-<<<<<<< HEAD
 `default_nettype none
-=======
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 
 module CPC2(
 		input CLK_50,
@@ -64,7 +61,6 @@ module CPC2(
 		output usb_vpo,
 		output usb_vmo,
 		output usb_speed,
-<<<<<<< HEAD
 		output usb_oen,
 		// SDRAM interface
 		inout [15:0] 	sdram_Dq, 
@@ -77,9 +73,6 @@ module CPC2(
 		output 			sdram_Cas_n, 
 		output 			sdram_We_n, 
 		output [1 : 0] sdram_Dqm
-=======
-		output usb_oen
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 		);
  
 	// Wire definitions ===========================================================================
@@ -437,15 +430,7 @@ reg [7:0] usb_rdout = 0;
 		// Offset for scrolling
 		.video_offset_i(video_offset)
 	);
-<<<<<<< HEAD
 
-=======
-/*		
-reg [13:0]	ccc = 0;
-always @(posedge clock_audio) if ( global_reset_n ) ccc <= ccc + 1;
-wire [15:0] signal = (ccc[13]) ? 16'h7f00 : 16'h8000;
-*/
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 	// Dummy I2S audio driver
 	i2s_audio audio(
 		.clk_i(clock_audio),
@@ -455,7 +440,6 @@ wire [15:0] signal = (ccc[13]) ? 16'h7f00 : 16'h8000;
 		.lrclk_o(LRCLK),
 		.sclk_o(ASCLK)
 	);
-<<<<<<< HEAD
 
 	// SDRAM BIG Memory ==============================================================
 	wire [15:0] 	sdram_Dq_sw;
@@ -485,8 +469,6 @@ wire [15:0] signal = (ccc[13]) ? 16'h7f00 : 16'h8000;
 	assign sdram_Dq = (sdram_oe) ? sdram_Dq_sw : 16'bz;
 	
 	// END SDRAM BIG Memory ==========================================================
-=======
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 	
 	// ===============================================================================
 	// ======== This is the real CPC Core ============================================
@@ -540,11 +522,8 @@ module led_driver(
 	output led_o
 );
 	reg [20:0] cntr = 0;
-<<<<<<< HEAD
 	reg [1:0] cycle = 0;
 	
-=======
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 	always @(posedge clk_i)
 	begin
 		if( fdc_activity_i == 1 ) 
@@ -552,16 +531,12 @@ module led_driver(
 		else
 			if( cntr > 0 ) cntr = cntr + 1'b1;
 	end
-<<<<<<< HEAD
 
 	// Duty cycle for motor
 	always @(posedge clk_i)	cycle <= cycle + 1'b1;
 	
 	// 50% duty cycle when motor is on, or full intensity when reading
 	assign led_o = (cntr > 0) | (fdc_motor_i && (cycle[0] == 2'd0));
-=======
-	assign led_o = (cntr > 0) ^ fdc_motor_i;
->>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 	
 endmodule
 

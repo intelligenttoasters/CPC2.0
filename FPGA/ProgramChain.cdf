@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(5CEBA2F17) Path("/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/output_files/") File("CPC2.sof") MfrSpec(OpMask(1));
+		Device PartName(5CEBA2F17) Path("/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/output_files/") File("CPC2.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 
