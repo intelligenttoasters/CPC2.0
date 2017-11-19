@@ -8,401 +8,1863 @@ Area                       Addr        Size        Decimal Bytes (Attributes)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000000  .__.ABS.  |    00000000  l__CABS   |    00000000  l__DABS  
-     00000000  l__GSFINA |    00000000  l__HOME   |    00000000  l__VECT0 
-     00000000  l__VECT1  |    00000000  l__VECT2  |    00000000  l__VECT3 
-     00000000  l__VECT4  |    00000000  l__VECT5  |    00000000  l__VECT6 
-     00000000  l__VECT7  |    00000000  l__VECT_N |    00000000  s__CABS  
-     00000000  s__CODE   |    00000000  s__DABS   |    00000000  s__VECT0 
-     00000000  s__VECT00 |    00000000  s__VECT1  |    00000000  s__VECT11
-     00000000  s__VECT2  |    00000000  s__VECT22 |    00000000  s__VECT3 
-     00000000  s__VECT33 |    00000000  s__VECT4  |    00000000  s__VECT44
-     00000000  s__VECT5  |    00000000  s__VECT55 |    00000000  s__VECT6 
-     00000000  s__VECT66 |    00000000  s__VECT7  |    00000000  s__VECT77
-     00000000  s__VECT_N |    00000000  s__VECT_N |    00000002  l__VECT11
-     00000002  l__VECT22 |    00000002  l__VECT33 |    00000002  l__VECT44
-     00000002  l__VECT55 |    00000002  l__VECT66 |    00000005  l__INITIA
-     00000005  l__INITIA |    00000006  l__VECT00 |    00000018  l__GSINIT
-     00000026  l__VECT_N |    0000002D  l__VECT77 |    000000F6  l__SYSTEM
-     0000047F  l__DATA   |    00001170  l__CODE   |    00001170  s__INITIA
-     00001175  s__INITIA |    0000117A  s__GSINIT |    00001192  s__SYSTEM
-     00001288  s__DATA   |    00001707  s__GSFINA |    00001707  s__HOME  
+     00000000  l__END_IN |    00000000  l__GSFINA |    00000000  l__HOME  
+     00000000  l__VECT0  |    00000000  l__VECT1  |    00000000  l__VECT2 
+     00000000  l__VECT3  |    00000000  l__VECT4  |    00000000  l__VECT5 
+     00000000  l__VECT6  |    00000000  l__VECT7  |    00000000  l__VECT_N
+     00000000  s__CABS   |    00000000  s__CODE   |    00000000  s__DABS  
+     00000000  s__VECT0  |    00000000  s__VECT00 |    00000000  s__VECT1 
+     00000000  s__VECT11 |    00000000  s__VECT2  |    00000000  s__VECT22
+     00000000  s__VECT3  |    00000000  s__VECT33 |    00000000  s__VECT4 
+     00000000  s__VECT44 |    00000000  s__VECT5  |    00000000  s__VECT55
+     00000000  s__VECT6  |    00000000  s__VECT66 |    00000000  s__VECT7 
+     00000000  s__VECT77 |    00000000  s__VECT_N |    00000000  s__VECT_N
+     00000002  l__VECT11 |    00000002  l__VECT22 |    00000002  l__VECT33
+     00000002  l__VECT44 |    00000002  l__VECT55 |    00000002  l__VECT66
+     00000006  l__INITIA |    00000006  l__INITIA |    00000006  l__VECT00
+     00000017  l__GSINIT |    00000026  l__VECT_N |    0000002D  l__VECT77
+     00000104  l__SYSTEM |    00002F38  l__CODE   |    00002F38  s__SYSTEM
+     0000303C  s__GSINIT |    00003053  s__INITIA |    00003059  s__DATA  
+     00003059  s__END_IN |    0000489A  l__DATA   |    000078F3  s__INITIA
+     000078F9  s__GSFINA |    000078F9  s__HOME  
 ASxxxx Linker V03.00 + NoICE + sdld,  page 2.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     0000008C  A$interru |    0000008C  C$interru |    0000008C  C$interru
-     0000008C  G$nmi_han |    0000008C  XG$nmi_ha |    0000008C  _nmi_hand
-     0000008D  A$interru |    0000008D  C$interru |    0000008D  C$interru
-     0000008D  G$int_han |    0000008D  _int_hand |    0000008F  A$interru
-     00000090  A$interru |    00000091  A$interru |    00000094  A$interru
-     00000095  A$interru |    00000095  C$interru |    00000097  A$interru
-     00000098  A$interru |    00000098  C$spi.h$8 |    0000009A  A$interru
-     0000009B  A$interru |    0000009C  A$interru |    0000009F  A$interru
-     000000A0  A$interru |    000000A2  A$interru |    000000A3  A$interru
-     000000A3  C$interru |    000000A6  A$interru |    000000A7  A$interru
-     000000A8  A$interru |    000000A9  A$interru |    000000A9  C$interru
-     000000AA  A$interru |    000000AB  A$interru |    000000AC  A$interru
-     000000AF  A$interru |    000000B0  A$interru |    000000B0  C$interru
-     000000B1  A$interru |    000000B2  A$interru |    000000B3  A$interru
-     000000B6  A$interru |    000000B7  A$interru |    000000B7  C$interru
-     000000B7  XG$int_ha |    000000B8  A$library |    000000B8  C$library
-     000000B8  C$library |    000000B8  G$globals |    000000B8  _globals 
-     000000BB  A$library |    000000BB  C$library |    000000BB  XG$global
-     000000BC  A$library |    000000BC  C$library |    000000BC  C$library
-     000000BC  C$library |    000000BC  G$process |    000000BC  XG$proces
-     000000BC  _process_ |    000000BF  A$library |    000000BF  C$library
-     000000BF  G$console |    000000BF  _console  |    000000C1  A$library
-     000000C5  A$library |    000000C7  A$library |    000000C8  A$library
-     000000C9  A$library |    000000C9  C$library |    000000CC  A$library
-     000000CD  A$library |    000000CE  A$library |    000000D1  A$library
-     000000D4  A$library |    000000D6  A$library |    000000DA  A$library
-     000000DD  A$library |    000000DF  A$library |    000000E2  A$library
-     000000E4  A$library |    000000E7  A$library |    000000E9  A$library
-     000000EC  A$library |    000000EF  A$library |    000000F2  A$library
-     000000F3  A$library |    000000F6  A$library |    000000F9  A$library
-     000000FA  A$library |    000000FD  A$library |    00000100  A$library
-     00000101  A$library |    00000104  A$library |    00000105  A$library
-     00000108  A$library |    0000010B  A$library |    0000010C  A$library
-     0000010D  A$library |    0000010F  A$library |    00000111  A$library
-     00000111  C$library |    00000111  XG$consol |    00000112  Flibrary$
-     0000011E  A$library |    0000011E  C$library |    0000011E  C$library
-     0000011E  G$ul$0$0  |    0000011E  _ul       |    00000121  A$library
-     00000122  A$library |    00000124  A$library |    00000125  A$library
-     00000126  A$library |    00000129  A$library |    0000012A  A$library
-     0000012B  A$library |    0000012C  A$library |    0000012D  A$library
-     0000012F  A$library |    00000130  A$library |    00000131  A$library
-     00000132  A$library |    00000133  A$library |    00000135  A$library
-     00000137  A$library |    00000137  C$library |    00000139  A$library
-     0000013A  A$library |    0000013B  A$library |    0000013E  A$library
-     0000013F  A$library |    0000013F  C$library |    0000013F  XG$ul$0$0
-     00000140  A$main$66 |    00000140  C$main.c$ |    00000140  C$main.c$
-     00000140  G$init$0$ |    00000140  _init     |    00000143  A$main$67
-     00000145  A$main$68 |    00000146  A$main$69 |    00000147  A$main$70
-     00000148  A$main$71 |    0000014B  A$main$72 |    0000014D  A$main$80
-     0000014D  C$main.c$ |    0000014D  C$main.c$ |    0000014D  XG$init$0
+     0000008C  A$fdc$76  |    0000008C  C$fdc.c$5 |    0000008C  C$fdc.c$5
+     0000008C  G$fdcMoun |    0000008C  _fdcMount |    0000008F  A$fdc$77 
+     00000091  A$fdc$81  |    00000091  C$fdc.c$5 |    00000094  A$fdc$82 
+     00000095  A$fdc$83  |    00000098  A$fdc$84  |    00000099  A$fdc$89 
+     00000099  C$fdc.c$5 |    00000099  XG$fdcMou |    0000009A  Ffdc$__st
+     000000A7  A$fdc$106 |    000000A7  C$fdc.c$5 |    000000A7  C$fdc.c$5
+     000000A7  G$fdcUnmo |    000000A7  _fdcUnmou |    000000AA  A$fdc$107
+     000000AC  A$fdc$111 |    000000AC  C$fdc.c$5 |    000000AF  A$fdc$112
+     000000B0  A$fdc$113 |    000000B3  A$fdc$114 |    000000B4  A$fdc$119
+     000000B4  C$fdc.c$5 |    000000B4  XG$fdcUnm |    000000B5  Ffdc$__st
+     000000C4  A$fdc$133 |    000000C4  C$fdc.c$6 |    000000C4  G$fdcInit
+     000000C4  _fdcInit  |    000000C6  A$fdc$134 |    000000CA  A$fdc$135
+     000000CC  A$fdc$136 |    000000CF  A$fdc$137 |    000000D0  A$fdc$138
+     000000D1  A$fdc$142 |    000000D1  C$fdc.c$6 |    000000D4  A$fdc$143
+     000000D5  A$fdc$144 |    000000D6  A$fdc$145 |    000000D7  A$fdc$146
+     000000D8  A$fdc$147 |    000000D9  A$fdc$148 |    000000DA  A$fdc$149
+     000000DD  A$fdc$150 |    000000DE  A$fdc$151 |    000000E1  A$fdc$152
+     000000E2  A$fdc$153 |    000000E3  A$fdc$154 |    000000E6  A$fdc$155
+     000000E9  A$fdc$156 |    000000EA  A$fdc$157 |    000000EB  A$fdc$158
+     000000EC  A$fdc$162 |    000000EC  C$fdc.c$6 |    000000ED  A$fdc$163
+     000000EE  A$fdc$164 |    000000EF  A$fdc$165 |    000000F0  A$fdc$166
+     000000F3  A$fdc$167 |    000000F4  A$fdc$168 |    000000F5  A$fdc$172
+     000000F5  C$fdc.c$6 |    000000F6  A$fdc$173 |    000000F7  A$fdc$174
+     000000F8  A$fdc$175 |    000000FB  A$fdc$176 |    000000FC  A$fdc$177
+     000000FF  A$fdc$178 |    00000100  A$fdc$179 |    00000101  A$fdc$180
+     00000104  A$fdc$181 |    00000107  A$fdc$182 |    00000108  A$fdc$183
+     00000109  A$fdc$184 |    0000010C  A$fdc$185 |    0000010D  A$fdc$189
+     0000010D  C$fdc.c$7 |    00000110  A$fdc$190 |    00000112  A$fdc$191
+     00000113  A$fdc$192 |    00000114  A$fdc$193 |    00000115  A$fdc$194
+     00000118  A$fdc$195 |    0000011A  A$fdc$196 |    0000011C  A$fdc$197
+     0000011E  A$fdc$202 |    0000011E  C$fdc.c$7 |    0000011E  XG$fdcIni
+     0000011F  Ffdc$__st |    0000013D  Ffdc$__st |    00000151  A$fdc$220
+     00000151  C$fdc.c$7 |    00000151  G$fdcProc |    00000151  _fdcProce
+     00000153  A$fdc$221 |    00000157  A$fdc$222 |    00000159  A$fdc$223
+     0000015C  A$fdc$224 |    0000015D  A$fdc$225 |    0000015E  A$fdc$229
+     0000015E  C$fdc.c$7 |    00000160  A$fdc$230 |    00000161  A$fdc$231
+     00000162  A$fdc$232 |    00000165  A$fdc$233 |    00000166  A$fdc$234
+     00000167  A$fdc$238 |    00000167  C$fdc.c$8 |    00000168  A$fdc$239
+     0000016B  A$fdc$240 |    0000016C  A$fdc$241 |    0000016F  A$fdc$242
+     00000170  A$fdc$243 |    00000171  A$fdc$247 |    00000171  C$fdc.c$8
+     00000173  A$fdc$248 |    00000176  A$fdc$252 |    00000176  C$fdc.c$8
+     00000177  A$fdc$253 |    00000179  A$fdc$254 |    0000017C  A$fdc$258
+     0000017C  C$fdc.c$8 |    0000017E  A$fdc$259 |    0000017F  A$fdc$260
+     00000180  A$fdc$261 |    00000183  A$fdc$262 |    00000184  A$fdc$263
+     00000187  A$fdc$267 |    00000187  C$fdc.c$8 |    00000189  A$fdc$268
+     0000018A  A$fdc$269 |    0000018B  A$fdc$270 |    0000018E  A$fdc$271
+     0000018F  A$fdc$272 |    00000192  A$fdc$276 |    00000192  C$fdc.c$8
+     00000194  A$fdc$277 |    00000195  A$fdc$278 |    00000196  A$fdc$279
+     00000199  A$fdc$280 |    0000019A  A$fdc$281 |    0000019D  A$fdc$285
+     0000019D  C$fdc.c$8 |    000001A0  A$fdc$286 |    000001A2  A$fdc$287
 ASxxxx Linker V03.00 + NoICE + sdld,  page 3.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00000150  A$main$93 |    00000150  C$main.c$ |    00000150  C$main.c$
-     00000150  G$main$0$ |    00000150  _main     |    00000153  A$main$98
-     00000153  C$main.c$ |    00000156  A$main$99 |    00000157  A$main$10
-     00000158  A$main$10 |    0000015A  A$main$10 |    0000015D  A$main$10
-     0000015F  A$main$10 |    0000015F  C$main.c$ |    00000162  A$main$10
-     00000163  A$main$11 |    00000166  A$main$11 |    00000167  A$main$11
-     0000016A  A$main$11 |    0000016A  C$main.c$ |    0000016D  A$main$11
-     0000016E  A$main$11 |    00000171  A$main$11 |    00000172  A$main$12
-     00000172  C$main.c$ |    00000175  A$main$12 |    00000176  A$main$12
-     00000177  A$main$12 |    00000179  A$main$12 |    0000017C  A$main$12
-     0000017E  A$main$13 |    0000017E  C$main.c$ |    00000181  A$main$13
-     00000182  A$main$13 |    00000183  A$main$13 |    00000184  A$main$13
-     00000187  A$main$13 |    00000188  A$main$14 |    00000188  C$main.c$
-     00000188  XG$main$0 |    0000018A  Fmain$__s |    000001BD  Fmain$__s
-     000001DA  A$spi$69  |    000001DA  C$spi.c$2 |    000001DA  C$spi.c$3
-     000001DA  G$spiSetH |    000001DA  _spiSetHa |    000001DD  A$spi$70 
-     000001E1  A$spi$71  |    000001E3  A$spi$72  |    000001E6  A$spi$73 
-     000001E7  A$spi$74  |    000001E8  A$spi$75  |    000001EA  A$spi$76 
-     000001EB  A$spi$77  |    000001EF  A$spi$78  |    000001F1  A$spi$79 
-     000001F4  A$spi$80  |    000001F5  A$spi$81  |    000001F6  A$spi$82 
-     000001F9  A$spi$83  |    000001FA  A$spi$88  |    000001FA  C$spi.c$3
-     000001FA  XG$spiSet |    000001FB  A$spi$98  |    000001FB  C$spi.c$3
-     000001FB  G$spiProc |    000001FB  _spiProce |    000001FD  A$spi$99 
-     00000201  A$spi$100 |    00000203  A$spi$101 |    00000204  A$spi$102
-     00000205  A$spi$106 |    00000205  C$spi.c$4 |    00000208  A$spi$110
-     00000208  C$spi.c$4 |    0000020B  A$spi$111 |    0000020C  A$spi$112
-     0000020D  A$spi$113 |    00000210  A$spi$117 |    00000210  C$spi.c$4
-     00000213  A$spi$118 |    00000214  A$spi$119 |    00000215  A$spi$120
-     00000218  A$spi$124 |    00000218  C$spi.c$5 |    0000021B  A$spi$125
-     0000021C  A$spi$126 |    0000021D  A$spi$130 |    0000021D  C$spi.c$5
-     0000021E  A$spi$131 |    00000220  A$spi$132 |    00000221  A$spi$133
-     00000222  A$spi$134 |    00000223  A$spi$135 |    00000224  A$spi$136
-     00000225  A$spi$137 |    00000226  A$spi$138 |    00000229  A$spi$139
-     0000022A  A$spi$140 |    0000022B  A$spi$141 |    0000022C  A$spi$145
-     0000022C  C$spi.c$5 |    0000022F  A$spi$146 |    00000230  A$spi$147
-     00000233  A$spi$148 |    00000236  A$spi$149 |    00000237  A$spi$150
-     00000239  A$spi$151 |    0000023A  A$spi$152 |    0000023B  A$spi$153
-     0000023E  A$spi$154 |    00000241  A$spi$155 |    00000242  A$spi$156
-     00000243  A$spi$157 |    00000244  A$spi$158 |    00000245  A$spi$159
-     00000248  A$spi$160 |    00000249  A$spi$161 |    0000024A  A$spi$162
-     0000024B  A$spi$166 |    0000024B  C$spi.c$5 |    0000024E  A$spi$167
-     0000024F  A$spi$168 |    00000250  A$spi$169 |    00000251  A$spi$170
-     00000253  A$spi$171 |    00000254  A$spi$172 |    00000255  A$spi$173
-     00000256  A$spi$174 |    00000257  A$spi$175 |    00000258  A$spi$176
-     00000259  A$spi$177 |    0000025C  A$spi$178 |    0000025D  A$spi$179
-     0000025E  A$spi$180 |    0000025F  A$spi$184 |    0000025F  C$spi.c$5
-     00000260  A$spi$185 |    00000263  A$spi$189 |    00000263  C$spi.c$6
-     00000264  A$spi$190 |    00000265  A$spi$191 |    00000266  A$spi$192
-     00000267  A$spi$196 |    00000267  C$spi.c$6 |    0000026A  A$spi$197
-     0000026C  A$spi$198 |    0000026E  A$spi$199 |    0000026F  A$spi$200
-     00000270  A$spi$201 |    00000271  A$spi$202 |    00000273  A$spi$206
+     000001A4  A$fdc$288 |    000001A7  A$fdc$289 |    000001A9  A$fdc$290
+     000001AB  A$fdc$291 |    000001AE  A$fdc$292 |    000001B0  A$fdc$293
+     000001B3  A$fdc$294 |    000001B6  A$fdc$295 |    000001B8  A$fdc$296
+     000001BB  A$fdc$297 |    000001BE  A$fdc$298 |    000001C0  A$fdc$299
+     000001C3  A$fdc$300 |    000001C6  A$fdc$301 |    000001C8  A$fdc$302
+     000001CB  A$fdc$303 |    000001CE  A$fdc$304 |    000001D0  A$fdc$305
+     000001D3  A$fdc$306 |    000001D6  A$fdc$307 |    000001D8  A$fdc$308
+     000001DB  A$fdc$309 |    000001DE  A$fdc$310 |    000001E0  A$fdc$311
+     000001E3  A$fdc$312 |    000001E6  A$fdc$313 |    000001E8  A$fdc$314
+     000001EB  A$fdc$315 |    000001EE  A$fdc$316 |    000001F0  A$fdc$317
+     000001F3  A$fdc$318 |    000001F6  A$fdc$326 |    000001F6  C$fdc.c$9
+     000001F6  C$fdc.c$9 |    000001F9  A$fdc$327 |    000001FA  A$fdc$328
+     000001FD  A$fdc$329 |    000001FE  A$fdc$333 |    000001FE  C$fdc.c$9
+     00000201  A$fdc$341 |    00000201  C$fdc.c$9 |    00000201  C$fdc.c$9
+     00000204  A$fdc$342 |    00000205  A$fdc$343 |    00000207  A$fdc$347
+     00000207  C$fdc.c$9 |    0000020A  A$fdc$348 |    0000020B  A$fdc$349
+     0000020E  A$fdc$353 |    0000020E  C$fdc.c$9 |    00000211  A$fdc$354
+     00000212  A$fdc$355 |    00000215  A$fdc$356 |    00000216  A$fdc$357
+     00000219  A$fdc$362 |    00000219  C$fdc.c$1 |    0000021C  A$fdc$363
+     0000021E  A$fdc$364 |    0000021F  A$fdc$365 |    00000222  A$fdc$366
+     00000224  A$fdc$367 |    00000225  A$fdc$368 |    00000226  A$fdc$369
+     00000227  A$fdc$370 |    00000229  A$fdc$374 |    00000229  C$fdc.c$1
+     0000022C  A$fdc$375 |    0000022D  A$fdc$376 |    00000230  A$fdc$380
+     00000230  C$fdc.c$1 |    00000233  A$fdc$381 |    00000234  A$fdc$382
+     00000237  A$fdc$383 |    00000238  A$fdc$384 |    0000023B  A$fdc$389
+     0000023B  C$fdc.c$1 |    0000023E  A$fdc$390 |    00000240  A$fdc$391
+     00000243  A$fdc$392 |    00000246  A$fdc$393 |    00000247  A$fdc$394
+     00000248  A$fdc$395 |    0000024A  A$fdc$396 |    0000024B  A$fdc$397
+     0000024C  A$fdc$398 |    0000024D  A$fdc$399 |    0000024E  A$fdc$400
+     00000250  A$fdc$401 |    00000253  A$fdc$402 |    00000256  A$fdc$403
+     00000257  A$fdc$404 |    00000258  A$fdc$405 |    00000259  A$fdc$406
+     0000025A  A$fdc$407 |    0000025B  A$fdc$408 |    0000025C  A$fdc$409
+     0000025F  A$fdc$410 |    00000260  A$fdc$411 |    00000261  A$fdc$415
+     00000261  C$fdc.c$1 |    00000264  A$fdc$416 |    00000266  A$fdc$417
+     00000269  A$fdc$421 |    00000269  C$fdc.c$1 |    0000026C  A$fdc$422
+     0000026E  A$fdc$423 |    0000026F  A$fdc$424 |    00000270  A$fdc$425
+     00000271  A$fdc$426 |    00000272  A$fdc$427 |    00000273  A$fdc$428
+     00000274  A$fdc$429 |    00000275  A$fdc$430 |    00000276  A$fdc$431
+     00000277  A$fdc$432 |    00000278  A$fdc$433 |    00000279  A$fdc$434
+     0000027A  A$fdc$435 |    0000027B  A$fdc$436 |    0000027C  A$fdc$437
+     0000027D  A$fdc$438 |    00000280  A$fdc$439 |    00000281  A$fdc$440
+     00000282  A$fdc$441 |    00000284  A$fdc$442 |    00000285  A$fdc$443
+     00000286  A$fdc$444 |    00000288  A$fdc$445 |    00000289  A$fdc$446
+     0000028A  A$fdc$447 |    0000028B  A$fdc$448 |    0000028D  A$fdc$449
+     0000028E  A$fdc$450 |    0000028F  A$fdc$451 |    00000290  A$fdc$452
+     00000291  A$fdc$453 |    00000292  A$fdc$454 |    00000293  A$fdc$455
+     00000294  A$fdc$456 |    00000295  A$fdc$457 |    00000296  A$fdc$458
+     00000297  A$fdc$459 |    00000299  A$fdc$460 |    0000029A  A$fdc$461
+     0000029B  A$fdc$462 |    0000029E  A$fdc$463 |    0000029F  A$fdc$464
+     000002A0  A$fdc$465 |    000002A1  A$fdc$469 |    000002A1  C$fdc.c$1
+     000002A4  A$fdc$470 |    000002A5  A$fdc$471 |    000002A6  A$fdc$472
 ASxxxx Linker V03.00 + NoICE + sdld,  page 4.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00000273  C$spi.c$6 |    00000274  A$spi$207 |    00000277  A$spi$208
-     00000278  A$spi$209 |    0000027B  A$spi$210 |    0000027C  A$spi$211
-     0000027D  A$spi$212 |    0000027E  A$spi$213 |    00000280  A$spi$214
-     00000281  A$spi$215 |    00000282  A$spi$216 |    00000283  A$spi$217
-     00000284  A$spi$218 |    00000285  A$spi$219 |    00000287  A$spi$220
-     00000288  A$spi$221 |    0000028B  A$spi$222 |    0000028C  A$spi$223
-     0000028D  A$spi$224 |    0000028F  A$spi$225 |    00000290  A$spi$226
-     00000291  A$spi$227 |    00000292  A$spi$228 |    00000293  A$spi$229
-     00000294  A$spi$230 |    00000295  A$spi$231 |    00000296  A$spi$232
-     00000297  A$spi$233 |    00000298  A$spi$234 |    00000299  A$spi$235
-     0000029A  A$spi$236 |    0000029B  A$spi$237 |    0000029C  A$spi$238
-     0000029F  A$spi$239 |    000002A0  A$spi$240 |    000002A1  A$spi$245
-     000002A1  C$spi.c$6 |    000002A3  A$spi$246 |    000002A4  A$spi$247
-     000002A5  A$spi$248 |    000002A8  A$spi$249 |    000002A9  A$spi$250
-     000002AB  A$spi$255 |    000002AB  C$spi.h$7 |    000002AD  A$spi$256
-     000002AE  A$spi$257 |    000002AF  A$spi$258 |    000002B2  A$spi$259
-     000002B3  A$spi$260 |    000002B5  A$spi$261 |    000002B7  A$spi$262
-     000002B9  A$spi$263 |    000002BB  A$spi$265 |    000002BD  A$spi$270
-     000002BD  C$spi.c$7 |    000002BE  A$spi$271 |    000002BF  A$spi$272
-     000002C0  A$spi$273 |    000002C1  A$spi$274 |    000002C4  A$spi$275
-     000002C5  A$spi$276 |    000002C6  A$spi$277 |    000002C7  A$spi$278
-     000002C8  A$spi$279 |    000002CA  A$spi$280 |    000002CD  A$spi$281
-     000002CE  A$spi$282 |    000002D1  A$spi$283 |    000002D2  A$spi$285
-     000002D4  A$spi$286 |    000002D6  A$spi$291 |    000002D6  C$spi.c$7
-     000002D6  XG$spiPro |    000002D7  A$spi$304 |    000002D7  C$spi.c$7
-     000002D7  C$spi.c$8 |    000002D7  G$spiGetI |    000002D7  _spiGetIn
-     000002DA  A$spi$305 |    000002DD  A$spi$306 |    000002DE  A$spi$307
-     000002DF  A$spi$312 |    000002DF  C$spi.c$8 |    000002DF  XG$spiGet
-     000002E0  A$spi$325 |    000002E0  C$spi.c$8 |    000002E0  C$spi.c$8
-     000002E0  G$spiGetP |    000002E0  _spiGetPr |    000002E3  A$spi$326
-     000002E6  A$spi$327 |    000002E7  A$spi$328 |    000002E8  A$spi$329
-     000002E9  A$spi$330 |    000002EB  A$spi$331 |    000002ED  A$spi$332
-     000002EF  A$spi$334 |    000002F0  A$spi$336 |    000002F1  A$spi$341
-     000002F1  C$spi.c$9 |    000002F1  XG$spiGet |    000002F2  A$spi$354
-     000002F2  C$spi.c$9 |    000002F2  C$spi.c$9 |    000002F2  G$spiSetI
-     000002F2  _spiSetIn |    000002F5  A$spi$355 |    000002F8  A$spi$356
-     000002F9  A$spi$357 |    000002FD  A$spi$358 |    000002FF  A$spi$359
-     00000302  A$spi$360 |    00000303  A$spi$361 |    00000305  A$spi$362
-     00000306  A$spi$363 |    00000308  A$spi$365 |    0000030A  A$spi$367
-     0000030B  A$spi$372 |    0000030B  C$spi.c$9 |    0000030B  XG$spiSet
-     0000030C  A$spi$385 |    0000030C  C$spi.c$1 |    0000030C  C$spi.c$1
-     0000030C  G$spiSetP |    0000030C  _spiSetPr |    0000030F  A$spi$386
-     00000312  A$spi$387 |    00000313  A$spi$388 |    00000317  A$spi$389
-     00000319  A$spi$390 |    0000031C  A$spi$391 |    0000031D  A$spi$392
-     0000031F  A$spi$393 |    00000321  A$spi$394 |    00000323  A$spi$396
-     00000325  A$spi$398 |    00000326  A$spi$403 |    00000326  C$spi.c$1
-     00000326  XG$spiSet |    00000327  A$spi$416 |    00000327  C$spi.c$1
-     00000327  C$spi.c$1 |    00000327  G$spiLock |    00000327  _spiLock 
-     0000032A  A$spi$417 |    0000032B  A$spi$418 |    0000032C  A$spi$422
-     0000032C  C$spi.c$1 |    0000032D  A$spi$423 |    0000032F  A$spi$424
-     00000332  A$spi$425 |    00000333  A$spi$426 |    00000335  A$spi$427
+     000002A7  A$fdc$473 |    000002A8  A$fdc$474 |    000002A9  A$fdc$475
+     000002AA  A$fdc$476 |    000002AB  A$fdc$477 |    000002AD  A$fdc$478
+     000002AE  A$fdc$479 |    000002AF  A$fdc$480 |    000002B2  A$fdc$481
+     000002B3  A$fdc$482 |    000002B4  A$fdc$486 |    000002B4  C$fdc.c$1
+     000002B7  A$fdc$494 |    000002B7  C$fdc.c$1 |    000002B7  C$fdc.c$1
+     000002BA  A$fdc$495 |    000002BB  A$fdc$496 |    000002BD  A$fdc$500
+     000002BD  C$fdc.c$1 |    000002C0  A$fdc$501 |    000002C1  A$fdc$502
+     000002C4  A$fdc$506 |    000002C4  C$fdc.c$1 |    000002C7  A$fdc$507
+     000002C8  A$fdc$508 |    000002CB  A$fdc$509 |    000002CC  A$fdc$510
+     000002CF  A$fdc$515 |    000002CF  C$fdc.c$1 |    000002D2  A$fdc$516
+     000002D4  A$fdc$517 |    000002D5  A$fdc$518 |    000002D8  A$fdc$519
+     000002DA  A$fdc$520 |    000002DB  A$fdc$521 |    000002DC  A$fdc$522
+     000002DD  A$fdc$523 |    000002DF  A$fdc$527 |    000002DF  C$fdc.c$1
+     000002E2  A$fdc$528 |    000002E3  A$fdc$529 |    000002E6  A$fdc$533
+     000002E6  C$fdc.c$1 |    000002E9  A$fdc$534 |    000002EA  A$fdc$535
+     000002ED  A$fdc$536 |    000002EE  A$fdc$537 |    000002F1  A$fdc$542
+     000002F1  C$fdc.c$1 |    000002F4  A$fdc$543 |    000002F6  A$fdc$544
+     000002F9  A$fdc$545 |    000002FC  A$fdc$546 |    000002FD  A$fdc$547
+     000002FE  A$fdc$548 |    00000300  A$fdc$549 |    00000301  A$fdc$550
+     00000302  A$fdc$551 |    00000303  A$fdc$552 |    00000304  A$fdc$553
+     00000306  A$fdc$554 |    00000309  A$fdc$555 |    0000030C  A$fdc$556
+     0000030D  A$fdc$557 |    0000030E  A$fdc$558 |    0000030F  A$fdc$559
+     00000310  A$fdc$560 |    00000311  A$fdc$561 |    00000312  A$fdc$562
+     00000315  A$fdc$563 |    00000316  A$fdc$564 |    00000317  A$fdc$568
+     00000317  C$fdc.c$1 |    0000031A  A$fdc$569 |    0000031C  A$fdc$570
+     0000031F  A$fdc$574 |    0000031F  C$fdc.c$1 |    00000322  A$fdc$575
+     00000324  A$fdc$576 |    00000325  A$fdc$577 |    00000326  A$fdc$578
+     00000327  A$fdc$579 |    00000328  A$fdc$580 |    00000329  A$fdc$581
+     0000032A  A$fdc$582 |    0000032B  A$fdc$583 |    0000032C  A$fdc$584
+     0000032D  A$fdc$585 |    0000032E  A$fdc$586 |    0000032F  A$fdc$587
+     00000330  A$fdc$588 |    00000331  A$fdc$589 |    00000332  A$fdc$590
+     00000333  A$fdc$591 |    00000336  A$fdc$592 |    00000337  A$fdc$593
+     00000338  A$fdc$594 |    0000033A  A$fdc$595 |    0000033B  A$fdc$596
+     0000033C  A$fdc$597 |    0000033E  A$fdc$598 |    0000033F  A$fdc$599
+     00000340  A$fdc$600 |    00000341  A$fdc$601 |    00000343  A$fdc$602
+     00000344  A$fdc$603 |    00000345  A$fdc$604 |    00000346  A$fdc$605
+     00000347  A$fdc$606 |    00000348  A$fdc$607 |    00000349  A$fdc$608
+     0000034A  A$fdc$609 |    0000034B  A$fdc$610 |    0000034C  A$fdc$611
+     0000034D  A$fdc$612 |    0000034F  A$fdc$613 |    00000350  A$fdc$614
+     00000351  A$fdc$615 |    00000354  A$fdc$616 |    00000355  A$fdc$617
+     00000356  A$fdc$618 |    00000357  A$fdc$622 |    00000357  C$fdc.c$1
+     0000035A  A$fdc$623 |    0000035B  A$fdc$624 |    0000035C  A$fdc$625
+     0000035D  A$fdc$626 |    0000035E  A$fdc$627 |    0000035F  A$fdc$628
+     00000360  A$fdc$629 |    00000361  A$fdc$630 |    00000363  A$fdc$631
+     00000364  A$fdc$632 |    00000365  A$fdc$633 |    00000368  A$fdc$634
+     00000369  A$fdc$635 |    0000036A  A$fdc$639 |    0000036A  C$fdc.c$1
+     0000036D  A$fdc$647 |    0000036D  C$fdc.c$1 |    0000036D  C$fdc.c$1
+     00000370  A$fdc$648 |    00000371  A$fdc$649 |    00000373  A$fdc$653
+     00000373  C$fdc.c$1 |    00000376  A$fdc$654 |    00000377  A$fdc$655
+     0000037A  A$fdc$659 |    0000037A  C$fdc.c$1 |    0000037D  A$fdc$660
+     0000037E  A$fdc$661 |    00000381  A$fdc$662 |    00000382  A$fdc$663
 ASxxxx Linker V03.00 + NoICE + sdld,  page 5.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00000337  A$spi$428 |    00000338  A$spi$433 |    00000338  C$spi.c$1
-     0000033B  A$spi$434 |    0000033C  A$spi$435 |    00000340  A$spi$436
-     00000342  A$spi$437 |    00000345  A$spi$438 |    00000346  A$spi$442
-     00000346  C$spi.c$1 |    00000348  A$spi$443 |    00000349  A$spi$444
-     0000034A  A$spi$445 |    0000034D  A$spi$446 |    0000034E  A$spi$450
-     0000034E  C$spi.c$1 |    0000034F  A$spi$451 |    00000350  A$spi$452
-     00000351  A$spi$453 |    00000354  A$spi$454 |    00000355  A$spi$458
-     00000355  C$spi.c$1 |    00000357  A$spi$463 |    00000357  C$spi.c$1
-     00000357  XG$spiLoc |    00000358  A$spi$476 |    00000358  C$spi.c$1
-     00000358  C$spi.c$1 |    00000358  G$spiGetO |    00000358  _spiGetOu
-     0000035B  A$spi$477 |    0000035E  A$spi$478 |    0000035F  A$spi$479
-     00000360  A$spi$480 |    00000361  A$spi$485 |    00000361  C$spi.c$1
-     00000361  XG$spiGet |    00000362  A$spi$498 |    00000362  C$spi.c$1
-     00000362  C$spi.c$1 |    00000362  G$spiGetI |    00000362  _spiGetIn
-     00000365  A$spi$499 |    00000368  A$spi$500 |    00000369  A$spi$501
-     0000036A  A$spi$502 |    0000036B  A$spi$507 |    0000036B  C$spi.c$1
-     0000036B  XG$spiGet |    0000036C  A$spi$517 |    0000036C  C$spi.c$1
-     0000036C  G$spiExch |    0000036C  _spiExcha |    0000036E  A$spi$518
-     00000372  A$spi$519 |    00000374  A$spi$523 |    00000374  C$spi.c$1
-     00000377  A$spi$524 |    00000378  A$spi$525 |    00000379  A$spi$529
-     00000379  C$spi.c$1 |    0000037C  A$spi$530 |    0000037D  A$spi$531
-     0000037E  A$spi$532 |    00000381  A$spi$533 |    00000382  A$spi$537
-     00000382  C$spi.c$1 |    00000385  A$spi$538 |    00000386  A$spi$539
-     00000389  A$spi$540 |    0000038A  A$spi$544 |    0000038A  C$spi.h$6
-     0000038B  A$spi$545 |    0000038C  A$spi$546 |    0000038F  A$spi$547
-     00000390  A$spi$548 |    00000393  A$spi$549 |    00000394  A$spi$550
-     00000395  A$spi$551 |    00000397  A$spi$552 |    00000398  A$spi$553
-     00000399  A$spi$554 |    0000039A  A$spi$555 |    0000039B  A$spi$556
-     0000039C  A$spi$557 |    0000039D  A$spi$558 |    000003A0  A$spi$559
-     000003A1  A$spi$560 |    000003A2  A$spi$561 |    000003A3  A$spi$565
-     000003A3  C$spi.c$1 |    000003A6  A$spi$566 |    000003A7  A$spi$567
-     000003A8  A$spi$568 |    000003A9  A$spi$569 |    000003AB  A$spi$570
-     000003AC  A$spi$571 |    000003AD  A$spi$572 |    000003AE  A$spi$573
-     000003B0  A$spi$574 |    000003B1  A$spi$575 |    000003B2  A$spi$576
-     000003B5  A$spi$577 |    000003B6  A$spi$578 |    000003B7  A$spi$579
-     000003B8  A$spi$583 |    000003B8  C$spi.c$1 |    000003BB  A$spi$584
-     000003BC  A$spi$585 |    000003BD  A$spi$586 |    000003BE  A$spi$587
-     000003C0  A$spi$588 |    000003C1  A$spi$589 |    000003C2  A$spi$590
-     000003C3  A$spi$591 |    000003C5  A$spi$592 |    000003C6  A$spi$593
-     000003C7  A$spi$594 |    000003CA  A$spi$595 |    000003CB  A$spi$599
-     000003CB  C$spi.h$6 |    000003CE  A$spi$600 |    000003CF  A$spi$601
-     000003D2  A$spi$602 |    000003D3  A$spi$606 |    000003D3  C$spi.c$1
-     000003D5  A$spi$611 |    000003D5  C$spi.c$1 |    000003D5  XG$spiExc
-     000003D6  A$stdio_s |    000003D6  C$stdio_s |    000003D6  G$stdio_c
-     000003D6  _stdio_ch |    000003D8  A$stdio_s |    000003DC  A$stdio_s
-     000003DE  A$stdio_s |    000003DF  A$stdio_s |    000003DF  C$stdio_s
-     000003E2  A$stdio_s |    000003E3  A$stdio_s |    000003E5  A$stdio_s
-     000003E5  C$stdio_s |    000003E8  A$stdio_s |    000003EB  A$stdio_s
-     000003EC  A$stdio_s |    000003ED  A$stdio_s |    000003EF  A$stdio_s
-     000003F1  A$stdio_s |    000003F1  C$stdio_s |    000003F4  A$stdio_s
-     000003F6  A$stdio_s |    000003F6  C$stdio_s |    000003F9  A$stdio_s
+     00000384  A$fdc$668 |    00000384  C$fdc.c$1 |    00000386  A$fdc$669
+     00000387  A$fdc$670 |    00000388  A$fdc$671 |    0000038B  A$fdc$672
+     0000038C  A$fdc$673 |    0000038D  A$fdc$674 |    0000038F  A$fdc$675
+     00000392  A$fdc$676 |    00000395  A$fdc$677 |    00000396  A$fdc$678
+     00000397  A$fdc$679 |    00000398  A$fdc$680 |    00000399  A$fdc$681
+     0000039C  A$fdc$682 |    0000039F  A$fdc$683 |    000003A0  A$fdc$684
+     000003A1  A$fdc$686 |    000003A4  A$fdc$687 |    000003A5  A$fdc$688
+     000003A6  A$fdc$689 |    000003A9  A$fdc$690 |    000003AA  A$fdc$694
+     000003AA  C$fdc.c$1 |    000003AD  A$fdc$702 |    000003AD  C$fdc.c$1
+     000003AD  C$fdc.c$1 |    000003B0  A$fdc$703 |    000003B1  A$fdc$704
+     000003B3  A$fdc$708 |    000003B3  C$fdc.c$1 |    000003B6  A$fdc$709
+     000003B7  A$fdc$710 |    000003BA  A$fdc$714 |    000003BA  C$fdc.c$1
+     000003BD  A$fdc$715 |    000003BE  A$fdc$716 |    000003C1  A$fdc$717
+     000003C2  A$fdc$718 |    000003C5  A$fdc$723 |    000003C5  C$fdc.c$1
+     000003C8  A$fdc$724 |    000003C9  A$fdc$725 |    000003CC  A$fdc$726
+     000003CD  A$fdc$730 |    000003CD  C$fdc.c$1 |    000003D0  A$fdc$738
+     000003D0  C$fdc.c$1 |    000003D0  C$fdc.c$1 |    000003D3  A$fdc$739
+     000003D4  A$fdc$740 |    000003D6  A$fdc$744 |    000003D6  C$fdc.c$1
+     000003D9  A$fdc$745 |    000003DA  A$fdc$746 |    000003DD  A$fdc$750
+     000003DD  C$fdc.c$1 |    000003E0  A$fdc$751 |    000003E1  A$fdc$752
+     000003E4  A$fdc$753 |    000003E5  A$fdc$754 |    000003E8  A$fdc$759
+     000003E8  C$fdc.c$1 |    000003EB  A$fdc$760 |    000003EC  A$fdc$761
+     000003EF  A$fdc$762 |    000003F0  A$fdc$766 |    000003F0  C$fdc.c$1
+     000003F3  A$fdc$767 |    000003F4  A$fdc$768 |    000003F6  A$fdc$769
+     000003F7  A$fdc$770 |    000003FA  A$fdc$771 |    000003FB  A$fdc$775
+     000003FB  C$fdc.c$1 |    000003FE  A$fdc$783 |    000003FE  C$fdc.c$1
+     000003FE  C$fdc.c$1 |    00000401  A$fdc$784 |    00000402  A$fdc$785
+     00000404  A$fdc$789 |    00000404  C$fdc.c$1 |    00000407  A$fdc$790
+     00000408  A$fdc$791 |    0000040B  A$fdc$795 |    0000040B  C$fdc.c$1
+     0000040E  A$fdc$796 |    0000040F  A$fdc$797 |    00000412  A$fdc$798
+     00000413  A$fdc$799 |    00000416  A$fdc$804 |    00000416  C$fdc.c$1
+     00000418  A$fdc$805 |    00000419  A$fdc$806 |    0000041A  A$fdc$807
+     0000041D  A$fdc$808 |    0000041E  A$fdc$809 |    0000041F  A$fdc$810
+     00000421  A$fdc$811 |    00000424  A$fdc$812 |    00000425  A$fdc$813
+     00000426  A$fdc$814 |    00000427  A$fdc$815 |    0000042A  A$fdc$816
+     0000042B  A$fdc$817 |    0000042C  A$fdc$818 |    0000042F  A$fdc$819
+     00000432  A$fdc$820 |    00000433  A$fdc$821 |    00000434  A$fdc$822
+     00000435  A$fdc$823 |    00000436  A$fdc$824 |    00000437  A$fdc$825
+     00000438  A$fdc$826 |    00000439  A$fdc$827 |    0000043C  A$fdc$828
+     0000043D  A$fdc$829 |    0000043E  A$fdc$833 |    0000043E  C$fdc.c$1
+     00000441  A$fdc$834 |    00000443  A$fdc$835 |    00000446  A$fdc$839
+     00000446  C$fdc.c$1 |    00000447  A$fdc$840 |    00000449  A$fdc$841
+     0000044A  A$fdc$842 |    0000044B  A$fdc$843 |    0000044E  A$fdc$844
+     0000044F  A$fdc$845 |    00000451  A$fdc$846 |    00000452  A$fdc$847
+     00000453  A$fdc$848 |    00000456  A$fdc$849 |    00000457  A$fdc$850
+     00000459  A$fdc$851 |    0000045A  A$fdc$852 |    0000045B  A$fdc$853
+     0000045E  A$fdc$854 |    0000045F  A$fdc$855 |    00000460  A$fdc$856
+     00000461  A$fdc$857 |    00000463  A$fdc$858 |    00000465  A$fdc$859
+     00000469  A$fdc$860 |    0000046C  A$fdc$864 |    0000046C  C$fdc.c$1
+     0000046F  A$fdc$865 |    00000471  A$fdc$866 |    00000472  A$fdc$867
+     00000473  A$fdc$868 |    00000474  A$fdc$869 |    00000475  A$fdc$870
 ASxxxx Linker V03.00 + NoICE + sdld,  page 6.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     000003FB  A$stdio_s |    000003FB  C$stdio_s |    000003FE  A$stdio_s
-     00000400  A$stdio_s |    00000400  C$stdio_s |    00000403  A$stdio_s
-     00000403  C$stdio_s |    00000404  A$stdio_s |    00000406  A$stdio_s
-     00000408  A$stdio_s |    00000408  C$stdio_s |    0000040B  A$stdio_s
-     0000040D  A$stdio_s |    0000040D  C$stdio_s |    00000410  A$stdio_s
-     00000412  A$stdio_s |    00000412  C$stdio_s |    00000415  A$stdio_s
-     00000417  A$stdio_s |    00000417  C$stdio_s |    00000419  A$stdio_s
-     00000419  C$stdio_s |    0000041C  A$stdio_s |    0000041E  A$stdio_s
-     00000420  A$stdio_s |    00000422  A$stdio_s |    00000424  A$stdio_s
-     00000424  C$stdio_s |    00000427  A$stdio_s |    00000428  A$stdio_s
-     0000042A  A$stdio_s |    0000042C  A$stdio_s |    0000042D  A$stdio_s
-     0000042E  A$stdio_s |    00000430  A$stdio_s |    00000431  A$stdio_s
-     00000432  A$stdio_s |    00000435  A$stdio_s |    00000437  A$stdio_s
-     00000438  A$stdio_s |    00000439  A$stdio_s |    0000043A  A$stdio_s
-     0000043D  A$stdio_s |    0000043F  A$stdio_s |    00000442  A$stdio_s
-     00000445  A$stdio_s |    00000447  A$stdio_s |    00000448  A$stdio_s
-     0000044A  A$stdio_s |    0000044D  A$stdio_s |    00000450  A$stdio_s
-     00000450  C$stdio_s |    00000453  A$stdio_s |    00000456  A$stdio_s
-     00000458  A$stdio_s |    00000459  A$stdio_s |    0000045C  A$stdio_s
-     0000045F  A$stdio_s |    00000462  A$stdio_s |    00000464  A$stdio_s
-     00000465  A$stdio_s |    00000466  A$stdio_s |    00000467  A$stdio_s
-     0000046A  A$stdio_s |    0000046D  A$stdio_s |    0000046E  A$stdio_s
-     0000046F  A$stdio_s |    0000046F  C$stdio_s |    00000472  A$stdio_s
-     00000473  A$stdio_s |    00000476  A$stdio_s |    00000477  A$stdio_s
-     00000477  C$stdio_s |    00000479  A$stdio_s |    0000047D  A$stdio_s
-     00000480  A$stdio_s |    00000482  A$stdio_s |    00000486  A$stdio_s
-     00000488  A$stdio_s |    0000048A  A$stdio_s |    0000048A  C$stdio_s
-     0000048A  XG$stdio_ |    0000048B  A$stdio_s |    0000048B  C$stdio_s
-     0000048B  C$stdio_s |    0000048B  G$stdio_i |    0000048B  _stdio_in
-     0000048E  A$stdio_s |    0000048F  A$stdio_s |    00000490  A$stdio_s
-     00000491  A$stdio_s |    00000492  A$stdio_s |    00000495  A$stdio_s
-     00000496  A$stdio_s |    00000497  A$stdio_s |    00000497  C$stdio_s
-     0000049A  A$stdio_s |    0000049C  A$stdio_s |    0000049C  C$stdio_s
-     0000049F  A$stdio_s |    000004A1  A$stdio_s |    000004A1  C$stdio_s
-     000004A2  A$stdio_s |    000004A3  A$stdio_s |    000004A4  A$stdio_s
-     000004A7  A$stdio_s |    000004A8  A$stdio_s |    000004A8  C$stdio_s
-     000004AA  A$stdio_s |    000004AB  A$stdio_s |    000004AC  A$stdio_s
-     000004AF  A$stdio_s |    000004B0  A$stdio_s |    000004B0  C$stdio_s
-     000004B3  A$stdio_s |    000004B5  A$stdio_s |    000004B5  C$stdio_s
-     000004B5  XG$stdio_ |    000004B6  A$stdio_s |    000004B6  C$stdio_s
-     000004B6  G$spi_put |    000004B6  _spi_puts |    000004B7  A$stdio_s
-     000004B7  C$stdio_s |    000004BA  A$stdio_s |    000004BB  A$stdio_s
-     000004BC  A$stdio_s |    000004BD  A$stdio_s |    000004BE  A$stdio_s
-     000004BF  A$stdio_s |    000004C2  A$stdio_s |    000004C3  A$stdio_s
-     000004C4  A$stdio_s |    000004C5  A$stdio_s |    000004C6  A$stdio_s
-     000004C6  C$stdio_s |    000004C7  A$stdio_s |    000004C8  A$stdio_s
-     000004C9  A$stdio_s |    000004CC  A$stdio_s |    000004CD  A$stdio_s
-     000004CE  A$stdio_s |    000004CF  A$stdio_s |    000004D1  A$stdio_s
-     000004D4  A$stdio_s |    000004D6  A$stdio_s |    000004D6  C$stdio_s
-     000004D9  A$stdio_s |    000004DA  A$stdio_s |    000004DB  A$stdio_s
-     000004DC  A$stdio_s |    000004E0  A$stdio_s |    000004E2  A$stdio_s
+     00000478  A$fdc$871 |    00000479  A$fdc$872 |    0000047A  A$fdc$873
+     0000047D  A$fdc$874 |    00000480  A$fdc$875 |    00000481  A$fdc$876
+     00000482  A$fdc$877 |    00000485  A$fdc$878 |    00000486  A$fdc$882
+     00000486  C$fdc.c$1 |    00000489  A$fdc$883 |    0000048C  A$fdc$884
+     0000048E  A$fdc$885 |    0000048F  A$fdc$886 |    00000490  A$fdc$887
+     00000491  A$fdc$888 |    00000492  A$fdc$889 |    00000493  A$fdc$890
+     00000494  A$fdc$891 |    00000495  A$fdc$892 |    00000496  A$fdc$893
+     00000497  A$fdc$894 |    00000498  A$fdc$895 |    00000499  A$fdc$896
+     0000049A  A$fdc$897 |    0000049B  A$fdc$898 |    0000049C  A$fdc$899
+     0000049D  A$fdc$900 |    0000049E  A$fdc$901 |    000004A1  A$fdc$902
+     000004A2  A$fdc$903 |    000004A3  A$fdc$904 |    000004A4  A$fdc$905
+     000004A5  A$fdc$906 |    000004A8  A$fdc$907 |    000004AA  A$fdc$911
+     000004AA  C$fdc.c$1 |    000004AD  A$fdc$919 |    000004AD  C$fdc.c$1
+     000004AD  C$fdc.c$1 |    000004AF  A$fdc$920 |    000004B0  A$fdc$921
+     000004B1  A$fdc$922 |    000004B4  A$fdc$923 |    000004B5  A$fdc$924
+     000004B6  A$fdc$928 |    000004B6  C$fdc.c$1 |    000004B9  A$fdc$929
+     000004BA  A$fdc$930 |    000004BC  A$fdc$934 |    000004BC  C$fdc.c$1
+     000004BF  A$fdc$935 |    000004C0  A$fdc$936 |    000004C3  A$fdc$940
+     000004C3  C$fdc.c$1 |    000004C6  A$fdc$941 |    000004C7  A$fdc$942
+     000004CA  A$fdc$943 |    000004CB  A$fdc$944 |    000004CD  A$fdc$949
+     000004CD  C$fdc.c$2 |    000004CE  A$fdc$950 |    000004D0  A$fdc$951
+     000004D2  A$fdc$955 |    000004D2  C$fdc.c$2 |    000004D4  A$fdc$956
+     000004D7  A$fdc$957 |    000004D8  A$fdc$958 |    000004D9  A$fdc$959
+     000004DA  A$fdc$960 |    000004DB  A$fdc$961 |    000004DC  A$fdc$962
+     000004DF  A$fdc$963 |    000004E0  A$fdc$964 |    000004E1  A$fdc$965
+     000004E4  A$fdc$966 |    000004E7  A$fdc$967 |    000004E8  A$fdc$968
+     000004E9  A$fdc$969 |    000004EC  A$fdc$973 |    000004EC  C$fdc.c$2
+     000004EF  A$fdc$974 |    000004F0  A$fdc$975 |    000004F3  A$fdc$976
+     000004F4  A$fdc$977 |    000004F6  A$fdc$982 |    000004F6  C$fdc.c$2
+     000004F8  A$fdc$983 |    000004FB  A$fdc$984 |    000004FC  A$fdc$985
+     000004FD  A$fdc$986 |    00000500  A$fdc$987 |    00000501  A$fdc$988
+     00000502  A$fdc$989 |    00000505  A$fdc$990 |    00000508  A$fdc$991
+     00000509  A$fdc$992 |    0000050A  A$fdc$994 |    0000050D  A$fdc$995
+     0000050E  A$fdc$996 |    0000050F  A$fdc$997 |    00000512  A$fdc$998
+     00000513  A$fdc$100 |    00000513  C$fdc.c$2 |    00000515  A$fdc$101
+     00000515  C$fdc.c$2 |    00000515  C$fdc.c$2 |    00000518  A$fdc$101
+     0000051A  A$fdc$101 |    0000051D  A$fdc$101 |    0000051E  A$fdc$101
+     0000051F  A$fdc$101 |    00000520  A$fdc$101 |    00000521  A$fdc$101
+     00000522  A$fdc$101 |    00000525  A$fdc$101 |    00000526  A$fdc$102
+     00000527  A$fdc$102 |    0000052A  A$fdc$102 |    0000052D  A$fdc$102
+     0000052E  A$fdc$102 |    0000052F  A$fdc$102 |    00000532  A$fdc$102
+     00000533  A$fdc$103 |    00000533  C$fdc.c$2 |    00000535  A$fdc$103
+     00000535  C$fdc.c$2 |    00000535  C$fdc.c$2 |    00000538  A$fdc$103
+     0000053A  A$fdc$104 |    0000053D  A$fdc$104 |    0000053E  A$fdc$104
+     0000053F  A$fdc$104 |    00000540  A$fdc$104 |    00000541  A$fdc$104
+     00000542  A$fdc$104 |    00000545  A$fdc$104 |    00000546  A$fdc$104
+     00000547  A$fdc$104 |    0000054A  A$fdc$105 |    0000054D  A$fdc$105
+     0000054E  A$fdc$105 |    0000054F  A$fdc$105 |    00000552  A$fdc$105
+     00000553  A$fdc$106 |    00000553  C$fdc.c$2 |    00000553  C$fdc.c$2
+     00000556  A$fdc$106 |    00000557  A$fdc$106 |    0000055A  A$fdc$106
+     0000055B  A$fdc$106 |    0000055D  A$fdc$106 |    0000055F  A$fdc$107
 ASxxxx Linker V03.00 + NoICE + sdld,  page 7.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     000004E5  A$stdio_s |    000004E8  A$stdio_s |    000004E9  A$stdio_s
-     000004EA  A$stdio_s |    000004ED  A$stdio_s |    000004F0  A$stdio_s
-     000004F1  A$stdio_s |    000004F2  A$stdio_s |    000004F2  C$stdio_s
-     000004F5  A$stdio_s |    000004F6  A$stdio_s |    000004F7  A$stdio_s
-     000004F8  A$stdio_s |    000004F9  A$stdio_s |    000004FA  A$stdio_s
-     000004FB  A$stdio_s |    000004FC  A$stdio_s |    000004FF  A$stdio_s
-     00000500  A$stdio_s |    00000501  A$stdio_s |    00000501  C$stdio_s
-     00000501  XG$spi_pu |    00000502  A$stdio_s |    00000502  C$stdio_s
-     00000502  G$putchar |    00000502  _putchari |    00000505  A$stdio_s
-     00000506  A$stdio_s |    00000507  A$stdio_s |    00000508  A$stdio_s
-     00000509  A$stdio_s |    0000050C  A$stdio_s |    0000050D  A$stdio_s
-     0000050D  C$stdio_s |    0000050D  XG$putcha |    00000510  A$stdio_s
-     00000510  C$stdio_s |    00000510  G$putchar |    00000510  _putchar 
-     00000512  A$stdio_s |    00000516  A$stdio_s |    00000518  A$stdio_s
-     00000518  C$stdio_s |    0000051B  A$stdio_s |    0000051C  A$stdio_s
-     0000051E  A$stdio_s |    0000051E  C$stdio_s |    00000521  A$stdio_s
-     00000525  A$stdio_s |    00000528  A$stdio_s |    0000052B  A$stdio_s
-     0000052C  A$stdio_s |    0000052E  A$stdio_s |    0000052F  A$stdio_s
-     00000532  A$stdio_s |    00000533  A$stdio_s |    00000533  C$stdio_s
-     00000536  A$stdio_s |    00000538  A$stdio_s |    0000053A  A$stdio_s
-     0000053C  A$stdio_s |    0000053E  A$stdio_s |    0000053F  A$stdio_s
-     00000540  A$stdio_s |    00000541  A$stdio_s |    00000543  A$stdio_s
-     00000547  A$stdio_s |    0000054A  A$stdio_s |    0000054D  A$stdio_s
-     0000054E  A$stdio_s |    00000550  A$stdio_s |    00000551  A$stdio_s
-     00000553  A$stdio_s |    00000553  C$stdio_s |    00000554  A$stdio_s
-     00000555  A$stdio_s |    00000557  A$stdio_s |    0000055A  A$stdio_s
-     0000055C  A$stdio_s |    0000055E  A$stdio_s |    00000561  A$stdio_s
-     00000563  A$stdio_s |    00000563  C$stdio_s |    00000563  XG$putcha
-     00000564  A$stdio_s |    00000564  C$stdio_s |    00000564  C$stdio_s
-     00000564  G$outboun |    00000564  _outbound |    00000567  A$stdio_s
-     0000056A  A$stdio_s |    0000056C  A$stdio_s |    0000056D  A$stdio_s
-     0000056F  A$stdio_s |    0000056F  C$stdio_s |    00000570  A$stdio_s
-     00000573  A$stdio_s |    00000574  A$stdio_s |    00000574  C$stdio_s
-     00000577  A$stdio_s |    00000579  A$stdio_s |    00000579  C$stdio_s
-     00000579  XG$outbou |    0000057A  A$stdio_s |    0000057A  C$stdio_s
-     0000057A  C$stdio_s |    0000057A  G$spi_ava |    0000057A  _spi_avai
-     0000057E  A$stdio_s |    00000581  A$stdio_s |    00000581  C$stdio_s
-     00000581  XG$spi_av |    00000582  A$stdio_s |    00000582  C$stdio_s
-     00000582  C$stdio_s |    00000582  G$getchar |    00000582  _getchar 
-     00000585  A$stdio_s |    00000586  A$stdio_s |    00000587  A$stdio_s
-     00000587  C$stdio_s |    0000058A  A$stdio_s |    0000058B  A$stdio_s
-     0000058D  A$stdio_s |    0000058E  A$stdio_s |    0000058F  A$stdio_s
-     0000058F  C$stdio_s |    00000591  A$stdio_s |    00000595  A$stdio_s
-     00000598  A$stdio_s |    0000059A  A$stdio_s |    0000059A  C$stdio_s
-     0000059B  A$stdio_s |    0000059E  A$stdio_s |    000005A0  A$stdio_s
-     000005A1  A$stdio_s |    000005A2  A$stdio_s |    000005A3  A$stdio_s
-     000005A6  A$stdio_s |    000005A7  A$stdio_s |    000005AA  A$stdio_s
-     000005AD  A$stdio_s |    000005AE  A$stdio_s |    000005AF  A$stdio_s
-     000005B0  A$stdio_s |    000005B0  C$stdio_s |    000005B3  A$stdio_s
-     000005B4  A$stdio_s |    000005B4  C$stdio_s |    000005B5  A$stdio_s
-     000005B5  C$stdio_s |    000005B5  XG$getcha |    000005B6  A$stdio_s
+     0000055F  C$fdc.c$2 |    0000055F  XG$fdcPro |    00000560  Ffdc$__st
+     0000056C  Ffdc$__st |    00000595  Ffdc$__st |    000005B7  Ffdc$__st
+     000005CD  Ffdc$__st |    000005F7  Ffdc$__st |    0000061A  Ffdc$__st
+     0000062F  Ffdc$__st |    00000658  Ffdc$__st |    0000066E  Ffdc$__st
+     00000695  Ffdc$__st |    000006A3  Ffdc$__st |    000006C8  Ffdc$__st
+     000006D4  Ffdc$__st |    000006F8  Ffdc$__st |    0000070F  Ffdc$__st
+     00000727  Ffdc$__st |    00000749  Ffdc$__st |    00000774  Ffdc$__st
+     00000788  Ffdc$__st |    000007A7  Ffdc$__st |    000007BF  A$hdmi$67
+     000007BF  C$hdmi.c$ |    000007BF  C$hdmi.c$ |    000007BF  G$i2cWait
+     000007BF  _i2cWait  |    000007C1  A$hdmi$68 |    000007C2  A$hdmi$69
+     000007C3  A$hdmi$70 |    000007C6  A$hdmi$71 |    000007C7  A$hdmi$72
+     000007C9  A$hdmi$73 |    000007CB  A$hdmi$78 |    000007CB  C$hdmi.c$
+     000007CB  XG$i2cWai |    000007CC  A$hdmi$91 |    000007CC  C$hdmi.c$
+     000007CC  C$hdmi.c$ |    000007CC  G$hdmi_in |    000007CC  _hdmi_ini
+     000007CE  A$hdmi$92 |    000007CF  A$hdmi$93 |    000007D0  A$hdmi$94
+     000007D3  A$hdmi$95 |    000007D4  A$hdmi$96 |    000007D5  A$hdmi$97
+     000007D7  A$hdmi$98 |    000007D8  A$hdmi$99 |    000007DA  A$hdmi$10
+     000007DB  A$hdmi$10 |    000007DC  A$hdmi$10 |    000007DF  A$hdmi$10
+     000007E0  A$hdmi$10 |    000007E1  A$hdmi$10 |    000007E2  A$hdmi$10
+     000007E4  A$hdmi$10 |    000007E5  A$hdmi$10 |    000007E6  A$hdmi$10
+     000007E9  A$hdmi$11 |    000007EA  A$hdmi$11 |    000007EB  A$hdmi$11
+     000007EC  A$hdmi$11 |    000007ED  A$hdmi$11 |    000007F0  A$hdmi$11
+     000007F1  A$hdmi$11 |    000007F2  A$hdmi$11 |    000007F5  A$hdmi$11
+     000007F8  A$hdmi$11 |    000007F9  A$hdmi$12 |    000007FA  A$hdmi$12
+     000007FA  C$hdmi.c$ |    000007FD  A$hdmi$12 |    000007FE  A$hdmi$12
+     00000801  A$hdmi$13 |    00000801  C$hdmi.c$ |    00000804  A$hdmi$13
+     00000805  A$hdmi$13 |    00000808  A$hdmi$13 |    00000808  C$hdmi.c$
+     0000080B  A$hdmi$13 |    0000080C  A$hdmi$13 |    0000080F  A$hdmi$14
+     0000080F  C$hdmi.c$ |    00000812  A$hdmi$14 |    00000813  A$hdmi$14
+     00000816  A$hdmi$14 |    00000817  A$hdmi$15 |    00000817  C$hdmi.c$
+     00000817  C$hdmi.c$ |    00000817  XG$hdmi_i |    0000081A  Fhdmi$__s
+     00000834  Fhdmi$__s |    00000845  Fhdmi$__s |    0000085B  A$hdmi$17
+     0000085B  C$hdmi.c$ |    0000085B  G$hdmi_re |    0000085B  _hdmi_rea
+     0000085C  A$hdmi$17 |    0000085C  C$hdmi.c$ |    00000860  A$hdmi$18
+     00000862  A$hdmi$18 |    00000866  A$hdmi$18 |    00000866  C$hdmi.c$
+     00000869  A$hdmi$18 |    0000086A  A$hdmi$18 |    0000086D  A$hdmi$19
+     0000086D  C$hdmi.c$ |    00000870  A$hdmi$19 |    00000871  A$hdmi$19
+     00000874  A$hdmi$19 |    00000874  C$hdmi.c$ |    00000877  A$hdmi$19
+     00000878  A$hdmi$19 |    0000087B  A$hdmi$20 |    0000087B  C$hdmi.c$
+     0000087E  A$hdmi$20 |    0000087F  A$hdmi$20 |    00000882  A$hdmi$20
+     00000883  A$hdmi$21 |    00000883  C$hdmi.c$ |    00000885  A$hdmi$21
+     00000886  A$hdmi$21 |    00000887  A$hdmi$21 |    0000088A  A$hdmi$21
+     0000088B  A$hdmi$21 |    0000088D  A$hdmi$21 |    0000088F  A$hdmi$22
+     0000088F  C$hdmi.c$ |    00000891  A$hdmi$22 |    00000892  A$hdmi$22
+     00000893  A$hdmi$22 |    00000896  A$hdmi$22 |    00000897  A$hdmi$22
+     00000899  A$hdmi$22 |    0000089B  A$hdmi$23 |    0000089B  C$hdmi.c$
+     0000089B  C$hdmi.c$ |    0000089E  A$hdmi$23 |    0000089F  A$hdmi$23
+     000008A0  A$hdmi$23 |    000008A2  A$hdmi$23 |    000008A3  A$hdmi$23
+     000008A6  A$hdmi$24 |    000008A6  C$hdmi.c$ |    000008A9  A$hdmi$24
+     000008AA  A$hdmi$24 |    000008AD  A$hdmi$24 |    000008AE  A$hdmi$25
+     000008AE  C$hdmi.c$ |    000008B0  A$hdmi$25 |    000008B1  A$hdmi$25
 ASxxxx Linker V03.00 + NoICE + sdld,  page 8.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_CODE                  00000000    00001170 =        4464. bytes (REL,CON)
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     000005B6  C$stdio_s |    000005B6  C$stdio_s |    000005B6  G$inbound
-     000005B6  _inbound_ |    000005B9  A$stdio_s |    000005BB  A$stdio_s
-     000005BB  C$stdio_s |    000005BB  XG$inboun |    000005BC  A$stdio_s
-     000005BC  C$stdio_s |    000005BC  C$stdio_s |    000005BC  G$spi_con
-     000005BC  _spi_conn |    000005C0  A$stdio_s |    000005C3  A$stdio_s
-     000005C3  C$stdio_s |    000005C3  XG$spi_co |    000005C4  ___sdcc_c
-     000005C5  _puts     |    00000602  _vprintf  |    00000622  _printf  
-     0000063F  _strlen   |    00000751  __print_f
+     000008B2  A$hdmi$25 |    000008B5  A$hdmi$25 |    000008B6  A$hdmi$25
+     000008B8  A$hdmi$25 |    000008BA  A$hdmi$26 |    000008BA  C$hdmi.c$
+     000008BD  A$hdmi$26 |    000008BE  A$hdmi$26 |    000008C1  A$hdmi$26
+     000008C1  C$hdmi.c$ |    000008C4  A$hdmi$26 |    000008C5  A$hdmi$26
+     000008C8  A$hdmi$27 |    000008C8  C$hdmi.c$ |    000008CB  A$hdmi$27
+     000008CC  A$hdmi$27 |    000008CF  A$hdmi$27 |    000008D0  A$hdmi$28
+     000008D0  C$hdmi.c$ |    000008D2  A$hdmi$28 |    000008D3  A$hdmi$28
+     000008D4  A$hdmi$28 |    000008D7  A$hdmi$28 |    000008D8  A$hdmi$28
+     000008DA  A$hdmi$28 |    000008DC  A$hdmi$29 |    000008DC  C$hdmi.c$
+     000008DF  A$hdmi$29 |    000008E0  A$hdmi$29 |    000008E3  A$hdmi$29
+     000008E4  A$hdmi$29 |    000008E4  C$hdmi.c$ |    000008E6  A$hdmi$30
+     000008E7  A$hdmi$30 |    000008E8  A$hdmi$30 |    000008EB  A$hdmi$30
+     000008EC  A$hdmi$30 |    000008EE  A$hdmi$30 |    000008F0  A$hdmi$30
+     000008F0  C$hdmi.c$ |    000008F2  A$hdmi$31 |    000008F3  A$hdmi$31
+     000008F4  A$hdmi$31 |    000008F7  A$hdmi$31 |    000008F8  A$hdmi$31
+     000008FC  A$hdmi$31 |    000008FE  A$hdmi$31 |    00000901  A$hdmi$32
+     00000901  C$hdmi.c$ |    00000904  A$hdmi$32 |    00000905  A$hdmi$32
+     00000908  A$hdmi$32 |    00000909  A$hdmi$32 |    00000909  C$hdmi.c$
+     0000090B  A$hdmi$33 |    0000090C  A$hdmi$33 |    0000090D  A$hdmi$33
+     00000910  A$hdmi$33 |    00000911  A$hdmi$33 |    00000913  A$hdmi$33
+     00000915  A$hdmi$33 |    00000915  C$hdmi.c$ |    00000918  A$hdmi$34
+     00000919  A$hdmi$34 |    0000091C  A$hdmi$34 |    0000091D  A$hdmi$34
+     0000091D  C$hdmi.c$ |    00000921  A$hdmi$34 |    00000923  A$hdmi$34
+     00000926  A$hdmi$34 |    00000927  A$hdmi$35 |    00000927  C$hdmi.c$
+     00000927  XG$hdmi_r |    00000928  Fhdmi$__s |    00000934  A$hdmi$37
+     00000934  C$hdmi.c$ |    00000934  C$hdmi.c$ |    00000934  G$hdmi_wr
+     00000934  _hdmi_wri |    00000937  A$hdmi$37 |    00000938  A$hdmi$37
+     0000093B  A$hdmi$37 |    0000093B  C$hdmi.c$ |    0000093E  A$hdmi$37
+     0000093F  A$hdmi$37 |    00000942  A$hdmi$38 |    00000942  C$hdmi.c$
+     00000945  A$hdmi$38 |    00000946  A$hdmi$38 |    00000949  A$hdmi$38
+     00000949  C$hdmi.c$ |    0000094C  A$hdmi$39 |    0000094D  A$hdmi$39
+     00000950  A$hdmi$39 |    00000951  A$hdmi$39 |    00000951  C$hdmi.c$
+     00000953  A$hdmi$39 |    00000954  A$hdmi$39 |    00000955  A$hdmi$40
+     00000958  A$hdmi$40 |    00000959  A$hdmi$40 |    0000095B  A$hdmi$40
+     0000095D  A$hdmi$40 |    0000095D  C$hdmi.c$ |    0000095F  A$hdmi$40
+     00000960  A$hdmi$40 |    00000961  A$hdmi$41 |    00000964  A$hdmi$41
+     00000965  A$hdmi$41 |    00000967  A$hdmi$41 |    00000969  A$hdmi$42
+     00000969  C$hdmi.c$ |    00000969  C$hdmi.c$ |    0000096C  A$hdmi$42
+     0000096D  A$hdmi$42 |    0000096E  A$hdmi$42 |    00000970  A$hdmi$42
+     00000971  A$hdmi$42 |    00000974  A$hdmi$42 |    00000974  C$hdmi.c$
+     00000977  A$hdmi$43 |    00000978  A$hdmi$43 |    0000097B  A$hdmi$43
+     0000097C  A$hdmi$43 |    0000097C  C$hdmi.c$ |    0000097E  A$hdmi$43
+     0000097F  A$hdmi$43 |    00000980  A$hdmi$44 |    00000983  A$hdmi$44
+     00000984  A$hdmi$44 |    00000986  A$hdmi$44 |    00000988  A$hdmi$44
+     00000988  C$hdmi.c$ |    0000098B  A$hdmi$44 |    0000098C  A$hdmi$44
+     0000098D  A$hdmi$45 |    0000098F  A$hdmi$45 |    00000990  A$hdmi$45
+     00000993  A$hdmi$45 |    00000993  C$hdmi.c$ |    00000996  A$hdmi$45
+     00000997  A$hdmi$45 |    0000099A  A$hdmi$45 |    0000099B  A$hdmi$46
+     0000099B  C$hdmi.c$ |    0000099D  A$hdmi$46 |    0000099E  A$hdmi$46
+     0000099F  A$hdmi$46 |    000009A2  A$hdmi$46 |    000009A3  A$hdmi$46
+     000009A5  A$hdmi$47 |    000009A7  A$hdmi$47 |    000009A7  C$hdmi.c$
 ASxxxx Linker V03.00 + NoICE + sdld,  page 9.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000009A9  A$hdmi$47 |    000009AA  A$hdmi$47 |    000009AB  A$hdmi$47
+     000009AE  A$hdmi$47 |    000009AF  A$hdmi$48 |    000009AF  C$hdmi.c$
+     000009B2  A$hdmi$48 |    000009B3  A$hdmi$48 |    000009B6  A$hdmi$48
+     000009B7  A$hdmi$49 |    000009B7  C$hdmi.c$ |    000009B9  A$hdmi$49
+     000009BA  A$hdmi$49 |    000009BB  A$hdmi$49 |    000009BE  A$hdmi$49
+     000009BF  A$hdmi$49 |    000009C1  A$hdmi$49 |    000009C3  A$hdmi$50
+     000009C3  C$hdmi.c$ |    000009C6  A$hdmi$50 |    000009C7  A$hdmi$50
+     000009CA  A$hdmi$50 |    000009CB  A$hdmi$51 |    000009CB  C$hdmi.c$
+     000009CB  C$hdmi.c$ |    000009CB  XG$hdmi_w |    000009CC  Fhdmi$__s
+     000009D8  A$hdmi$52 |    000009D8  C$hdmi.c$ |    000009D8  C$hdmi.c$
+     000009D8  G$hdmi_po |    000009D8  _hdmi_pow |    000009DB  A$hdmi$53
+     000009DC  A$hdmi$53 |    000009DF  A$hdmi$53 |    000009DF  C$hdmi.c$
+     000009E2  A$hdmi$53 |    000009E3  A$hdmi$53 |    000009E6  A$hdmi$54
+     000009E6  C$hdmi.c$ |    000009E9  A$hdmi$54 |    000009EA  A$hdmi$54
+     000009ED  A$hdmi$54 |    000009ED  C$hdmi.c$ |    000009F0  A$hdmi$54
+     000009F1  A$hdmi$54 |    000009F4  A$hdmi$55 |    000009F4  C$hdmi.c$
+     000009F7  A$hdmi$55 |    000009F8  A$hdmi$55 |    000009FB  A$hdmi$55
+     000009FB  C$hdmi.c$ |    000009FE  A$hdmi$56 |    000009FF  A$hdmi$56
+     00000A02  A$hdmi$56 |    00000A02  C$hdmi.c$ |    00000A05  A$hdmi$56
+     00000A06  A$hdmi$56 |    00000A09  A$hdmi$57 |    00000A09  C$hdmi.c$
+     00000A0C  A$hdmi$57 |    00000A0D  A$hdmi$57 |    00000A10  A$hdmi$57
+     00000A10  C$hdmi.c$ |    00000A13  A$hdmi$57 |    00000A14  A$hdmi$57
+     00000A17  A$hdmi$58 |    00000A17  C$hdmi.c$ |    00000A1A  A$hdmi$58
+     00000A1B  A$hdmi$58 |    00000A1E  A$hdmi$58 |    00000A1E  C$hdmi.c$
+     00000A21  A$hdmi$59 |    00000A22  A$hdmi$59 |    00000A25  A$hdmi$59
+     00000A25  C$hdmi.c$ |    00000A28  A$hdmi$59 |    00000A29  A$hdmi$59
+     00000A2C  A$hdmi$60 |    00000A2C  C$hdmi.c$ |    00000A2F  A$hdmi$60
+     00000A30  A$hdmi$60 |    00000A33  A$hdmi$60 |    00000A33  C$hdmi.c$
+     00000A36  A$hdmi$60 |    00000A37  A$hdmi$60 |    00000A3A  A$hdmi$61
+     00000A3A  C$hdmi.c$ |    00000A3D  A$hdmi$61 |    00000A3E  A$hdmi$61
+     00000A41  A$hdmi$61 |    00000A41  C$hdmi.c$ |    00000A44  A$hdmi$62
+     00000A45  A$hdmi$62 |    00000A48  A$hdmi$62 |    00000A48  C$hdmi.c$
+     00000A4B  A$hdmi$62 |    00000A4C  A$hdmi$62 |    00000A4F  A$hdmi$63
+     00000A4F  C$hdmi.c$ |    00000A52  A$hdmi$63 |    00000A53  A$hdmi$63
+     00000A56  A$hdmi$63 |    00000A56  C$hdmi.c$ |    00000A59  A$hdmi$63
+     00000A5A  A$hdmi$63 |    00000A5D  A$hdmi$64 |    00000A5D  C$hdmi.c$
+     00000A60  A$hdmi$64 |    00000A61  A$hdmi$64 |    00000A64  A$hdmi$64
+     00000A64  C$hdmi.c$ |    00000A67  A$hdmi$65 |    00000A68  A$hdmi$65
+     00000A6B  A$hdmi$65 |    00000A6B  C$hdmi.c$ |    00000A6E  A$hdmi$65
+     00000A6F  A$hdmi$65 |    00000A72  A$hdmi$66 |    00000A72  C$hdmi.c$
+     00000A75  A$hdmi$66 |    00000A76  A$hdmi$66 |    00000A79  A$hdmi$66
+     00000A79  C$hdmi.c$ |    00000A7C  A$hdmi$66 |    00000A7D  A$hdmi$66
+     00000A80  A$hdmi$67 |    00000A80  C$hdmi.c$ |    00000A83  A$hdmi$67
+     00000A84  A$hdmi$67 |    00000A87  A$hdmi$67 |    00000A87  C$hdmi.c$
+     00000A8A  A$hdmi$68 |    00000A8B  A$hdmi$68 |    00000A8E  A$hdmi$68
+     00000A8E  C$hdmi.c$ |    00000A91  A$hdmi$68 |    00000A92  A$hdmi$68
+     00000A95  A$hdmi$68 |    00000A96  A$hdmi$69 |    00000A96  C$hdmi.c$
+     00000A96  XG$hdmi_p |    00000A97  A$hdmi$70 |    00000A97  C$hdmi.c$
+     00000A97  C$hdmi.c$ |    00000A97  G$hdmi_po |    00000A97  _hdmi_pow
+     00000A99  A$hdmi$70 |    00000A9A  A$hdmi$70 |    00000A9B  A$hdmi$70
+     00000A9E  A$hdmi$71 |    00000A9F  A$hdmi$71 |    00000AA0  A$hdmi$71
+ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000AA2  A$hdmi$71 |    00000AA3  A$hdmi$71 |    00000AA4  A$hdmi$71
+     00000AA5  A$hdmi$71 |    00000AA7  A$hdmi$71 |    00000AA8  A$hdmi$71
+     00000AA9  A$hdmi$71 |    00000AAC  A$hdmi$72 |    00000AAD  A$hdmi$72
+     00000AAD  C$hdmi.c$ |    00000AAD  XG$hdmi_p |    00000AAE  A$hdmi$73
+     00000AAE  C$hdmi.c$ |    00000AAE  C$hdmi.c$ |    00000AAE  G$hdmiPro
+     00000AAE  _hdmiProc |    00000AB0  A$hdmi$73 |    00000AB1  A$hdmi$74
+     00000AB2  A$hdmi$74 |    00000AB5  A$hdmi$74 |    00000AB6  A$hdmi$74
+     00000AB7  A$hdmi$74 |    00000AB9  A$hdmi$74 |    00000ABB  A$hdmi$74
+     00000ABD  A$hdmi$74 |    00000ABF  A$hdmi$74 |    00000AC0  A$hdmi$74
+     00000AC1  A$hdmi$75 |    00000AC4  A$hdmi$75 |    00000AC5  A$hdmi$75
+     00000AC7  A$hdmi$75 |    00000AC7  C$hdmi.c$ |    00000AC7  C$hdmi.c$
+     00000ACA  A$hdmi$76 |    00000ACA  C$hdmi.c$ |    00000ACC  A$hdmi$76
+     00000ACD  A$hdmi$76 |    00000ACE  A$hdmi$76 |    00000AD1  A$hdmi$76
+     00000AD2  A$hdmi$76 |    00000AD3  A$hdmi$77 |    00000AD5  A$hdmi$77
+     00000AD7  A$hdmi$77 |    00000AD8  A$hdmi$77 |    00000AD8  C$hdmi.c$
+     00000ADA  A$hdmi$77 |    00000ADB  A$hdmi$77 |    00000ADC  A$hdmi$77
+     00000ADF  A$hdmi$78 |    00000AE0  A$hdmi$78 |    00000AE2  A$hdmi$78
+     00000AE5  A$hdmi$78 |    00000AE5  C$hdmi.c$ |    00000AE7  A$hdmi$78
+     00000AE8  A$hdmi$78 |    00000AE9  A$hdmi$78 |    00000AEC  A$hdmi$79
+     00000AED  A$hdmi$79 |    00000AEF  A$hdmi$79 |    00000AF0  A$hdmi$80
+     00000AF0  C$hdmi.c$ |    00000AF0  C$hdmi.c$ |    00000AF0  C$hdmi.c$
+     00000AF0  XG$hdmiPr |    00000AF3  Fhdmi$__s |    00000B03  Fhdmi$__s
+     00000B11  A$interru |    00000B11  C$interru |    00000B11  C$interru
+     00000B11  G$nmi_han |    00000B11  XG$nmi_ha |    00000B11  _nmi_hand
+     00000B12  A$interru |    00000B12  C$interru |    00000B12  C$interru
+     00000B12  G$int_han |    00000B12  _int_hand |    00000B14  A$interru
+     00000B15  A$interru |    00000B16  A$interru |    00000B19  A$interru
+     00000B1A  A$interru |    00000B1A  C$interru |    00000B1A  C$interru
+     00000B1A  XG$int_ha |    00000B1B  A$keyboar |    00000B1B  C$keyboar
+     00000B1B  G$pause$0 |    00000B1B  _pause    |    00000B1D  A$keyboar
+     00000B21  A$keyboar |    00000B23  A$keyboar |    00000B24  A$keyboar
+     00000B25  A$keyboar |    00000B25  C$keyboar |    00000B28  A$keyboar
+     00000B2B  A$keyboar |    00000B2C  A$keyboar |    00000B2D  A$keyboar
+     00000B2F  A$keyboar |    00000B32  A$keyboar |    00000B33  A$keyboar
+     00000B35  A$keyboar |    00000B38  A$keyboar |    00000B39  A$keyboar
+     00000B3B  A$keyboar |    00000B3E  A$keyboar |    00000B3F  A$keyboar
+     00000B41  A$keyboar |    00000B44  A$keyboar |    00000B47  A$keyboar
+     00000B4A  A$keyboar |    00000B4D  A$keyboar |    00000B50  A$keyboar
+     00000B53  A$keyboar |    00000B56  A$keyboar |    00000B59  A$keyboar
+     00000B5C  A$keyboar |    00000B5E  A$keyboar |    00000B60  A$keyboar
+     00000B62  A$keyboar |    00000B62  C$keyboar |    00000B62  XG$pause$
+     00000B63  A$keyboar |    00000B63  C$keyboar |    00000B63  G$hid_to_
+     00000B63  _hid_to_s |    00000B65  A$keyboar |    00000B69  A$keyboar
+     00000B6B  A$keyboar |    00000B6E  A$keyboar |    00000B6F  A$keyboar
+     00000B70  A$keyboar |    00000B70  C$keyboar |    00000B73  A$keyboar
+     00000B74  A$keyboar |    00000B75  A$keyboar |    00000B76  A$keyboar
+     00000B78  A$keyboar |    00000B79  A$keyboar |    00000B7B  A$keyboar
+     00000B7C  A$keyboar |    00000B7D  A$keyboar |    00000B7E  A$keyboar
+     00000B7F  A$keyboar |    00000B81  A$keyboar |    00000B82  A$keyboar
+     00000B84  A$keyboar |    00000B87  A$keyboar |    00000B88  A$keyboar
+     00000B8A  A$keyboar |    00000B8B  A$keyboar |    00000B8D  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000B90  A$keyboar |    00000B91  A$keyboar |    00000B93  A$keyboar
+     00000B94  A$keyboar |    00000B96  A$keyboar |    00000B99  A$keyboar
+     00000B9A  A$keyboar |    00000B9C  A$keyboar |    00000B9D  A$keyboar
+     00000B9F  A$keyboar |    00000BA2  A$keyboar |    00000BA3  A$keyboar
+     00000BA5  A$keyboar |    00000BA6  A$keyboar |    00000BA8  A$keyboar
+     00000BAB  A$keyboar |    00000BAC  A$keyboar |    00000BAE  A$keyboar
+     00000BAF  A$keyboar |    00000BB1  A$keyboar |    00000BB4  A$keyboar
+     00000BB5  A$keyboar |    00000BB7  A$keyboar |    00000BB8  A$keyboar
+     00000BBA  A$keyboar |    00000BBD  A$keyboar |    00000BBE  A$keyboar
+     00000BC0  A$keyboar |    00000BC1  A$keyboar |    00000BC3  A$keyboar
+     00000BC6  A$keyboar |    00000BC7  A$keyboar |    00000BC9  A$keyboar
+     00000BCA  A$keyboar |    00000BCC  A$keyboar |    00000BCF  A$keyboar
+     00000BD0  A$keyboar |    00000BD2  A$keyboar |    00000BD3  A$keyboar
+     00000BD5  A$keyboar |    00000BD8  A$keyboar |    00000BD9  A$keyboar
+     00000BDB  A$keyboar |    00000BDC  A$keyboar |    00000BDE  A$keyboar
+     00000BE1  A$keyboar |    00000BE2  A$keyboar |    00000BE4  A$keyboar
+     00000BE5  A$keyboar |    00000BE7  A$keyboar |    00000BEA  A$keyboar
+     00000BEB  A$keyboar |    00000BED  A$keyboar |    00000BEE  A$keyboar
+     00000BF0  A$keyboar |    00000BF3  A$keyboar |    00000BF4  A$keyboar
+     00000BF6  A$keyboar |    00000BF7  A$keyboar |    00000BF9  A$keyboar
+     00000BFC  A$keyboar |    00000BFD  A$keyboar |    00000BFF  A$keyboar
+     00000C00  A$keyboar |    00000C02  A$keyboar |    00000C05  A$keyboar
+     00000C06  A$keyboar |    00000C08  A$keyboar |    00000C09  A$keyboar
+     00000C0B  A$keyboar |    00000C0E  A$keyboar |    00000C0F  A$keyboar
+     00000C11  A$keyboar |    00000C12  A$keyboar |    00000C14  A$keyboar
+     00000C17  A$keyboar |    00000C18  A$keyboar |    00000C1A  A$keyboar
+     00000C1B  A$keyboar |    00000C1D  A$keyboar |    00000C20  A$keyboar
+     00000C21  A$keyboar |    00000C23  A$keyboar |    00000C24  A$keyboar
+     00000C26  A$keyboar |    00000C29  A$keyboar |    00000C2A  A$keyboar
+     00000C2C  A$keyboar |    00000C2D  A$keyboar |    00000C2F  A$keyboar
+     00000C32  A$keyboar |    00000C33  A$keyboar |    00000C35  A$keyboar
+     00000C36  A$keyboar |    00000C38  A$keyboar |    00000C3B  A$keyboar
+     00000C3C  A$keyboar |    00000C3E  A$keyboar |    00000C3F  A$keyboar
+     00000C41  A$keyboar |    00000C44  A$keyboar |    00000C45  A$keyboar
+     00000C47  A$keyboar |    00000C48  A$keyboar |    00000C4A  A$keyboar
+     00000C4D  A$keyboar |    00000C4E  A$keyboar |    00000C50  A$keyboar
+     00000C51  A$keyboar |    00000C53  A$keyboar |    00000C56  A$keyboar
+     00000C57  A$keyboar |    00000C59  A$keyboar |    00000C5A  A$keyboar
+     00000C5C  A$keyboar |    00000C5F  A$keyboar |    00000C60  A$keyboar
+     00000C62  A$keyboar |    00000C63  A$keyboar |    00000C65  A$keyboar
+     00000C68  A$keyboar |    00000C69  A$keyboar |    00000C6B  A$keyboar
+     00000C6C  A$keyboar |    00000C6E  A$keyboar |    00000C71  A$keyboar
+     00000C72  A$keyboar |    00000C74  A$keyboar |    00000C75  A$keyboar
+     00000C77  A$keyboar |    00000C7A  A$keyboar |    00000C7B  A$keyboar
+     00000C7D  A$keyboar |    00000C7E  A$keyboar |    00000C80  A$keyboar
+     00000C83  A$keyboar |    00000C84  A$keyboar |    00000C86  A$keyboar
+     00000C87  A$keyboar |    00000C89  A$keyboar |    00000C8C  A$keyboar
+     00000C8D  A$keyboar |    00000C8F  A$keyboar |    00000C90  A$keyboar
+     00000C92  A$keyboar |    00000C95  A$keyboar |    00000C96  A$keyboar
+     00000C98  A$keyboar |    00000C99  A$keyboar |    00000C9B  A$keyboar
+     00000C9E  A$keyboar |    00000C9F  A$keyboar |    00000CA1  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000CA2  A$keyboar |    00000CA4  A$keyboar |    00000CA7  A$keyboar
+     00000CA8  A$keyboar |    00000CAA  A$keyboar |    00000CAB  A$keyboar
+     00000CAD  A$keyboar |    00000CB0  A$keyboar |    00000CB1  A$keyboar
+     00000CB3  A$keyboar |    00000CB4  A$keyboar |    00000CB6  A$keyboar
+     00000CB9  A$keyboar |    00000CBA  A$keyboar |    00000CBC  A$keyboar
+     00000CBD  A$keyboar |    00000CBF  A$keyboar |    00000CC2  A$keyboar
+     00000CC3  A$keyboar |    00000CC5  A$keyboar |    00000CC6  A$keyboar
+     00000CC8  A$keyboar |    00000CCB  A$keyboar |    00000CCC  A$keyboar
+     00000CCE  A$keyboar |    00000CCF  A$keyboar |    00000CD1  A$keyboar
+     00000CD4  A$keyboar |    00000CD5  A$keyboar |    00000CD7  A$keyboar
+     00000CD8  A$keyboar |    00000CDA  A$keyboar |    00000CDD  A$keyboar
+     00000CDE  A$keyboar |    00000CE0  A$keyboar |    00000CE1  A$keyboar
+     00000CE3  A$keyboar |    00000CE6  A$keyboar |    00000CE7  A$keyboar
+     00000CE9  A$keyboar |    00000CEA  A$keyboar |    00000CEC  A$keyboar
+     00000CEF  A$keyboar |    00000CF0  A$keyboar |    00000CF2  A$keyboar
+     00000CF3  A$keyboar |    00000CF5  A$keyboar |    00000CF8  A$keyboar
+     00000CF9  A$keyboar |    00000CFB  A$keyboar |    00000CFC  A$keyboar
+     00000CFE  A$keyboar |    00000D01  A$keyboar |    00000D02  A$keyboar
+     00000D04  A$keyboar |    00000D05  A$keyboar |    00000D07  A$keyboar
+     00000D0A  A$keyboar |    00000D0B  A$keyboar |    00000D0D  A$keyboar
+     00000D0E  A$keyboar |    00000D10  A$keyboar |    00000D13  A$keyboar
+     00000D14  A$keyboar |    00000D16  A$keyboar |    00000D17  A$keyboar
+     00000D19  A$keyboar |    00000D1C  A$keyboar |    00000D1D  A$keyboar
+     00000D1F  A$keyboar |    00000D20  A$keyboar |    00000D22  A$keyboar
+     00000D25  A$keyboar |    00000D26  A$keyboar |    00000D28  A$keyboar
+     00000D29  A$keyboar |    00000D2B  A$keyboar |    00000D2E  A$keyboar
+     00000D2F  A$keyboar |    00000D31  A$keyboar |    00000D32  A$keyboar
+     00000D34  A$keyboar |    00000D37  A$keyboar |    00000D38  A$keyboar
+     00000D3A  A$keyboar |    00000D3B  A$keyboar |    00000D3D  A$keyboar
+     00000D40  A$keyboar |    00000D41  A$keyboar |    00000D43  A$keyboar
+     00000D44  A$keyboar |    00000D46  A$keyboar |    00000D49  A$keyboar
+     00000D4A  A$keyboar |    00000D4C  A$keyboar |    00000D4D  A$keyboar
+     00000D4F  A$keyboar |    00000D52  A$keyboar |    00000D53  A$keyboar
+     00000D55  A$keyboar |    00000D56  A$keyboar |    00000D58  A$keyboar
+     00000D5B  A$keyboar |    00000D5C  A$keyboar |    00000D5E  A$keyboar
+     00000D5F  A$keyboar |    00000D61  A$keyboar |    00000D64  A$keyboar
+     00000D65  A$keyboar |    00000D67  A$keyboar |    00000D68  A$keyboar
+     00000D6A  A$keyboar |    00000D6D  A$keyboar |    00000D6E  A$keyboar
+     00000D70  A$keyboar |    00000D71  A$keyboar |    00000D73  A$keyboar
+     00000D76  A$keyboar |    00000D77  A$keyboar |    00000D79  A$keyboar
+     00000D7A  A$keyboar |    00000D7C  A$keyboar |    00000D7F  A$keyboar
+     00000D80  A$keyboar |    00000D82  A$keyboar |    00000D83  A$keyboar
+     00000D85  A$keyboar |    00000D88  A$keyboar |    00000D89  A$keyboar
+     00000D8B  A$keyboar |    00000D8C  A$keyboar |    00000D8E  A$keyboar
+     00000D91  A$keyboar |    00000D92  A$keyboar |    00000D94  A$keyboar
+     00000D95  A$keyboar |    00000D97  A$keyboar |    00000D9A  A$keyboar
+     00000D9B  A$keyboar |    00000D9D  A$keyboar |    00000D9E  A$keyboar
+     00000DA0  A$keyboar |    00000DA3  A$keyboar |    00000DA4  A$keyboar
+     00000DA6  A$keyboar |    00000DA7  A$keyboar |    00000DA9  A$keyboar
+     00000DAC  A$keyboar |    00000DAD  A$keyboar |    00000DAF  A$keyboar
+     00000DB0  A$keyboar |    00000DB2  A$keyboar |    00000DB5  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000DB6  A$keyboar |    00000DB8  A$keyboar |    00000DB9  A$keyboar
+     00000DBB  A$keyboar |    00000DBE  A$keyboar |    00000DBF  A$keyboar
+     00000DC1  A$keyboar |    00000DC2  A$keyboar |    00000DC4  A$keyboar
+     00000DC7  A$keyboar |    00000DC8  A$keyboar |    00000DCA  A$keyboar
+     00000DCB  A$keyboar |    00000DCD  A$keyboar |    00000DD0  A$keyboar
+     00000DD1  A$keyboar |    00000DD3  A$keyboar |    00000DD4  A$keyboar
+     00000DD6  A$keyboar |    00000DD9  A$keyboar |    00000DDA  A$keyboar
+     00000DDC  A$keyboar |    00000DDD  A$keyboar |    00000DDF  A$keyboar
+     00000DE2  A$keyboar |    00000DE3  A$keyboar |    00000DE5  A$keyboar
+     00000DE6  A$keyboar |    00000DE8  A$keyboar |    00000DEB  A$keyboar
+     00000DEC  A$keyboar |    00000DEE  A$keyboar |    00000DEF  A$keyboar
+     00000DF1  A$keyboar |    00000DF4  A$keyboar |    00000DF5  A$keyboar
+     00000DF7  A$keyboar |    00000DF8  A$keyboar |    00000DFA  A$keyboar
+     00000DFD  A$keyboar |    00000DFE  A$keyboar |    00000E00  A$keyboar
+     00000E01  A$keyboar |    00000E03  A$keyboar |    00000E06  A$keyboar
+     00000E07  A$keyboar |    00000E09  A$keyboar |    00000E0A  A$keyboar
+     00000E0C  A$keyboar |    00000E0F  A$keyboar |    00000E10  A$keyboar
+     00000E12  A$keyboar |    00000E13  A$keyboar |    00000E15  A$keyboar
+     00000E18  A$keyboar |    00000E19  A$keyboar |    00000E1B  A$keyboar
+     00000E1C  A$keyboar |    00000E1E  A$keyboar |    00000E21  A$keyboar
+     00000E22  A$keyboar |    00000E24  A$keyboar |    00000E25  A$keyboar
+     00000E27  A$keyboar |    00000E2A  A$keyboar |    00000E2B  A$keyboar
+     00000E2D  A$keyboar |    00000E2E  A$keyboar |    00000E30  A$keyboar
+     00000E33  A$keyboar |    00000E34  A$keyboar |    00000E36  A$keyboar
+     00000E37  A$keyboar |    00000E39  A$keyboar |    00000E3C  A$keyboar
+     00000E3D  A$keyboar |    00000E3F  A$keyboar |    00000E40  A$keyboar
+     00000E42  A$keyboar |    00000E45  A$keyboar |    00000E46  A$keyboar
+     00000E48  A$keyboar |    00000E49  A$keyboar |    00000E4B  A$keyboar
+     00000E4E  A$keyboar |    00000E4F  A$keyboar |    00000E51  A$keyboar
+     00000E52  A$keyboar |    00000E54  A$keyboar |    00000E57  A$keyboar
+     00000E58  A$keyboar |    00000E5A  A$keyboar |    00000E5B  A$keyboar
+     00000E5D  A$keyboar |    00000E60  A$keyboar |    00000E61  A$keyboar
+     00000E63  A$keyboar |    00000E64  A$keyboar |    00000E66  A$keyboar
+     00000E69  A$keyboar |    00000E6A  A$keyboar |    00000E6C  A$keyboar
+     00000E6D  A$keyboar |    00000E6F  A$keyboar |    00000E72  A$keyboar
+     00000E73  A$keyboar |    00000E75  A$keyboar |    00000E76  A$keyboar
+     00000E78  A$keyboar |    00000E7B  A$keyboar |    00000E7C  A$keyboar
+     00000E7E  A$keyboar |    00000E7F  A$keyboar |    00000E81  A$keyboar
+     00000E84  A$keyboar |    00000E85  A$keyboar |    00000E87  A$keyboar
+     00000E88  A$keyboar |    00000E8A  A$keyboar |    00000E8D  A$keyboar
+     00000E8E  A$keyboar |    00000E90  A$keyboar |    00000E91  A$keyboar
+     00000E93  A$keyboar |    00000E96  A$keyboar |    00000E97  A$keyboar
+     00000E99  A$keyboar |    00000E9A  A$keyboar |    00000E9C  A$keyboar
+     00000E9F  A$keyboar |    00000EA0  A$keyboar |    00000EA2  A$keyboar
+     00000EA3  A$keyboar |    00000EA5  A$keyboar |    00000EA8  A$keyboar
+     00000EA9  A$keyboar |    00000EAB  A$keyboar |    00000EAC  A$keyboar
+     00000EAE  A$keyboar |    00000EB1  A$keyboar |    00000EB2  A$keyboar
+     00000EB4  A$keyboar |    00000EB5  A$keyboar |    00000EB7  A$keyboar
+     00000EBA  A$keyboar |    00000EBB  A$keyboar |    00000EBD  A$keyboar
+     00000EBE  A$keyboar |    00000EC0  A$keyboar |    00000EC3  A$keyboar
+     00000EC4  A$keyboar |    00000EC6  A$keyboar |    00000EC7  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000EC9  A$keyboar |    00000ECC  A$keyboar |    00000ECD  A$keyboar
+     00000ECF  A$keyboar |    00000ED0  A$keyboar |    00000ED2  A$keyboar
+     00000ED5  A$keyboar |    00000ED6  A$keyboar |    00000ED8  A$keyboar
+     00000ED9  A$keyboar |    00000EDB  A$keyboar |    00000EDE  A$keyboar
+     00000EDF  A$keyboar |    00000EE1  A$keyboar |    00000EE2  A$keyboar
+     00000EE4  A$keyboar |    00000EE7  A$keyboar |    00000EE8  A$keyboar
+     00000EEA  A$keyboar |    00000EEB  A$keyboar |    00000EED  A$keyboar
+     00000EF0  A$keyboar |    00000EF1  A$keyboar |    00000EF3  A$keyboar
+     00000EF4  A$keyboar |    00000EF6  A$keyboar |    00000EF6  C$keyboar
+     00000EF9  A$keyboar |    00000EFA  A$keyboar |    00000EFB  A$keyboar
+     00000EFC  A$keyboar |    00000EFE  A$keyboar |    00000EFF  A$keyboar
+     00000F01  A$keyboar |    00000F02  A$keyboar |    00000F03  A$keyboar
+     00000F04  A$keyboar |    00000F05  A$keyboar |    00000F07  A$keyboar
+     00000F08  A$keyboar |    00000F0A  A$keyboar |    00000F0D  A$keyboar
+     00000F0E  A$keyboar |    00000F10  A$keyboar |    00000F11  A$keyboar
+     00000F13  A$keyboar |    00000F16  A$keyboar |    00000F17  A$keyboar
+     00000F19  A$keyboar |    00000F1A  A$keyboar |    00000F1C  A$keyboar
+     00000F1F  A$keyboar |    00000F20  A$keyboar |    00000F22  A$keyboar
+     00000F23  A$keyboar |    00000F25  A$keyboar |    00000F28  A$keyboar
+     00000F29  A$keyboar |    00000F2B  A$keyboar |    00000F2C  A$keyboar
+     00000F2E  A$keyboar |    00000F31  A$keyboar |    00000F32  A$keyboar
+     00000F34  A$keyboar |    00000F35  A$keyboar |    00000F37  A$keyboar
+     00000F3A  A$keyboar |    00000F3B  A$keyboar |    00000F3D  A$keyboar
+     00000F3E  A$keyboar |    00000F40  A$keyboar |    00000F43  A$keyboar
+     00000F44  A$keyboar |    00000F46  A$keyboar |    00000F47  A$keyboar
+     00000F49  A$keyboar |    00000F4C  A$keyboar |    00000F4D  A$keyboar
+     00000F4F  A$keyboar |    00000F50  A$keyboar |    00000F52  A$keyboar
+     00000F55  A$keyboar |    00000F56  A$keyboar |    00000F58  A$keyboar
+     00000F59  A$keyboar |    00000F5B  A$keyboar |    00000F5E  A$keyboar
+     00000F5F  A$keyboar |    00000F61  A$keyboar |    00000F62  A$keyboar
+     00000F64  A$keyboar |    00000F67  A$keyboar |    00000F68  A$keyboar
+     00000F6A  A$keyboar |    00000F6B  A$keyboar |    00000F6D  A$keyboar
+     00000F70  A$keyboar |    00000F71  A$keyboar |    00000F73  A$keyboar
+     00000F74  A$keyboar |    00000F76  A$keyboar |    00000F79  A$keyboar
+     00000F7A  A$keyboar |    00000F7C  A$keyboar |    00000F7D  A$keyboar
+     00000F7F  A$keyboar |    00000F82  A$keyboar |    00000F83  A$keyboar
+     00000F85  A$keyboar |    00000F86  A$keyboar |    00000F88  A$keyboar
+     00000F8B  A$keyboar |    00000F8C  A$keyboar |    00000F8E  A$keyboar
+     00000F8F  A$keyboar |    00000F91  A$keyboar |    00000F94  A$keyboar
+     00000F95  A$keyboar |    00000F97  A$keyboar |    00000F98  A$keyboar
+     00000F9A  A$keyboar |    00000F9D  A$keyboar |    00000F9E  A$keyboar
+     00000FA0  A$keyboar |    00000FA1  A$keyboar |    00000FA3  A$keyboar
+     00000FA6  A$keyboar |    00000FA7  A$keyboar |    00000FA9  A$keyboar
+     00000FAA  A$keyboar |    00000FAC  A$keyboar |    00000FAF  A$keyboar
+     00000FB0  A$keyboar |    00000FB2  A$keyboar |    00000FB3  A$keyboar
+     00000FB5  A$keyboar |    00000FB8  A$keyboar |    00000FB9  A$keyboar
+     00000FBB  A$keyboar |    00000FBC  A$keyboar |    00000FBE  A$keyboar
+     00000FC1  A$keyboar |    00000FC2  A$keyboar |    00000FC4  A$keyboar
+     00000FC5  A$keyboar |    00000FC7  A$keyboar |    00000FCA  A$keyboar
+     00000FCB  A$keyboar |    00000FCD  A$keyboar |    00000FCE  A$keyboar
+     00000FD0  A$keyboar |    00000FD3  A$keyboar |    00000FD4  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00000FD6  A$keyboar |    00000FD7  A$keyboar |    00000FD9  A$keyboar
+     00000FDC  A$keyboar |    00000FDD  A$keyboar |    00000FDF  A$keyboar
+     00000FE0  A$keyboar |    00000FE2  A$keyboar |    00000FE5  A$keyboar
+     00000FE6  A$keyboar |    00000FE8  A$keyboar |    00000FE9  A$keyboar
+     00000FEB  A$keyboar |    00000FEE  A$keyboar |    00000FEF  A$keyboar
+     00000FF1  A$keyboar |    00000FF2  A$keyboar |    00000FF4  A$keyboar
+     00000FF7  A$keyboar |    00000FF8  A$keyboar |    00000FFA  A$keyboar
+     00000FFB  A$keyboar |    00000FFD  A$keyboar |    00001000  A$keyboar
+     00001001  A$keyboar |    00001003  A$keyboar |    00001004  A$keyboar
+     00001006  A$keyboar |    00001009  A$keyboar |    0000100A  A$keyboar
+     0000100C  A$keyboar |    0000100D  A$keyboar |    0000100F  A$keyboar
+     00001012  A$keyboar |    00001013  A$keyboar |    00001015  A$keyboar
+     00001016  A$keyboar |    00001018  A$keyboar |    0000101B  A$keyboar
+     0000101C  A$keyboar |    0000101E  A$keyboar |    0000101F  A$keyboar
+     00001021  A$keyboar |    00001024  A$keyboar |    00001025  A$keyboar
+     00001027  A$keyboar |    00001028  A$keyboar |    0000102A  A$keyboar
+     0000102D  A$keyboar |    0000102E  A$keyboar |    00001030  A$keyboar
+     00001031  A$keyboar |    00001033  A$keyboar |    00001036  A$keyboar
+     00001037  A$keyboar |    00001039  A$keyboar |    0000103A  A$keyboar
+     0000103C  A$keyboar |    0000103F  A$keyboar |    00001040  A$keyboar
+     00001042  A$keyboar |    00001043  A$keyboar |    00001045  A$keyboar
+     00001048  A$keyboar |    00001049  A$keyboar |    0000104B  A$keyboar
+     0000104C  A$keyboar |    0000104E  A$keyboar |    00001051  A$keyboar
+     00001052  A$keyboar |    00001054  A$keyboar |    00001055  A$keyboar
+     00001057  A$keyboar |    0000105A  A$keyboar |    0000105B  A$keyboar
+     0000105D  A$keyboar |    0000105E  A$keyboar |    00001060  A$keyboar
+     00001063  A$keyboar |    00001064  A$keyboar |    00001066  A$keyboar
+     00001067  A$keyboar |    00001069  A$keyboar |    0000106C  A$keyboar
+     0000106D  A$keyboar |    0000106F  A$keyboar |    00001070  A$keyboar
+     00001072  A$keyboar |    00001075  A$keyboar |    00001076  A$keyboar
+     00001078  A$keyboar |    00001079  A$keyboar |    0000107B  A$keyboar
+     0000107E  A$keyboar |    0000107F  A$keyboar |    00001081  A$keyboar
+     00001082  A$keyboar |    00001084  A$keyboar |    00001087  A$keyboar
+     00001088  A$keyboar |    0000108A  A$keyboar |    0000108B  A$keyboar
+     0000108D  A$keyboar |    00001090  A$keyboar |    00001091  A$keyboar
+     00001093  A$keyboar |    00001094  A$keyboar |    00001096  A$keyboar
+     00001099  A$keyboar |    0000109A  A$keyboar |    0000109C  A$keyboar
+     0000109D  A$keyboar |    0000109F  A$keyboar |    000010A2  A$keyboar
+     000010A3  A$keyboar |    000010A5  A$keyboar |    000010A6  A$keyboar
+     000010A8  A$keyboar |    000010AB  A$keyboar |    000010AC  A$keyboar
+     000010AE  A$keyboar |    000010AF  A$keyboar |    000010B1  A$keyboar
+     000010B4  A$keyboar |    000010B5  A$keyboar |    000010B7  A$keyboar
+     000010B8  A$keyboar |    000010BA  A$keyboar |    000010BD  A$keyboar
+     000010BE  A$keyboar |    000010C0  A$keyboar |    000010C1  A$keyboar
+     000010C3  A$keyboar |    000010C6  A$keyboar |    000010C7  A$keyboar
+     000010C9  A$keyboar |    000010CA  A$keyboar |    000010CC  A$keyboar
+     000010CF  A$keyboar |    000010D0  A$keyboar |    000010D2  A$keyboar
+     000010D3  A$keyboar |    000010D5  A$keyboar |    000010D8  A$keyboar
+     000010D9  A$keyboar |    000010DB  A$keyboar |    000010DC  A$keyboar
+     000010DE  A$keyboar |    000010E1  A$keyboar |    000010E2  A$keyboar
+     000010E4  A$keyboar |    000010E5  A$keyboar |    000010E7  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000010EA  A$keyboar |    000010EB  A$keyboar |    000010ED  A$keyboar
+     000010EE  A$keyboar |    000010F0  A$keyboar |    000010F3  A$keyboar
+     000010F4  A$keyboar |    000010F6  A$keyboar |    000010F7  A$keyboar
+     000010F9  A$keyboar |    000010FC  A$keyboar |    000010FD  A$keyboar
+     000010FF  A$keyboar |    00001100  A$keyboar |    00001102  A$keyboar
+     00001105  A$keyboar |    00001106  A$keyboar |    00001108  A$keyboar
+     00001109  A$keyboar |    0000110B  A$keyboar |    0000110E  A$keyboar
+     0000110F  A$keyboar |    00001111  A$keyboar |    00001112  A$keyboar
+     00001114  A$keyboar |    00001117  A$keyboar |    00001118  A$keyboar
+     0000111A  A$keyboar |    0000111B  A$keyboar |    0000111D  A$keyboar
+     00001120  A$keyboar |    00001121  A$keyboar |    00001123  A$keyboar
+     00001124  A$keyboar |    00001126  A$keyboar |    00001129  A$keyboar
+     0000112A  A$keyboar |    0000112C  A$keyboar |    0000112D  A$keyboar
+     0000112F  A$keyboar |    00001132  A$keyboar |    00001133  A$keyboar
+     00001135  A$keyboar |    00001136  A$keyboar |    00001138  A$keyboar
+     0000113B  A$keyboar |    0000113C  A$keyboar |    0000113E  A$keyboar
+     0000113F  A$keyboar |    00001141  A$keyboar |    00001144  A$keyboar
+     00001145  A$keyboar |    00001147  A$keyboar |    00001148  A$keyboar
+     0000114A  A$keyboar |    0000114D  A$keyboar |    0000114E  A$keyboar
+     00001150  A$keyboar |    00001151  A$keyboar |    00001153  A$keyboar
+     00001156  A$keyboar |    00001157  A$keyboar |    00001159  A$keyboar
+     0000115A  A$keyboar |    0000115C  A$keyboar |    0000115F  A$keyboar
+     00001160  A$keyboar |    00001162  A$keyboar |    00001163  A$keyboar
+     00001165  A$keyboar |    00001168  A$keyboar |    00001169  A$keyboar
+     0000116B  A$keyboar |    0000116C  A$keyboar |    0000116E  A$keyboar
+     00001171  A$keyboar |    00001172  A$keyboar |    00001174  A$keyboar
+     00001175  A$keyboar |    00001177  A$keyboar |    0000117A  A$keyboar
+     0000117B  A$keyboar |    0000117D  A$keyboar |    0000117E  A$keyboar
+     00001180  A$keyboar |    00001183  A$keyboar |    00001184  A$keyboar
+     00001186  A$keyboar |    00001187  A$keyboar |    00001189  A$keyboar
+     0000118C  A$keyboar |    0000118D  A$keyboar |    0000118F  A$keyboar
+     00001190  A$keyboar |    00001192  A$keyboar |    00001195  A$keyboar
+     00001196  A$keyboar |    00001198  A$keyboar |    00001199  A$keyboar
+     0000119B  A$keyboar |    0000119E  A$keyboar |    0000119F  A$keyboar
+     000011A1  A$keyboar |    000011A2  A$keyboar |    000011A4  A$keyboar
+     000011A7  A$keyboar |    000011A8  A$keyboar |    000011AA  A$keyboar
+     000011AB  A$keyboar |    000011AD  A$keyboar |    000011B0  A$keyboar
+     000011B1  A$keyboar |    000011B3  A$keyboar |    000011B4  A$keyboar
+     000011B6  A$keyboar |    000011B9  A$keyboar |    000011BA  A$keyboar
+     000011BC  A$keyboar |    000011BD  A$keyboar |    000011BF  A$keyboar
+     000011C2  A$keyboar |    000011C3  A$keyboar |    000011C5  A$keyboar
+     000011C6  A$keyboar |    000011C8  A$keyboar |    000011CB  A$keyboar
+     000011CC  A$keyboar |    000011CE  A$keyboar |    000011CF  A$keyboar
+     000011D1  A$keyboar |    000011D4  A$keyboar |    000011D5  A$keyboar
+     000011D7  A$keyboar |    000011D8  A$keyboar |    000011DA  A$keyboar
+     000011DD  A$keyboar |    000011DE  A$keyboar |    000011E0  A$keyboar
+     000011E1  A$keyboar |    000011E3  A$keyboar |    000011E6  A$keyboar
+     000011E7  A$keyboar |    000011E9  A$keyboar |    000011EA  A$keyboar
+     000011EC  A$keyboar |    000011EF  A$keyboar |    000011F0  A$keyboar
+     000011F2  A$keyboar |    000011F3  A$keyboar |    000011F5  A$keyboar
+     000011F8  A$keyboar |    000011F9  A$keyboar |    000011FB  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000011FC  A$keyboar |    000011FE  A$keyboar |    00001201  A$keyboar
+     00001202  A$keyboar |    00001204  A$keyboar |    00001205  A$keyboar
+     00001207  A$keyboar |    0000120A  A$keyboar |    0000120B  A$keyboar
+     0000120D  A$keyboar |    0000120E  A$keyboar |    00001210  A$keyboar
+     00001213  A$keyboar |    00001214  A$keyboar |    00001216  A$keyboar
+     00001217  A$keyboar |    00001219  A$keyboar |    0000121C  A$keyboar
+     0000121D  A$keyboar |    0000121F  A$keyboar |    00001220  A$keyboar
+     00001222  A$keyboar |    00001225  A$keyboar |    00001226  A$keyboar
+     00001228  A$keyboar |    00001229  A$keyboar |    0000122B  A$keyboar
+     0000122E  A$keyboar |    0000122F  A$keyboar |    00001231  A$keyboar
+     00001232  A$keyboar |    00001234  A$keyboar |    00001237  A$keyboar
+     00001238  A$keyboar |    0000123A  A$keyboar |    0000123B  A$keyboar
+     0000123D  A$keyboar |    00001240  A$keyboar |    00001241  A$keyboar
+     00001243  A$keyboar |    00001244  A$keyboar |    00001246  A$keyboar
+     00001249  A$keyboar |    0000124A  A$keyboar |    0000124C  A$keyboar
+     0000124D  A$keyboar |    0000124F  A$keyboar |    00001252  A$keyboar
+     00001253  A$keyboar |    00001255  A$keyboar |    00001256  A$keyboar
+     00001258  A$keyboar |    0000125B  A$keyboar |    0000125C  A$keyboar
+     0000125E  A$keyboar |    0000125F  A$keyboar |    00001261  A$keyboar
+     00001264  A$keyboar |    00001265  A$keyboar |    00001267  A$keyboar
+     00001268  A$keyboar |    0000126A  A$keyboar |    0000126D  A$keyboar
+     0000126E  A$keyboar |    00001270  A$keyboar |    00001271  A$keyboar
+     00001273  A$keyboar |    00001276  A$keyboar |    00001277  A$keyboar
+     00001279  A$keyboar |    0000127A  A$keyboar |    0000127C  A$keyboar
+     0000127C  C$keyboar |    0000127E  A$keyboar |    00001281  A$keyboar
+     00001283  A$keyboar |    00001286  A$keyboar |    00001289  A$keyboar
+     00001289  C$keyboar |    0000128C  A$keyboar |    0000128E  A$keyboar
+     0000128F  A$keyboar |    00001292  A$keyboar |    00001295  A$keyboar
+     00001296  A$keyboar |    00001299  A$keyboar |    0000129C  A$keyboar
+     0000129D  A$keyboar |    000012A0  A$keyboar |    000012A3  A$keyboar
+     000012A6  A$keyboar |    000012A9  A$keyboar |    000012AB  A$keyboar
+     000012AB  C$keyboar |    000012AC  A$keyboar |    000012AF  A$keyboar
+     000012B2  A$keyboar |    000012B3  A$keyboar |    000012B6  A$keyboar
+     000012B9  A$keyboar |    000012B9  C$keyboar |    000012BC  A$keyboar
+     000012BD  A$keyboar |    000012BF  A$keyboar |    000012C2  A$keyboar
+     000012C3  A$keyboar |    000012C5  A$keyboar |    000012C8  A$keyboar
+     000012C9  A$keyboar |    000012CB  A$keyboar |    000012CE  A$keyboar
+     000012D0  A$keyboar |    000012D2  A$keyboar |    000012D5  A$keyboar
+     000012D6  A$keyboar |    000012D8  A$keyboar |    000012DB  A$keyboar
+     000012DD  A$keyboar |    000012DF  A$keyboar |    000012E1  A$keyboar
+     000012E1  C$keyboar |    000012E1  C$keyboar |    000012E4  A$keyboar
+     000012E7  A$keyboar |    000012E8  A$keyboar |    000012E9  A$keyboar
+     000012EA  A$keyboar |    000012EB  A$keyboar |    000012ED  A$keyboar
+     000012ED  C$keyboar |    000012ED  C$keyboar |    000012F0  A$keyboar
+     000012F3  A$keyboar |    000012F4  A$keyboar |    000012F5  A$keyboar
+     000012F6  A$keyboar |    000012F7  A$keyboar |    000012F9  A$keyboar
+     000012F9  C$keyboar |    000012F9  C$keyboar |    000012FC  A$keyboar
+     000012FF  A$keyboar |    00001300  A$keyboar |    00001301  A$keyboar
+     00001302  A$keyboar |    00001304  A$keyboar |    00001305  A$keyboar
+     00001306  A$keyboar |    00001308  A$keyboar |    00001308  C$keyboar
+     00001308  C$keyboar |    0000130B  A$keyboar |    0000130E  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000130F  A$keyboar |    00001310  A$keyboar |    00001311  A$keyboar
+     00001313  A$keyboar |    00001314  A$keyboar |    00001315  A$keyboar
+     00001317  A$keyboar |    00001317  C$keyboar |    00001317  C$keyboar
+     0000131A  A$keyboar |    0000131A  C$keyboar |    0000131C  A$keyboar
+     0000131E  A$keyboar |    0000131E  C$keyboar |    0000131E  XG$hid_to
+     0000131F  A$keyboar |    0000131F  C$keyboar |    0000131F  C$keyboar
+     0000131F  G$key_cle |    0000131F  _key_clea |    00001322  A$keyboar
+     00001323  A$keyboar |    00001326  A$keyboar |    00001327  A$keyboar
+     00001327  C$keyboar |    00001327  XG$key_cl |    00001328  A$keyboar
+     00001328  C$keyboar |    00001328  C$keyboar |    00001328  G$update$
+     00001328  _update   |    0000132B  A$keyboar |    0000132C  A$keyboar
+     0000132F  A$keyboar |    00001330  A$keyboar |    00001330  C$keyboar
+     00001330  XG$update |    00001331  A$keyboar |    00001331  C$keyboar
+     00001331  G$kbdProc |    00001331  _kbdProce |    00001333  A$keyboar
+     00001337  A$keyboar |    00001339  A$keyboar |    0000133C  A$keyboar
+     0000133D  A$keyboar |    0000133E  A$keyboar |    0000133E  C$keyboar
+     00001341  A$keyboar |    00001344  A$keyboar |    00001345  A$keyboar
+     00001346  A$keyboar |    00001347  A$keyboar |    00001349  A$keyboar
+     00001349  C$keyboar |    0000134C  A$keyboar |    0000134F  A$keyboar
+     00001350  A$keyboar |    00001351  A$keyboar |    00001354  A$keyboar
+     00001355  A$keyboar |    00001356  A$keyboar |    00001357  A$keyboar
+     00001358  A$keyboar |    0000135B  A$keyboar |    0000135B  C$keyboar
+     0000135E  A$keyboar |    00001361  A$keyboar |    00001362  A$keyboar
+     00001364  A$keyboar |    00001364  C$keyboar |    00001367  A$keyboar
+     00001367  C$keyboar |    0000136A  A$keyboar |    0000136D  A$keyboar
+     0000136E  A$keyboar |    0000136F  A$keyboar |    00001370  A$keyboar
+     00001372  A$keyboar |    00001372  C$keyboar |    00001375  A$keyboar
+     00001378  A$keyboar |    00001379  A$keyboar |    0000137A  A$keyboar
+     0000137D  A$keyboar |    0000137E  A$keyboar |    0000137F  A$keyboar
+     00001380  A$keyboar |    00001381  A$keyboar |    00001384  A$keyboar
+     00001384  C$keyboar |    00001387  A$keyboar |    00001388  A$keyboar
+     00001389  A$keyboar |    0000138A  A$keyboar |    0000138B  A$keyboar
+     0000138C  A$keyboar |    0000138D  A$keyboar |    0000138E  A$keyboar
+     00001391  A$keyboar |    00001392  A$keyboar |    00001393  A$keyboar
+     00001394  A$keyboar |    00001395  A$keyboar |    00001398  A$keyboar
+     00001398  C$keyboar |    0000139B  A$keyboar |    0000139C  A$keyboar
+     0000139F  A$keyboar |    000013A2  A$keyboar |    000013A5  A$keyboar
+     000013A8  A$keyboar |    000013A9  A$keyboar |    000013AB  A$keyboar
+     000013AD  A$keyboar |    000013AE  A$keyboar |    000013B0  A$keyboar
+     000013B1  A$keyboar |    000013B1  C$keyboar |    000013B2  A$keyboar
+     000013B3  A$keyboar |    000013B5  A$keyboar |    000013B7  A$keyboar
+     000013BA  A$keyboar |    000013BC  A$keyboar |    000013BF  A$keyboar
+     000013BF  C$keyboar |    000013C0  A$keyboar |    000013C2  A$keyboar
+     000013C4  A$keyboar |    000013C7  A$keyboar |    000013C9  A$keyboar
+     000013CC  A$keyboar |    000013CD  A$keyboar |    000013CE  A$keyboar
+     000013CF  A$keyboar |    000013D0  A$keyboar |    000013D1  A$keyboar
+     000013D2  A$keyboar |    000013D2  C$keyboar |    000013D6  A$keyboar
+     000013D6  C$keyboar |    000013DA  A$keyboar |    000013DE  A$keyboar
+     000013DE  C$keyboar |    000013E1  A$keyboar |    000013E3  A$keyboar
+     000013E4  A$keyboar |    000013E5  A$keyboar |    000013E6  A$keyboar
+     000013E7  A$keyboar |    000013E9  A$keyboar |    000013EA  A$keyboar
+ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000013EB  A$keyboar |    000013EC  A$keyboar |    000013ED  A$keyboar
+     000013EE  A$keyboar |    000013F1  A$keyboar |    000013F2  A$keyboar
+     000013F3  A$keyboar |    000013F4  A$keyboar |    000013F5  A$keyboar
+     000013F8  A$keyboar |    000013FB  A$keyboar |    000013FB  C$keyboar
+     000013FE  A$keyboar |    00001400  A$keyboar |    00001402  A$keyboar
+     00001405  A$keyboar |    00001406  A$keyboar |    00001408  A$keyboar
+     00001408  C$keyboar |    0000140B  A$keyboar |    0000140D  A$keyboar
+     0000140F  A$keyboar |    00001411  A$keyboar |    00001413  A$keyboar
+     00001415  A$keyboar |    00001417  A$keyboar |    00001419  A$keyboar
+     00001419  C$keyboar |    0000141C  A$keyboar |    0000141E  A$keyboar
+     00001421  A$keyboar |    00001425  A$keyboar |    00001428  A$keyboar
+     0000142B  A$keyboar |    0000142B  C$keyboar |    0000142D  A$keyboar
+     0000142E  A$keyboar |    00001430  A$keyboar |    00001431  A$keyboar
+     00001434  A$keyboar |    00001437  A$keyboar |    00001438  A$keyboar
+     0000143A  A$keyboar |    0000143B  A$keyboar |    0000143C  A$keyboar
+     0000143D  A$keyboar |    0000143F  A$keyboar |    00001441  A$keyboar
+     00001442  A$keyboar |    00001445  A$keyboar |    00001448  A$keyboar
+     00001449  A$keyboar |    0000144B  A$keyboar |    0000144C  A$keyboar
+     0000144D  A$keyboar |    0000144F  A$keyboar |    00001451  A$keyboar
+     00001452  A$keyboar |    00001454  A$keyboar |    00001455  A$keyboar
+     00001456  A$keyboar |    00001459  A$keyboar |    00001459  C$keyboar
+     0000145C  A$keyboar |    0000145F  A$keyboar |    00001460  A$keyboar
+     00001461  A$keyboar |    00001465  A$keyboar |    00001467  A$keyboar
+     00001469  A$keyboar |    0000146A  A$keyboar |    0000146A  C$keyboar
+     0000146E  A$keyboar |    00001470  A$keyboar |    00001472  A$keyboar
+     00001473  A$keyboar |    00001473  C$keyboar |    00001476  A$keyboar
+     00001479  A$keyboar |    0000147B  A$keyboar |    0000147E  A$keyboar
+     0000147E  C$keyboar |    00001480  A$keyboar |    00001480  C$keyboar
+     00001483  A$keyboar |    00001486  A$keyboar |    00001488  A$keyboar
+     00001489  A$keyboar |    0000148A  A$keyboar |    0000148B  A$keyboar
+     0000148D  A$keyboar |    0000148E  A$keyboar |    0000148F  A$keyboar
+     00001490  A$keyboar |    00001491  A$keyboar |    00001492  A$keyboar
+     00001493  A$keyboar |    00001496  A$keyboar |    00001497  A$keyboar
+     00001498  A$keyboar |    00001498  C$keyboar |    00001499  A$keyboar
+     0000149A  A$keyboar |    0000149C  A$keyboar |    0000149E  A$keyboar
+     0000149E  C$keyboar |    000014A1  A$keyboar |    000014A3  A$keyboar
+     000014A5  A$keyboar |    000014A5  C$keyboar |    000014A5  XG$kbdPro
+     000014A6  A$keyboar |    000014A6  C$keyboar |    000014A6  C$keyboar
+     000014A6  G$kbdInit |    000014A6  _kbdInit  |    000014A9  A$keyboar
+     000014A9  C$keyboar |    000014AA  A$keyboar |    000014AC  A$keyboar
+     000014AD  A$keyboar |    000014AF  A$keyboar |    000014B0  A$keyboar
+     000014B1  A$keyboar |    000014B2  A$keyboar |    000014B3  A$keyboar
+     000014B4  A$keyboar |    000014B6  A$keyboar |    000014B7  A$keyboar
+     000014B9  A$keyboar |    000014BA  A$keyboar |    000014BB  A$keyboar
+     000014BE  A$keyboar |    000014BF  A$keyboar |    000014C0  A$keyboar
+     000014C1  A$keyboar |    000014C2  A$keyboar |    000014C5  A$keyboar
+     000014C6  A$keyboar |    000014C7  A$keyboar |    000014CA  A$keyboar
+     000014CD  A$keyboar |    000014CE  A$keyboar |    000014CF  A$keyboar
+     000014CF  C$keyboar |    000014D2  A$keyboar |    000014D3  A$keyboar
+     000014D6  A$keyboar |    000014D7  A$keyboar |    000014D7  C$keyboar
+     000014D7  XG$kbdIni |    000014D8  Fkeyboard |    000014EF  A$library
+ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000014EF  C$library |    000014EF  C$library |    000014EF  G$globals
+     000014EF  _globals  |    000014F2  A$library |    000014F2  C$library
+     000014F2  XG$global |    000014F3  A$library |    000014F3  C$library
+     000014F3  C$library |    000014F3  G$process |    000014F3  _processE
+     000014F6  A$library |    000014F6  C$library |    000014F9  A$library
+     000014F9  C$library |    000014FC  A$library |    000014FC  C$library
+     000014FC  C$library |    000014FC  XG$proces |    000014FF  A$library
+     000014FF  C$library |    000014FF  G$console |    000014FF  _console 
+     00001501  A$library |    00001505  A$library |    00001507  A$library
+     00001508  A$library |    00001509  A$library |    00001509  C$library
+     0000150C  A$library |    0000150D  A$library |    0000150E  A$library
+     00001511  A$library |    00001514  A$library |    00001516  A$library
+     0000151A  A$library |    0000151D  A$library |    0000151F  A$library
+     00001522  A$library |    00001524  A$library |    00001527  A$library
+     00001529  A$library |    0000152C  A$library |    0000152F  A$library
+     00001532  A$library |    00001533  A$library |    00001536  A$library
+     00001539  A$library |    0000153A  A$library |    0000153D  A$library
+     00001540  A$library |    00001541  A$library |    00001544  A$library
+     00001545  A$library |    00001548  A$library |    0000154B  A$library
+     0000154C  A$library |    0000154D  A$library |    0000154F  A$library
+     00001551  A$library |    00001551  C$library |    00001551  XG$consol
+     00001552  Flibrary$ |    0000155E  A$library |    0000155E  C$library
+     0000155E  C$library |    0000155E  G$ul$0$0  |    0000155E  _ul      
+     00001561  A$library |    00001562  A$library |    00001564  A$library
+     00001565  A$library |    00001566  A$library |    00001569  A$library
+     0000156A  A$library |    0000156B  A$library |    0000156C  A$library
+     0000156D  A$library |    0000156F  A$library |    00001570  A$library
+     00001571  A$library |    00001572  A$library |    00001573  A$library
+     00001575  A$library |    00001577  A$library |    00001577  C$library
+     00001579  A$library |    0000157A  A$library |    0000157B  A$library
+     0000157E  A$library |    0000157F  A$library |    0000157F  C$library
+     0000157F  XG$ul$0$0 |    00001580  A$main$74 |    00001580  C$main.c$
+     00001580  C$main.c$ |    00001580  G$init$0$ |    00001580  _init    
+     00001583  A$main$75 |    00001585  A$main$77 |    00001587  A$main$78
+     00001588  A$main$79 |    0000158A  A$main$83 |    0000158A  C$main.c$
+     0000158D  A$main$87 |    0000158D  C$main.c$ |    00001590  A$main$88
+     00001591  A$main$89 |    00001594  A$main$90 |    00001595  A$main$91
+     00001598  A$main$95 |    00001598  C$main.c$ |    0000159B  A$main$96
+     0000159C  A$main$97 |    0000159F  A$main$98 |    000015A0  A$main$10
+     000015A0  C$main.c$ |    000015A3  A$main$10 |    000015A3  C$main.c$
+     000015A6  A$main$11 |    000015A6  C$main.c$ |    000015A9  A$main$11
+     000015A9  C$main.c$ |    000015A9  C$main.c$ |    000015A9  XG$init$0
+     000015AC  Fmain$__s |    000015D9  Fmain$__s |    000015E2  A$main$13
+     000015E2  C$main.c$ |    000015E2  G$main$0$ |    000015E2  _main    
+     000015E4  A$main$13 |    000015E8  A$main$13 |    000015EA  A$main$13
+     000015EB  A$main$14 |    000015EC  A$main$14 |    000015ED  A$main$14
+     000015ED  C$main.c$ |    000015F0  A$main$15 |    000015F0  C$main.c$
+     000015F3  A$main$15 |    000015F4  A$main$15 |    000015F5  A$main$15
+     000015F7  A$main$15 |    000015FA  A$main$15 |    000015FC  A$main$16
+     000015FC  C$main.c$ |    000015FF  A$main$16 |    000015FF  C$main.c$
+     00001602  A$main$16 |    00001603  A$main$16 |    00001605  A$main$16
+ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001607  A$main$16 |    0000160A  A$main$16 |    0000160C  A$main$17
+     0000160C  C$main.c$ |    0000160F  A$main$17 |    00001611  A$main$17
+     00001613  A$main$17 |    00001616  A$main$17 |    00001618  A$main$18
+     00001618  C$main.c$ |    0000161B  A$main$18 |    0000161C  A$main$18
+     0000161F  A$main$18 |    0000161F  C$main.c$ |    00001621  A$main$19
+     00001622  A$main$19 |    00001623  A$main$19 |    00001626  A$main$19
+     00001627  A$main$19 |    0000162A  A$main$19 |    0000162E  A$main$19
+     00001630  A$main$19 |    00001631  A$main$19 |    00001632  A$main$19
+     00001635  A$main$20 |    00001636  A$main$20 |    00001639  A$main$20
+     0000163D  A$main$20 |    0000163F  A$main$20 |    00001640  A$main$20
+     00001641  A$main$20 |    00001644  A$main$20 |    00001645  A$main$20
+     00001646  A$main$20 |    00001648  A$main$21 |    00001649  A$main$21
+     0000164B  A$main$21 |    0000164C  A$main$21 |    0000164D  A$main$21
+     00001650  A$main$21 |    00001651  A$main$21 |    00001652  A$main$21
+     00001653  A$main$21 |    00001655  A$main$21 |    00001658  A$main$22
+     0000165B  A$main$22 |    0000165C  A$main$22 |    0000165F  A$main$22
+     00001662  A$main$22 |    00001663  A$main$22 |    00001664  A$main$22
+     00001665  A$main$22 |    00001668  A$main$22 |    00001669  A$main$22
+     0000166C  A$main$23 |    0000166F  A$main$23 |    00001670  A$main$23
+     00001671  A$main$23 |    00001671  C$main.c$ |    00001674  A$main$23
+     00001675  A$main$23 |    00001676  A$main$23 |    00001679  A$main$24
+     0000167A  A$main$24 |    0000167A  C$main.c$ |    0000167A  XG$main$0
+     0000167D  Fmain$__s |    000016A7  A$stdio_u |    000016A7  C$stdio_u
+     000016A7  C$stdio_u |    000016A7  G$uartPro |    000016A7  _uartProc
+     000016A9  A$stdio_u |    000016AD  A$stdio_u |    000016B0  A$stdio_u
+     000016B1  A$stdio_u |    000016B1  C$stdio_u |    000016B3  A$stdio_u
+     000016B4  A$stdio_u |    000016B5  A$stdio_u |    000016B8  A$stdio_u
+     000016B9  A$stdio_u |    000016BB  A$stdio_u |    000016BC  A$stdio_u
+     000016BC  C$stdio_u |    000016C0  A$stdio_u |    000016C3  A$stdio_u
+     000016C6  A$stdio_u |    000016C9  A$stdio_u |    000016CB  A$stdio_u
+     000016CC  A$stdio_u |    000016CD  A$stdio_u |    000016CE  A$stdio_u
+     000016CF  A$stdio_u |    000016D0  A$stdio_u |    000016D3  A$stdio_u
+     000016D4  A$stdio_u |    000016D5  A$stdio_u |    000016D6  A$stdio_u
+     000016D7  A$stdio_u |    000016D7  C$stdio_u |    000016D7  XG$uartPr
+     000016D9  A$stdio_u |    000016D9  C$stdio_u |    000016D9  C$stdio_u
+     000016D9  C$stdio_u |    000016D9  G$stdioIn |    000016D9  XG$stdioI
+     000016D9  _stdioIni |    000016DC  A$stdio_u |    000016DC  C$stdio_u
+     000016DC  C$stdio_u |    000016DC  G$putchar |    000016DC  _putchar 
+     000016DE  A$stdio_u |    000016DF  A$stdio_u |    000016E0  A$stdio_u
+     000016E3  A$stdio_u |    000016E4  A$stdio_u |    000016E6  A$stdio_u
+     000016E8  A$stdio_u |    000016E8  C$stdio_u |    000016EB  A$stdio_u
+     000016EC  A$stdio_u |    000016ED  A$stdio_u |    000016ED  C$stdio_u
+     000016EE  A$stdio_u |    000016EF  A$stdio_u |    000016F0  A$stdio_u
+     000016F1  A$stdio_u |    000016F2  A$stdio_u |    000016F3  A$stdio_u
+     000016F6  A$stdio_u |    000016F7  A$stdio_u |    000016F8  A$stdio_u
+     000016F8  C$stdio_u |    000016F9  A$stdio_u |    000016FB  A$stdio_u
+     000016FC  A$stdio_u |    000016FE  A$stdio_u |    000016FF  A$stdio_u
+     00001700  A$stdio_u |    00001703  A$stdio_u |    00001704  A$stdio_u
+     00001704  C$stdio_u |    00001704  XG$putcha |    00001705  A$stdio_u
+     00001705  C$stdio_u |    00001705  C$stdio_u |    00001705  G$uartAva
+     00001705  _uartAvai |    00001709  A$stdio_u |    0000170C  A$stdio_u
+ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000170C  C$stdio_u |    0000170C  XG$uartAv |    0000170D  A$stdio_u
+     0000170D  C$stdio_u |    0000170D  C$stdio_u |    0000170D  G$getchar
+     0000170D  _getchar  |    00001710  A$stdio_u |    00001711  A$stdio_u
+     00001712  A$stdio_u |    00001712  C$stdio_u |    00001715  A$stdio_u
+     00001716  A$stdio_u |    00001718  A$stdio_u |    00001719  A$stdio_u
+     0000171A  A$stdio_u |    0000171A  C$stdio_u |    0000171C  A$stdio_u
+     00001720  A$stdio_u |    00001723  A$stdio_u |    00001725  A$stdio_u
+     00001725  C$stdio_u |    00001726  A$stdio_u |    00001729  A$stdio_u
+     0000172B  A$stdio_u |    0000172C  A$stdio_u |    0000172D  A$stdio_u
+     0000172E  A$stdio_u |    00001731  A$stdio_u |    00001732  A$stdio_u
+     00001735  A$stdio_u |    00001738  A$stdio_u |    00001739  A$stdio_u
+     0000173A  A$stdio_u |    0000173B  A$stdio_u |    0000173B  C$stdio_u
+     0000173E  A$stdio_u |    0000173F  A$stdio_u |    0000173F  C$stdio_u
+     00001740  A$stdio_u |    00001740  C$stdio_u |    00001740  XG$getcha
+     00001741  A$stdio_u |    00001741  C$stdio_u |    00001741  C$stdio_u
+     00001741  G$inbound |    00001741  _inboundF |    00001744  A$stdio_u
+     00001745  A$stdio_u |    00001748  A$stdio_u |    00001749  A$stdio_u
+     00001749  C$stdio_u |    0000174C  A$stdio_u |    0000174E  A$stdio_u
+     0000174E  C$stdio_u |    0000174E  XG$inboun |    0000174F  A$usb$74 
+     0000174F  C$usb.c$2 |    0000174F  C$usb.c$3 |    0000174F  G$usbInit
+     0000174F  _usbInit  |    00001752  A$usb$75  |    00001753  A$usb$76 
+     00001756  A$usb$77  |    00001757  A$usb$81  |    00001757  C$usb.c$3
+     00001759  A$usb$83  |    0000175A  A$usb$84  |    0000175B  A$usb$85 
+     0000175C  A$usb$86  |    0000175D  A$usb$87  |    0000175E  A$usb$88 
+     0000175F  A$usb$89  |    00001761  A$usb$93  |    00001761  C$usb.c$3
+     00001764  A$usb$97  |    00001764  C$usb.c$4 |    00001767  A$usb$98 
+     00001768  A$usb$99  |    0000176B  A$usb$103 |    0000176B  C$usb.c$4
+     0000176D  A$usb$104 |    0000176E  A$usb$105 |    0000176F  A$usb$106
+     00001772  A$usb$107 |    00001773  A$usb$112 |    00001773  C$usb.c$4
+     00001773  XG$usbIni |    00001774  A$usb$125 |    00001774  C$usb.c$4
+     00001774  C$usb.c$5 |    00001774  G$deviceR |    00001774  _deviceRe
+     00001777  A$usb$126 |    00001778  A$usb$127 |    0000177B  A$usb$128
+     0000177C  A$usb$132 |    0000177C  C$usb.c$5 |    0000177F  A$usb$134
+     00001780  A$usb$135 |    00001781  A$usb$136 |    00001782  A$usb$137
+     00001784  A$usb$141 |    00001784  C$usb.c$5 |    00001787  A$usb$142
+     00001788  A$usb$143 |    0000178B  A$usb$144 |    0000178C  A$usb$148
+     0000178C  C$usb.c$5 |    0000178F  A$usb$150 |    00001790  A$usb$151
+     00001791  A$usb$152 |    00001792  A$usb$153 |    00001794  A$usb$161
+     00001794  C$usb.c$6 |    00001794  C$usb.c$6 |    00001794  XG$device
+     00001795  Fusb$__st |    0000179D  Fusb$__st |    000017A8  A$usb$179
+     000017A8  C$usb.c$6 |    000017A8  G$usbIn$0 |    000017A8  _usbIn   
+     000017AA  A$usb$180 |    000017AE  A$usb$181 |    000017B0  A$usb$182
+     000017B1  A$usb$183 |    000017B2  A$usb$187 |    000017B2  C$usb.c$6
+     000017B3  A$usb$188 |    000017B6  A$usb$189 |    000017B9  A$usb$190
+     000017BC  A$usb$191 |    000017BF  A$usb$196 |    000017BF  C$usb.c$7
+     000017C2  A$usb$197 |    000017C4  A$usb$198 |    000017C7  A$usb$199
+     000017C9  A$usb$200 |    000017CC  A$usb$201 |    000017CE  A$usb$202
+     000017D1  A$usb$206 |    000017D1  C$usb.c$7 |    000017D4  A$usb$207
+     000017D5  A$usb$208 |    000017D8  A$usb$212 |    000017D8  C$usb.c$7
+     000017DB  A$usb$213 |    000017DC  A$usb$214 |    000017DF  A$usb$215
+     000017E0  A$usb$219 |    000017E0  C$usb.c$7 |    000017E3  A$usb$220
+ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000017E5  A$usb$221 |    000017E6  A$usb$222 |    000017E9  A$usb$223
+     000017EA  A$usb$227 |    000017EA  C$usb.c$7 |    000017ED  A$usb$228
+     000017EF  A$usb$229 |    000017F0  A$usb$230 |    000017F3  A$usb$234
+     000017F3  C$usb.c$8 |    000017F6  A$usb$235 |    000017F7  A$usb$236
+     000017FA  A$usb$240 |    000017FA  C$usb.c$8 |    000017FD  A$usb$241
+     000017FE  A$usb$242 |    00001801  A$usb$246 |    00001801  C$usb.c$8
+     00001804  A$usb$247 |    00001805  A$usb$248 |    00001808  A$usb$249
+     00001809  A$usb$253 |    00001809  C$usb.c$8 |    0000180C  A$usb$254
+     0000180F  A$usb$255 |    00001812  A$usb$256 |    00001815  A$usb$258
+     00001816  A$usb$259 |    00001817  A$usb$260 |    00001819  A$usb$261
+     0000181A  A$usb$262 |    0000181B  A$usb$263 |    0000181E  A$usb$264
+     0000181F  A$usb$265 |    00001820  A$usb$266 |    00001821  A$usb$267
+     00001823  A$usb$268 |    00001825  A$usb$269 |    00001826  A$usb$270
+     00001828  A$usb$271 |    00001829  A$usb$272 |    0000182B  A$usb$273
+     0000182C  A$usb$274 |    0000182E  A$usb$275 |    0000182F  A$usb$276
+     00001831  A$usb$277 |    00001833  A$usb$278 |    00001834  A$usb$279
+     00001836  A$usb$280 |    00001837  A$usb$281 |    00001839  A$usb$282
+     0000183A  A$usb$283 |    0000183C  A$usb$284 |    0000183D  A$usb$285
+     0000183F  A$usb$287 |    00001842  A$usb$288 |    00001845  A$usb$289
+     00001848  A$usb$290 |    0000184B  A$usb$294 |    0000184B  C$usb.c$8
+     0000184D  A$usb$295 |    0000184E  A$usb$296 |    0000184F  A$usb$297
+     00001852  A$usb$298 |    00001853  A$usb$299 |    00001855  A$usb$300
+     00001858  A$usb$301 |    0000185A  A$usb$302 |    0000185B  A$usb$303
+     0000185C  A$usb$304 |    0000185F  A$usb$305 |    00001860  A$usb$306
+     00001861  A$usb$307 |    00001863  A$usb$308 |    00001866  A$usb$312
+     00001866  C$usb.c$8 |    00001868  A$usb$313 |    00001869  A$usb$314
+     0000186A  A$usb$315 |    0000186D  A$usb$316 |    0000186E  A$usb$317
+     0000186F  A$usb$321 |    0000186F  C$usb.c$9 |    00001872  A$usb$322
+     00001875  A$usb$323 |    00001877  A$usb$324 |    00001879  A$usb$326
+     0000187A  A$usb$327 |    0000187B  A$usb$328 |    0000187D  A$usb$332
+     0000187D  C$usb.c$9 |    0000187E  A$usb$333 |    0000187F  A$usb$334
+     00001880  A$usb$335 |    00001882  A$usb$336 |    00001883  A$usb$337
+     00001884  A$usb$338 |    00001887  A$usb$339 |    00001888  A$usb$340
+     00001889  A$usb$341 |    0000188A  A$usb$342 |    0000188B  A$usb$343
+     0000188C  A$usb$344 |    0000188D  A$usb$348 |    0000188D  C$usb.c$9
+     0000188E  A$usb$352 |    0000188E  C$usb.c$9 |    0000188F  A$usb$356
+     0000188F  C$usb.c$9 |    00001890  A$usb$357 |    00001892  A$usb$362
+     00001892  C$usb.c$9 |    00001893  A$usb$363 |    00001895  A$usb$368
+     00001895  C$usb.c$9 |    00001897  A$usb$370 |    00001899  A$usb$371
+     0000189B  A$usb$376 |    0000189B  C$usb.c$1 |    0000189B  XG$usbIn$
+     0000189C  A$usb$389 |    0000189C  C$usb.c$1 |    0000189C  C$usb.c$1
+     0000189C  G$usbProc |    0000189C  _usbProce |    0000189E  A$usb$390
+     0000189F  A$usb$391 |    000018A0  A$usb$392 |    000018A3  A$usb$393
+     000018A4  A$usb$394 |    000018A5  A$usb$395 |    000018A6  A$usb$396
+     000018A8  A$usb$397 |    000018A9  A$usb$398 |    000018AA  A$usb$403
+     000018AA  C$usb.c$1 |    000018AD  A$usb$407 |    000018AD  C$usb.c$1
+     000018AF  A$usb$408 |    000018B0  A$usb$409 |    000018B1  A$usb$410
+     000018B4  A$usb$411 |    000018B5  A$usb$412 |    000018B6  A$usb$413
+     000018B7  A$usb$414 |    000018B9  A$usb$415 |    000018BA  A$usb$416
+     000018BB  A$usb$421 |    000018BB  C$usb.c$1 |    000018BD  A$usb$422
+     000018BE  A$usb$423 |    000018BF  A$usb$424 |    000018C2  A$usb$425
+ASxxxx Linker V03.00 + NoICE + sdld,  page 24.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000018C3  A$usb$426 |    000018C4  A$usb$427 |    000018C6  A$usb$428
+     000018C8  A$usb$432 |    000018C8  C$usb.c$1 |    000018CB  A$usb$433
+     000018CC  A$usb$434 |    000018CF  A$usb$435 |    000018D0  A$usb$440
+     000018D0  C$usb.c$1 |    000018D2  A$usb$441 |    000018D3  A$usb$442
+     000018D4  A$usb$443 |    000018D7  A$usb$444 |    000018D8  A$usb$445
+     000018D9  A$usb$449 |    000018D9  C$usb.c$1 |    000018DA  A$usb$450
+     000018DC  A$usb$451 |    000018DD  A$usb$452 |    000018DE  A$usb$457
+     000018DE  C$usb.c$1 |    000018E0  A$usb$458 |    000018E1  A$usb$459
+     000018E2  A$usb$460 |    000018E5  A$usb$461 |    000018E6  A$usb$462
+     000018E7  A$usb$463 |    000018E9  A$usb$464 |    000018EC  A$usb$465
+     000018EE  A$usb$467 |    000018F1  A$usb$469 |    000018F2  A$usb$470
+     000018F5  A$usb$471 |    000018F8  A$usb$472 |    000018F9  A$usb$473
+     000018FA  A$usb$474 |    000018FD  A$usb$475 |    00001900  A$usb$476
+     00001901  A$usb$477 |    00001902  A$usb$481 |    00001902  C$usb.c$1
+     00001905  A$usb$482 |    00001906  A$usb$483 |    00001909  A$usb$484
+     0000190A  A$usb$488 |    0000190A  C$usb.c$1 |    0000190C  A$usb$493
+     0000190C  C$usb.c$1 |    0000190C  XG$usbPro |    0000190D  Fusb$__st
+     0000193F  Fusb$__st |    00001949  Fusb$__st |    00001967  Fusb$__st
+     0000196B  Fusb$__st |    00001970  A$usb$523 |    00001970  C$usb.c$1
+     00001970  G$_usbOut |    00001970  __usbOut  |    00001971  A$usb$527
+     00001971  C$usb.c$1 |    00001975  A$usb$528 |    00001977  A$usb$529
+     0000197B  A$usb$534 |    0000197B  C$usb.c$1 |    0000197E  A$usb$535
+     0000197F  A$usb$536 |    00001982  A$usb$540 |    00001982  C$usb.c$1
+     00001985  A$usb$541 |    00001986  A$usb$542 |    00001989  A$usb$543
+     0000198A  A$usb$547 |    0000198A  C$usb.c$1 |    0000198D  A$usb$548
+     0000198E  A$usb$549 |    0000198F  A$usb$550 |    00001991  A$usb$551
+     00001992  A$usb$552 |    00001995  A$usb$553 |    00001996  A$usb$557
+     00001996  C$usb.c$1 |    00001999  A$usb$558 |    0000199A  A$usb$559
+     0000199B  A$usb$560 |    0000199D  A$usb$561 |    0000199E  A$usb$562
+     000019A1  A$usb$563 |    000019A2  A$usb$567 |    000019A2  C$usb.c$1
+     000019A4  A$usb$569 |    000019A7  A$usb$570 |    000019A8  A$usb$571
+     000019A9  A$usb$572 |    000019AA  A$usb$573 |    000019AC  A$usb$577
+     000019AC  C$usb.c$1 |    000019AF  A$usb$578 |    000019B0  A$usb$579
+     000019B1  A$usb$580 |    000019B2  A$usb$581 |    000019B3  A$usb$582
+     000019B4  A$usb$583 |    000019B6  A$usb$584 |    000019B7  A$usb$585
+     000019B8  A$usb$589 |    000019B8  C$usb.c$1 |    000019B9  A$usb$590
+     000019BA  A$usb$591 |    000019BB  A$usb$592 |    000019BD  A$usb$593
+     000019BE  A$usb$594 |    000019BF  A$usb$595 |    000019C2  A$usb$596
+     000019C3  A$usb$597 |    000019C4  A$usb$601 |    000019C4  C$usb.c$1
+     000019C5  A$usb$602 |    000019C7  A$usb$607 |    000019C7  C$usb.c$1
+     000019CA  A$usb$608 |    000019CB  A$usb$609 |    000019CC  A$usb$610
+     000019CE  A$usb$611 |    000019CF  A$usb$612 |    000019D2  A$usb$616
+     000019D2  C$usb.c$1 |    000019D5  A$usb$617 |    000019D6  A$usb$618
+     000019D9  A$usb$622 |    000019D9  C$usb.c$1 |    000019DC  A$usb$623
+     000019DD  A$usb$624 |    000019E0  A$usb$625 |    000019E1  A$usb$630
+     000019E1  C$usb.c$1 |    000019E3  A$usb$631 |    000019E4  A$usb$632
+     000019E5  A$usb$633 |    000019E8  A$usb$634 |    000019E9  A$usb$635
+     000019EB  A$usb$636 |    000019ED  A$usb$640 |    000019ED  C$usb.c$1
+     000019EF  A$usb$641 |    000019F0  A$usb$642 |    000019F1  A$usb$643
+     000019F4  A$usb$644 |    000019F5  A$usb$645 |    000019F7  A$usb$646
+     000019F9  A$usb$650 |    000019F9  C$usb.c$1 |    000019FB  A$usb$651
+ASxxxx Linker V03.00 + NoICE + sdld,  page 25.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     000019FC  A$usb$652 |    000019FD  A$usb$653 |    00001A00  A$usb$654
+     00001A01  A$usb$658 |    00001A01  C$usb.c$1 |    00001A05  A$usb$659
+     00001A07  A$usb$660 |    00001A0A  A$usb$661 |    00001A0D  A$usb$662
+     00001A0E  A$usb$663 |    00001A10  A$usb$664 |    00001A12  A$usb$665
+     00001A14  A$usb$666 |    00001A16  A$usb$671 |    00001A16  C$usb.c$1
+     00001A19  A$usb$673 |    00001A1A  A$usb$674 |    00001A1B  A$usb$675
+     00001A1C  A$usb$676 |    00001A1D  A$usb$677 |    00001A1E  A$usb$678
+     00001A1F  A$usb$679 |    00001A20  A$usb$680 |    00001A21  A$usb$681
+     00001A23  A$usb$682 |    00001A26  A$usb$687 |    00001A26  C$usb.c$1
+     00001A28  A$usb$689 |    00001A29  A$usb$694 |    00001A29  C$usb.c$1
+     00001A29  XG$_usbOu |    00001A2A  Fusb$__st |    00001A3A  Fusb$__st
+     00001A40  Fusb$__st |    00001A52  A$usb$716 |    00001A52  C$usb.c$1
+     00001A52  G$getDesc |    00001A52  _getDescr |    00001A54  A$usb$717
+     00001A58  A$usb$718 |    00001A5A  A$usb$719 |    00001A5D  A$usb$720
+     00001A5E  A$usb$721 |    00001A5F  A$usb$725 |    00001A5F  C$usb.c$1
+     00001A62  A$usb$726 |    00001A63  A$usb$727 |    00001A64  A$usb$728
+     00001A65  A$usb$729 |    00001A67  A$usb$730 |    00001A68  A$usb$731
+     00001A69  A$usb$732 |    00001A6A  A$usb$733 |    00001A6C  A$usb$734
+     00001A6D  A$usb$735 |    00001A6E  A$usb$736 |    00001A6F  A$usb$737
+     00001A70  A$usb$738 |    00001A73  A$usb$739 |    00001A74  A$usb$740
+     00001A75  A$usb$741 |    00001A76  A$usb$742 |    00001A77  A$usb$743
+     00001A78  A$usb$744 |    00001A79  A$usb$745 |    00001A7C  A$usb$746
+     00001A7D  A$usb$747 |    00001A80  A$usb$748 |    00001A81  A$usb$749
+     00001A83  A$usb$750 |    00001A86  A$usb$751 |    00001A87  A$usb$752
+     00001A89  A$usb$753 |    00001A8C  A$usb$754 |    00001A8D  A$usb$755
+     00001A90  A$usb$756 |    00001A91  A$usb$757 |    00001A94  A$usb$758
+     00001A95  A$usb$759 |    00001A98  A$usb$760 |    00001A99  A$usb$764
+     00001A99  C$usb.c$1 |    00001A9C  A$usb$765 |    00001A9E  A$usb$766
+     00001AA0  A$usb$767 |    00001AA3  A$usb$768 |    00001AA5  A$usb$770
+     00001AA8  A$usb$771 |    00001AAB  A$usb$776 |    00001AAB  C$usb.c$1
+     00001AAF  A$usb$780 |    00001AAF  C$usb.c$1 |    00001AB0  A$usb$781
+     00001AB2  A$usb$782 |    00001AB3  A$usb$783 |    00001AB4  A$usb$784
+     00001AB5  A$usb$785 |    00001AB8  A$usb$786 |    00001AB9  A$usb$787
+     00001ABC  A$usb$788 |    00001ABD  A$usb$789 |    00001ABE  A$usb$790
+     00001AC1  A$usb$791 |    00001AC2  A$usb$792 |    00001AC3  A$usb$793
+     00001AC4  A$usb$794 |    00001AC5  A$usb$795 |    00001AC6  A$usb$796
+     00001AC7  A$usb$797 |    00001ACA  A$usb$801 |    00001ACA  C$usb.c$1
+     00001ACD  A$usb$802 |    00001AD0  A$usb$803 |    00001AD3  A$usb$804
+     00001AD6  A$usb$806 |    00001AD7  A$usb$807 |    00001AD8  A$usb$808
+     00001ADA  A$usb$812 |    00001ADA  C$usb.c$1 |    00001ADD  A$usb$813
+     00001AE0  A$usb$814 |    00001AE1  A$usb$815 |    00001AE3  A$usb$816
+     00001AE6  A$usb$817 |    00001AE7  A$usb$818 |    00001AE8  A$usb$819
+     00001AE9  A$usb$820 |    00001AEA  A$usb$821 |    00001AEB  A$usb$822
+     00001AEC  A$usb$823 |    00001AEF  A$usb$824 |    00001AF0  A$usb$825
+     00001AF1  A$usb$826 |    00001AF4  A$usb$827 |    00001AF5  A$usb$828
+     00001AF6  A$usb$829 |    00001AF7  A$usb$833 |    00001AF7  C$usb.c$1
+     00001AF8  A$usb$837 |    00001AF8  C$usb.c$1 |    00001AF9  A$usb$838
+     00001AFB  A$usb$839 |    00001AFC  A$usb$840 |    00001AFE  A$usb$845
+     00001AFE  C$usb.c$2 |    00001AFF  A$usb$846 |    00001B00  A$usb$847
+     00001B02  A$usb$848 |    00001B05  A$usb$849 |    00001B08  A$usb$850
+     00001B09  A$usb$855 |    00001B09  C$usb.c$2 |    00001B0A  A$usb$856
+ASxxxx Linker V03.00 + NoICE + sdld,  page 26.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001B0C  A$usb$857 |    00001B0E  A$usb$858 |    00001B0F  A$usb$859
+     00001B10  A$usb$860 |    00001B12  A$usb$861 |    00001B14  A$usb$862
+     00001B16  A$usb$863 |    00001B18  A$usb$865 |    00001B19  A$usb$867
+     00001B1C  A$usb$868 |    00001B1D  A$usb$869 |    00001B20  A$usb$873
+     00001B20  C$usb.c$2 |    00001B22  A$usb$874 |    00001B24  A$usb$875
+     00001B26  A$usb$876 |    00001B28  A$usb$878 |    00001B29  A$usb$880
+     00001B2A  A$usb$881 |    00001B2B  A$usb$882 |    00001B2C  A$usb$883
+     00001B2E  A$usb$888 |    00001B2E  C$usb.c$2 |    00001B31  A$usb$890
+     00001B34  A$usb$891 |    00001B36  A$usb$892 |    00001B37  A$usb$893
+     00001B38  A$usb$894 |    00001B39  A$usb$895 |    00001B3A  A$usb$896
+     00001B3C  A$usb$897 |    00001B3D  A$usb$898 |    00001B3F  A$usb$903
+     00001B3F  C$usb.c$2 |    00001B42  A$usb$904 |    00001B44  A$usb$909
+     00001B44  C$usb.c$2 |    00001B46  A$usb$911 |    00001B48  A$usb$912
+     00001B4A  A$usb$917 |    00001B4A  C$usb.c$2 |    00001B4A  XG$getDes
+     00001B4B  Fusb$__st |    00001B57  Fusb$__st |    00001B69  Fusb$__st
+     00001B6F  A$usb$939 |    00001B6F  C$usb.c$2 |    00001B6F  G$setAddr
+     00001B6F  _setAddre |    00001B72  A$usb$940 |    00001B73  A$usb$941
+     00001B74  A$usb$945 |    00001B74  C$usb.c$2 |    00001B77  A$usb$946
+     00001B78  A$usb$947 |    00001B79  A$usb$948 |    00001B7A  A$usb$949
+     00001B7B  A$usb$950 |    00001B7C  A$usb$951 |    00001B7D  A$usb$952
+     00001B7E  A$usb$953 |    00001B7F  A$usb$954 |    00001B81  A$usb$955
+     00001B82  A$usb$956 |    00001B83  A$usb$957 |    00001B84  A$usb$958
+     00001B85  A$usb$959 |    00001B88  A$usb$960 |    00001B89  A$usb$961
+     00001B8A  A$usb$962 |    00001B8B  A$usb$963 |    00001B8C  A$usb$964
+     00001B8D  A$usb$965 |    00001B8E  A$usb$966 |    00001B8F  A$usb$967
+     00001B90  A$usb$968 |    00001B91  A$usb$969 |    00001B92  A$usb$970
+     00001B95  A$usb$971 |    00001B96  A$usb$972 |    00001B98  A$usb$973
+     00001B9B  A$usb$974 |    00001B9C  A$usb$975 |    00001B9E  A$usb$976
+     00001BA1  A$usb$977 |    00001BA2  A$usb$978 |    00001BA4  A$usb$979
+     00001BA7  A$usb$980 |    00001BA8  A$usb$981 |    00001BAA  A$usb$985
+     00001BAA  C$usb.c$2 |    00001BAC  A$usb$986 |    00001BAD  A$usb$987
+     00001BAE  A$usb$988 |    00001BAF  A$usb$989 |    00001BB2  A$usb$990
+     00001BB3  A$usb$991 |    00001BB4  A$usb$992 |    00001BB5  A$usb$993
+     00001BB6  A$usb$994 |    00001BB9  A$usb$995 |    00001BBA  A$usb$996
+     00001BBB  A$usb$997 |    00001BBC  A$usb$998 |    00001BBD  A$usb$999
+     00001BBE  A$usb$100 |    00001BC0  A$usb$100 |    00001BC0  C$usb.c$2
+     00001BC3  A$usb$100 |    00001BC4  A$usb$100 |    00001BC5  A$usb$100
+     00001BC6  A$usb$100 |    00001BC7  A$usb$100 |    00001BC8  A$usb$101
+     00001BCB  A$usb$101 |    00001BCC  A$usb$101 |    00001BCF  A$usb$101
+     00001BD0  A$usb$101 |    00001BD1  A$usb$101 |    00001BD2  A$usb$101
+     00001BD3  A$usb$101 |    00001BD5  A$usb$102 |    00001BD5  C$usb.c$2
+     00001BD7  A$usb$102 |    00001BD9  A$usb$102 |    00001BD9  C$usb.c$2
+     00001BDB  A$usb$102 |    00001BDD  A$usb$103 |    00001BDD  C$usb.c$2
+     00001BDF  A$usb$103 |    00001BE0  A$usb$103 |    00001BE1  A$usb$103
+     00001BE2  A$usb$103 |    00001BE3  A$usb$104 |    00001BE3  C$usb.c$2
+     00001BE3  XG$setAdd |    00001BE4  Fusb$__st |    00001BF0  A$usb$105
+     00001BF0  C$usb.c$2 |    00001BF0  G$usbGetS |    00001BF0  _usbGetSt
+     00001BF2  A$usb$105 |    00001BF6  A$usb$105 |    00001BF8  A$usb$106
+     00001BF9  A$usb$106 |    00001BFA  A$usb$106 |    00001BFA  C$usb.c$2
+     00001BFD  A$usb$106 |    00001BFF  A$usb$106 |    00001C00  A$usb$106
+     00001C03  A$usb$106 |    00001C04  A$usb$107 |    00001C05  A$usb$107
+ASxxxx Linker V03.00 + NoICE + sdld,  page 27.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001C08  A$usb$107 |    00001C09  A$usb$107 |    00001C0C  A$usb$107
+     00001C0F  A$usb$107 |    00001C10  A$usb$107 |    00001C13  A$usb$107
+     00001C14  A$usb$107 |    00001C15  A$usb$107 |    00001C16  A$usb$108
+     00001C17  A$usb$108 |    00001C18  A$usb$108 |    00001C19  A$usb$108
+     00001C1B  A$usb$108 |    00001C1B  C$usb.c$2 |    00001C1E  A$usb$108
+     00001C21  A$usb$109 |    00001C21  C$usb.c$2 |    00001C22  A$usb$109
+     00001C23  A$usb$109 |    00001C25  A$usb$109 |    00001C28  A$usb$109
+     00001C29  A$usb$109 |    00001C2B  A$usb$109 |    00001C2E  A$usb$110
+     00001C2F  A$usb$110 |    00001C31  A$usb$110 |    00001C34  A$usb$110
+     00001C35  A$usb$110 |    00001C36  A$usb$110 |    00001C38  A$usb$111
+     00001C38  C$usb.c$2 |    00001C3B  A$usb$111 |    00001C3C  A$usb$111
+     00001C3F  A$usb$111 |    00001C42  A$usb$111 |    00001C44  A$usb$111
+     00001C47  A$usb$112 |    00001C48  A$usb$112 |    00001C4B  A$usb$112
+     00001C4D  A$usb$112 |    00001C4D  C$usb.c$2 |    00001C4E  A$usb$112
+     00001C50  A$usb$113 |    00001C51  A$usb$113 |    00001C52  A$usb$113
+     00001C53  A$usb$113 |    00001C54  A$usb$113 |    00001C55  A$usb$113
+     00001C56  A$usb$113 |    00001C59  A$usb$113 |    00001C5C  A$usb$113
+     00001C5D  A$usb$114 |    00001C5D  C$usb.c$2 |    00001C5E  A$usb$114
+     00001C60  A$usb$114 |    00001C60  C$usb.c$2 |    00001C63  A$usb$114
+     00001C66  A$usb$115 |    00001C68  A$usb$115 |    00001C68  C$usb.c$2
+     00001C6B  A$usb$115 |    00001C6E  A$usb$115 |    00001C70  A$usb$116
+     00001C70  C$usb.c$2 |    00001C73  A$usb$116 |    00001C76  A$usb$116
+     00001C78  A$usb$116 |    00001C78  C$usb.c$2 |    00001C7A  A$usb$116
+     00001C7C  A$usb$117 |    00001C7C  C$usb.c$2 |    00001C7C  XG$usbGet
+     00001C7D  Fusb$__st |    00001C86  A$usb$118 |    00001C86  C$usb.c$2
+     00001C86  G$setConf |    00001C86  _setConfi |    00001C89  A$usb$118
+     00001C8A  A$usb$119 |    00001C8B  A$usb$119 |    00001C8B  C$usb.c$2
+     00001C8E  A$usb$119 |    00001C8F  A$usb$119 |    00001C90  A$usb$119
+     00001C91  A$usb$119 |    00001C92  A$usb$119 |    00001C93  A$usb$120
+     00001C94  A$usb$120 |    00001C95  A$usb$120 |    00001C96  A$usb$120
+     00001C98  A$usb$120 |    00001C99  A$usb$120 |    00001C9A  A$usb$120
+     00001C9B  A$usb$120 |    00001C9C  A$usb$120 |    00001C9F  A$usb$120
+     00001CA0  A$usb$121 |    00001CA1  A$usb$121 |    00001CA2  A$usb$121
+     00001CA3  A$usb$121 |    00001CA4  A$usb$121 |    00001CA5  A$usb$121
+     00001CA6  A$usb$121 |    00001CA7  A$usb$121 |    00001CA8  A$usb$121
+     00001CA9  A$usb$121 |    00001CAC  A$usb$122 |    00001CAD  A$usb$122
+     00001CAF  A$usb$122 |    00001CB2  A$usb$122 |    00001CB3  A$usb$122
+     00001CB5  A$usb$122 |    00001CB8  A$usb$122 |    00001CB9  A$usb$122
+     00001CBB  A$usb$122 |    00001CBE  A$usb$122 |    00001CBF  A$usb$123
+     00001CC1  A$usb$123 |    00001CC1  C$usb.c$2 |    00001CC3  A$usb$123
+     00001CC4  A$usb$123 |    00001CC5  A$usb$123 |    00001CC6  A$usb$123
+     00001CC9  A$usb$123 |    00001CCA  A$usb$124 |    00001CCD  A$usb$124
+     00001CCE  A$usb$124 |    00001CCF  A$usb$124 |    00001CD0  A$usb$124
+     00001CD1  A$usb$124 |    00001CD4  A$usb$124 |    00001CD5  A$usb$124
+     00001CD6  A$usb$124 |    00001CD7  A$usb$124 |    00001CD8  A$usb$125
+     00001CD9  A$usb$125 |    00001CDB  A$usb$125 |    00001CDB  C$usb.c$2
+     00001CDE  A$usb$125 |    00001CDF  A$usb$125 |    00001CE0  A$usb$125
+     00001CE1  A$usb$125 |    00001CE2  A$usb$126 |    00001CE3  A$usb$126
+     00001CE6  A$usb$126 |    00001CE7  A$usb$126 |    00001CEA  A$usb$126
+     00001CEB  A$usb$126 |    00001CEC  A$usb$126 |    00001CED  A$usb$126
+     00001CEE  A$usb$126 |    00001CF0  A$usb$127 |    00001CF0  C$usb.c$2
+ASxxxx Linker V03.00 + NoICE + sdld,  page 28.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001CF2  A$usb$127 |    00001CF4  A$usb$127 |    00001CF4  C$usb.c$2
+     00001CF6  A$usb$127 |    00001CF8  A$usb$128 |    00001CF8  C$usb.c$2
+     00001CFA  A$usb$128 |    00001CFB  A$usb$128 |    00001CFC  A$usb$128
+     00001CFD  A$usb$128 |    00001CFE  A$usb$129 |    00001CFE  C$usb.c$2
+     00001CFE  XG$setCon |    00001CFF  Fusb$__st |    00001D0A  A$usb$130
+     00001D0A  C$usb.c$2 |    00001D0A  G$enumera |    00001D0A  _enumerat
+     00001D0C  A$usb$130 |    00001D10  A$usb$131 |    00001D12  A$usb$131
+     00001D15  A$usb$131 |    00001D16  A$usb$131 |    00001D17  A$usb$131
+     00001D17  C$usb.c$2 |    00001D1A  A$usb$131 |    00001D1B  A$usb$131
+     00001D1E  A$usb$132 |    00001D21  A$usb$132 |    00001D24  A$usb$132
+     00001D25  A$usb$132 |    00001D28  A$usb$132 |    00001D29  A$usb$132
+     00001D2A  A$usb$132 |    00001D2B  A$usb$132 |    00001D2D  A$usb$133
+     00001D2D  C$usb.c$2 |    00001D30  A$usb$133 |    00001D33  A$usb$133
+     00001D34  A$usb$133 |    00001D37  A$usb$133 |    00001D38  A$usb$133
+     00001D3A  A$usb$133 |    00001D3B  A$usb$133 |    00001D3C  A$usb$134
+     00001D3D  A$usb$134 |    00001D3E  A$usb$134 |    00001D3F  A$usb$134
+     00001D42  A$usb$134 |    00001D43  A$usb$134 |    00001D44  A$usb$134
+     00001D45  A$usb$134 |    00001D46  A$usb$134 |    00001D47  A$usb$134
+     00001D48  A$usb$135 |    00001D49  A$usb$135 |    00001D4B  A$usb$135
+     00001D4B  C$usb.c$2 |    00001D4C  A$usb$135 |    00001D4D  A$usb$135
+     00001D4F  A$usb$135 |    00001D50  A$usb$135 |    00001D52  A$usb$136
+     00001D54  A$usb$136 |    00001D54  C$usb.c$2 |    00001D57  A$usb$136
+     00001D5A  A$usb$136 |    00001D5D  A$usb$136 |    00001D60  A$usb$137
+     00001D60  C$usb.c$2 |    00001D61  A$usb$137 |    00001D63  A$usb$137
+     00001D65  A$usb$137 |    00001D65  C$usb.c$2 |    00001D66  A$usb$137
+     00001D68  A$usb$138 |    00001D69  A$usb$138 |    00001D6C  A$usb$138
+     00001D6C  C$usb.c$2 |    00001D6F  A$usb$138 |    00001D72  A$usb$138
+     00001D75  A$usb$138 |    00001D78  A$usb$139 |    00001D7B  A$usb$139
+     00001D7E  A$usb$139 |    00001D81  A$usb$139 |    00001D82  A$usb$139
+     00001D83  A$usb$139 |    00001D86  A$usb$139 |    00001D87  A$usb$139
+     00001D88  A$usb$139 |    00001D8B  A$usb$139 |    00001D8E  A$usb$140
+     00001D91  A$usb$140 |    00001D94  A$usb$140 |    00001D97  A$usb$140
+     00001D9A  A$usb$140 |    00001D9D  A$usb$140 |    00001DA0  A$usb$140
+     00001DA1  A$usb$140 |    00001DA2  A$usb$140 |    00001DA5  A$usb$140
+     00001DA6  A$usb$141 |    00001DA7  A$usb$141 |    00001DAA  A$usb$141
+     00001DAD  A$usb$141 |    00001DB0  A$usb$141 |    00001DB3  A$usb$141
+     00001DB6  A$usb$141 |    00001DB9  A$usb$141 |    00001DBA  A$usb$141
+     00001DBD  A$usb$141 |    00001DC0  A$usb$142 |    00001DC1  A$usb$142
+     00001DC4  A$usb$142 |    00001DC5  A$usb$142 |    00001DC8  A$usb$142
+     00001DCB  A$usb$142 |    00001DCC  A$usb$142 |    00001DCF  A$usb$142
+     00001DD2  A$usb$142 |    00001DD3  A$usb$142 |    00001DD4  A$usb$143
+     00001DD4  C$usb.c$2 |    00001DD7  A$usb$143 |    00001DD8  A$usb$143
+     00001DDB  A$usb$143 |    00001DDC  A$usb$144 |    00001DDC  C$usb.c$3
+     00001DDF  A$usb$144 |    00001DE2  A$usb$144 |    00001DE5  A$usb$144
+     00001DE8  A$usb$144 |    00001DEB  A$usb$144 |    00001DEE  A$usb$144
+     00001DF1  A$usb$144 |    00001DF2  A$usb$144 |    00001DF3  A$usb$144
+     00001DF6  A$usb$145 |    00001DF6  C$usb.c$3 |    00001DF9  A$usb$145
+     00001DFC  A$usb$145 |    00001DFF  A$usb$145 |    00001E02  A$usb$145
+     00001E05  A$usb$145 |    00001E08  A$usb$145 |    00001E0B  A$usb$146
+     00001E0C  A$usb$146 |    00001E0D  A$usb$146 |    00001E10  A$usb$146
+     00001E10  C$usb.c$3 |    00001E13  A$usb$146 |    00001E16  A$usb$146
+ASxxxx Linker V03.00 + NoICE + sdld,  page 29.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001E19  A$usb$146 |    00001E1C  A$usb$147 |    00001E1F  A$usb$147
+     00001E22  A$usb$147 |    00001E25  A$usb$147 |    00001E26  A$usb$147
+     00001E27  A$usb$147 |    00001E2A  A$usb$147 |    00001E2A  C$usb.c$3
+     00001E2D  A$usb$148 |    00001E2D  C$usb.c$3 |    00001E30  A$usb$148
+     00001E33  A$usb$148 |    00001E36  A$usb$148 |    00001E39  A$usb$148
+     00001E3B  A$usb$148 |    00001E3C  A$usb$148 |    00001E3D  A$usb$149
+     00001E40  A$usb$149 |    00001E43  A$usb$149 |    00001E44  A$usb$149
+     00001E47  A$usb$149 |    00001E48  A$usb$149 |    00001E49  A$usb$149
+     00001E4A  A$usb$150 |    00001E4A  C$usb.c$3 |    00001E4B  A$usb$150
+     00001E4D  A$usb$150 |    00001E4E  A$usb$150 |    00001E51  A$usb$150
+     00001E51  C$usb.c$3 |    00001E54  A$usb$150 |    00001E55  A$usb$151
+     00001E57  A$usb$151 |    00001E57  C$usb.c$3 |    00001E5A  A$usb$151
+     00001E5B  A$usb$151 |    00001E5C  A$usb$151 |    00001E5D  A$usb$151
+     00001E60  A$usb$151 |    00001E63  A$usb$152 |    00001E65  A$usb$152
+     00001E66  A$usb$152 |    00001E67  A$usb$152 |    00001E68  A$usb$152
+     00001E6A  A$usb$152 |    00001E6B  A$usb$152 |    00001E6C  A$usb$152
+     00001E6D  A$usb$152 |    00001E70  A$usb$152 |    00001E71  A$usb$153
+     00001E72  A$usb$153 |    00001E75  A$usb$153 |    00001E76  A$usb$153
+     00001E77  A$usb$153 |    00001E78  A$usb$153 |    00001E79  A$usb$153
+     00001E7A  A$usb$153 |    00001E7D  A$usb$153 |    00001E80  A$usb$153
+     00001E81  A$usb$154 |    00001E82  A$usb$154 |    00001E85  A$usb$154
+     00001E88  A$usb$154 |    00001E89  A$usb$154 |    00001E8A  A$usb$154
+     00001E8A  C$usb.c$3 |    00001E8D  A$usb$154 |    00001E8E  A$usb$155
+     00001E91  A$usb$155 |    00001E92  A$usb$155 |    00001E92  C$usb.c$3
+     00001E95  A$usb$155 |    00001E96  A$usb$155 |    00001E98  A$usb$156
+     00001E98  C$usb.c$3 |    00001E9B  A$usb$156 |    00001E9C  A$usb$156
+     00001E9F  A$usb$156 |    00001EA2  A$usb$156 |    00001EA5  A$usb$156
+     00001EA8  A$usb$156 |    00001EAB  A$usb$156 |    00001EAE  A$usb$157
+     00001EB1  A$usb$157 |    00001EB4  A$usb$157 |    00001EB6  A$usb$157
+     00001EB7  A$usb$157 |    00001EB8  A$usb$157 |    00001EBB  A$usb$157
+     00001EBE  A$usb$157 |    00001EBF  A$usb$157 |    00001EC1  A$usb$157
+     00001EC2  A$usb$158 |    00001EC3  A$usb$158 |    00001EC4  A$usb$158
+     00001EC7  A$usb$158 |    00001EC8  A$usb$158 |    00001EC9  A$usb$158
+     00001ECC  A$usb$158 |    00001ECD  A$usb$158 |    00001ECE  A$usb$158
+     00001ECF  A$usb$158 |    00001ED0  A$usb$159 |    00001ED3  A$usb$159
+     00001ED6  A$usb$159 |    00001ED9  A$usb$159 |    00001EDC  A$usb$159
+     00001EDF  A$usb$159 |    00001EE2  A$usb$159 |    00001EE5  A$usb$159
+     00001EE6  A$usb$159 |    00001EE9  A$usb$159 |    00001EEA  A$usb$160
+     00001EED  A$usb$160 |    00001EF0  A$usb$160 |    00001EF1  A$usb$160
+     00001EF4  A$usb$160 |    00001EF7  A$usb$160 |    00001EF8  A$usb$160
+     00001EF9  A$usb$161 |    00001EF9  C$usb.c$3 |    00001EFC  A$usb$161
+     00001EFD  A$usb$161 |    00001F00  A$usb$161 |    00001F01  A$usb$161
+     00001F01  C$usb.c$3 |    00001F04  A$usb$161 |    00001F05  A$usb$162
+     00001F07  A$usb$162 |    00001F07  C$usb.c$3 |    00001F0A  A$usb$162
+     00001F0B  A$usb$162 |    00001F0E  A$usb$162 |    00001F11  A$usb$162
+     00001F14  A$usb$162 |    00001F17  A$usb$163 |    00001F1A  A$usb$163
+     00001F1D  A$usb$163 |    00001F1F  A$usb$163 |    00001F20  A$usb$163
+     00001F21  A$usb$163 |    00001F24  A$usb$163 |    00001F27  A$usb$163
+     00001F28  A$usb$163 |    00001F2A  A$usb$163 |    00001F2B  A$usb$164
+     00001F2C  A$usb$164 |    00001F2F  A$usb$164 |    00001F32  A$usb$164
+     00001F33  A$usb$164 |    00001F36  A$usb$164 |    00001F37  A$usb$164
+ASxxxx Linker V03.00 + NoICE + sdld,  page 30.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00001F38  A$usb$164 |    00001F3B  A$usb$164 |    00001F3C  A$usb$164
+     00001F3D  A$usb$165 |    00001F3E  A$usb$165 |    00001F3F  A$usb$165
+     00001F42  A$usb$165 |    00001F45  A$usb$165 |    00001F48  A$usb$165
+     00001F4B  A$usb$165 |    00001F4E  A$usb$165 |    00001F51  A$usb$165
+     00001F54  A$usb$165 |    00001F55  A$usb$166 |    00001F58  A$usb$166
+     00001F59  A$usb$166 |    00001F5C  A$usb$166 |    00001F5F  A$usb$166
+     00001F60  A$usb$166 |    00001F63  A$usb$166 |    00001F66  A$usb$166
+     00001F67  A$usb$166 |    00001F68  A$usb$167 |    00001F68  C$usb.c$3
+     00001F6B  A$usb$167 |    00001F6C  A$usb$167 |    00001F6F  A$usb$167
+     00001F70  A$usb$168 |    00001F70  C$usb.c$3 |    00001F73  A$usb$168
+     00001F76  A$usb$168 |    00001F79  A$usb$168 |    00001F7A  A$usb$168
+     00001F7C  A$usb$168 |    00001F7D  A$usb$168 |    00001F7F  A$usb$168
+     00001F80  A$usb$168 |    00001F81  A$usb$168 |    00001F82  A$usb$169
+     00001F85  A$usb$169 |    00001F86  A$usb$169 |    00001F87  A$usb$169
+     00001F88  A$usb$169 |    00001F89  A$usb$169 |    00001F8A  A$usb$169
+     00001F8A  C$usb.c$3 |    00001F8B  A$usb$170 |    00001F8D  A$usb$170
+     00001F8E  A$usb$170 |    00001F91  A$usb$170 |    00001F91  C$usb.c$3
+     00001F94  A$usb$170 |    00001F97  A$usb$171 |    00001F97  C$usb.c$3
+     00001F98  A$usb$171 |    00001F99  A$usb$171 |    00001F9A  A$usb$171
+     00001F9B  A$usb$171 |    00001F9C  A$usb$171 |    00001F9D  A$usb$171
+     00001F9E  A$usb$172 |    00001F9E  C$usb.c$3 |    00001F9F  A$usb$172
+     00001FA0  A$usb$172 |    00001FA1  A$usb$172 |    00001FA2  A$usb$172
+     00001FA3  A$usb$172 |    00001FA4  A$usb$172 |    00001FA5  A$usb$172
+     00001FA6  A$usb$173 |    00001FA9  A$usb$173 |    00001FA9  C$usb.c$3
+     00001FAA  A$usb$173 |    00001FAC  A$usb$173 |    00001FAF  A$usb$173
+     00001FB2  A$usb$173 |    00001FB3  A$usb$173 |    00001FB4  A$usb$174
+     00001FB7  A$usb$174 |    00001FB8  A$usb$174 |    00001FBA  A$usb$174
+     00001FBB  A$usb$174 |    00001FBC  A$usb$174 |    00001FBD  A$usb$174
+     00001FC0  A$usb$174 |    00001FC1  A$usb$174 |    00001FC2  A$usb$174
+     00001FC3  A$usb$175 |    00001FC4  A$usb$175 |    00001FC5  A$usb$175
+     00001FC6  A$usb$175 |    00001FC6  C$usb.c$3 |    00001FC7  A$usb$175
+     00001FC9  A$usb$175 |    00001FCA  A$usb$175 |    00001FCC  A$usb$176
+     00001FCC  C$usb.c$3 |    00001FCF  A$usb$176 |    00001FD2  A$usb$176
+     00001FD3  A$usb$176 |    00001FD4  A$usb$176 |    00001FD6  A$usb$176
+     00001FD7  A$usb$177 |    00001FD8  A$usb$177 |    00001FD9  A$usb$177
+     00001FD9  C$usb.c$3 |    00001FDA  A$usb$177 |    00001FDC  A$usb$177
+     00001FDF  A$usb$177 |    00001FE1  A$usb$177 |    00001FE3  A$usb$178
+     00001FE4  A$usb$178 |    00001FE6  A$usb$178 |    00001FE9  A$usb$178
+     00001FEA  A$usb$178 |    00001FEC  A$usb$178 |    00001FED  A$usb$178
+     00001FEF  A$usb$178 |    00001FF2  A$usb$178 |    00001FF3  A$usb$178
+     00001FF5  A$usb$179 |    00001FF5  C$usb.c$3 |    00001FF7  A$usb$179
+     00001FF9  A$usb$180 |    00001FF9  C$usb.c$3 |    00001FFA  A$usb$180
+     00001FFB  A$usb$180 |    00001FFC  A$usb$180 |    00001FFD  A$usb$180
+     00001FFF  A$usb$180 |    00002000  A$usb$180 |    00002001  A$usb$180
+     00002002  A$usb$181 |    00002002  C$usb.c$3 |    00002003  A$usb$181
+     00002004  A$usb$181 |    00002005  A$usb$181 |    00002006  A$usb$181
+     00002008  A$usb$181 |    0000200A  A$usb$182 |    0000200A  C$usb.c$3
+     0000200B  A$usb$182 |    0000200C  A$usb$182 |    0000200D  A$usb$182
+     0000200E  A$usb$182 |    00002010  A$usb$182 |    00002011  A$usb$182
+     00002012  A$usb$182 |    00002013  A$usb$182 |    00002015  A$usb$183
+     00002015  C$usb.c$3 |    00002018  A$usb$183 |    0000201B  A$usb$183
+ASxxxx Linker V03.00 + NoICE + sdld,  page 31.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     0000201E  A$usb$183 |    00002020  A$usb$183 |    00002021  A$usb$183
+     00002022  A$usb$184 |    00002025  A$usb$184 |    00002026  A$usb$184
+     00002027  A$usb$184 |    00002028  A$usb$184 |    0000202A  A$usb$184
+     0000202C  A$usb$184 |    0000202D  A$usb$185 |    0000202D  C$usb.c$3
+     0000202E  A$usb$185 |    00002030  A$usb$185 |    00002033  A$usb$185
+     00002034  A$usb$185 |    00002037  A$usb$185 |    00002038  A$usb$186
+     00002038  C$usb.c$3 |    0000203A  A$usb$186 |    0000203C  A$usb$186
+     0000203E  A$usb$186 |    0000203E  C$usb.c$3 |    0000203E  XG$enumer
+     0000203F  Fusb$__st |    0000205A  Fusb$__st |    00002074  Fusb$__st
+     00002088  Fusb$__st |    00002098  Fusb$__st |    000020AE  Fusb$__st
+     000020C1  Fusb$__st |    000020D6  Fusb$__st |    000020E6  Fusb$__st
+     000020F5  Fusb$__st |    0000210F  Fusb$__st |    00002126  Fusb$__st
+     0000213A  Fusb$__st |    00002176  Fusb$__st |    000021A0  Fusb$__st
+     000021BD  Fusb$__st |    000021DD  A$usb$194 |    000021DD  C$usb.c$3
+     000021DD  G$getRepo |    000021DD  _getRepor |    000021DF  A$usb$194
+     000021E3  A$usb$194 |    000021E5  A$usb$194 |    000021E5  C$usb.c$3
+     000021E8  A$usb$194 |    000021EB  A$usb$195 |    000021EC  A$usb$195
+     000021EF  A$usb$195 |    000021F0  A$usb$195 |    000021F3  A$usb$195
+     000021F4  A$usb$195 |    000021F5  A$usb$195 |    000021F6  A$usb$195
+     000021F7  A$usb$195 |    000021FA  A$usb$196 |    000021FA  C$usb.c$3
+     000021FD  A$usb$196 |    00002200  A$usb$196 |    00002201  A$usb$196
+     00002202  A$usb$196 |    00002205  A$usb$196 |    00002206  A$usb$196
+     00002207  A$usb$196 |    00002208  A$usb$197 |    0000220A  A$usb$197
+     0000220A  C$usb.c$3 |    0000220B  A$usb$197 |    0000220C  A$usb$197
+     0000220D  A$usb$197 |    0000220E  A$usb$197 |    00002211  A$usb$197
+     00002212  A$usb$198 |    00002213  A$usb$198 |    00002214  A$usb$198
+     00002216  A$usb$198 |    00002216  C$usb.c$3 |    00002217  A$usb$198
+     00002218  A$usb$198 |    00002219  A$usb$198 |    0000221A  A$usb$199
+     0000221B  A$usb$199 |    0000221E  A$usb$199 |    0000221F  A$usb$199
+     00002220  A$usb$199 |    00002221  A$usb$199 |    00002223  A$usb$199
+     00002223  C$usb.c$3 |    00002224  A$usb$200 |    00002225  A$usb$200
+     00002226  A$usb$200 |    00002227  A$usb$200 |    00002228  A$usb$200
+     00002229  A$usb$200 |    0000222C  A$usb$200 |    0000222D  A$usb$200
+     0000222E  A$usb$200 |    0000222F  A$usb$200 |    00002231  A$usb$201
+     00002231  C$usb.c$3 |    00002232  A$usb$201 |    00002234  A$usb$201
+     00002237  A$usb$201 |    0000223A  A$usb$201 |    0000223B  A$usb$201
+     0000223C  A$usb$201 |    0000223D  A$usb$202 |    0000223F  A$usb$202
+     0000223F  C$usb.c$3 |    00002240  A$usb$202 |    00002242  A$usb$202
+     00002245  A$usb$202 |    00002248  A$usb$202 |    00002249  A$usb$202
+     0000224A  A$usb$203 |    0000224B  A$usb$203 |    0000224D  A$usb$203
+     0000224D  C$usb.c$3 |    0000224E  A$usb$203 |    00002250  A$usb$203
+     00002253  A$usb$203 |    00002256  A$usb$203 |    00002257  A$usb$204
+     00002258  A$usb$204 |    00002259  A$usb$204 |    0000225B  A$usb$204
+     0000225B  C$usb.c$3 |    0000225C  A$usb$204 |    0000225E  A$usb$204
+     00002261  A$usb$204 |    00002264  A$usb$205 |    00002265  A$usb$205
+     00002266  A$usb$205 |    00002267  A$usb$205 |    00002269  A$usb$205
+     00002269  C$usb.c$3 |    0000226C  A$usb$206 |    00002270  A$usb$206
+     00002272  A$usb$206 |    00002273  A$usb$206 |    00002274  A$usb$206
+     00002275  A$usb$206 |    00002276  A$usb$206 |    00002279  A$usb$206
+     0000227A  A$usb$206 |    0000227B  A$usb$206 |    0000227D  A$usb$207
+     0000227E  A$usb$207 |    00002280  A$usb$207 |    00002282  A$usb$207
+ASxxxx Linker V03.00 + NoICE + sdld,  page 32.
+Hexadecimal  [32-Bits]
+
+Area                       Addr        Size        Decimal Bytes (Attributes)
+--------------------       ----        ----        ------- ----- ------------
+_CODE                  00000000    00002F38 =       12088. bytes (REL,CON)
+
+        Value  Global            Value  Global            Value  Global    
+        -----  ------            -----  ------            -----  ------    
+     00002282  C$usb.c$3 |    00002283  A$usb$207 |    00002284  A$usb$207
+     00002286  A$usb$208 |    00002286  C$usb.c$3 |    00002289  A$usb$208
+     0000228B  A$usb$208 |    0000228B  C$usb.c$3 |    0000228D  A$usb$209
+     0000228E  A$usb$209 |    0000228F  A$usb$209 |    00002292  A$usb$209
+     00002293  A$usb$209 |    00002295  A$usb$209 |    00002297  A$usb$209
+     00002297  C$usb.c$3 |    0000229A  A$usb$210 |    0000229D  A$usb$210
+     0000229E  A$usb$210 |    0000229F  A$usb$210 |    000022A0  A$usb$210
+     000022A1  A$usb$210 |    000022A2  A$usb$210 |    000022A3  A$usb$210
+     000022A4  A$usb$210 |    000022A5  A$usb$210 |    000022A6  A$usb$211
+     000022A7  A$usb$211 |    000022A9  A$usb$211 |    000022A9  C$usb.c$3
+     000022AC  A$usb$211 |    000022AF  A$usb$211 |    000022B0  A$usb$211
+     000022B1  A$usb$212 |    000022B2  A$usb$212 |    000022B3  A$usb$212
+     000022B4  A$usb$212 |    000022B4  C$usb.c$3 |    000022B7  A$usb$212
+     000022BA  A$usb$212 |    000022BB  A$usb$213 |    000022BC  A$usb$213
+     000022BD  A$usb$213 |    000022BE  A$usb$213 |    000022BF  A$usb$213
+     000022C1  A$usb$213 |    000022C2  A$usb$213 |    000022C4  A$usb$213
+     000022C6  A$usb$214 |    000022C6  C$usb.c$4 |    000022C9  A$usb$214
+     000022CA  A$usb$214 |    000022CD  A$usb$214 |    000022CE  A$usb$214
+     000022CE  C$usb.c$4 |    000022D1  A$usb$214 |    000022D4  A$usb$215
+     000022D5  A$usb$215 |    000022D7  A$usb$215 |    000022D7  C$usb.c$4
+     000022DA  A$usb$215 |    000022DD  A$usb$215 |    000022DE  A$usb$215
+     000022E0  A$usb$216 |    000022E0  C$usb.c$4 |    000022E3  A$usb$216
+     000022E6  A$usb$216 |    000022E7  A$usb$216 |    000022E8  A$usb$216
+     000022E9  A$usb$216 |    000022EA  A$usb$216 |    000022EB  A$usb$217
+     000022EB  C$usb.c$4 |    000022EE  A$usb$217 |    000022F0  A$usb$218
+     000022F0  C$usb.c$4 |    000022F0  XG$getRep |    000022F1  Fusb$__st
+     00002322  _vsprintf |    00002357  _sprintf  |    0000238C  _puts    
+     000023C9  _vprintf  |    000023E9  _printf   |    00002509  __print_f
+     00002F28  ___sdcc_c |    00002F29  _strlen  
+ASxxxx Linker V03.00 + NoICE + sdld,  page 33.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -412,7 +1874,7 @@ _VECT00                00000000    00000006 =           6. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000000  A$_boot$2 |    00000003  A$_boot$2
-ASxxxx Linker V03.00 + NoICE + sdld,  page 10.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 34.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -422,7 +1884,7 @@ _VECT11                00000000    00000002 =           2. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000008  A$_boot$3
-ASxxxx Linker V03.00 + NoICE + sdld,  page 11.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 35.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -432,7 +1894,7 @@ _VECT22                00000000    00000002 =           2. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000010  A$_boot$3
-ASxxxx Linker V03.00 + NoICE + sdld,  page 12.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 36.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -442,7 +1904,7 @@ _VECT33                00000000    00000002 =           2. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000018  A$_boot$4
-ASxxxx Linker V03.00 + NoICE + sdld,  page 13.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 37.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -452,7 +1914,7 @@ _VECT44                00000000    00000002 =           2. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000020  A$_boot$4
-ASxxxx Linker V03.00 + NoICE + sdld,  page 14.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 38.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -461,8 +1923,8 @@ _VECT55                00000000    00000002 =           2. bytes (ABS,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00000028  A$_boot$4
-ASxxxx Linker V03.00 + NoICE + sdld,  page 15.
+     00000028  A$_boot$5
+ASxxxx Linker V03.00 + NoICE + sdld,  page 39.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -472,7 +1934,7 @@ _VECT66                00000000    00000002 =           2. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000030  A$_boot$5
-ASxxxx Linker V03.00 + NoICE + sdld,  page 16.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 40.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -481,11 +1943,11 @@ _VECT77                00000000    0000002D =          45. bytes (ABS,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00000038  A$_boot$5 |    0000003C  A$_boot$5 |    0000003F  A$_boot$5
-     00000040  A$_boot$5 |    00000041  A$_boot$6 |    00000044  A$_boot$6
+     00000038  A$_boot$5 |    0000003C  A$_boot$5 |    0000003F  A$_boot$6
+     00000040  A$_boot$6 |    00000041  A$_boot$6 |    00000044  A$_boot$6
      00000045  A$_boot$6 |    00000046  A$_boot$6 |    0000004A  A$_boot$6
      0000004B  A$_boot$6
-ASxxxx Linker V03.00 + NoICE + sdld,  page 17.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 41.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
@@ -495,125 +1957,133 @@ _VECT_NMI8             00000000    00000026 =          38. bytes (ABS,CON)
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
      00000066  A$_boot$7 |    0000006A  A$_boot$7 |    0000006D  A$_boot$7
-     0000006E  A$_boot$7 |    0000006F  A$_boot$7 |    00000072  A$_boot$8
+     0000006E  A$_boot$8 |    0000006F  A$_boot$8 |    00000072  A$_boot$8
      00000073  A$_boot$8 |    00000074  A$_boot$8 |    00000078  A$_boot$8
-ASxxxx Linker V03.00 + NoICE + sdld,  page 18.
+ASxxxx Linker V03.00 + NoICE + sdld,  page 42.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_INITIALIZER           00001170    00000005 =           5. bytes (REL,CON)
+_SYSTEM_CODE           00002F38    00000104 =         260. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001170  Flibrary$ |    00001174  Fstdio_sp
-ASxxxx Linker V03.00 + NoICE + sdld,  page 19.
+     00002F38  A$_boot$1 |    00002F3A  A$_boot$1 |    00002F3C  A$_boot$1
+     00002F3F  A$_boot$1 |    00002F41  A$_boot$1 |    00002F44  A$_boot$1
+     00002F46  A$_boot$1 |    00002F48  A$_boot$1 |    00002F4B  A$_boot$1
+     00002F4D  A$_boot$1 |    00002F50  A$_boot$1 |    00002F53  A$_boot$1
+     00002F56  A$_boot$1 |    00002F57  A$_boot$1 |    00002F58  A$_boot$1
+     00002F59  A$_boot$1 |    00002F5C  A$_boot$1 |    00002F5F  A$_boot$1
+     00002F62  A$_boot$1 |    00002F63  A$_boot$1 |    00002F64  A$_boot$1
+     00002F68  A$_boot$1 |    00002F6C  A$_boot$1 |    00002F6D  A$_boot$1
+     00002F6E  A$_boot$1 |    00002F6E  _OUT      |    00002F6F  A$_boot$1
+     00002F70  A$_boot$1 |    00002F72  A$_boot$1 |    00002F76  A$_boot$1
+     00002F78  A$_boot$1 |    00002F7B  A$_boot$1 |    00002F7E  A$_boot$1
+     00002F80  A$_boot$1 |    00002F82  A$_boot$1 |    00002F83  A$_boot$1
+     00002F84  A$_boot$1 |    00002F85  A$_boot$2 |    00002F85  _IN      
+     00002F86  A$_boot$2 |    00002F87  A$_boot$2 |    00002F89  A$_boot$2
+     00002F8D  A$_boot$2 |    00002F8F  A$_boot$2 |    00002F92  A$_boot$2
+     00002F94  A$_boot$2 |    00002F96  A$_boot$2 |    00002F97  A$_boot$2
+     00002F99  A$_boot$2 |    00002F9A  A$_boot$2 |    00002F9B  A$_boot$2
+     00002F9C  A$_boot$2 |    00002F9C  _OUTI     |    00002F9D  A$_boot$2
+     00002F9E  A$_boot$2 |    00002F9F  A$_boot$2 |    00002FA1  A$_boot$2
+     00002FA5  A$_boot$2 |    00002FA7  A$_boot$2 |    00002FAA  A$_boot$2
+     00002FAD  A$_boot$2 |    00002FB0  A$_boot$2 |    00002FB3  A$_boot$2
+     00002FB5  A$_boot$2 |    00002FB7  A$_boot$2 |    00002FB8  A$_boot$2
+     00002FB9  A$_boot$2 |    00002FBA  A$_boot$2 |    00002FBB  A$_boot$2
+     00002FBB  _INI      |    00002FBC  A$_boot$2 |    00002FBD  A$_boot$2
+     00002FBE  A$_boot$2 |    00002FC0  A$_boot$2 |    00002FC4  A$_boot$2
+     00002FC6  A$_boot$2 |    00002FC9  A$_boot$2 |    00002FCC  A$_boot$2
+     00002FCF  A$_boot$2 |    00002FD2  A$_boot$2 |    00002FD4  A$_boot$2
+     00002FD6  A$_boot$2 |    00002FD7  A$_boot$2 |    00002FD8  A$_boot$2
+     00002FD9  A$_boot$2 |    00002FDA  A$_boot$2 |    00002FDA  _memset  
+     00002FDB  A$_boot$2 |    00002FDC  A$_boot$2 |    00002FDD  A$_boot$2
+     00002FDE  A$_boot$2 |    00002FE0  A$_boot$2 |    00002FE4  A$_boot$2
+     00002FE6  A$_boot$2 |    00002FE9  A$_boot$2 |    00002FEC  A$_boot$2
+     00002FEF  A$_boot$2 |    00002FF2  A$_boot$2 |    00002FF5  A$_boot$2
+     00002FF8  A$_boot$2 |    00002FFB  A$_boot$2 |    00002FFC  A$_boot$2
+     00002FFD  A$_boot$2 |    00002FFE  A$_boot$2 |    00002FFF  A$_boot$2
+     00003000  A$_boot$2 |    00003002  A$_boot$2 |    00003004  A$_boot$2
+     00003006  A$_boot$2 |    00003006  _memcpy   |    00003007  A$_boot$2
+     00003008  A$_boot$2 |    00003009  A$_boot$2 |    0000300A  A$_boot$2
+     0000300C  A$_boot$2 |    00003010  A$_boot$2 |    00003012  A$_boot$2
+     00003015  A$_boot$2 |    00003018  A$_boot$2 |    0000301B  A$_boot$2
+     0000301E  A$_boot$2 |    00003021  A$_boot$3 |    00003024  A$_boot$3
+     00003025  A$_boot$3 |    00003026  A$_boot$3 |    00003028  A$_boot$3
+     0000302A  A$_boot$3 |    0000302C  A$_boot$3 |    0000302D  A$_boot$3
+     0000302E  A$_boot$3 |    0000302F  A$_boot$3 |    00003030  A$_boot$3
+     00003031  A$_boot$3 |    00003031  debug     |    00003034  A$_boot$3
+     00003036  A$_boot$3 |    00003037  A$_boot$3 |    00003038  A$_boot$3
+     0000303A  A$_boot$3
+ASxxxx Linker V03.00 + NoICE + sdld,  page 43.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_INITIALIZED           00001175    00000005 =           5. bytes (REL,CON)
+_GSINIT                0000303C    00000017 =          23. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001175  Flibrary$ |    00001179  Fstdio_sp
-ASxxxx Linker V03.00 + NoICE + sdld,  page 20.
+     0000303C  A$_boot$1 |    0000303F  A$_boot$1 |    00003042  A$_boot$1
+     00003044  A$_boot$1 |    00003045  A$_boot$1 |    00003046  A$_boot$1
+     00003047  A$_boot$1 |    00003048  A$_boot$1 |    0000304A  A$_boot$1
+     0000304D  A$_boot$1 |    00003050  A$_boot$1 |    00003052  A$_boot$1
+ASxxxx Linker V03.00 + NoICE + sdld,  page 44.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_GSINIT                0000117A    00000018 =          24. bytes (REL,CON)
+_INITIALIZER           00003053    00000006 =           6. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     0000117A  A$_boot$1 |    0000117D  A$_boot$1 |    00001180  A$_boot$1
-     00001182  A$_boot$1 |    00001183  A$_boot$1 |    00001184  A$_boot$1
-     00001185  A$_boot$1 |    00001186  A$_boot$1 |    00001187  A$_boot$1
-     00001189  A$_boot$1 |    0000118C  A$_boot$1 |    0000118F  A$_boot$1
-     00001191  A$_boot$1
-ASxxxx Linker V03.00 + NoICE + sdld,  page 21.
+     00003053  Ffdc$__xi |    00003054  Ffdc$__xi |    00003055  Flibrary$
+ASxxxx Linker V03.00 + NoICE + sdld,  page 45.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_SYSTEM_CODE           00001192    000000F6 =         246. bytes (REL,CON)
+_DATA                  00003059    0000489A =       18586. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001192  A$_boot$1 |    00001195  A$_boot$1 |    00001197  A$_boot$1
-     0000119A  A$_boot$1 |    0000119C  A$_boot$1 |    0000119E  A$_boot$1
-     0000119F  A$_boot$1 |    000011A2  A$_boot$1 |    000011A4  A$_boot$1
-     000011A7  A$_boot$1 |    000011AA  A$_boot$1 |    000011AD  A$_boot$1
-     000011AE  A$_boot$1 |    000011AF  A$_boot$1 |    000011B0  A$_boot$1
-     000011B3  A$_boot$1 |    000011B6  A$_boot$1 |    000011B9  A$_boot$1
-     000011BA  A$_boot$1 |    000011BB  A$_boot$1 |    000011BF  A$_boot$1
-     000011C3  A$_boot$1 |    000011C4  A$_boot$1 |    000011C5  A$_boot$1
-     000011C5  _OUT      |    000011C6  A$_boot$1 |    000011C7  A$_boot$1
-     000011C9  A$_boot$1 |    000011CD  A$_boot$1 |    000011CF  A$_boot$1
-     000011D2  A$_boot$1 |    000011D5  A$_boot$1 |    000011D7  A$_boot$1
-     000011D9  A$_boot$1 |    000011DA  A$_boot$1 |    000011DB  A$_boot$1
-     000011DC  A$_boot$1 |    000011DC  _IN       |    000011DD  A$_boot$1
-     000011DE  A$_boot$1 |    000011E0  A$_boot$1 |    000011E4  A$_boot$1
-     000011E6  A$_boot$1 |    000011E9  A$_boot$1 |    000011EB  A$_boot$1
-     000011ED  A$_boot$1 |    000011EE  A$_boot$1 |    000011F0  A$_boot$1
-     000011F1  A$_boot$1 |    000011F2  A$_boot$1 |    000011F3  A$_boot$2
-     000011F3  _OUTI     |    000011F4  A$_boot$2 |    000011F5  A$_boot$2
-     000011F6  A$_boot$2 |    000011F8  A$_boot$2 |    000011FC  A$_boot$2
-     000011FE  A$_boot$2 |    00001201  A$_boot$2 |    00001204  A$_boot$2
-     00001207  A$_boot$2 |    0000120A  A$_boot$2 |    0000120C  A$_boot$2
-     0000120E  A$_boot$2 |    0000120F  A$_boot$2 |    00001210  A$_boot$2
-     00001211  A$_boot$2 |    00001212  A$_boot$2 |    00001212  _INI     
-     00001213  A$_boot$2 |    00001214  A$_boot$2 |    00001215  A$_boot$2
-     00001217  A$_boot$2 |    0000121B  A$_boot$2 |    0000121D  A$_boot$2
-     00001220  A$_boot$2 |    00001223  A$_boot$2 |    00001226  A$_boot$2
-     00001229  A$_boot$2 |    0000122B  A$_boot$2 |    0000122D  A$_boot$2
-     0000122E  A$_boot$2 |    0000122F  A$_boot$2 |    00001230  A$_boot$2
-     00001231  A$_boot$2 |    00001231  _memset   |    00001232  A$_boot$2
-     00001233  A$_boot$2 |    00001234  A$_boot$2 |    00001235  A$_boot$2
-     00001237  A$_boot$2 |    0000123B  A$_boot$2 |    0000123D  A$_boot$2
-     00001240  A$_boot$2 |    00001243  A$_boot$2 |    00001246  A$_boot$2
-     00001249  A$_boot$2 |    0000124C  A$_boot$2 |    0000124F  A$_boot$2
-     00001252  A$_boot$2 |    00001253  A$_boot$2 |    00001254  A$_boot$2
-     00001255  A$_boot$2 |    00001256  A$_boot$2 |    00001257  A$_boot$2
-     00001259  A$_boot$2 |    0000125B  A$_boot$2 |    0000125D  A$_boot$2
-     0000125D  _memcpy   |    0000125E  A$_boot$2 |    0000125F  A$_boot$2
-     00001260  A$_boot$2 |    00001261  A$_boot$2 |    00001263  A$_boot$2
-     00001267  A$_boot$2 |    00001269  A$_boot$2 |    0000126C  A$_boot$2
-     0000126F  A$_boot$2 |    00001272  A$_boot$2 |    00001275  A$_boot$2
-     00001278  A$_boot$2 |    0000127B  A$_boot$2 |    0000127C  A$_boot$2
-     0000127D  A$_boot$2 |    0000127F  A$_boot$2 |    00001281  A$_boot$2
-     00001283  A$_boot$2 |    00001284  A$_boot$2 |    00001285  A$_boot$2
-     00001286  A$_boot$2 |    00001287  A$_boot$2
-ASxxxx Linker V03.00 + NoICE + sdld,  page 22.
+     00003059  G$mydisk$ |    00003059  _mydisk   |    00007859  G$keynums
+     00007859  _keynums  |    0000785A  Flibrary$ |    000078E2  Fstdio_ua
+     000078EA  Fstdio_ua |    000078EB  G$lastRep |    000078EB  _lastRepo
+ASxxxx Linker V03.00 + NoICE + sdld,  page 46.
 Hexadecimal  [32-Bits]
 
 Area                       Addr        Size        Decimal Bytes (Attributes)
 --------------------       ----        ----        ------- ----- ------------
-_DATA                  00001288    0000047F =        1151. bytes (REL,CON)
+_INITIALIZED           000078F3    00000006 =           6. bytes (REL,CON)
 
         Value  Global            Value  Global            Value  Global    
         -----  ------            -----  ------            -----  ------    
-     00001288  Flibrary$ |    000016AB  Fstdio_sp |    000016B3  Fstdio_sp
-     00001705  Fstdio_sp |    00001706  Fstdio_sp
-ASxxxx Linker V03.00 + NoICE + sdld,  page 23.
+     000078F3  G$idbyte$ |    000078F3  _idbyte   |    000078F4  G$mounted
+     000078F4  _mounted  |    000078F5  Flibrary$
+ASxxxx Linker V03.00 + NoICE + sdld,  page 47.
 
 Files Linked                              [ module(s) ]
 
 _boot.rel                                 [ bootblk ]
+fdc.rel                                   [ fdc ]
+hdmi.rel                                  [ hdmi ]
 interrupt.rel                             [ interrupt ]
+keyboard.rel                              [ keyboard ]
 library.rel                               [ library ]
 main.rel                                  [ main ]
-spi.rel                                   [ spi ]
-stdio_spi.rel                             [ stdio_spi ]
+stdio_uart.rel                            [ stdio_uart ]
+usb.rel                                   [ usb ]
 
 
 Libraries Linked                          [ object file ]
 
-/usr/share/sdcc/lib/z80/z80.lib           [ __sdcc_call_hl.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ sprintf.rel ]
 /usr/share/sdcc/lib/z80/z80.lib           [ puts.rel ]
 /usr/share/sdcc/lib/z80/z80.lib           [ vprintf.rel ]
-/usr/share/sdcc/lib/z80/z80.lib           [ strlen.rel ]
 /usr/share/sdcc/lib/z80/z80.lib           [ printf_large.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ __sdcc_call_hl.rel ]
+/usr/share/sdcc/lib/z80/z80.lib           [ strlen.rel ]
 
 
 

@@ -7,440 +7,453 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 A$spi$100                                                      0027 GR
-  0 A$spi$101                                                      0029 GR
-  0 A$spi$102                                                      002A GR
-  0 A$spi$106                                                      002B GR
-  0 A$spi$110                                                      002E GR
-  0 A$spi$111                                                      0031 GR
-  0 A$spi$112                                                      0032 GR
-  0 A$spi$113                                                      0033 GR
-  0 A$spi$117                                                      0036 GR
-  0 A$spi$118                                                      0039 GR
-  0 A$spi$119                                                      003A GR
-  0 A$spi$120                                                      003B GR
-  0 A$spi$124                                                      003E GR
-  0 A$spi$125                                                      0041 GR
-  0 A$spi$126                                                      0042 GR
-  0 A$spi$130                                                      0043 GR
+  0 A$spi$100                                                      0023 GR
+  0 A$spi$101                                                      0027 GR
+  0 A$spi$102                                                      0029 GR
+  0 A$spi$106                                                      002A GR
+  0 A$spi$110                                                      002D GR
+  0 A$spi$111                                                      0030 GR
+  0 A$spi$112                                                      0031 GR
+  0 A$spi$113                                                      0032 GR
+  0 A$spi$117                                                      0035 GR
+  0 A$spi$118                                                      0038 GR
+  0 A$spi$119                                                      0039 GR
+  0 A$spi$120                                                      003A GR
+  0 A$spi$124                                                      003D GR
+  0 A$spi$125                                                      0040 GR
+  0 A$spi$129                                                      0041 GR
+  0 A$spi$130                                                      0042 GR
   0 A$spi$131                                                      0044 GR
-  0 A$spi$132                                                      0046 GR
-  0 A$spi$133                                                      0047 GR
-  0 A$spi$134                                                      0048 GR
-  0 A$spi$135                                                      0049 GR
-  0 A$spi$136                                                      004A GR
-  0 A$spi$137                                                      004B GR
-  0 A$spi$138                                                      004C GR
-  0 A$spi$139                                                      004F GR
-  0 A$spi$140                                                      0050 GR
-  0 A$spi$141                                                      0051 GR
-  0 A$spi$145                                                      0052 GR
-  0 A$spi$146                                                      0055 GR
-  0 A$spi$147                                                      0056 GR
-  0 A$spi$148                                                      0059 GR
-  0 A$spi$149                                                      005C GR
-  0 A$spi$150                                                      005D GR
-  0 A$spi$151                                                      005F GR
-  0 A$spi$152                                                      0060 GR
-  0 A$spi$153                                                      0061 GR
-  0 A$spi$154                                                      0064 GR
-  0 A$spi$155                                                      0067 GR
-  0 A$spi$156                                                      0068 GR
-  0 A$spi$157                                                      0069 GR
-  0 A$spi$158                                                      006A GR
-  0 A$spi$159                                                      006B GR
-  0 A$spi$160                                                      006E GR
-  0 A$spi$161                                                      006F GR
-  0 A$spi$162                                                      0070 GR
-  0 A$spi$166                                                      0071 GR
-  0 A$spi$167                                                      0074 GR
-  0 A$spi$168                                                      0075 GR
-  0 A$spi$169                                                      0076 GR
-  0 A$spi$170                                                      0077 GR
-  0 A$spi$171                                                      0079 GR
+  0 A$spi$132                                                      0045 GR
+  0 A$spi$133                                                      0046 GR
+  0 A$spi$134                                                      0047 GR
+  0 A$spi$135                                                      0048 GR
+  0 A$spi$136                                                      0049 GR
+  0 A$spi$137                                                      004A GR
+  0 A$spi$138                                                      004D GR
+  0 A$spi$139                                                      004E GR
+  0 A$spi$140                                                      004F GR
+  0 A$spi$144                                                      0050 GR
+  0 A$spi$145                                                      0051 GR
+  0 A$spi$146                                                      0052 GR
+  0 A$spi$147                                                      0053 GR
+  0 A$spi$148                                                      0054 GR
+  0 A$spi$149                                                      0055 GR
+  0 A$spi$150                                                      0056 GR
+  0 A$spi$151                                                      0058 GR
+  0 A$spi$152                                                      0059 GR
+  0 A$spi$153                                                      005A GR
+  0 A$spi$154                                                      005B GR
+  0 A$spi$155                                                      005C GR
+  0 A$spi$156                                                      005D GR
+  0 A$spi$157                                                      005E GR
+  0 A$spi$158                                                      0061 GR
+  0 A$spi$159                                                      0062 GR
+  0 A$spi$160                                                      0063 GR
+  0 A$spi$161                                                      0064 GR
+  0 A$spi$165                                                      0065 GR
+  0 A$spi$166                                                      0069 GR
+  0 A$spi$167                                                      006B GR
+  0 A$spi$168                                                      006C GR
+  0 A$spi$169                                                      006D GR
+  0 A$spi$170                                                      006F GR
+  0 A$spi$171                                                      0070 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$spi$172                                                      007A GR
-  0 A$spi$173                                                      007B GR
-  0 A$spi$174                                                      007C GR
-  0 A$spi$175                                                      007D GR
-  0 A$spi$176                                                      007E GR
-  0 A$spi$177                                                      007F GR
-  0 A$spi$178                                                      0082 GR
-  0 A$spi$179                                                      0083 GR
-  0 A$spi$180                                                      0084 GR
-  0 A$spi$184                                                      0085 GR
-  0 A$spi$185                                                      0086 GR
-  0 A$spi$189                                                      0089 GR
-  0 A$spi$190                                                      008A GR
-  0 A$spi$191                                                      008B GR
-  0 A$spi$192                                                      008C GR
-  0 A$spi$196                                                      008D GR
-  0 A$spi$197                                                      0090 GR
-  0 A$spi$198                                                      0092 GR
-  0 A$spi$199                                                      0094 GR
-  0 A$spi$200                                                      0095 GR
-  0 A$spi$201                                                      0096 GR
-  0 A$spi$202                                                      0097 GR
-  0 A$spi$206                                                      0099 GR
-  0 A$spi$207                                                      009A GR
-  0 A$spi$208                                                      009D GR
-  0 A$spi$209                                                      009E GR
-  0 A$spi$210                                                      00A1 GR
-  0 A$spi$211                                                      00A2 GR
-  0 A$spi$212                                                      00A3 GR
-  0 A$spi$213                                                      00A4 GR
-  0 A$spi$214                                                      00A6 GR
-  0 A$spi$215                                                      00A7 GR
-  0 A$spi$216                                                      00A8 GR
-  0 A$spi$217                                                      00A9 GR
-  0 A$spi$218                                                      00AA GR
-  0 A$spi$219                                                      00AB GR
-  0 A$spi$220                                                      00AD GR
-  0 A$spi$221                                                      00AE GR
-  0 A$spi$222                                                      00B1 GR
-  0 A$spi$223                                                      00B2 GR
-  0 A$spi$224                                                      00B3 GR
-  0 A$spi$225                                                      00B5 GR
-  0 A$spi$226                                                      00B6 GR
-  0 A$spi$227                                                      00B7 GR
-  0 A$spi$228                                                      00B8 GR
-  0 A$spi$229                                                      00B9 GR
-  0 A$spi$230                                                      00BA GR
-  0 A$spi$231                                                      00BB GR
-  0 A$spi$232                                                      00BC GR
-  0 A$spi$233                                                      00BD GR
-  0 A$spi$234                                                      00BE GR
-  0 A$spi$235                                                      00BF GR
-  0 A$spi$236                                                      00C0 GR
-  0 A$spi$237                                                      00C1 GR
-  0 A$spi$238                                                      00C2 GR
+  0 A$spi$172                                                      0071 GR
+  0 A$spi$173                                                      0073 GR
+  0 A$spi$174                                                      0074 GR
+  0 A$spi$175                                                      0075 GR
+  0 A$spi$176                                                      0076 GR
+  0 A$spi$177                                                      0079 GR
+  0 A$spi$178                                                      007A GR
+  0 A$spi$179                                                      007B GR
+  0 A$spi$180                                                      007C GR
+  0 A$spi$184                                                      007D GR
+  0 A$spi$185                                                      007E GR
+  0 A$spi$189                                                      0081 GR
+  0 A$spi$190                                                      0082 GR
+  0 A$spi$191                                                      0083 GR
+  0 A$spi$195                                                      0084 GR
+  0 A$spi$196                                                      0087 GR
+  0 A$spi$197                                                      0089 GR
+  0 A$spi$198                                                      008B GR
+  0 A$spi$199                                                      008C GR
+  0 A$spi$200                                                      008D GR
+  0 A$spi$201                                                      008E GR
+  0 A$spi$205                                                      0090 GR
+  0 A$spi$206                                                      0091 GR
+  0 A$spi$207                                                      0092 GR
+  0 A$spi$208                                                      0095 GR
+  0 A$spi$209                                                      0096 GR
+  0 A$spi$210                                                      0097 GR
+  0 A$spi$211                                                      009A GR
+  0 A$spi$212                                                      009B GR
+  0 A$spi$213                                                      009C GR
+  0 A$spi$214                                                      009D GR
+  0 A$spi$215                                                      009E GR
+  0 A$spi$216                                                      009F GR
+  0 A$spi$217                                                      00A1 GR
+  0 A$spi$218                                                      00A2 GR
+  0 A$spi$219                                                      00A3 GR
+  0 A$spi$220                                                      00A4 GR
+  0 A$spi$221                                                      00A5 GR
+  0 A$spi$222                                                      00A6 GR
+  0 A$spi$223                                                      00A8 GR
+  0 A$spi$224                                                      00A9 GR
+  0 A$spi$225                                                      00AA GR
+  0 A$spi$226                                                      00AD GR
+  0 A$spi$227                                                      00AE GR
+  0 A$spi$228                                                      00AF GR
+  0 A$spi$229                                                      00B0 GR
+  0 A$spi$230                                                      00B1 GR
+  0 A$spi$231                                                      00B2 GR
+  0 A$spi$232                                                      00B3 GR
+  0 A$spi$233                                                      00B5 GR
+  0 A$spi$234                                                      00B6 GR
+  0 A$spi$235                                                      00B7 GR
+  0 A$spi$236                                                      00B8 GR
+  0 A$spi$237                                                      00B9 GR
+  0 A$spi$238                                                      00BA GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$spi$239                                                      00C5 GR
-  0 A$spi$240                                                      00C6 GR
-  0 A$spi$245                                                      00C7 GR
-  0 A$spi$246                                                      00C9 GR
-  0 A$spi$247                                                      00CA GR
-  0 A$spi$248                                                      00CB GR
-  0 A$spi$249                                                      00CE GR
-  0 A$spi$250                                                      00CF GR
-  0 A$spi$255                                                      00D1 GR
-  0 A$spi$256                                                      00D3 GR
-  0 A$spi$257                                                      00D4 GR
-  0 A$spi$258                                                      00D5 GR
-  0 A$spi$259                                                      00D8 GR
-  0 A$spi$260                                                      00D9 GR
-  0 A$spi$261                                                      00DB GR
-  0 A$spi$262                                                      00DD GR
-  0 A$spi$263                                                      00DF GR
-  0 A$spi$265                                                      00E1 GR
-  0 A$spi$270                                                      00E3 GR
-  0 A$spi$271                                                      00E4 GR
-  0 A$spi$272                                                      00E5 GR
-  0 A$spi$273                                                      00E6 GR
-  0 A$spi$274                                                      00E7 GR
-  0 A$spi$275                                                      00EA GR
-  0 A$spi$276                                                      00EB GR
-  0 A$spi$277                                                      00EC GR
-  0 A$spi$278                                                      00ED GR
-  0 A$spi$279                                                      00EE GR
-  0 A$spi$280                                                      00F0 GR
-  0 A$spi$281                                                      00F3 GR
-  0 A$spi$282                                                      00F4 GR
-  0 A$spi$283                                                      00F7 GR
-  0 A$spi$285                                                      00F8 GR
-  0 A$spi$286                                                      00FA GR
-  0 A$spi$291                                                      00FC GR
-  0 A$spi$304                                                      00FD GR
-  0 A$spi$305                                                      0100 GR
-  0 A$spi$306                                                      0103 GR
-  0 A$spi$307                                                      0104 GR
-  0 A$spi$312                                                      0105 GR
-  0 A$spi$325                                                      0106 GR
-  0 A$spi$326                                                      0109 GR
-  0 A$spi$327                                                      010C GR
-  0 A$spi$328                                                      010D GR
-  0 A$spi$329                                                      010E GR
-  0 A$spi$330                                                      010F GR
-  0 A$spi$331                                                      0111 GR
-  0 A$spi$332                                                      0113 GR
-  0 A$spi$334                                                      0115 GR
-  0 A$spi$336                                                      0116 GR
-  0 A$spi$341                                                      0117 GR
-  0 A$spi$354                                                      0118 GR
-  0 A$spi$355                                                      011B GR
-  0 A$spi$356                                                      011E GR
-  0 A$spi$357                                                      011F GR
+  0 A$spi$239                                                      00BB GR
+  0 A$spi$240                                                      00BC GR
+  0 A$spi$241                                                      00BD GR
+  0 A$spi$242                                                      00BE GR
+  0 A$spi$243                                                      00C1 GR
+  0 A$spi$244                                                      00C2 GR
+  0 A$spi$249                                                      00C3 GR
+  0 A$spi$250                                                      00C5 GR
+  0 A$spi$251                                                      00C6 GR
+  0 A$spi$252                                                      00C7 GR
+  0 A$spi$253                                                      00CA GR
+  0 A$spi$254                                                      00CB GR
+  0 A$spi$259                                                      00CD GR
+  0 A$spi$260                                                      00CF GR
+  0 A$spi$261                                                      00D0 GR
+  0 A$spi$262                                                      00D1 GR
+  0 A$spi$263                                                      00D4 GR
+  0 A$spi$264                                                      00D5 GR
+  0 A$spi$265                                                      00D7 GR
+  0 A$spi$269                                                      00D9 GR
+  0 A$spi$270                                                      00DA GR
+  0 A$spi$271                                                      00DB GR
+  0 A$spi$272                                                      00DC GR
+  0 A$spi$273                                                      00DF GR
+  0 A$spi$274                                                      00E0 GR
+  0 A$spi$275                                                      00E1 GR
+  0 A$spi$276                                                      00E2 GR
+  0 A$spi$277                                                      00E4 GR
+  0 A$spi$278                                                      00E7 GR
+  0 A$spi$279                                                      00E8 GR
+  0 A$spi$280                                                      00EB GR
+  0 A$spi$282                                                      00EC GR
+  0 A$spi$283                                                      00ED GR
+  0 A$spi$288                                                      00EF GR
+  0 A$spi$301                                                      00F0 GR
+  0 A$spi$302                                                      00F3 GR
+  0 A$spi$303                                                      00F6 GR
+  0 A$spi$304                                                      00F7 GR
+  0 A$spi$305                                                      00F8 GR
+  0 A$spi$306                                                      00F9 GR
+  0 A$spi$307                                                      00FB GR
+  0 A$spi$308                                                      00FD GR
+  0 A$spi$310                                                      00FE GR
+  0 A$spi$315                                                      0100 GR
+  0 A$spi$328                                                      0101 GR
+  0 A$spi$329                                                      0104 GR
+  0 A$spi$330                                                      0107 GR
+  0 A$spi$331                                                      0108 GR
+  0 A$spi$332                                                      0109 GR
+  0 A$spi$333                                                      010A GR
+  0 A$spi$334                                                      010C GR
+  0 A$spi$335                                                      010E GR
+  0 A$spi$337                                                      0110 GR
+  0 A$spi$339                                                      0111 GR
+  0 A$spi$344                                                      0112 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$spi$358                                                      0123 GR
-  0 A$spi$359                                                      0125 GR
-  0 A$spi$360                                                      0128 GR
-  0 A$spi$361                                                      0129 GR
-  0 A$spi$362                                                      012B GR
-  0 A$spi$363                                                      012C GR
-  0 A$spi$365                                                      012E GR
-  0 A$spi$367                                                      0130 GR
-  0 A$spi$372                                                      0131 GR
-  0 A$spi$385                                                      0132 GR
-  0 A$spi$386                                                      0135 GR
-  0 A$spi$387                                                      0138 GR
-  0 A$spi$388                                                      0139 GR
-  0 A$spi$389                                                      013D GR
-  0 A$spi$390                                                      013F GR
-  0 A$spi$391                                                      0142 GR
-  0 A$spi$392                                                      0143 GR
-  0 A$spi$393                                                      0145 GR
-  0 A$spi$394                                                      0147 GR
-  0 A$spi$396                                                      0149 GR
-  0 A$spi$398                                                      014B GR
-  0 A$spi$403                                                      014C GR
-  0 A$spi$416                                                      014D GR
-  0 A$spi$417                                                      0150 GR
-  0 A$spi$418                                                      0151 GR
-  0 A$spi$422                                                      0152 GR
-  0 A$spi$423                                                      0153 GR
-  0 A$spi$424                                                      0155 GR
-  0 A$spi$425                                                      0158 GR
-  0 A$spi$426                                                      0159 GR
-  0 A$spi$427                                                      015B GR
-  0 A$spi$428                                                      015D GR
-  0 A$spi$433                                                      015E GR
-  0 A$spi$434                                                      0161 GR
-  0 A$spi$435                                                      0162 GR
-  0 A$spi$436                                                      0166 GR
-  0 A$spi$437                                                      0168 GR
-  0 A$spi$438                                                      016B GR
-  0 A$spi$442                                                      016C GR
-  0 A$spi$443                                                      016E GR
-  0 A$spi$444                                                      016F GR
-  0 A$spi$445                                                      0170 GR
-  0 A$spi$446                                                      0173 GR
-  0 A$spi$450                                                      0174 GR
-  0 A$spi$451                                                      0175 GR
-  0 A$spi$452                                                      0176 GR
-  0 A$spi$453                                                      0177 GR
-  0 A$spi$454                                                      017A GR
-  0 A$spi$458                                                      017B GR
-  0 A$spi$463                                                      017D GR
-  0 A$spi$476                                                      017E GR
-  0 A$spi$477                                                      0181 GR
-  0 A$spi$478                                                      0184 GR
-  0 A$spi$479                                                      0185 GR
-  0 A$spi$480                                                      0186 GR
+  0 A$spi$357                                                      0113 GR
+  0 A$spi$358                                                      0116 GR
+  0 A$spi$359                                                      0119 GR
+  0 A$spi$360                                                      011A GR
+  0 A$spi$361                                                      011E GR
+  0 A$spi$362                                                      0120 GR
+  0 A$spi$363                                                      0123 GR
+  0 A$spi$364                                                      0124 GR
+  0 A$spi$365                                                      0126 GR
+  0 A$spi$366                                                      0127 GR
+  0 A$spi$368                                                      0129 GR
+  0 A$spi$370                                                      012B GR
+  0 A$spi$375                                                      012C GR
+  0 A$spi$388                                                      012D GR
+  0 A$spi$389                                                      0130 GR
+  0 A$spi$390                                                      0133 GR
+  0 A$spi$391                                                      0134 GR
+  0 A$spi$392                                                      0138 GR
+  0 A$spi$393                                                      013A GR
+  0 A$spi$394                                                      013D GR
+  0 A$spi$395                                                      013E GR
+  0 A$spi$396                                                      0140 GR
+  0 A$spi$397                                                      0142 GR
+  0 A$spi$399                                                      0144 GR
+  0 A$spi$401                                                      0146 GR
+  0 A$spi$406                                                      0147 GR
+  0 A$spi$419                                                      0148 GR
+  0 A$spi$420                                                      014B GR
+  0 A$spi$421                                                      014C GR
+  0 A$spi$425                                                      014D GR
+  0 A$spi$426                                                      014E GR
+  0 A$spi$427                                                      0150 GR
+  0 A$spi$428                                                      0153 GR
+  0 A$spi$429                                                      0154 GR
+  0 A$spi$430                                                      0156 GR
+  0 A$spi$431                                                      0158 GR
+  0 A$spi$436                                                      0159 GR
+  0 A$spi$437                                                      015C GR
+  0 A$spi$438                                                      015D GR
+  0 A$spi$439                                                      0161 GR
+  0 A$spi$440                                                      0163 GR
+  0 A$spi$441                                                      0166 GR
+  0 A$spi$445                                                      0167 GR
+  0 A$spi$446                                                      0169 GR
+  0 A$spi$447                                                      016A GR
+  0 A$spi$448                                                      016B GR
+  0 A$spi$449                                                      016E GR
+  0 A$spi$453                                                      016F GR
+  0 A$spi$454                                                      0170 GR
+  0 A$spi$455                                                      0171 GR
+  0 A$spi$456                                                      0172 GR
+  0 A$spi$457                                                      0175 GR
+  0 A$spi$461                                                      0176 GR
+  0 A$spi$466                                                      0178 GR
+  0 A$spi$479                                                      0179 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$spi$485                                                      0187 GR
-  0 A$spi$498                                                      0188 GR
-  0 A$spi$499                                                      018B GR
-  0 A$spi$500                                                      018E GR
-  0 A$spi$501                                                      018F GR
-  0 A$spi$502                                                      0190 GR
-  0 A$spi$507                                                      0191 GR
-  0 A$spi$517                                                      0192 GR
-  0 A$spi$518                                                      0194 GR
-  0 A$spi$519                                                      0198 GR
-  0 A$spi$523                                                      019A GR
-  0 A$spi$524                                                      019D GR
-  0 A$spi$525                                                      019E GR
-  0 A$spi$529                                                      019F GR
-  0 A$spi$530                                                      01A2 GR
-  0 A$spi$531                                                      01A3 GR
-  0 A$spi$532                                                      01A4 GR
-  0 A$spi$533                                                      01A7 GR
-  0 A$spi$537                                                      01A8 GR
-  0 A$spi$538                                                      01AB GR
-  0 A$spi$539                                                      01AC GR
-  0 A$spi$540                                                      01AF GR
-  0 A$spi$544                                                      01B0 GR
-  0 A$spi$545                                                      01B1 GR
-  0 A$spi$546                                                      01B2 GR
-  0 A$spi$547                                                      01B5 GR
-  0 A$spi$548                                                      01B6 GR
-  0 A$spi$549                                                      01B9 GR
-  0 A$spi$550                                                      01BA GR
-  0 A$spi$551                                                      01BB GR
-  0 A$spi$552                                                      01BD GR
-  0 A$spi$553                                                      01BE GR
-  0 A$spi$554                                                      01BF GR
-  0 A$spi$555                                                      01C0 GR
-  0 A$spi$556                                                      01C1 GR
-  0 A$spi$557                                                      01C2 GR
-  0 A$spi$558                                                      01C3 GR
-  0 A$spi$559                                                      01C6 GR
-  0 A$spi$560                                                      01C7 GR
-  0 A$spi$561                                                      01C8 GR
-  0 A$spi$565                                                      01C9 GR
-  0 A$spi$566                                                      01CC GR
-  0 A$spi$567                                                      01CD GR
-  0 A$spi$568                                                      01CE GR
-  0 A$spi$569                                                      01CF GR
-  0 A$spi$570                                                      01D1 GR
-  0 A$spi$571                                                      01D2 GR
-  0 A$spi$572                                                      01D3 GR
-  0 A$spi$573                                                      01D4 GR
-  0 A$spi$574                                                      01D6 GR
-  0 A$spi$575                                                      01D7 GR
-  0 A$spi$576                                                      01D8 GR
-  0 A$spi$577                                                      01DB GR
-  0 A$spi$578                                                      01DC GR
-  0 A$spi$579                                                      01DD GR
+  0 A$spi$480                                                      017C GR
+  0 A$spi$481                                                      017F GR
+  0 A$spi$482                                                      0180 GR
+  0 A$spi$483                                                      0181 GR
+  0 A$spi$488                                                      0182 GR
+  0 A$spi$501                                                      0183 GR
+  0 A$spi$502                                                      0186 GR
+  0 A$spi$503                                                      0189 GR
+  0 A$spi$504                                                      018A GR
+  0 A$spi$505                                                      018B GR
+  0 A$spi$510                                                      018C GR
+  0 A$spi$520                                                      018D GR
+  0 A$spi$521                                                      018F GR
+  0 A$spi$522                                                      0193 GR
+  0 A$spi$526                                                      0195 GR
+  0 A$spi$527                                                      0198 GR
+  0 A$spi$528                                                      0199 GR
+  0 A$spi$532                                                      019A GR
+  0 A$spi$533                                                      019D GR
+  0 A$spi$534                                                      019E GR
+  0 A$spi$535                                                      019F GR
+  0 A$spi$536                                                      01A2 GR
+  0 A$spi$540                                                      01A3 GR
+  0 A$spi$541                                                      01A6 GR
+  0 A$spi$542                                                      01A7 GR
+  0 A$spi$543                                                      01AA GR
+  0 A$spi$547                                                      01AB GR
+  0 A$spi$548                                                      01AC GR
+  0 A$spi$549                                                      01AD GR
+  0 A$spi$550                                                      01B0 GR
+  0 A$spi$551                                                      01B1 GR
+  0 A$spi$552                                                      01B4 GR
+  0 A$spi$553                                                      01B5 GR
+  0 A$spi$554                                                      01B6 GR
+  0 A$spi$555                                                      01B8 GR
+  0 A$spi$556                                                      01B9 GR
+  0 A$spi$557                                                      01BA GR
+  0 A$spi$558                                                      01BB GR
+  0 A$spi$559                                                      01BC GR
+  0 A$spi$560                                                      01BD GR
+  0 A$spi$561                                                      01BE GR
+  0 A$spi$562                                                      01C1 GR
+  0 A$spi$563                                                      01C2 GR
+  0 A$spi$564                                                      01C3 GR
+  0 A$spi$568                                                      01C4 GR
+  0 A$spi$569                                                      01C7 GR
+  0 A$spi$570                                                      01C8 GR
+  0 A$spi$571                                                      01C9 GR
+  0 A$spi$572                                                      01CA GR
+  0 A$spi$573                                                      01CC GR
+  0 A$spi$574                                                      01CD GR
+  0 A$spi$575                                                      01CE GR
+  0 A$spi$576                                                      01CF GR
+  0 A$spi$577                                                      01D0 GR
+  0 A$spi$578                                                      01D1 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$spi$583                                                      01DE GR
-  0 A$spi$584                                                      01E1 GR
-  0 A$spi$585                                                      01E2 GR
-  0 A$spi$586                                                      01E3 GR
-  0 A$spi$587                                                      01E4 GR
-  0 A$spi$588                                                      01E6 GR
-  0 A$spi$589                                                      01E7 GR
-  0 A$spi$590                                                      01E8 GR
-  0 A$spi$591                                                      01E9 GR
-  0 A$spi$592                                                      01EB GR
-  0 A$spi$593                                                      01EC GR
-  0 A$spi$594                                                      01ED GR
-  0 A$spi$595                                                      01F0 GR
-  0 A$spi$599                                                      01F1 GR
-  0 A$spi$600                                                      01F4 GR
-  0 A$spi$601                                                      01F5 GR
-  0 A$spi$602                                                      01F8 GR
-  0 A$spi$606                                                      01F9 GR
-  0 A$spi$611                                                      01FB GR
-  0 A$spi$69                                                       0000 GR
-  0 A$spi$70                                                       0003 GR
-  0 A$spi$71                                                       0007 GR
-  0 A$spi$72                                                       0009 GR
-  0 A$spi$73                                                       000C GR
-  0 A$spi$74                                                       000D GR
-  0 A$spi$75                                                       000E GR
-  0 A$spi$76                                                       0010 GR
-  0 A$spi$77                                                       0011 GR
-  0 A$spi$78                                                       0015 GR
-  0 A$spi$79                                                       0017 GR
-  0 A$spi$80                                                       001A GR
-  0 A$spi$81                                                       001B GR
-  0 A$spi$82                                                       001C GR
-  0 A$spi$83                                                       001F GR
-  0 A$spi$88                                                       0020 GR
-  0 A$spi$98                                                       0021 GR
-  0 A$spi$99                                                       0023 GR
-  0 C$spi.c$103$1$80                                            =  0132 GR
-  0 C$spi.c$105$1$82                                            =  0132 GR
-  0 C$spi.c$106$1$82                                            =  014C GR
-  0 C$spi.c$111$1$82                                            =  014D GR
-  0 C$spi.c$113$1$84                                            =  014D GR
-  0 C$spi.c$116$1$84                                            =  0152 GR
-  0 C$spi.c$119$1$84                                            =  015E GR
-  0 C$spi.c$122$1$84                                            =  016C GR
-  0 C$spi.c$123$1$84                                            =  0174 GR
-  0 C$spi.c$125$1$84                                            =  017B GR
-  0 C$spi.c$126$1$84                                            =  017D GR
-  0 C$spi.c$131$1$84                                            =  017E GR
-  0 C$spi.c$134$1$86                                            =  017E GR
-  0 C$spi.c$135$1$86                                            =  0187 GR
-  0 C$spi.c$140$1$86                                            =  0188 GR
-  0 C$spi.c$143$1$88                                            =  0188 GR
-  0 C$spi.c$144$1$88                                            =  0191 GR
-  0 C$spi.c$149$1$88                                            =  0192 GR
+  0 A$spi$579                                                      01D2 GR
+  0 A$spi$580                                                      01D5 GR
+  0 A$spi$581                                                      01D6 GR
+  0 A$spi$582                                                      01D7 GR
+  0 A$spi$586                                                      01D8 GR
+  0 A$spi$587                                                      01DB GR
+  0 A$spi$588                                                      01DC GR
+  0 A$spi$589                                                      01DD GR
+  0 A$spi$590                                                      01DE GR
+  0 A$spi$591                                                      01E0 GR
+  0 A$spi$592                                                      01E1 GR
+  0 A$spi$593                                                      01E2 GR
+  0 A$spi$594                                                      01E3 GR
+  0 A$spi$595                                                      01E4 GR
+  0 A$spi$596                                                      01E5 GR
+  0 A$spi$597                                                      01E6 GR
+  0 A$spi$598                                                      01E9 GR
+  0 A$spi$602                                                      01EA GR
+  0 A$spi$603                                                      01ED GR
+  0 A$spi$604                                                      01EE GR
+  0 A$spi$605                                                      01F1 GR
+  0 A$spi$613                                                      01F2 GR
+  0 A$spi$614                                                      01F5 GR
+  0 A$spi$615                                                      01F8 GR
+  0 A$spi$616                                                      01F9 GR
+  0 A$spi$617                                                      01FA GR
+  0 A$spi$618                                                      01FB GR
+  0 A$spi$622                                                      01FD GR
+  0 A$spi$623                                                      0200 GR
+  0 A$spi$625                                                      0202 GR
+  0 A$spi$630                                                      0204 GR
+  0 A$spi$70                                                       0000 GR
+  0 A$spi$71                                                       0003 GR
+  0 A$spi$72                                                       0007 GR
+  0 A$spi$73                                                       0009 GR
+  0 A$spi$74                                                       000C GR
+  0 A$spi$75                                                       000D GR
+  0 A$spi$76                                                       000E GR
+  0 A$spi$77                                                       0010 GR
+  0 A$spi$78                                                       0011 GR
+  0 A$spi$79                                                       0015 GR
+  0 A$spi$80                                                       0017 GR
+  0 A$spi$81                                                       001A GR
+  0 A$spi$82                                                       001B GR
+  0 A$spi$83                                                       001C GR
+  0 A$spi$84                                                       001F GR
+  0 A$spi$89                                                       0020 GR
+  0 A$spi$99                                                       0021 GR
+  0 C$spi.c$100$1$86                                            =  0113 GR
+  0 C$spi.c$101$1$86                                            =  012C GR
+  0 C$spi.c$106$1$86                                            =  012D GR
+  0 C$spi.c$108$1$88                                            =  012D GR
+  0 C$spi.c$109$1$88                                            =  0147 GR
+  0 C$spi.c$114$1$88                                            =  0148 GR
+  0 C$spi.c$116$1$90                                            =  0148 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 7.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 C$spi.c$152$1$90                                            =  019A GR
-  0 C$spi.c$155$3$95                                            =  019F GR
-  0 C$spi.c$156$1$90                                            =  01A8 GR
-  0 C$spi.c$163$1$90                                            =  01C9 GR
-  0 C$spi.c$164$1$90                                            =  01DE GR
-  0 C$spi.c$168$3$95                                            =  01F9 GR
-  0 C$spi.c$170$3$95                                            =  01FB GR
-  0 C$spi.c$29$0$0                                              =  0000 GR
-  0 C$spi.c$31$1$69                                             =  0000 GR
-  0 C$spi.c$32$1$69                                             =  0020 GR
-  0 C$spi.c$37$1$69                                             =  0021 GR
-  0 C$spi.c$41$1$70                                             =  002B GR
-  0 C$spi.c$45$1$70                                             =  002E GR
-  0 C$spi.c$47$2$71                                             =  0036 GR
-  0 C$spi.c$50$3$72                                             =  003E GR
-  0 C$spi.c$53$3$72                                             =  0043 GR
-  0 C$spi.c$54$1$70                                             =  0052 GR
-  0 C$spi.c$55$3$72                                             =  0071 GR
-  0 C$spi.c$59$3$72                                             =  0085 GR
-  0 C$spi.c$60$3$72                                             =  0089 GR
-  0 C$spi.c$63$3$72                                             =  008D GR
-  0 C$spi.c$64$3$72                                             =  0099 GR
-  0 C$spi.c$67$3$72                                             =  00C7 GR
-  0 C$spi.c$71$3$73                                             =  00E3 GR
-  0 C$spi.c$74$1$70                                             =  00FC GR
-  0 C$spi.c$79$1$70                                             =  00FD GR
-  0 C$spi.c$81$1$77                                             =  00FD GR
-  0 C$spi.c$82$1$77                                             =  0105 GR
-  0 C$spi.c$87$1$77                                             =  0106 GR
-  0 C$spi.c$89$1$78                                             =  0106 GR
-  0 C$spi.c$90$1$78                                             =  0117 GR
-  0 C$spi.c$95$1$78                                             =  0118 GR
-  0 C$spi.c$97$1$80                                             =  0118 GR
-  0 C$spi.c$98$1$80                                             =  0131 GR
-  0 C$spi.h$61$4$96                                             =  01F1 GR
-  0 C$spi.h$66$4$93                                             =  01B0 GR
-  0 C$spi.h$76$6$76                                             =  00D1 GR
-  0 G$spiExchange$0$0                                           =  0192 GR
-  0 G$spiGetInBuffer$0$0                                        =  0188 GR
-  0 G$spiGetInUse$0$0                                           =  00FD GR
-  0 G$spiGetOutBuffer$0$0                                       =  017E GR
-  0 G$spiGetProcessed$0$0                                       =  0106 GR
-  0 G$spiLock$0$0                                               =  014D GR
-  0 G$spiProcessEvents$0$0                                      =  0021 GR
-  0 G$spiSetHandler$0$0                                         =  0000 GR
-  0 G$spiSetInUse$0$0                                           =  0118 GR
-  0 G$spiSetProcessed$0$0                                       =  0132 GR
-  0 XG$spiExchange$0$0                                          =  01FB GR
-  0 XG$spiGetInBuffer$0$0                                       =  0191 GR
-  0 XG$spiGetInUse$0$0                                          =  0105 GR
-  0 XG$spiGetOutBuffer$0$0                                      =  0187 GR
-  0 XG$spiGetProcessed$0$0                                      =  0117 GR
-  0 XG$spiLock$0$0                                              =  017D GR
-  0 XG$spiProcessEvents$0$0                                     =  00FC GR
-  0 XG$spiSetHandler$0$0                                        =  0020 GR
+  0 C$spi.c$119$1$90                                            =  014D GR
+  0 C$spi.c$122$1$90                                            =  0159 GR
+  0 C$spi.c$125$1$90                                            =  0167 GR
+  0 C$spi.c$126$1$90                                            =  016F GR
+  0 C$spi.c$128$1$90                                            =  0176 GR
+  0 C$spi.c$129$1$90                                            =  0178 GR
+  0 C$spi.c$134$1$90                                            =  0179 GR
+  0 C$spi.c$137$1$92                                            =  0179 GR
+  0 C$spi.c$138$1$92                                            =  0182 GR
+  0 C$spi.c$143$1$92                                            =  0183 GR
+  0 C$spi.c$146$1$94                                            =  0183 GR
+  0 C$spi.c$147$1$94                                            =  018C GR
+  0 C$spi.c$152$1$94                                            =  018D GR
+  0 C$spi.c$155$1$96                                            =  0195 GR
+  0 C$spi.c$157$1$96                                            =  019A GR
+  0 C$spi.c$158$1$96                                            =  01A3 GR
+  0 C$spi.c$165$1$96                                            =  01C4 GR
+  0 C$spi.c$166$1$96                                            =  01D8 GR
+  0 C$spi.c$173$1$96                                            =  01FD GR
+  0 C$spi.c$176$1$96                                            =  0204 GR
+  0 C$spi.c$31$0$0                                              =  0000 GR
+  0 C$spi.c$33$1$75                                             =  0000 GR
+  0 C$spi.c$34$1$75                                             =  0020 GR
+  0 C$spi.c$39$1$75                                             =  0021 GR
+  0 C$spi.c$43$1$76                                             =  002A GR
+  0 C$spi.c$47$1$76                                             =  002D GR
+  0 C$spi.c$49$2$77                                             =  0035 GR
+  0 C$spi.c$52$3$78                                             =  003D GR
+  0 C$spi.c$55$3$78                                             =  0041 GR
+  0 C$spi.c$56$1$76                                             =  0050 GR
+  0 C$spi.c$57$3$78                                             =  0065 GR
+  0 C$spi.c$61$3$78                                             =  007D GR
+  0 C$spi.c$62$3$78                                             =  0081 GR
+  0 C$spi.c$65$3$78                                             =  0084 GR
+  0 C$spi.c$66$3$78                                             =  0090 GR
+  0 C$spi.c$69$3$78                                             =  00C3 GR
+  0 C$spi.c$74$3$79                                             =  00D9 GR
+  0 C$spi.c$77$1$76                                             =  00EF GR
+  0 C$spi.c$82$1$76                                             =  00F0 GR
+  0 C$spi.c$84$1$83                                             =  00F0 GR
+  0 C$spi.c$84$4$105                                            =  01F2 GR
+  0 C$spi.c$85$1$83                                             =  0100 GR
+  0 C$spi.c$90$1$83                                             =  0101 GR
+  0 C$spi.c$92$1$84                                             =  0101 GR
+  0 C$spi.c$93$1$84                                             =  0112 GR
+  0 C$spi.c$98$1$84                                             =  0113 GR
+  0 C$spi.h$61$4$102                                            =  01EA GR
+  0 C$spi.h$66$4$99                                             =  01AB GR
+  0 C$spi.h$76$6$82                                             =  00CD GR
+  0 G$spiExchange$0$0                                           =  018D GR
+  0 G$spiGetInBuffer$0$0                                        =  0183 GR
+  0 G$spiGetInUse$0$0                                           =  00F0 GR
+  0 G$spiGetOutBuffer$0$0                                       =  0179 GR
+  0 G$spiGetProcessed$0$0                                       =  0101 GR
+  0 G$spiLock$0$0                                               =  0148 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 8.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 XG$spiSetInUse$0$0                                          =  0131 GR
-  0 XG$spiSetProcessed$0$0                                      =  014C GR
+  0 G$spiProcessEvents$0$0                                      =  0021 GR
+  0 G$spiSetHandler$0$0                                         =  0000 GR
+  0 G$spiSetInUse$0$0                                           =  0113 GR
+  0 G$spiSetProcessed$0$0                                       =  012D GR
+  0 XG$spiExchange$0$0                                          =  0204 GR
+  0 XG$spiGetInBuffer$0$0                                       =  018C GR
+  0 XG$spiGetInUse$0$0                                          =  0100 GR
+  0 XG$spiGetOutBuffer$0$0                                      =  0182 GR
+  0 XG$spiGetProcessed$0$0                                      =  0112 GR
+  0 XG$spiLock$0$0                                              =  0178 GR
+  0 XG$spiProcessEvents$0$0                                     =  00EF GR
+  0 XG$spiSetHandler$0$0                                        =  0020 GR
+  0 XG$spiSetInUse$0$0                                          =  012C GR
+  0 XG$spiSetProcessed$0$0                                      =  0147 GR
     _IN                                                            **** GX
     _INI                                                           **** GX
     _OUT                                                           **** GX
     _OUTI                                                          **** GX
     ___sdcc_call_hl                                                **** GX
     _globals                                                       **** GX
-  0 _spiExchange                                                   0192 GR
-  0 _spiGetInBuffer                                                0188 GR
-  0 _spiGetInUse                                                   00FD GR
-  0 _spiGetOutBuffer                                               017E GR
-  0 _spiGetProcessed                                               0106 GR
-  0 _spiLock                                                       014D GR
+    _int_handler                                                   **** GX
+  0 _spiExchange                                                   018D GR
+  0 _spiGetInBuffer                                                0183 GR
+  0 _spiGetInUse                                                   00F0 GR
+  0 _spiGetOutBuffer                                               0179 GR
+  0 _spiGetProcessed                                               0101 GR
+  0 _spiLock                                                       0148 GR
   0 _spiProcessEvents                                              0021 GR
   0 _spiSetHandler                                                 0000 GR
-  0 _spiSetInUse                                                   0118 GR
-  0 _spiSetProcessed                                               0132 GR
+  0 _spiSetInUse                                                   0113 GR
+  0 _spiSetProcessed                                               012D GR
 
 
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 9.
@@ -448,7 +461,7 @@ Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size  1FC   flags    0
+   0 _CODE                                      size  205   flags    0
    1 _DATA                                      size    0   flags    0
    2 _INITIALIZED                               size    0   flags    0
    3 _DABS                                      size    0   flags    8

@@ -10,160 +10,258 @@
                              10 ;--------------------------------------------------------
                              11 	.globl _main
                              12 	.globl _init
-                             13 	.globl _spi_connected
-                             14 	.globl _spi_avail
-                             15 	.globl _getchar
-                             16 	.globl _putchari
-                             17 	.globl _stdio_init
-                             18 	.globl _ul
-                             19 	.globl _console
-                             20 	.globl _process_events
-                             21 	.globl _globals
-                             22 	.globl _puts
-                             23 ;--------------------------------------------------------
-                             24 ; special function registers
-                             25 ;--------------------------------------------------------
-                             26 ;--------------------------------------------------------
-                             27 ; ram data
-                             28 ;--------------------------------------------------------
-                             29 	.area _DATA
-                             30 ;--------------------------------------------------------
-                             31 ; ram data
-                             32 ;--------------------------------------------------------
-                             33 	.area _INITIALIZED
+                             13 	.globl _fdcUnmount
+                             14 	.globl _fdcMount
+                             15 	.globl _fdcInit
+                             16 	.globl _kbdInit
+                             17 	.globl _key_clear
+                             18 	.globl _hdmi_write
+                             19 	.globl _hdmi_read
+                             20 	.globl _hdmi_init
+                             21 	.globl _uartAvail
+                             22 	.globl _getchar
+                             23 	.globl _putchar
+                             24 	.globl _stdioInit
+                             25 	.globl _ul
+                             26 	.globl _console
+                             27 	.globl _processEvents
+                             28 	.globl _globals
+                             29 	.globl _puts
+                             30 	.globl _printf
+                             31 ;--------------------------------------------------------
+                             32 ; special function registers
+                             33 ;--------------------------------------------------------
                              34 ;--------------------------------------------------------
-                             35 ; absolute external ram data
+                             35 ; ram data
                              36 ;--------------------------------------------------------
-                             37 	.area _DABS (ABS)
+                             37 	.area _DATA
                              38 ;--------------------------------------------------------
-                             39 ; global & static initialisations
+                             39 ; ram data
                              40 ;--------------------------------------------------------
-                             41 	.area _HOME
-                             42 	.area _GSINIT
-                             43 	.area _GSFINAL
-                             44 	.area _GSINIT
-                             45 ;--------------------------------------------------------
-                             46 ; Home
-                             47 ;--------------------------------------------------------
-                             48 	.area _HOME
+                             41 	.area _INITIALIZED
+                             42 ;--------------------------------------------------------
+                             43 ; absolute external ram data
+                             44 ;--------------------------------------------------------
+                             45 	.area _DABS (ABS)
+                             46 ;--------------------------------------------------------
+                             47 ; global & static initialisations
+                             48 ;--------------------------------------------------------
                              49 	.area _HOME
-                             50 ;--------------------------------------------------------
-                             51 ; code
-                             52 ;--------------------------------------------------------
-                             53 	.area _CODE
-                     0000    54 	G$init$0$0	= .
-                             55 	.globl	G$init$0$0
-                     0000    56 	C$main.c$31$0$0	= .
-                             57 	.globl	C$main.c$31$0$0
-                             58 ;../src/main.c:31: void init()
-                             59 ;	---------------------------------
-                             60 ; Function init
-                             61 ; ---------------------------------
-   0000                      62 _init::
-                     0000    63 	C$main.c$34$1$77	= .
-                             64 	.globl	C$main.c$34$1$77
-                             65 ;../src/main.c:34: memset( globals(), 0, sizeof( struct global_vars ) );
-   0000 CDr00r00      [17]   66 	call	_globals
-   0003 36 00         [10]   67 	ld	(hl), #0x00
-   0005 5D            [ 4]   68 	ld	e, l
-   0006 54            [ 4]   69 	ld	d, h
-   0007 13            [ 6]   70 	inc	de
-   0008 01 22 04      [10]   71 	ld	bc, #0x0422
-   000B ED B0         [21]   72 	ldir
-                     000D    73 	C$main.c$37$1$77	= .
-                             74 	.globl	C$main.c$37$1$77
-                             75 ;../src/main.c:37: stdio_init();
-                     000D    76 	C$main.c$38$1$77	= .
-                             77 	.globl	C$main.c$38$1$77
-                     000D    78 	XG$init$0$0	= .
-                             79 	.globl	XG$init$0$0
-   000D C3r00r00      [10]   80 	jp  _stdio_init
-                     0010    81 	G$main$0$0	= .
-                             82 	.globl	G$main$0$0
-                     0010    83 	C$main.c$41$1$77	= .
-                             84 	.globl	C$main.c$41$1$77
-                             85 ;../src/main.c:41: void main(void)
-                             86 ;	---------------------------------
-                             87 ; Function main
-                             88 ; ---------------------------------
-   0010                      89 _main::
-                     0010    90 	C$main.c$44$1$79	= .
-                             91 	.globl	C$main.c$44$1$79
-                             92 ;../src/main.c:44: init();
-   0010 CDr00r00      [17]   93 	call	_init
-                     0013    94 	C$main.c$48$1$79	= .
-                             95 	.globl	C$main.c$48$1$79
-                             96 ;../src/main.c:48: while(!spi_connected()) process_events();
-   0013                      97 00101$:
-   0013 CDr00r00      [17]   98 	call	_spi_connected
-   0016 7D            [ 4]   99 	ld	a,l
-   0017 B7            [ 4]  100 	or	a, a
-   0018 20 05         [12]  101 	jr	NZ,00103$
-   001A CDr00r00      [17]  102 	call	_process_events
-   001D 18 F4         [12]  103 	jr	00101$
-   001F                     104 00103$:
-                     001F   105 	C$main.c$51$1$79	= .
-                            106 	.globl	C$main.c$51$1$79
-                            107 ;../src/main.c:51: puts("\033[2J\033[HCPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
-   001F 21r4Ar00      [10]  108 	ld	hl,#___str_0
-   0022 E5            [11]  109 	push	hl
-   0023 CDr00r00      [17]  110 	call	_puts
-   0026 F1            [10]  111 	pop	af
-   0027 CDr00r00      [17]  112 	call	_ul
-                     002A   113 	C$main.c$52$1$79	= .
-                            114 	.globl	C$main.c$52$1$79
-                            115 ;../src/main.c:52: console("Bringing up video controller");
-   002A 21r7Dr00      [10]  116 	ld	hl,#___str_1
-   002D E5            [11]  117 	push	hl
-   002E CDr00r00      [17]  118 	call	_console
-   0031 F1            [10]  119 	pop	af
-                     0032   120 	C$main.c$57$2$80	= .
-                            121 	.globl	C$main.c$57$2$80
-                            122 ;../src/main.c:57: while(spi_avail() == 0) process_events();
-   0032                     123 00104$:
-   0032 CDr00r00      [17]  124 	call	_spi_avail
-   0035 7D            [ 4]  125 	ld	a,l
-   0036 B7            [ 4]  126 	or	a, a
-   0037 20 05         [12]  127 	jr	NZ,00106$
-   0039 CDr00r00      [17]  128 	call	_process_events
-   003C 18 F4         [12]  129 	jr	00104$
-   003E                     130 00106$:
-                     003E   131 	C$main.c$58$2$80	= .
-                            132 	.globl	C$main.c$58$2$80
-                            133 ;../src/main.c:58: putchari( getchar() );
-   003E CDr00r00      [17]  134 	call	_getchar
-   0041 45            [ 4]  135 	ld	b,l
-   0042 C5            [11]  136 	push	bc
-   0043 33            [ 6]  137 	inc	sp
-   0044 CDr00r00      [17]  138 	call	_putchari
-   0047 33            [ 6]  139 	inc	sp
-                     0048   140 	C$main.c$60$1$79	= .
-                            141 	.globl	C$main.c$60$1$79
-                     0048   142 	XG$main$0$0	= .
-                            143 	.globl	XG$main$0$0
-   0048 18 E8         [12]  144 	jr	00104$
-                     004A   145 Fmain$__str_0$0$0 == .
-   004A                     146 ___str_0:
-   004A 1B                  147 	.db 0x1b
-   004B 5B 32 4A            148 	.ascii "[2J"
-   004E 1B                  149 	.db 0x1b
-   004F 5B 48 43 50 43 32   150 	.ascii "[HCPC2.0 Boot Log - Supervisor OS, build #446"
-        2E 30 20 42 6F 6F
-        74 20 4C 6F 67 20
-        2D 20 53 75 70 65
-        72 76 69 73 6F 72
-        20 4F 53 2C 20 62
-        75 69 6C 64 20 23
-        34 34 36
-   007C 00                  151 	.db 0x00
-                     007D   152 Fmain$__str_1$0$0 == .
-   007D                     153 ___str_1:
-   007D 42 72 69 6E 67 69   154 	.ascii "Bringing up video controller"
-        6E 67 20 75 70 20
-        76 69 64 65 6F 20
-        63 6F 6E 74 72 6F
-        6C 6C 65 72
-   0099 00                  155 	.db 0x00
-                            156 	.area _CODE
-                            157 	.area _INITIALIZER
-                            158 	.area _CABS (ABS)
+                             50 	.area _GSINIT
+                             51 	.area _GSFINAL
+                             52 	.area _GSINIT
+                             53 ;--------------------------------------------------------
+                             54 ; Home
+                             55 ;--------------------------------------------------------
+                             56 	.area _HOME
+                             57 	.area _HOME
+                             58 ;--------------------------------------------------------
+                             59 ; code
+                             60 ;--------------------------------------------------------
+                             61 	.area _CODE
+                     0000    62 	G$init$0$0	= .
+                             63 	.globl	G$init$0$0
+                     0000    64 	C$main.c$31$0$0	= .
+                             65 	.globl	C$main.c$31$0$0
+                             66 ;../src/main.c:31: void init()
+                             67 ;	---------------------------------
+                             68 ; Function init
+                             69 ; ---------------------------------
+   0000                      70 _init::
+                     0000    71 	C$main.c$34$1$73	= .
+                             72 	.globl	C$main.c$34$1$73
+                             73 ;../src/main.c:34: memset( globals(), 0, sizeof( struct global_vars ) );
+   0000 CDr00r00      [17]   74 	call	_globals
+   0003 06 88         [ 7]   75 	ld	b, #0x88
+   0005                      76 00103$:
+   0005 36 00         [10]   77 	ld	(hl), #0x00
+   0007 23            [ 6]   78 	inc	hl
+   0008 10 FB         [13]   79 	djnz	00103$
+                     000A    80 	C$main.c$37$1$73	= .
+                             81 	.globl	C$main.c$37$1$73
+                             82 ;../src/main.c:37: stdioInit();
+   000A CDr00r00      [17]   83 	call	_stdioInit
+                     000D    84 	C$main.c$40$1$73	= .
+                             85 	.globl	C$main.c$40$1$73
+                             86 ;../src/main.c:40: puts("CPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
+   000D 21r2Cr00      [10]   87 	ld	hl,#___str_0
+   0010 E5            [11]   88 	push	hl
+   0011 CDr00r00      [17]   89 	call	_puts
+   0014 F1            [10]   90 	pop	af
+   0015 CDr00r00      [17]   91 	call	_ul
+                     0018    92 	C$main.c$41$1$73	= .
+                             93 	.globl	C$main.c$41$1$73
+                             94 ;../src/main.c:41: console("Starting");
+   0018 21r59r00      [10]   95 	ld	hl,#___str_1
+   001B E5            [11]   96 	push	hl
+   001C CDr00r00      [17]   97 	call	_console
+   001F F1            [10]   98 	pop	af
+                     0020    99 	C$main.c$44$1$73	= .
+                            100 	.globl	C$main.c$44$1$73
+                            101 ;../src/main.c:44: key_clear();
+   0020 CDr00r00      [17]  102 	call	_key_clear
+                     0023   103 	C$main.c$47$1$73	= .
+                            104 	.globl	C$main.c$47$1$73
+                            105 ;../src/main.c:47: hdmi_init();
+   0023 CDr00r00      [17]  106 	call	_hdmi_init
+                     0026   107 	C$main.c$50$1$73	= .
+                            108 	.globl	C$main.c$50$1$73
+                            109 ;../src/main.c:50: kbdInit();
+   0026 CDr00r00      [17]  110 	call	_kbdInit
+                     0029   111 	C$main.c$53$1$73	= .
+                            112 	.globl	C$main.c$53$1$73
+                            113 ;../src/main.c:53: fdcInit();
+                     0029   114 	C$main.c$54$1$73	= .
+                            115 	.globl	C$main.c$54$1$73
+                     0029   116 	XG$init$0$0	= .
+                            117 	.globl	XG$init$0$0
+   0029 C3r00r00      [10]  118 	jp  _fdcInit
+                     002C   119 Fmain$__str_0$0$0 == .
+   002C                     120 ___str_0:
+   002C 43 50 43 32 2E 30   121 	.ascii "CPC2.0 Boot Log - Supervisor OS, build #2410"
+        20 42 6F 6F 74 20
+        4C 6F 67 20 2D 20
+        53 75 70 65 72 76
+        69 73 6F 72 20 4F
+        53 2C 20 62 75 69
+        6C 64 20 23 32 34
+        31 30
+   0058 00                  122 	.db 0x00
+                     0059   123 Fmain$__str_1$0$0 == .
+   0059                     124 ___str_1:
+   0059 53 74 61 72 74 69   125 	.ascii "Starting"
+        6E 67
+   0061 00                  126 	.db 0x00
+                     0062   127 	G$main$0$0	= .
+                            128 	.globl	G$main$0$0
+                     0062   129 	C$main.c$57$1$73	= .
+                            130 	.globl	C$main.c$57$1$73
+                            131 ;../src/main.c:57: void main(void)
+                            132 ;	---------------------------------
+                            133 ; Function main
+                            134 ; ---------------------------------
+   0062                     135 _main::
+   0062 DD E5         [15]  136 	push	ix
+   0064 DD 21 00 00   [14]  137 	ld	ix,#0
+   0068 DD 39         [15]  138 	add	ix,sp
+   006A F5            [11]  139 	push	af
+   006B F5            [11]  140 	push	af
+   006C 3B            [ 6]  141 	dec	sp
+                     006D   142 	C$main.c$62$1$75	= .
+                            143 	.globl	C$main.c$62$1$75
+                            144 ;../src/main.c:62: init();
+   006D CDr00r00      [17]  145 	call	_init
+                     0070   146 	C$main.c$67$2$76	= .
+                            147 	.globl	C$main.c$67$2$76
+                            148 ;../src/main.c:67: while(uartAvail() == 0) processEvents();
+   0070                     149 00101$:
+   0070 CDr00r00      [17]  150 	call	_uartAvail
+   0073 7D            [ 4]  151 	ld	a,l
+   0074 B7            [ 4]  152 	or	a, a
+   0075 20 05         [12]  153 	jr	NZ,00103$
+   0077 CDr00r00      [17]  154 	call	_processEvents
+   007A 18 F4         [12]  155 	jr	00101$
+   007C                     156 00103$:
+                     007C   157 	C$main.c$68$2$76	= .
+                            158 	.globl	C$main.c$68$2$76
+                            159 ;../src/main.c:68: c = getchar();
+   007C CDr00r00      [17]  160 	call	_getchar
+                     007F   161 	C$main.c$70$2$76	= .
+                            162 	.globl	C$main.c$70$2$76
+                            163 ;../src/main.c:70: if( c == 'm' ) { fdcMount(); continue; }
+   007F DD 75 FB      [19]  164 	ld	-5 (ix), l
+   0082 7D            [ 4]  165 	ld	a, l
+   0083 D6 6D         [ 7]  166 	sub	a, #0x6d
+   0085 20 05         [12]  167 	jr	NZ,00105$
+   0087 CDr00r00      [17]  168 	call	_fdcMount
+   008A 18 E4         [12]  169 	jr	00101$
+   008C                     170 00105$:
+                     008C   171 	C$main.c$71$2$76	= .
+                            172 	.globl	C$main.c$71$2$76
+                            173 ;../src/main.c:71: if( c == 'u' ) { fdcUnmount(); continue; }
+   008C DD 7E FB      [19]  174 	ld	a,-5 (ix)
+   008F D6 75         [ 7]  175 	sub	a, #0x75
+   0091 20 05         [12]  176 	jr	NZ,00107$
+   0093 CDr00r00      [17]  177 	call	_fdcUnmount
+   0096 18 D8         [12]  178 	jr	00101$
+   0098                     179 00107$:
+                     0098   180 	C$main.c$73$2$76	= .
+                            181 	.globl	C$main.c$73$2$76
+                            182 ;../src/main.c:73: hdmi_write(0x96,0);
+   0098 21 96 00      [10]  183 	ld	hl,#0x0096
+   009B E5            [11]  184 	push	hl
+   009C CDr00r00      [17]  185 	call	_hdmi_write
+                     009F   186 	C$main.c$74$2$76	= .
+                            187 	.globl	C$main.c$74$2$76
+                            188 ;../src/main.c:74: printf("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
+   009F 26 96         [ 7]  189 	ld	h,#0x96
+   00A1 E3            [19]  190 	ex	(sp),hl
+   00A2 33            [ 6]  191 	inc	sp
+   00A3 CDr00r00      [17]  192 	call	_hdmi_read
+   00A6 33            [ 6]  193 	inc	sp
+   00A7 DD 75 FE      [19]  194 	ld	-2 (ix),l
+   00AA DD 36 FF 00   [19]  195 	ld	-1 (ix),#0x00
+   00AE 3E 06         [ 7]  196 	ld	a,#0x06
+   00B0 F5            [11]  197 	push	af
+   00B1 33            [ 6]  198 	inc	sp
+   00B2 CDr00r00      [17]  199 	call	_hdmi_read
+   00B5 33            [ 6]  200 	inc	sp
+   00B6 DD 75 FC      [19]  201 	ld	-4 (ix),l
+   00B9 DD 36 FD 00   [19]  202 	ld	-3 (ix),#0x00
+   00BD 3E 05         [ 7]  203 	ld	a,#0x05
+   00BF F5            [11]  204 	push	af
+   00C0 33            [ 6]  205 	inc	sp
+   00C1 CDr00r00      [17]  206 	call	_hdmi_read
+   00C4 33            [ 6]  207 	inc	sp
+   00C5 5D            [ 4]  208 	ld	e,l
+   00C6 16 00         [ 7]  209 	ld	d,#0x00
+   00C8 D5            [11]  210 	push	de
+   00C9 3E 04         [ 7]  211 	ld	a,#0x04
+   00CB F5            [11]  212 	push	af
+   00CC 33            [ 6]  213 	inc	sp
+   00CD CDr00r00      [17]  214 	call	_hdmi_read
+   00D0 33            [ 6]  215 	inc	sp
+   00D1 4D            [ 4]  216 	ld	c,l
+   00D2 D1            [10]  217 	pop	de
+   00D3 06 00         [ 7]  218 	ld	b,#0x00
+   00D5 DD 6E FE      [19]  219 	ld	l,-2 (ix)
+   00D8 DD 66 FF      [19]  220 	ld	h,-1 (ix)
+   00DB E5            [11]  221 	push	hl
+   00DC DD 6E FC      [19]  222 	ld	l,-4 (ix)
+   00DF DD 66 FD      [19]  223 	ld	h,-3 (ix)
+   00E2 E5            [11]  224 	push	hl
+   00E3 D5            [11]  225 	push	de
+   00E4 C5            [11]  226 	push	bc
+   00E5 21rFDr00      [10]  227 	ld	hl,#___str_2
+   00E8 E5            [11]  228 	push	hl
+   00E9 CDr00r00      [17]  229 	call	_printf
+   00EC 21 0A 00      [10]  230 	ld	hl,#10
+   00EF 39            [11]  231 	add	hl,sp
+   00F0 F9            [ 6]  232 	ld	sp,hl
+                     00F1   233 	C$main.c$75$2$76	= .
+                            234 	.globl	C$main.c$75$2$76
+                            235 ;../src/main.c:75: putchar( c );
+   00F1 DD 7E FB      [19]  236 	ld	a,-5 (ix)
+   00F4 F5            [11]  237 	push	af
+   00F5 33            [ 6]  238 	inc	sp
+   00F6 CDr00r00      [17]  239 	call	_putchar
+   00F9 33            [ 6]  240 	inc	sp
+                     00FA   241 	C$main.c$78$1$75	= .
+                            242 	.globl	C$main.c$78$1$75
+                     00FA   243 	XG$main$0$0	= .
+                            244 	.globl	XG$main$0$0
+   00FA C3r70r00      [10]  245 	jp	00101$
+                     00FD   246 Fmain$__str_2$0$0 == .
+   00FD                     247 ___str_2:
+   00FD 43 54 53 20 43 61   248 	.ascii "CTS Calculated : %02x %02x %02x INT:%02x"
+        6C 63 75 6C 61 74
+        65 64 20 3A 20 25
+        30 32 78 20 25 30
+        32 78 20 25 30 32
+        78 20 49 4E 54 3A
+        25 30 32 78
+   0125 0A                  249 	.db 0x0a
+   0126 00                  250 	.db 0x00
+                            251 	.area _CODE
+                            252 	.area _INITIALIZER
+                            253 	.area _CABS (ABS)

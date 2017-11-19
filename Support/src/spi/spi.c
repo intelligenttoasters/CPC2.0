@@ -23,6 +23,8 @@
 #include "include.h"
 #include "string.h"
 
+void int_handler(void);	// TODO: Temp code
+
 //
 // Record the handler for a particular channel
 //
@@ -68,7 +70,8 @@ void spiProcessEvents()
 
 		} else {
 			// Master driven process - see what it wants :)
-			if( spiMasterReady() & spiLock(0) ) spiExchange(0xff,0);	// Send NOP packet
+			if( spiMasterReady() )
+				if ( spiLock(0) ) spiExchange(0xff,0);	// Send NOP packet
 		}
 	}
 }
@@ -78,7 +81,7 @@ void spiProcessEvents()
 //
 inline Bool spiGetInUse()
 {
-	return globals()->spi_in_use;
+	return (globals()->spi_in_use) ? true : false;
 }
 
 //
@@ -150,7 +153,6 @@ void spiExchange( unsigned char channel, unsigned char size )
 {
 	// For efficiency only get globals once
 	struct global_vars * g = globals();
-
 	// Record the channel
 	g->outbound_comm_buffer[0] = channel;
 	g->outbound_comm_buffer[1] = size;
@@ -160,11 +162,15 @@ void spiExchange( unsigned char channel, unsigned char size )
 
 	// Send the data to the SPI module
 	OUTI( SPI_DATA, g->outbound_comm_buffer, SPI_BUFFER_OFFSET);		// Send the header separate
-	OUTI( SPI_DATA + SPI_BUFFER_OFFSET, g->outbound_comm_buffer + SPI_BUFFER_OFFSET, 128);
-	OUTI( SPI_DATA + SPI_BUFFER_OFFSET + 128, g->outbound_comm_buffer + SPI_BUFFER_OFFSET + 128, 128);
+	OUTI( SPI_DATA, g->outbound_comm_buffer + SPI_BUFFER_OFFSET, 128);
+	OUTI( SPI_DATA, g->outbound_comm_buffer + SPI_BUFFER_OFFSET + 128, 128);
 	// Need two blocks because the maximum we can transfer is 255 bytes
 
 	// Flag we're ready to go!
 	spiReady();
+
+	// TODO: Temp code - wait for transfer to finish
+	while( spiGetInUse() ) int_handler();
+	// TODO: Temp code
 
 }

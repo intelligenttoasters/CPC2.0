@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2016.12.29.18:16:41"
+ outputDirectory="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Cyclone V"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="5CEBA2F17C8"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="oscena" kind="conduit" start="0">
+   <property name="allowMultipleExportRoles" value="true" />
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="oscena" direction="input" role="oscena" width="1" />
+  </interface>
+  <interface name="clkout" kind="conduit" start="0">
+   <property name="allowMultipleExportRoles" value="true" />
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="clkout" direction="output" role="clkout" width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="osc:1.0:AUTO_DEVICE=5CEBA2F17C8,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_GENERATION_ID=1482995801,AUTO_UNIQUE_ID=(altera_int_osc:14.0:CBX_AUTO_BLACKBOX=ALL,DEVICE_FAMILY=Cyclone V,INFORMATION=The maximum output frequency is 100MHz)"
+   instancePathKey="osc"
+   kind="osc"
+   version="1.0"
+   name="osc">
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE" value="5CEBA2F17C8" />
+  <parameter name="AUTO_GENERATION_ID" value="1482995801" />
+  <generatedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/osc.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/opt/altera/quartus/14.0/ip/altera/altera_int_osc/altera_int_osc_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="osc">queue size: 0 starting:osc "osc"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="osc"><![CDATA["<b>osc</b>" reuses <b>altera_int_osc</b> "<b>submodules/osc_int_osc_0</b>"]]></message>
+   <message level="Debug" culprit="osc">queue size: 0 starting:altera_int_osc "submodules/osc_int_osc_0"</message>
+   <message level="Info" culprit="int_osc_0">Generating top-level entity osc_int_osc_0.</message>
+   <message level="Info" culprit="int_osc_0"><![CDATA["<b>osc</b>" instantiated <b>altera_int_osc</b> "<b>int_osc_0</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altera_int_osc:14.0:CBX_AUTO_BLACKBOX=ALL,DEVICE_FAMILY=Cyclone V,INFORMATION=The maximum output frequency is 100MHz"
+   instancePathKey="osc:.:int_osc_0"
+   kind="altera_int_osc"
+   version="14.0"
+   name="osc_int_osc_0">
+  <parameter name="INFORMATION" value="The maximum output frequency is 100MHz" />
+  <parameter name="DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="CBX_AUTO_BLACKBOX" value="ALL" />
+  <generatedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/osc/synthesis/submodules/osc_int_osc_0.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="/opt/altera/quartus/14.0/ip/altera/altera_int_osc/altera_int_osc_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="osc" as="int_osc_0" />
+  <messages>
+   <message level="Debug" culprit="osc">queue size: 0 starting:altera_int_osc "submodules/osc_int_osc_0"</message>
+   <message level="Info" culprit="int_osc_0">Generating top-level entity osc_int_osc_0.</message>
+   <message level="Info" culprit="int_osc_0"><![CDATA["<b>osc</b>" instantiated <b>altera_int_osc</b> "<b>int_osc_0</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

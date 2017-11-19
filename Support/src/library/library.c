@@ -36,9 +36,12 @@ inline struct global_vars * globals()
 	return &global_variables;
 }
 // Process events - add events to this list as required
-inline void process_events()
+inline void processEvents()
 {
-	spiProcessEvents();
+	uartProcessEvents();
+	hdmiProcessEvents();
+	kbdProcessEvents();
+	fdcProcessEvents();
 }
 
 // Log a console message

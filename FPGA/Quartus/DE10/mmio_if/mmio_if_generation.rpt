@@ -1,5 +1,9 @@
 Info: Starting: Create HDL design files for synthesis
+<<<<<<< HEAD
 Info: ip-generate --project-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10 --output-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis --file-set=QUARTUS_SYNTH --report-file=html:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.html --report-file=sopcinfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if.sopcinfo --report-file=cmp:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.cmp --report-file=qip:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.qip --report-file=svd:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.svd --report-file=regmap:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.regmap --report-file=xml:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.xml --report-file=debuginfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.debuginfo --system-info=DEVICE_FAMILY="Cyclone V" --system-info=DEVICE=5CSEBA6U23I7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if.qsys --language=VERILOG
+=======
+Info: ip-generate --project-directory=/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10 --output-directory=/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis --file-set=QUARTUS_SYNTH --report-file=html:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.html --report-file=sopcinfo:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if.sopcinfo --report-file=cmp:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.cmp --report-file=qip:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.qip --report-file=svd:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.svd --report-file=regmap:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.regmap --report-file=xml:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/mmio_if.xml --report-file=debuginfo:/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/mmio_if.debuginfo --system-info=DEVICE_FAMILY="Cyclone V" --system-info=DEVICE=5CSEBA6U23I7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=/home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if.qsys --language=VERILOG
+>>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 Progress: Loading DE10/mmio_if.qsys
 Progress: Reading input file
 Progress: Adding clk_0 [clock_source 14.0]
@@ -32,15 +36,26 @@ Info: mmio_0_avalon_slave_0_agent_rsp_fifo: "mm_interconnect_0" instantiated alt
 Info: router: "mm_interconnect_0" instantiated altera_merlin_router "router"
 Info: router_002: "mm_interconnect_0" instantiated altera_merlin_router "router_002"
 Info: hps_0_h2f_lw_axi_master_wr_limiter: "mm_interconnect_0" instantiated altera_merlin_traffic_limiter "hps_0_h2f_lw_axi_master_wr_limiter"
+<<<<<<< HEAD
 Info: Reusing file /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_avalon_sc_fifo.v
 Info: mmio_0_avalon_slave_0_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "mmio_0_avalon_slave_0_burst_adapter"
 Info: Reusing file /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_merlin_address_alignment.sv
 Info: Reusing file /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_avalon_st_pipeline_base.v
+=======
+Info: Reusing file /home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_avalon_sc_fifo.v
+Info: mmio_0_avalon_slave_0_burst_adapter: "mm_interconnect_0" instantiated altera_merlin_burst_adapter "mmio_0_avalon_slave_0_burst_adapter"
+Info: Reusing file /home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_merlin_address_alignment.sv
+Info: Reusing file /home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_avalon_st_pipeline_base.v
+>>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 Info: cmd_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "cmd_demux"
 Info: cmd_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "cmd_mux"
 Info: rsp_demux: "mm_interconnect_0" instantiated altera_merlin_demultiplexer "rsp_demux"
 Info: rsp_mux: "mm_interconnect_0" instantiated altera_merlin_multiplexer "rsp_mux"
+<<<<<<< HEAD
 Info: Reusing file /home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_merlin_arbitrator.sv
+=======
+Info: Reusing file /home/intelligenttoasters/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/mmio_if/synthesis/submodules/altera_merlin_arbitrator.sv
+>>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 Info: border: "hps_io" instantiated altera_interface_generator "border"
 Info: mmio_if: Done "mmio_if" with 21 modules, 74 files
 Info: ip-generate succeeded.

@@ -34,27 +34,45 @@ void init()
 	memset( globals(), 0, sizeof( struct global_vars ) );
 
 	// Initialize STDIO
-	stdio_init();
+	stdioInit();
+
+	// Start the boot process
+	puts("CPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
+	console("Starting");
+
+	// Initialise the keyboard emulator
+	key_clear();
+
+	// Initialize the HDMI adapter
+	hdmi_init();
+
+	// Initialise the usb interface
+	kbdInit();
+
+	// Initialize the FDC
+	fdcInit();
 }
 
 // Main function
 void main(void)
 {
+	char c;
+
 	// Run system intitialization
 	init();
-
-	// Wait for the console to get connected
-	// Normally this won't happen as the system needs to run even without a console
-	while(!spi_connected()) process_events();
-
-	// Start the boot process
-	puts("\033[2J\033[HCPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
-	console("Bringing up video controller");
 
 	// Echo the characters back to the user
 	while( true )
 	{
-		while(spi_avail() == 0) process_events();
-		putchari( getchar() );
+		while(uartAvail() == 0) processEvents();
+		c = getchar();
+
+		if( c == 'm' ) { fdcMount(); continue; }
+		if( c == 'u' ) { fdcUnmount(); continue; }
+
+		hdmi_write(0x96,0);
+		printf("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
+		putchar( c );
 	}
+
 }

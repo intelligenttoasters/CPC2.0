@@ -24,8 +24,10 @@
 	.area _VECT0 (ABS)
 	.org	0x0000
 
-	ld sp,#0h0000	; Stack is top of memory
+;	ld sp,#0h0000	; Stack is top of memory
+	ld sp,#0h8000	; Stack is before shared memory space
 	jp BOOTSYS
+;	jp debug
 
 	.area _VECT1 (ABS)
 	.org	0x0008
@@ -95,9 +97,18 @@ _CODE_START = .
 ; ==================================================================
 ;
 ;; Ordering of segments for the linker so that initializing vars works
+	.area   _SYSTEM_CODE
+
+	.area   _GSINIT
+
 	.area   _INITIALIZER
 s__INITIALIZER = .
-	.area   _INITIALIZED
+	.area	_END_INITIALIZER
+e__INITIALIZER = .
+;	.ds		256				; Ensure we're in a new page for write-protect
+	.area	_DATA
+s__DATA = .
+	.area	_INITIALIZED
 s__INITIALIZED = .
 ;
 ; ==================================================================
@@ -111,10 +122,10 @@ s__INITIALIZED = .
 	.area   _GSINIT
 ; Copy the initialized values to the working area
 gsinit:
-	ld		hl, #s__INITIALIZED
+	ld		hl, #e__INITIALIZER
 	ld		de, #s__INITIALIZER
 	sbc		hl,de
-	inc 	hl
+;	inc 	hl
 	push	hl
 	pop 	bc
 	; Got length of initializer section
@@ -132,12 +143,19 @@ gsinit_next:
 	.area   _SYSTEM_CODE
 
 BOOTSYS:
+	; Write protect the memory
+	ld a,#(s__DATA>>8)
+	out(0x50),a				; Memory controller write protect boundary
+
+	; Now initialize
 	call CLRREG
 	im 1
 	call gsinit
 	ld c, #0x10	; Clear the interrupt register
 	in a,(c)
-	ei
+
+	; Start main process
+;	ei
 	call _main
 	jr #BOOTSYS
 
@@ -292,6 +310,16 @@ mem_done:
         pop bc
         pop af
         ret
+
+	.globl debug
+debug:
+		ld bc, #0x03e0
+		out (c),b
+		nop
+		nop
+debug1:
+		in a,(0xbe)
+		jr debug1
 
 ; Export/Import global functions
 	.globl _main

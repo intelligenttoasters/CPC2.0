@@ -34,19 +34,11 @@ void nmi_handler(void)
 //
 void int_handler(void)
 {
-	unsigned char int_src = IN(INTERRUPT_CONTROLLER_BASE);
-
+	unsigned char int_src;
+	// Read the interrupt source and reset the interupt line
+	int_src = IN(INTERRUPT_CONTROLLER_BASE);
 	// Did the SPI trigger this interrupt
-	if( int_src & INT_SPI )
+	if( int_src & INT_UART )
 	{
-		// Did this interrupt get called by the SPI triggering
-		// (empty out says we sent everything, check emptyout first
-		// spiEmptyOut calls IN(SPI_SR), and this will reset the interrupt line
-		if( spiEmptyOut() && spiGetInUse() )
-		{
-			// Reset the variables
-			spiSetInUse( false );
-			spiSetProcessed( false );
-		}
 	}
 }

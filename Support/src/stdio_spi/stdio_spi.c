@@ -63,7 +63,6 @@ void stdio_channel_handler(unsigned char *buffer, unsigned char size)
 
 	// Calculate size of incoming data
 	sz = min(size, 8 - inbuffer_entries);
-
 	// Store incoming data
 	memcpy( stdio_inbound_buffer + inbuffer_entries, buffer, sz);
 
@@ -91,6 +90,7 @@ void stdio_init()
 //
 void spi_puts( void * string )
 {
+
 	// Get the size of the string to send
 	int size = strlen( string );
 

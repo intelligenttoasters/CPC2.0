@@ -3,11 +3,14 @@ PLLJITTER	53
 PLLSPEmax	50
 PLLSPEmin	-50
 
+<<<<<<< HEAD
 PLL_Name	master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA
 
+=======
+>>>>>>> f441b4aabf9b52f3b1fc4f89d6fe54a027b6bf93
 PLL_Name	master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA

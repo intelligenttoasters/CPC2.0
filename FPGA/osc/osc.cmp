@@ -1,0 +1,7 @@
+	component osc is
+		port (
+			oscena : in  std_logic := 'X'; -- oscena
+			clkout : out std_logic         -- clkout
+		);
+	end component osc;
+
