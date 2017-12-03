@@ -6,7 +6,7 @@ JedecChain;
 	P ActionCode(Ign)
 		Device PartName(SOCVHPS) MfrSpec(OpMask(0));
 	P ActionCode(Cfg)
-		Device PartName(5CSEBA6U23) Path("/home/paulg/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/output_files/") File("CPC2.sof") MfrSpec(OpMask(1));
+		Device PartName(5CSEBA6U23) Path("/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/output_files/") File("CPC2.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

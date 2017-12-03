@@ -282,4 +282,6 @@ set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/z80/tv80s.v -section_i
 set_global_assignment -name EDA_TEST_BENCH_FILE ../../rtl/fifo.v -section_id FDC
 set_global_assignment -name EDA_NATIVELINK_SIMULATION_SETUP_SCRIPT simulation/modelsim/wave.do -section_id eda_simulation
 set_global_assignment -name VERILOG_FILE sdram.v
+set_global_assignment -name QIP_FILE ../../rtl/Altera/cache_d.qip
+set_global_assignment -name VERILOG_FILE ../../rtl/cache_byte.v
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -56,7 +56,7 @@ module sdram (
    output reg     		Ras_n, 
    output reg     		Cas_n, 
    output reg     		We_n, 
-   output reg [1 : 0] 	Dqm
+   output [1 : 0] 		Dqm
 );
 	// States
 	parameter INIT = 0, XXXXX = 1, IDLE = 2, PRECHARGE_ALL = 3, SET_MODE = 4, AUTO_REFRESH2 = 5,
@@ -103,14 +103,15 @@ module sdram (
 	assign wait_timeout[3] = (counter[15:12] == 0); 	// Set if a timer is ticking for bank 3
 	assign refresh_pending = refresh_due ^ refresh_done;	// XOR
 	assign op_pending = op_due ^ op_done;				// XOR
-	// Convenience assignments
+	// Convenience/readability assignments
 	assign op_bank = if_A_alt[22:21];
 	assign op_row = if_A_alt[20:9];
 	assign op_col = if_A_alt[8:0];
 	// Memory IF Assignments
 	assign D_o = Dq_in;
 	assign Dq_out = D_i;
-	assign Dq_oe = (D_valid & if_wr_alt);	// Output enable for DQ 
+	assign Dq_oe = (D_valid & if_wr_alt);	// Output enable for DQ
+	assign Dqm = Dm_i;
 	
 	// Module connections =========================================================================
 	
@@ -145,8 +146,8 @@ module sdram (
 
 	// Set the registered signals for the SDRAM
 	task set_signals ( input [0:5] data );
-		{Cs_n, Ras_n, Cas_n, We_n, Ba, Dqm, Addr[11:0]} <= 
-			{data[1:4], op_bank, Dm_i, (~data[5]) ? op_row[11] : 1'b0, data[0], (data[5]) ? {1'b0, op_col} : op_row[9:0]};		
+		{Cs_n, Ras_n, Cas_n, We_n, Ba, Addr[11:0]} <= 
+			{data[1:4], op_bank, (~data[5]) ? op_row[11] : 1'b0, data[0], (data[5]) ? {1'b0, op_col} : op_row[9:0]};		
 		
 	endtask	
 
