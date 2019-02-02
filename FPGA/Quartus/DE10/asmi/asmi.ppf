@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pinplan
+ variation_name="asmi_parallel_0"
+ megafunction_name="ALTERA_ASMI_PARALLEL"
+ intended_family="Cyclone V"
+ specifies="all_ports">
+ <global>
+  <pin name="clkin" direction="input" scope="external" />
+  <pin name="read" direction="input" scope="external" />
+  <pin name="rden" direction="input" scope="external" />
+  <pin name="addr[23..0]" direction="input" scope="external" />
+  <pin name="reset" direction="input" scope="external" />
+  <pin name="dataout[7..0]" direction="output" scope="external" />
+  <pin name="busy" direction="output" scope="external" />
+  <pin name="data_valid" direction="output" scope="external" />
+ </global>
+</pinplan>

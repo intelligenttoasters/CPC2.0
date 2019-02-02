@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simPackage>
+ <file path="video720_sim/video720.vo" type="VERILOG" />
+ <topLevel name="video720" />
+ <deviceFamily name="cyclonev" />
+</simPackage>

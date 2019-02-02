@@ -3,28 +3,28 @@ XL2
 H 9 areas 15 global symbols
 M interrupt
 O -mz80
+S _IN_ Ref0000
 S .__.ABS. Def0000
-S _IN Ref0000
 A _CODE size A flags 0 addr 0
-S C$interrupt.c$41$1$46 Def0009
-S C$interrupt.c$44$1$46 Def0009
-S C$interrupt.c$30$0$0 Def0000
+S C$interrupt.c$44$1$132 Def0009
+S C$interrupt.c$39$1$132 Def0001
 S G$nmi_handler$0$0 Def0000
-S C$interrupt.c$39$1$46 Def0001
-S C$interrupt.c$35$0$0 Def0001
-S C$interrupt.c$27$0$0 Def0000
 S G$int_handler$0$0 Def0001
 S A$interrupt$61 Def0000
 S _nmi_handler Def0000
 S A$interrupt$74 Def0001
 S A$interrupt$75 Def0003
 S A$interrupt$76 Def0004
-S A$interrupt$86 Def0009
 S A$interrupt$77 Def0005
 S A$interrupt$78 Def0008
+S A$interrupt$89 Def0009
 S _int_handler Def0001
 S XG$nmi_handler$0$0 Def0000
 S XG$int_handler$0$0 Def0009
+S C$interrupt.c$30$0$130 Def0000
+S C$interrupt.c$41$1$132 Def0009
+S C$interrupt.c$27$0$130 Def0000
+S C$interrupt.c$35$0$132 Def0001
 A _DATA size 0 flags 0 addr 0
 A _INITIALIZED size 0 flags 0 addr 0
 A _DABS size 0 flags 8 addr 0
@@ -40,4 +40,4 @@ R 00 00 00 00
 T 01 00
 R 00 00 00 00
 T 01 00 3E 10 F5 33 CD 00 00 33 C9
-R 00 00 00 00 02 07 01 00
+R 00 00 00 00 02 07 00 00

@@ -189,7 +189,7 @@ enum {
 
 
 
-unsigned char usbInit(void);
+void usbInit(void);
 void deviceReset(void);
 unsigned char usbIn( unsigned char address, unsigned char endpoint, char * buffer );
 uint8_t usbProcessConnection();
@@ -200,5 +200,6 @@ unsigned char * usbGetString( unsigned char index, unsigned char *usbbuffer, uns
 uint8_t setConfig(unsigned char *buffer, unsigned char addr, unsigned char config);
 uint8_t enumerate();
 unsigned char * getReport(unsigned char *buffer);
+void usbProcessEvents(/*events*/);
 
 #endif /* INCLUDE_USB_H_ */

@@ -58,10 +58,10 @@ uint8_t hdmi_read( uint8_t port )
 	uint8_t dat = 0, ack;
 
 	// Enable the core
-	OUT( I2C_PORT | I2C_CTR, I2C_EN);
+	OUT( I2C_PORT | I2C_CTR, (unsigned char) I2C_EN);
 
 	// Start bit
-	i2cWriteReg( I2C_PORT | I2C_CR, I2C_STA | I2C_WR );
+	i2cWriteReg( I2C_PORT | I2C_CR, (unsigned char) (I2C_STA | I2C_WR) );
 
 	// Slave address byte - write
 	i2cWriteReg( I2C_PORT | I2C_TXR, (HDMI_I2C_ADDR << 1) );
@@ -80,7 +80,7 @@ uint8_t hdmi_read( uint8_t port )
 		i2cWait();
 
 		// ReStart bit
-		i2cWriteReg( I2C_PORT | I2C_CR, I2C_STA | I2C_STO );
+		i2cWriteReg( (unsigned char) I2C_PORT | I2C_CR, (unsigned char) (I2C_STA | I2C_STO) );
 
 		// Slave address byte - read
 		i2cWriteReg( I2C_PORT | I2C_TXR, (HDMI_I2C_ADDR << 1) | 1 );
@@ -106,7 +106,10 @@ uint8_t hdmi_read( uint8_t port )
 	OUT( I2C_PORT | I2C_CTR, !(I2C_EN | I2C_IEN));
 
 	// Debug code
-	if( ack != 0 ) DBG("HDMI no ACK");
+	if( ack != 0 ) {
+		DBG("HDMI no ACK");
+		return dat;
+	}
 
 	// Return the data
 	return dat;
@@ -118,10 +121,10 @@ void hdmi_write( uint8_t port, uint8_t value )
 	uint8_t ack;
 
 	// Enable the core
-	OUT( I2C_PORT | I2C_CTR, I2C_EN);
+	OUT( I2C_PORT | I2C_CTR, (unsigned char) I2C_EN);
 
 	// Start bit
-	i2cWriteReg( I2C_PORT | I2C_CR, I2C_STA | I2C_WR );
+	i2cWriteReg( (unsigned char) (I2C_PORT | I2C_CR), (unsigned char) (I2C_STA | I2C_WR) );
 
 	// Slave address byte - write
 	i2cWriteReg( I2C_PORT | I2C_TXR, (HDMI_I2C_ADDR << 1) );
@@ -158,7 +161,10 @@ void hdmi_write( uint8_t port, uint8_t value )
 	OUT( I2C_PORT | I2C_CTR, !(I2C_EN | I2C_IEN));
 
 	// Debug code
-	if( ack != 0 ) DBG("HDMI no ACK");
+	if( ack != 0 ) {
+		DBG("HDMI no ACK");
+		return;
+	}
 
 }
 
@@ -180,7 +186,7 @@ void hdmi_powerup()
 	hdmi_write( 0xe0, 0xd0 );
 	hdmi_write( 0xf9, 0x00 );
 	// Video mode
-//SEE_AUDIO	hdmi_write( 0x15, 0x00 );		// 24-bit 4:4:4
+	hdmi_write( 0x15, 0x20 );		// 24-bit 4:4:4, 48KHz Audio
 	hdmi_write( 0x16, 0x34 );
 	hdmi_write( 0x17, 0x00 );		// 4:3 aspect
 
@@ -189,8 +195,8 @@ void hdmi_powerup()
 	hdmi_write( 0xaf, 0x06 );		// HDMI mode
 
 	// Set up sound
-//	hdmi_write( 0x0a, 0x01 );		// I2S mode, CTS Calculation Auto
-	hdmi_write( 0x0a, 0x81 );		// I2S mode, CTS Calculation Manual - stops sound jittering
+	hdmi_write( 0x0a, 0x01 );		// I2S mode, CTS Calculation Auto
+//	hdmi_write( 0x0a, 0x81 );		// I2S mode, CTS Calculation Manual
 	hdmi_write( 0x0b, 0x0e );		// Data latched on rising edge
 	hdmi_write( 0x0c, 0x84 );		// Enable I2S channel 1, standard I2S mode
 	hdmi_write( 0x12, 0x22 );		// NOT copy protected, (inacurate clock)
@@ -199,17 +205,13 @@ void hdmi_powerup()
 	hdmi_write( 0x73, 0x01 );		// 2 Channels
 	// SET Audio N = 6144
 	hdmi_write( 0x01, 0x00 );
-	hdmi_write( 0x02, 0x19 );
-	hdmi_write( 0x03, 0x0b );
-	// SET Audio CTS = 40000		// 40MHz video
-	//hdmi_write( 0x07, 0x00 );
+	hdmi_write( 0x02, 0x18 );
+	hdmi_write( 0x03, 0x00 );
+	// SET Audio CTS linked to video freq
+	//hdmi_write( 0x07, 0x20 );
 	//hdmi_write( 0x08, 0x9c );
 	//hdmi_write( 0x09, 0x40 );
-	// Copied from automatically calculated values - manual set stops jittering see 0x0a
-	hdmi_write( 0x07, 0x20 );
-	hdmi_write( 0x08, 0xa3 );
-	hdmi_write( 0x09, 0xd2 );
-
+	//Not needed as CTS is set to automatic in register 0x0a
 
 	// Clock delay
 //	hdmi_write( 0xba, 0x70 );		// Zero delay - needed?
@@ -232,7 +234,7 @@ void hdmiProcessEvents()
 	if( ( ( hdmi_read(0x42) & 0x60 ) != 0x60 ) && !( hdmi_read( 0x41 ) & 0x40 ) )
 	{
 		hdmi_powerdown();
-		DBG("HDMI power down");
+		console("HDMI power down");
 		return;
 	}
 
@@ -247,7 +249,7 @@ void hdmiProcessEvents()
 		)
 	{
 		hdmi_powerup();
-		DBG("HDMI power up");
+		console("HDMI power up");
 	}
 
 }

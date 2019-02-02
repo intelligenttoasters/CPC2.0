@@ -25,12 +25,15 @@
 #include "include.h"
 #include "string.h"
 
+unsigned char lbuffer[8*8];	// Local buffer
+unsigned char lbuffer_fill;
+
 enum keynums keynums;
 
 void pause(void)
 {
 	unsigned long cntr;
-	for( cntr = 0; cntr<30000L; cntr++ ) NOP();
+	for( cntr = 0; cntr<5000L; cntr++ ) NOP();
 }
 
 // Convert a HID code to a symbol code
@@ -48,7 +51,7 @@ uint16_t hid_to_sym(uint8_t hid, uint16_t modifier)
 		KEY_NOKEY, KEY_COMMA, KEY_DOT, KEY_FSLASH, KEY_CAPS,
 		// F1-PAGE UP
 		/*KEY_NOKEY*/KEY_J1FIRE, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY,
-		KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY,
+		KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, KEY_NOKEY, /*KEY_NOKEY*/KEY_COPY, KEY_NOKEY, KEY_NOKEY,
 		KEY_CLR, KEY_NOKEY, KEY_NOKEY, KEY_RIGHT, KEY_LEFT, KEY_DOWN, KEY_UP, KEY_COPY, KEY_FSLASH,
 		KEY_COLON | KEY_MOD_SHIFT, KEY_HYPHEN, KEY_SEMI | KEY_MOD_SHIFT, KEY_ENTER, KEY_F1, KEY_F2, KEY_F3,
 		KEY_F4, KEY_F5, KEY_F6, KEY_F7, KEY_F8, KEY_F9, KEY_F0, KEY_FDOT
@@ -108,21 +111,47 @@ void key_clear(void)
 void update(void)
 {
 	OUT( KEY_CR, KEY_CR_APPLY );
-//	pause();
 }
 
-/*
-// Usage: printf("USB-KEY %c %d %d %d %d %d %d %d %d \n", mapKey(buffer[0], buffer[2]), buffer[0], buffer[1], buffer[2], buffer[3], buffer[4], buffer[5], buffer[6], buffer[7]);
-
-unsigned char mapKey(unsigned char modifiers, unsigned char scancode)
+// Set a local report from char stream - Logitech keyboard/trackpad
+// And queue reports
+void setLReport(char * buf)
 {
-	switch( scancode )
-	{
-	HID_KEYCODE_TABLE()
+	char *lbuffer_ptr;
+
+	if( lbuffer_fill == 8 ) {
+		DBG("Error - keyboard buffer full - discarding new key data");
+		return;
 	}
-	return 0;
+
+	// Calculate the buffer pointer
+	lbuffer_ptr = lbuffer + (lbuffer_fill * 8);
+
+	memcpy( lbuffer_ptr, buf, 8 );
+
+	// Move the counter
+	lbuffer_fill++;
+
+	// Process the keyboard events
+	kbdProcessEvents();
 }
-*/
+
+// Get a local report from the queue of up to 8 HID reports
+unsigned char * getLReport(char * bfr)
+{
+	if( lbuffer_fill == 0 ) return NULL;
+
+	// Move buffer data to processing buffer
+	memcpy(bfr, lbuffer, 8);
+
+	// Shuffle the buffer data down
+	memcpy(lbuffer,lbuffer+8,56);
+
+	// Remove one item from the count
+	lbuffer_fill--;
+
+	return bfr;
+}
 
 void kbdProcessEvents(void)
 {
@@ -131,21 +160,8 @@ void kbdProcessEvents(void)
 	uint8_t row, col, cntr;
 	uint16_t modifiers, cpc_key;
 
-	// If we don't think USB is plugged in, check
-	if( !globals()->usb_connected )
-	{
-		if( !( globals()->usb_connected = usbProcessConnection() ) )
-			globals()->usb_enumerated = false;
-			return;
-	}
-
-	// OK, connected low speed device, so enumerate it
-	if( !globals()->usb_enumerated )
-		// If not enumerated properly then return
-		if( !( globals()->usb_enumerated = enumerate() ) ) return;
-
 	// If there's a report
-	if( getReport(buffer) ) {
+	if( getReport(buffer) || getLReport(buffer) ) {
 		// Then map the input keys to the amstrad output matrix
 		memset( keyMatrix, 0, 10 );		// Clear the matrix
 		// Calculate the HID modifiers
@@ -187,8 +203,37 @@ void kbdProcessEvents(void)
 
 void kbdInit(void)
 {
-	unsigned char vernum = usbInit();
-	sprintf(CB,"USB core version %d.%d", vernum>>4, vernum&0xf);
-	console(CB);
+	// Local buffer init
+	lbuffer_fill = 0;
+	console("Keyboard interface ready");
+}
+
+// This captures HID packets from STDIN, for debug purposes from a host
+// Packets are sanitised with char 0 translated to 253 and 27 to 254
+void keyCapture()
+{
+	char buffer[8], cntr;
+	// Fast wait for chars - will hang if not received quickly, expect a packet of 8
+	while(uartAvail() != 8) uartProcessEvents();
+
+	// Translate special chars
+	for( cntr=0; cntr<8; cntr++ )
+	{
+		buffer[cntr] = getchar();
+		if( buffer[cntr] == 255 ) buffer[cntr] = 0;
+	}
+	setLReport(buffer);
+}
+
+// Clear last keypresses - usually used after an error to ensure there are no stuck keys
+void kbdClear()
+{
+	unsigned char cntr;
+
+	// Clear the keyboard matrix buffer
+	for( cntr=0; cntr<10; cntr++) OUT( KEY_IO | cntr, 0 );
+
+	// Update the key matrix proper
+	update();
 
 }

@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.0 #9615 (Linux)
+                              3 ; Version 3.7.0 #10231 (Linux)
                               4 ;--------------------------------------------------------
                               5 	.module main
                               6 	.optsdcc -mz80
@@ -9,259 +9,2016 @@
                               9 ; Public variables in this module
                              10 ;--------------------------------------------------------
                              11 	.globl _main
-                             12 	.globl _init
-                             13 	.globl _fdcUnmount
-                             14 	.globl _fdcMount
-                             15 	.globl _fdcInit
-                             16 	.globl _kbdInit
-                             17 	.globl _key_clear
-                             18 	.globl _hdmi_write
-                             19 	.globl _hdmi_read
-                             20 	.globl _hdmi_init
-                             21 	.globl _uartAvail
-                             22 	.globl _getchar
-                             23 	.globl _putchar
-                             24 	.globl _stdioInit
-                             25 	.globl _ul
-                             26 	.globl _console
-                             27 	.globl _processEvents
-                             28 	.globl _globals
-                             29 	.globl _puts
-                             30 	.globl _printf
-                             31 ;--------------------------------------------------------
-                             32 ; special function registers
-                             33 ;--------------------------------------------------------
-                             34 ;--------------------------------------------------------
-                             35 ; ram data
-                             36 ;--------------------------------------------------------
-                             37 	.area _DATA
-                             38 ;--------------------------------------------------------
-                             39 ; ram data
-                             40 ;--------------------------------------------------------
-                             41 	.area _INITIALIZED
-                             42 ;--------------------------------------------------------
-                             43 ; absolute external ram data
-                             44 ;--------------------------------------------------------
-                             45 	.area _DABS (ABS)
-                             46 ;--------------------------------------------------------
-                             47 ; global & static initialisations
-                             48 ;--------------------------------------------------------
-                             49 	.area _HOME
-                             50 	.area _GSINIT
-                             51 	.area _GSFINAL
-                             52 	.area _GSINIT
-                             53 ;--------------------------------------------------------
-                             54 ; Home
-                             55 ;--------------------------------------------------------
-                             56 	.area _HOME
-                             57 	.area _HOME
-                             58 ;--------------------------------------------------------
-                             59 ; code
+                             12 	.globl _dumpdata
+                             13 	.globl _init
+                             14 	.globl _configNew
+                             15 	.globl _configInit
+                             16 	.globl _fatPutConfig
+                             17 	.globl _fatGetDescription
+                             18 	.globl _fatSetContent
+                             19 	.globl _fatFindFree
+                             20 	.globl _fatWriteBlock
+                             21 	.globl _fatReformat
+                             22 	.globl _fatOpen
+                             23 	.globl _fatInit
+                             24 	.globl _sdcGetLastBlk
+                             25 	.globl _sdcWriteBlock
+                             26 	.globl _sdcReadBlock
+                             27 	.globl _sdcInit
+                             28 	.globl _romInit
+                             29 	.globl _cpcResetRelease
+                             30 	.globl _cpcResetHold
+                             31 	.globl _cpcReset
+                             32 	.globl _sramReady
+                             33 	.globl _fdcChanged
+                             34 	.globl _fdcMounted
+                             35 	.globl _fdcUnmount
+                             36 	.globl _fdcMount
+                             37 	.globl _fdcInit
+                             38 	.globl _keyCapture
+                             39 	.globl _kbdInit
+                             40 	.globl _key_clear
+                             41 	.globl _hdmi_write
+                             42 	.globl _hdmi_read
+                             43 	.globl _hdmi_init
+                             44 	.globl _outboundFlush
+                             45 	.globl _uartAvail
+                             46 	.globl _getchar
+                             47 	.globl _putchar
+                             48 	.globl _stdioInit
+                             49 	.globl _ul
+                             50 	.globl _console
+                             51 	.globl _earlyEvents
+                             52 	.globl _processEvents
+                             53 	.globl _globals
+                             54 	.globl _IN_
+                             55 	.globl _puts
+                             56 	.globl _sprintf
+                             57 	.globl _printf
+                             58 	.globl _rom_data
+                             59 	.globl _dummy
                              60 ;--------------------------------------------------------
-                             61 	.area _CODE
-                     0000    62 	G$init$0$0	= .
-                             63 	.globl	G$init$0$0
-                     0000    64 	C$main.c$31$0$0	= .
-                             65 	.globl	C$main.c$31$0$0
-                             66 ;../src/main.c:31: void init()
-                             67 ;	---------------------------------
-                             68 ; Function init
-                             69 ; ---------------------------------
-   0000                      70 _init::
-                     0000    71 	C$main.c$34$1$73	= .
-                             72 	.globl	C$main.c$34$1$73
-                             73 ;../src/main.c:34: memset( globals(), 0, sizeof( struct global_vars ) );
-   0000 CDr00r00      [17]   74 	call	_globals
-   0003 06 88         [ 7]   75 	ld	b, #0x88
-   0005                      76 00103$:
-   0005 36 00         [10]   77 	ld	(hl), #0x00
-   0007 23            [ 6]   78 	inc	hl
-   0008 10 FB         [13]   79 	djnz	00103$
-                     000A    80 	C$main.c$37$1$73	= .
-                             81 	.globl	C$main.c$37$1$73
-                             82 ;../src/main.c:37: stdioInit();
-   000A CDr00r00      [17]   83 	call	_stdioInit
-                     000D    84 	C$main.c$40$1$73	= .
-                             85 	.globl	C$main.c$40$1$73
-                             86 ;../src/main.c:40: puts("CPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
-   000D 21r2Cr00      [10]   87 	ld	hl,#___str_0
-   0010 E5            [11]   88 	push	hl
-   0011 CDr00r00      [17]   89 	call	_puts
-   0014 F1            [10]   90 	pop	af
-   0015 CDr00r00      [17]   91 	call	_ul
-                     0018    92 	C$main.c$41$1$73	= .
-                             93 	.globl	C$main.c$41$1$73
-                             94 ;../src/main.c:41: console("Starting");
-   0018 21r59r00      [10]   95 	ld	hl,#___str_1
-   001B E5            [11]   96 	push	hl
-   001C CDr00r00      [17]   97 	call	_console
-   001F F1            [10]   98 	pop	af
-                     0020    99 	C$main.c$44$1$73	= .
-                            100 	.globl	C$main.c$44$1$73
-                            101 ;../src/main.c:44: key_clear();
-   0020 CDr00r00      [17]  102 	call	_key_clear
-                     0023   103 	C$main.c$47$1$73	= .
-                            104 	.globl	C$main.c$47$1$73
-                            105 ;../src/main.c:47: hdmi_init();
-   0023 CDr00r00      [17]  106 	call	_hdmi_init
-                     0026   107 	C$main.c$50$1$73	= .
-                            108 	.globl	C$main.c$50$1$73
-                            109 ;../src/main.c:50: kbdInit();
-   0026 CDr00r00      [17]  110 	call	_kbdInit
-                     0029   111 	C$main.c$53$1$73	= .
-                            112 	.globl	C$main.c$53$1$73
-                            113 ;../src/main.c:53: fdcInit();
-                     0029   114 	C$main.c$54$1$73	= .
-                            115 	.globl	C$main.c$54$1$73
-                     0029   116 	XG$init$0$0	= .
-                            117 	.globl	XG$init$0$0
-   0029 C3r00r00      [10]  118 	jp  _fdcInit
-                     002C   119 Fmain$__str_0$0$0 == .
-   002C                     120 ___str_0:
-   002C 43 50 43 32 2E 30   121 	.ascii "CPC2.0 Boot Log - Supervisor OS, build #2410"
+                             61 ; special function registers
+                             62 ;--------------------------------------------------------
+                             63 ;--------------------------------------------------------
+                             64 ; ram data
+                             65 ;--------------------------------------------------------
+                             66 	.area _DATA
+                     0000    67 G$dummy$0$0==.
+   0000                      68 _dummy::
+   0000                      69 	.ds 4
+                             70 ;--------------------------------------------------------
+                             71 ; ram data
+                             72 ;--------------------------------------------------------
+                             73 	.area _INITIALIZED
+                     0000    74 G$rom_data$0$0==.
+   0000                      75 _rom_data::
+   0000                      76 	.ds 315
+                             77 ;--------------------------------------------------------
+                             78 ; absolute external ram data
+                             79 ;--------------------------------------------------------
+                             80 	.area _DABS (ABS)
+                             81 ;--------------------------------------------------------
+                             82 ; global & static initialisations
+                             83 ;--------------------------------------------------------
+                             84 	.area _HOME
+                             85 	.area _GSINIT
+                             86 	.area _GSFINAL
+                             87 	.area _GSINIT
+                             88 ;--------------------------------------------------------
+                             89 ; Home
+                             90 ;--------------------------------------------------------
+                             91 	.area _HOME
+                             92 	.area _HOME
+                             93 ;--------------------------------------------------------
+                             94 ; code
+                             95 ;--------------------------------------------------------
+                             96 	.area _CODE
+                     0000    97 	G$init$0$0	= .
+                             98 	.globl	G$init$0$0
+                     0000    99 	C$main.c$35$0$158	= .
+                            100 	.globl	C$main.c$35$0$158
+                            101 ;../src/main.c:35: void init()
+                            102 ;	---------------------------------
+                            103 ; Function init
+                            104 ; ---------------------------------
+   0000                     105 _init::
+   0000 DD E5         [15]  106 	push	ix
+   0002 DD 21 00 00   [14]  107 	ld	ix,#0
+   0006 DD 39         [15]  108 	add	ix,sp
+   0008 21 00 FE      [10]  109 	ld	hl, #-512
+   000B 39            [11]  110 	add	hl, sp
+   000C F9            [ 6]  111 	ld	sp, hl
+                     000D   112 	C$main.c$43$1$158	= .
+                            113 	.globl	C$main.c$43$1$158
+                            114 ;../src/main.c:43: cpcResetHold();
+   000D CDr00r00      [17]  115 	call	_cpcResetHold
+                     0010   116 	C$main.c$46$1$158	= .
+                            117 	.globl	C$main.c$46$1$158
+                            118 ;../src/main.c:46: memset( globals(), 0, sizeof( struct global_vars ) );
+   0010 CDr00r00      [17]  119 	call	_globals
+   0013 36 00         [10]  120 	ld	(hl), #0x00
+   0015 5D            [ 4]  121 	ld	e, l
+   0016 54            [ 4]  122 	ld	d, h
+   0017 13            [ 6]  123 	inc	de
+   0018 01 94 0F      [10]  124 	ld	bc, #0x0f94
+   001B ED B0         [21]  125 	ldir
+                     001D   126 	C$main.c$49$1$158	= .
+                            127 	.globl	C$main.c$49$1$158
+                            128 ;../src/main.c:49: stdioInit();
+   001D CDr00r00      [17]  129 	call	_stdioInit
+                     0020   130 	C$main.c$52$1$158	= .
+                            131 	.globl	C$main.c$52$1$158
+                            132 ;../src/main.c:52: puts("\033[2J\033[H");
+   0020 21rBBr00      [10]  133 	ld	hl, #___str_0
+   0023 E5            [11]  134 	push	hl
+   0024 CDr00r00      [17]  135 	call	_puts
+                     0027   136 	C$main.c$53$1$158	= .
+                            137 	.globl	C$main.c$53$1$158
+                            138 ;../src/main.c:53: puts("CPC2.0 Boot Log - Supervisor OS, build " __VERSION__); ul();
+   0027 21rC3r00      [10]  139 	ld	hl, #___str_1
+   002A E3            [19]  140 	ex	(sp),hl
+   002B CDr00r00      [17]  141 	call	_puts
+   002E F1            [10]  142 	pop	af
+   002F CDr00r00      [17]  143 	call	_ul
+                     0032   144 	C$main.c$54$1$158	= .
+                            145 	.globl	C$main.c$54$1$158
+                            146 ;../src/main.c:54: console("Starting");
+   0032 21rF0r00      [10]  147 	ld	hl, #___str_2
+   0035 E5            [11]  148 	push	hl
+   0036 CDr00r00      [17]  149 	call	_console
+                     0039   150 	C$main.c$56$1$158	= .
+                            151 	.globl	C$main.c$56$1$158
+                            152 ;../src/main.c:56: sprintf(buffer, "Write protect below %04x", IN(0x50)<< 8);
+   0039 26 50         [ 7]  153 	ld	h,#0x50
+   003B E3            [19]  154 	ex	(sp),hl
+   003C 33            [ 6]  155 	inc	sp
+   003D CDr00r00      [17]  156 	call	_IN_
+   0040 33            [ 6]  157 	inc	sp
+   0041 45            [ 4]  158 	ld	b, l
+   0042 0E 00         [ 7]  159 	ld	c, #0x00
+   0044 21 00 00      [10]  160 	ld	hl, #0x0000
+   0047 39            [11]  161 	add	hl, sp
+   0048 5D            [ 4]  162 	ld	e, l
+   0049 54            [ 4]  163 	ld	d, h
+   004A E5            [11]  164 	push	hl
+   004B C5            [11]  165 	push	bc
+   004C 01rF9r00      [10]  166 	ld	bc, #___str_3
+   004F C5            [11]  167 	push	bc
+   0050 D5            [11]  168 	push	de
+   0051 CDr00r00      [17]  169 	call	_sprintf
+   0054 21 06 00      [10]  170 	ld	hl, #6
+   0057 39            [11]  171 	add	hl, sp
+   0058 F9            [ 6]  172 	ld	sp, hl
+   0059 CDr00r00      [17]  173 	call	_console
+                     005C   174 	C$main.c$60$1$158	= .
+                            175 	.globl	C$main.c$60$1$158
+                            176 ;../src/main.c:60: console( "Waiting for SRAM1+2" );
+   005C 21r12r01      [10]  177 	ld	hl, #___str_4
+   005F E3            [19]  178 	ex	(sp),hl
+   0060 CDr00r00      [17]  179 	call	_console
+   0063 F1            [10]  180 	pop	af
+                     0064   181 	C$main.c$61$1$158	= .
+                            182 	.globl	C$main.c$61$1$158
+                            183 ;../src/main.c:61: while( !sramReady() ) NOP();
+   0064                     184 00101$:
+   0064 CDr00r00      [17]  185 	call	_sramReady
+   0067 7D            [ 4]  186 	ld	a, l
+   0068 B7            [ 4]  187 	or	a, a
+   0069 20 03         [12]  188 	jr	NZ,00103$
+   006B 00            [ 4]  189 	nop
+   006C 18 F6         [12]  190 	jr	00101$
+   006E                     191 00103$:
+                     006E   192 	C$main.c$64$1$158	= .
+                            193 	.globl	C$main.c$64$1$158
+                            194 ;../src/main.c:64: sdcInit(&globals()->sd_buf);
+   006E CDr00r00      [17]  195 	call	_globals
+   0071 01 04 08      [10]  196 	ld	bc, #0x0804
+   0074 09            [11]  197 	add	hl, bc
+   0075 E5            [11]  198 	push	hl
+   0076 CDr00r00      [17]  199 	call	_sdcInit
+   0079 F1            [10]  200 	pop	af
+                     007A   201 	C$main.c$67$1$158	= .
+                            202 	.globl	C$main.c$67$1$158
+                            203 ;../src/main.c:67: while( globals()->sd_buf.state != IDLE) earlyEvents();
+   007A                     204 00104$:
+   007A CDr00r00      [17]  205 	call	_globals
+   007D 01 04 08      [10]  206 	ld	bc, #0x0804
+   0080 09            [11]  207 	add	hl, bc
+   0081 11 BC 00      [10]  208 	ld	de, #0x00bc
+   0084 19            [11]  209 	add	hl, de
+   0085 7E            [ 7]  210 	ld	a, (hl)
+   0086 B7            [ 4]  211 	or	a, a
+   0087 28 05         [12]  212 	jr	Z,00106$
+   0089 CDr00r00      [17]  213 	call	_earlyEvents
+   008C 18 EC         [12]  214 	jr	00104$
+   008E                     215 00106$:
+                     008E   216 	C$main.c$70$1$158	= .
+                            217 	.globl	C$main.c$70$1$158
+                            218 ;../src/main.c:70: fatInit();
+   008E CDr00r00      [17]  219 	call	_fatInit
+                     0091   220 	C$main.c$71$1$158	= .
+                            221 	.globl	C$main.c$71$1$158
+                            222 ;../src/main.c:71: while( !globals()->fat.ready ) earlyEvents();
+   0091                     223 00107$:
+   0091 CDr00r00      [17]  224 	call	_globals
+   0094 11 D7 08      [10]  225 	ld	de, #0x08d7
+   0097 19            [11]  226 	add	hl, de
+   0098 7E            [ 7]  227 	ld	a, (hl)
+   0099 B7            [ 4]  228 	or	a, a
+   009A 20 05         [12]  229 	jr	NZ,00109$
+   009C CDr00r00      [17]  230 	call	_earlyEvents
+   009F 18 F0         [12]  231 	jr	00107$
+   00A1                     232 00109$:
+                     00A1   233 	C$main.c$74$1$158	= .
+                            234 	.globl	C$main.c$74$1$158
+                            235 ;../src/main.c:74: configInit();
+   00A1 CDr00r00      [17]  236 	call	_configInit
+                     00A4   237 	C$main.c$77$1$158	= .
+                            238 	.globl	C$main.c$77$1$158
+                            239 ;../src/main.c:77: hdmi_init();
+   00A4 CDr00r00      [17]  240 	call	_hdmi_init
+                     00A7   241 	C$main.c$80$1$158	= .
+                            242 	.globl	C$main.c$80$1$158
+                            243 ;../src/main.c:80: romInit();
+   00A7 CDr00r00      [17]  244 	call	_romInit
+                     00AA   245 	C$main.c$83$1$158	= .
+                            246 	.globl	C$main.c$83$1$158
+                            247 ;../src/main.c:83: fdcInit();
+   00AA CDr00r00      [17]  248 	call	_fdcInit
+                     00AD   249 	C$main.c$92$1$158	= .
+                            250 	.globl	C$main.c$92$1$158
+                            251 ;../src/main.c:92: key_clear();
+   00AD CDr00r00      [17]  252 	call	_key_clear
+                     00B0   253 	C$main.c$95$1$158	= .
+                            254 	.globl	C$main.c$95$1$158
+                            255 ;../src/main.c:95: kbdInit();
+   00B0 CDr00r00      [17]  256 	call	_kbdInit
+                     00B3   257 	C$main.c$98$1$158	= .
+                            258 	.globl	C$main.c$98$1$158
+                            259 ;../src/main.c:98: cpcResetRelease();
+   00B3 CDr00r00      [17]  260 	call	_cpcResetRelease
+                     00B6   261 	C$main.c$100$1$158	= .
+                            262 	.globl	C$main.c$100$1$158
+                            263 ;../src/main.c:100: }
+   00B6 DD F9         [10]  264 	ld	sp, ix
+   00B8 DD E1         [14]  265 	pop	ix
+                     00BA   266 	C$main.c$100$1$158	= .
+                            267 	.globl	C$main.c$100$1$158
+                     00BA   268 	XG$init$0$0	= .
+                            269 	.globl	XG$init$0$0
+   00BA C9            [10]  270 	ret
+                     00BB   271 Fmain$__str_0$0$0 == .
+   00BB                     272 ___str_0:
+   00BB 1B                  273 	.db 0x1b
+   00BC 5B 32 4A            274 	.ascii "[2J"
+   00BF 1B                  275 	.db 0x1b
+   00C0 5B 48               276 	.ascii "[H"
+   00C2 00                  277 	.db 0x00
+                     00C3   278 Fmain$__str_1$0$0 == .
+   00C3                     279 ___str_1:
+   00C3 43 50 43 32 2E 30   280 	.ascii "CPC2.0 Boot Log - Supervisor OS, build #5874"
         20 42 6F 6F 74 20
         4C 6F 67 20 2D 20
         53 75 70 65 72 76
         69 73 6F 72 20 4F
         53 2C 20 62 75 69
-        6C 64 20 23 32 34
-        31 30
-   0058 00                  122 	.db 0x00
-                     0059   123 Fmain$__str_1$0$0 == .
-   0059                     124 ___str_1:
-   0059 53 74 61 72 74 69   125 	.ascii "Starting"
+        6C 64 20 23 35 38
+        37 34
+   00EF 00                  281 	.db 0x00
+                     00F0   282 Fmain$__str_2$0$0 == .
+   00F0                     283 ___str_2:
+   00F0 53 74 61 72 74 69   284 	.ascii "Starting"
         6E 67
-   0061 00                  126 	.db 0x00
-                     0062   127 	G$main$0$0	= .
-                            128 	.globl	G$main$0$0
-                     0062   129 	C$main.c$57$1$73	= .
-                            130 	.globl	C$main.c$57$1$73
-                            131 ;../src/main.c:57: void main(void)
-                            132 ;	---------------------------------
-                            133 ; Function main
-                            134 ; ---------------------------------
-   0062                     135 _main::
-   0062 DD E5         [15]  136 	push	ix
-   0064 DD 21 00 00   [14]  137 	ld	ix,#0
-   0068 DD 39         [15]  138 	add	ix,sp
-   006A F5            [11]  139 	push	af
-   006B F5            [11]  140 	push	af
-   006C 3B            [ 6]  141 	dec	sp
-                     006D   142 	C$main.c$62$1$75	= .
-                            143 	.globl	C$main.c$62$1$75
-                            144 ;../src/main.c:62: init();
-   006D CDr00r00      [17]  145 	call	_init
-                     0070   146 	C$main.c$67$2$76	= .
-                            147 	.globl	C$main.c$67$2$76
-                            148 ;../src/main.c:67: while(uartAvail() == 0) processEvents();
-   0070                     149 00101$:
-   0070 CDr00r00      [17]  150 	call	_uartAvail
-   0073 7D            [ 4]  151 	ld	a,l
-   0074 B7            [ 4]  152 	or	a, a
-   0075 20 05         [12]  153 	jr	NZ,00103$
-   0077 CDr00r00      [17]  154 	call	_processEvents
-   007A 18 F4         [12]  155 	jr	00101$
-   007C                     156 00103$:
-                     007C   157 	C$main.c$68$2$76	= .
-                            158 	.globl	C$main.c$68$2$76
-                            159 ;../src/main.c:68: c = getchar();
-   007C CDr00r00      [17]  160 	call	_getchar
-                     007F   161 	C$main.c$70$2$76	= .
-                            162 	.globl	C$main.c$70$2$76
-                            163 ;../src/main.c:70: if( c == 'm' ) { fdcMount(); continue; }
-   007F DD 75 FB      [19]  164 	ld	-5 (ix), l
-   0082 7D            [ 4]  165 	ld	a, l
-   0083 D6 6D         [ 7]  166 	sub	a, #0x6d
-   0085 20 05         [12]  167 	jr	NZ,00105$
-   0087 CDr00r00      [17]  168 	call	_fdcMount
-   008A 18 E4         [12]  169 	jr	00101$
-   008C                     170 00105$:
-                     008C   171 	C$main.c$71$2$76	= .
-                            172 	.globl	C$main.c$71$2$76
-                            173 ;../src/main.c:71: if( c == 'u' ) { fdcUnmount(); continue; }
-   008C DD 7E FB      [19]  174 	ld	a,-5 (ix)
-   008F D6 75         [ 7]  175 	sub	a, #0x75
-   0091 20 05         [12]  176 	jr	NZ,00107$
-   0093 CDr00r00      [17]  177 	call	_fdcUnmount
-   0096 18 D8         [12]  178 	jr	00101$
-   0098                     179 00107$:
-                     0098   180 	C$main.c$73$2$76	= .
-                            181 	.globl	C$main.c$73$2$76
-                            182 ;../src/main.c:73: hdmi_write(0x96,0);
-   0098 21 96 00      [10]  183 	ld	hl,#0x0096
-   009B E5            [11]  184 	push	hl
-   009C CDr00r00      [17]  185 	call	_hdmi_write
-                     009F   186 	C$main.c$74$2$76	= .
-                            187 	.globl	C$main.c$74$2$76
-                            188 ;../src/main.c:74: printf("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
-   009F 26 96         [ 7]  189 	ld	h,#0x96
-   00A1 E3            [19]  190 	ex	(sp),hl
-   00A2 33            [ 6]  191 	inc	sp
-   00A3 CDr00r00      [17]  192 	call	_hdmi_read
-   00A6 33            [ 6]  193 	inc	sp
-   00A7 DD 75 FE      [19]  194 	ld	-2 (ix),l
-   00AA DD 36 FF 00   [19]  195 	ld	-1 (ix),#0x00
-   00AE 3E 06         [ 7]  196 	ld	a,#0x06
-   00B0 F5            [11]  197 	push	af
-   00B1 33            [ 6]  198 	inc	sp
-   00B2 CDr00r00      [17]  199 	call	_hdmi_read
-   00B5 33            [ 6]  200 	inc	sp
-   00B6 DD 75 FC      [19]  201 	ld	-4 (ix),l
-   00B9 DD 36 FD 00   [19]  202 	ld	-3 (ix),#0x00
-   00BD 3E 05         [ 7]  203 	ld	a,#0x05
-   00BF F5            [11]  204 	push	af
-   00C0 33            [ 6]  205 	inc	sp
-   00C1 CDr00r00      [17]  206 	call	_hdmi_read
-   00C4 33            [ 6]  207 	inc	sp
-   00C5 5D            [ 4]  208 	ld	e,l
-   00C6 16 00         [ 7]  209 	ld	d,#0x00
-   00C8 D5            [11]  210 	push	de
-   00C9 3E 04         [ 7]  211 	ld	a,#0x04
-   00CB F5            [11]  212 	push	af
-   00CC 33            [ 6]  213 	inc	sp
-   00CD CDr00r00      [17]  214 	call	_hdmi_read
-   00D0 33            [ 6]  215 	inc	sp
-   00D1 4D            [ 4]  216 	ld	c,l
-   00D2 D1            [10]  217 	pop	de
-   00D3 06 00         [ 7]  218 	ld	b,#0x00
-   00D5 DD 6E FE      [19]  219 	ld	l,-2 (ix)
-   00D8 DD 66 FF      [19]  220 	ld	h,-1 (ix)
-   00DB E5            [11]  221 	push	hl
-   00DC DD 6E FC      [19]  222 	ld	l,-4 (ix)
-   00DF DD 66 FD      [19]  223 	ld	h,-3 (ix)
-   00E2 E5            [11]  224 	push	hl
-   00E3 D5            [11]  225 	push	de
-   00E4 C5            [11]  226 	push	bc
-   00E5 21rFDr00      [10]  227 	ld	hl,#___str_2
-   00E8 E5            [11]  228 	push	hl
-   00E9 CDr00r00      [17]  229 	call	_printf
-   00EC 21 0A 00      [10]  230 	ld	hl,#10
-   00EF 39            [11]  231 	add	hl,sp
-   00F0 F9            [ 6]  232 	ld	sp,hl
-                     00F1   233 	C$main.c$75$2$76	= .
-                            234 	.globl	C$main.c$75$2$76
-                            235 ;../src/main.c:75: putchar( c );
-   00F1 DD 7E FB      [19]  236 	ld	a,-5 (ix)
-   00F4 F5            [11]  237 	push	af
-   00F5 33            [ 6]  238 	inc	sp
-   00F6 CDr00r00      [17]  239 	call	_putchar
-   00F9 33            [ 6]  240 	inc	sp
-                     00FA   241 	C$main.c$78$1$75	= .
-                            242 	.globl	C$main.c$78$1$75
-                     00FA   243 	XG$main$0$0	= .
-                            244 	.globl	XG$main$0$0
-   00FA C3r70r00      [10]  245 	jp	00101$
-                     00FD   246 Fmain$__str_2$0$0 == .
-   00FD                     247 ___str_2:
-   00FD 43 54 53 20 43 61   248 	.ascii "CTS Calculated : %02x %02x %02x INT:%02x"
+   00F8 00                  285 	.db 0x00
+                     00F9   286 Fmain$__str_3$0$0 == .
+   00F9                     287 ___str_3:
+   00F9 57 72 69 74 65 20   288 	.ascii "Write protect below %04x"
+        70 72 6F 74 65 63
+        74 20 62 65 6C 6F
+        77 20 25 30 34 78
+   0111 00                  289 	.db 0x00
+                     0112   290 Fmain$__str_4$0$0 == .
+   0112                     291 ___str_4:
+   0112 57 61 69 74 69 6E   292 	.ascii "Waiting for SRAM1+2"
+        67 20 66 6F 72 20
+        53 52 41 4D 31 2B
+        32
+   0125 00                  293 	.db 0x00
+                     0126   294 	G$dumpdata$0$0	= .
+                            295 	.globl	G$dumpdata$0$0
+                     0126   296 	C$main.c$102$1$160	= .
+                            297 	.globl	C$main.c$102$1$160
+                            298 ;../src/main.c:102: void dumpdata(char * buffer)
+                            299 ;	---------------------------------
+                            300 ; Function dumpdata
+                            301 ; ---------------------------------
+   0126                     302 _dumpdata::
+   0126 DD E5         [15]  303 	push	ix
+   0128 DD 21 00 00   [14]  304 	ld	ix,#0
+   012C DD 39         [15]  305 	add	ix,sp
+   012E 21 FA FF      [10]  306 	ld	hl, #-6
+   0131 39            [11]  307 	add	hl, sp
+   0132 F9            [ 6]  308 	ld	sp, hl
+                     0133   309 	C$main.c$106$1$160	= .
+                            310 	.globl	C$main.c$106$1$160
+                            311 ;../src/main.c:106: outboundFlush();
+   0133 CDr00r00      [17]  312 	call	_outboundFlush
+                     0136   313 	C$main.c$108$4$163	= .
+                            314 	.globl	C$main.c$108$4$163
+                            315 ;../src/main.c:108: for( cntr=0; cntr<512; cntr+=16) {
+   0136 DD 36 FE 00   [19]  316 	ld	-2 (ix), #0x00
+   013A DD 36 FF 00   [19]  317 	ld	-1 (ix), #0x00
+   013E                     318 00108$:
+                     013E   319 	C$main.c$109$3$162	= .
+                            320 	.globl	C$main.c$109$3$162
+                            321 ;../src/main.c:109: printf("%04x ", cntr);
+   013E DD 6E FE      [19]  322 	ld	l, -2 (ix)
+   0141 DD 66 FF      [19]  323 	ld	h, -1 (ix)
+   0144 E5            [11]  324 	push	hl
+   0145 21r14r02      [10]  325 	ld	hl, #___str_5
+   0148 E5            [11]  326 	push	hl
+   0149 CDr00r00      [17]  327 	call	_printf
+   014C F1            [10]  328 	pop	af
+   014D F1            [10]  329 	pop	af
+                     014E   330 	C$main.c$110$1$160	= .
+                            331 	.globl	C$main.c$110$1$160
+                            332 ;../src/main.c:110: for(cntr2=0; cntr2<16; cntr2++)
+   014E DD 36 FC 00   [19]  333 	ld	-4 (ix), #0x00
+   0152 DD 36 FD 00   [19]  334 	ld	-3 (ix), #0x00
+   0156                     335 00104$:
+                     0156   336 	C$main.c$111$4$163	= .
+                            337 	.globl	C$main.c$111$4$163
+                            338 ;../src/main.c:111: printf("%02x ", buffer[cntr+cntr2]);
+   0156 DD 7E FE      [19]  339 	ld	a, -2 (ix)
+   0159 DD 86 FC      [19]  340 	add	a, -4 (ix)
+   015C DD 77 FA      [19]  341 	ld	-6 (ix), a
+   015F DD 7E FF      [19]  342 	ld	a, -1 (ix)
+   0162 DD 8E FD      [19]  343 	adc	a, -3 (ix)
+   0165 DD 77 FB      [19]  344 	ld	-5 (ix), a
+   0168 DD 7E 04      [19]  345 	ld	a, 4 (ix)
+   016B DD 86 FA      [19]  346 	add	a, -6 (ix)
+   016E DD 77 FA      [19]  347 	ld	-6 (ix), a
+   0171 DD 7E 05      [19]  348 	ld	a, 5 (ix)
+   0174 DD 8E FB      [19]  349 	adc	a, -5 (ix)
+   0177 DD 77 FB      [19]  350 	ld	-5 (ix), a
+   017A E1            [10]  351 	pop	hl
+   017B E5            [11]  352 	push	hl
+   017C 4E            [ 7]  353 	ld	c, (hl)
+   017D 06 00         [ 7]  354 	ld	b, #0x00
+   017F C5            [11]  355 	push	bc
+   0180 21r1Ar02      [10]  356 	ld	hl, #___str_6
+   0183 E5            [11]  357 	push	hl
+   0184 CDr00r00      [17]  358 	call	_printf
+   0187 F1            [10]  359 	pop	af
+   0188 F1            [10]  360 	pop	af
+                     0189   361 	C$main.c$110$4$163	= .
+                            362 	.globl	C$main.c$110$4$163
+                            363 ;../src/main.c:110: for(cntr2=0; cntr2<16; cntr2++)
+   0189 DD 34 FC      [23]  364 	inc	-4 (ix)
+   018C 20 03         [12]  365 	jr	NZ,00151$
+   018E DD 34 FD      [23]  366 	inc	-3 (ix)
+   0191                     367 00151$:
+   0191 DD 7E FC      [19]  368 	ld	a, -4 (ix)
+   0194 D6 10         [ 7]  369 	sub	a, #0x10
+   0196 DD 7E FD      [19]  370 	ld	a, -3 (ix)
+   0199 17            [ 4]  371 	rla
+   019A 3F            [ 4]  372 	ccf
+   019B 1F            [ 4]  373 	rra
+   019C DE 80         [ 7]  374 	sbc	a, #0x80
+   019E 38 B6         [12]  375 	jr	C,00104$
+                     01A0   376 	C$main.c$112$3$162	= .
+                            377 	.globl	C$main.c$112$3$162
+                            378 ;../src/main.c:112: putchar(32);
+   01A0 21 20 00      [10]  379 	ld	hl, #0x0020
+   01A3 E5            [11]  380 	push	hl
+   01A4 CDr00r00      [17]  381 	call	_putchar
+   01A7 F1            [10]  382 	pop	af
+                     01A8   383 	C$main.c$113$1$160	= .
+                            384 	.globl	C$main.c$113$1$160
+                            385 ;../src/main.c:113: for(cntr2=0; cntr2<16; cntr2++)
+   01A8 01 00 00      [10]  386 	ld	bc, #0x0000
+   01AB                     387 00106$:
+                     01AB   388 	C$main.c$114$4$164	= .
+                            389 	.globl	C$main.c$114$4$164
+                            390 ;../src/main.c:114: printf("%c", ((buffer[cntr+cntr2]>32) && (buffer[cntr+cntr2]<127)) ? buffer[cntr+cntr2] : 32);
+   01AB DD 7E FE      [19]  391 	ld	a, -2 (ix)
+   01AE 81            [ 4]  392 	add	a, c
+   01AF 5F            [ 4]  393 	ld	e, a
+   01B0 DD 7E FF      [19]  394 	ld	a, -1 (ix)
+   01B3 88            [ 4]  395 	adc	a, b
+   01B4 57            [ 4]  396 	ld	d, a
+   01B5 DD 6E 04      [19]  397 	ld	l, 4 (ix)
+   01B8 DD 66 05      [19]  398 	ld	h, 5 (ix)
+   01BB 19            [11]  399 	add	hl, de
+   01BC 5E            [ 7]  400 	ld	e, (hl)
+   01BD 3E 20         [ 7]  401 	ld	a, #0x20
+   01BF 93            [ 4]  402 	sub	a, e
+   01C0 30 09         [12]  403 	jr	NC,00112$
+   01C2 7B            [ 4]  404 	ld	a, e
+   01C3 D6 7F         [ 7]  405 	sub	a, #0x7f
+   01C5 30 04         [12]  406 	jr	NC,00112$
+   01C7 16 00         [ 7]  407 	ld	d, #0x00
+   01C9 18 03         [12]  408 	jr	00113$
+   01CB                     409 00112$:
+   01CB 11 20 00      [10]  410 	ld	de, #0x0020
+   01CE                     411 00113$:
+   01CE C5            [11]  412 	push	bc
+   01CF D5            [11]  413 	push	de
+   01D0 21r20r02      [10]  414 	ld	hl, #___str_7
+   01D3 E5            [11]  415 	push	hl
+   01D4 CDr00r00      [17]  416 	call	_printf
+   01D7 F1            [10]  417 	pop	af
+   01D8 F1            [10]  418 	pop	af
+   01D9 C1            [10]  419 	pop	bc
+                     01DA   420 	C$main.c$113$4$164	= .
+                            421 	.globl	C$main.c$113$4$164
+                            422 ;../src/main.c:113: for(cntr2=0; cntr2<16; cntr2++)
+   01DA 03            [ 6]  423 	inc	bc
+   01DB 79            [ 4]  424 	ld	a, c
+   01DC D6 10         [ 7]  425 	sub	a, #0x10
+   01DE 78            [ 4]  426 	ld	a, b
+   01DF 17            [ 4]  427 	rla
+   01E0 3F            [ 4]  428 	ccf
+   01E1 1F            [ 4]  429 	rra
+   01E2 DE 80         [ 7]  430 	sbc	a, #0x80
+   01E4 38 C5         [12]  431 	jr	C,00106$
+                     01E6   432 	C$main.c$115$3$162	= .
+                            433 	.globl	C$main.c$115$3$162
+                            434 ;../src/main.c:115: printf("\n");
+   01E6 21r23r02      [10]  435 	ld	hl, #___str_8
+   01E9 E5            [11]  436 	push	hl
+   01EA CDr00r00      [17]  437 	call	_printf
+   01ED F1            [10]  438 	pop	af
+                     01EE   439 	C$main.c$116$3$162	= .
+                            440 	.globl	C$main.c$116$3$162
+                            441 ;../src/main.c:116: outboundFlush();
+   01EE CDr00r00      [17]  442 	call	_outboundFlush
+                     01F1   443 	C$main.c$108$2$161	= .
+                            444 	.globl	C$main.c$108$2$161
+                            445 ;../src/main.c:108: for( cntr=0; cntr<512; cntr+=16) {
+   01F1 DD 7E FE      [19]  446 	ld	a, -2 (ix)
+   01F4 C6 10         [ 7]  447 	add	a, #0x10
+   01F6 DD 77 FE      [19]  448 	ld	-2 (ix), a
+   01F9 30 03         [12]  449 	jr	NC,00152$
+   01FB DD 34 FF      [23]  450 	inc	-1 (ix)
+   01FE                     451 00152$:
+   01FE DD 7E FF      [19]  452 	ld	a, -1 (ix)
+   0201 EE 80         [ 7]  453 	xor	a, #0x80
+   0203 D6 82         [ 7]  454 	sub	a, #0x82
+   0205 DAr3Er01      [10]  455 	jp	C, 00108$
+                     0208   456 	C$main.c$118$1$160	= .
+                            457 	.globl	C$main.c$118$1$160
+                            458 ;../src/main.c:118: printf("\n");
+   0208 21r23r02      [10]  459 	ld	hl, #___str_8
+   020B E5            [11]  460 	push	hl
+   020C CDr00r00      [17]  461 	call	_printf
+                     020F   462 	C$main.c$119$1$160	= .
+                            463 	.globl	C$main.c$119$1$160
+                            464 ;../src/main.c:119: }
+   020F DD F9         [10]  465 	ld	sp,ix
+   0211 DD E1         [14]  466 	pop	ix
+                     0213   467 	C$main.c$119$1$160	= .
+                            468 	.globl	C$main.c$119$1$160
+                     0213   469 	XG$dumpdata$0$0	= .
+                            470 	.globl	XG$dumpdata$0$0
+   0213 C9            [10]  471 	ret
+                     0214   472 Fmain$__str_5$0$0 == .
+   0214                     473 ___str_5:
+   0214 25 30 34 78 20      474 	.ascii "%04x "
+   0219 00                  475 	.db 0x00
+                     021A   476 Fmain$__str_6$0$0 == .
+   021A                     477 ___str_6:
+   021A 25 30 32 78 20      478 	.ascii "%02x "
+   021F 00                  479 	.db 0x00
+                     0220   480 Fmain$__str_7$0$0 == .
+   0220                     481 ___str_7:
+   0220 25 63               482 	.ascii "%c"
+   0222 00                  483 	.db 0x00
+                     0223   484 Fmain$__str_8$0$0 == .
+   0223                     485 ___str_8:
+   0223 0A                  486 	.db 0x0a
+   0224 00                  487 	.db 0x00
+                     0225   488 	G$main$0$0	= .
+                            489 	.globl	G$main$0$0
+                     0225   490 	C$main.c$122$1$166	= .
+                            491 	.globl	C$main.c$122$1$166
+                            492 ;../src/main.c:122: void main(void)
+                            493 ;	---------------------------------
+                            494 ; Function main
+                            495 ; ---------------------------------
+   0225                     496 _main::
+   0225 DD E5         [15]  497 	push	ix
+   0227 DD 21 00 00   [14]  498 	ld	ix,#0
+   022B DD 39         [15]  499 	add	ix,sp
+   022D 21 F1 FD      [10]  500 	ld	hl, #-527
+   0230 39            [11]  501 	add	hl, sp
+   0231 F9            [ 6]  502 	ld	sp, hl
+                     0232   503 	C$main.c$125$1$166	= .
+                            504 	.globl	C$main.c$125$1$166
+                            505 ;../src/main.c:125: uint32_t x = 0;
+   0232 AF            [ 4]  506 	xor	a, a
+   0233 DD 77 F3      [19]  507 	ld	-13 (ix), a
+   0236 DD 77 F4      [19]  508 	ld	-12 (ix), a
+   0239 DD 77 F5      [19]  509 	ld	-11 (ix), a
+   023C DD 77 F6      [19]  510 	ld	-10 (ix), a
+                     023F   511 	C$main.c$127$1$166	= .
+                            512 	.globl	C$main.c$127$1$166
+                            513 ;../src/main.c:127: struct fat_sys_block * b = (struct fat_sys_block *) CB;
+   023F CDr00r00      [17]  514 	call	_globals
+                     0242   515 	C$main.c$130$1$166	= .
+                            516 	.globl	C$main.c$130$1$166
+                            517 ;../src/main.c:130: init();
+   0242 CDr00r00      [17]  518 	call	_init
+                     0245   519 	C$main.c$151$2$167	= .
+                            520 	.globl	C$main.c$151$2$167
+                            521 ;../src/main.c:151: while(uartAvail() == 0) processEvents();
+   0245                     522 00101$:
+   0245 CDr00r00      [17]  523 	call	_uartAvail
+   0248 7D            [ 4]  524 	ld	a, l
+   0249 B7            [ 4]  525 	or	a, a
+   024A 20 05         [12]  526 	jr	NZ,00103$
+   024C CDr00r00      [17]  527 	call	_processEvents
+   024F 18 F4         [12]  528 	jr	00101$
+   0251                     529 00103$:
+                     0251   530 	C$main.c$152$2$167	= .
+                            531 	.globl	C$main.c$152$2$167
+                            532 ;../src/main.c:152: c = getchar();
+   0251 CDr00r00      [17]  533 	call	_getchar
+                     0254   534 	C$main.c$153$2$167	= .
+                            535 	.globl	C$main.c$153$2$167
+                            536 ;../src/main.c:153: if( c == 'M' ) { fdcMount(FDC_A, FDC_BLANK_2S80,"Empty 2S82"); continue; }	// Mount existing disk
+   0254 DD 75 FF      [19]  537 	ld	-1 (ix), l
+   0257 7D            [ 4]  538 	ld	a, l
+   0258 D6 4D         [ 7]  539 	sub	a, #0x4d
+   025A 20 13         [12]  540 	jr	NZ,00105$
+   025C 21r8Cr08      [10]  541 	ld	hl, #___str_9
+   025F E5            [11]  542 	push	hl
+   0260 21 03 80      [10]  543 	ld	hl, #0x8003
+   0263 E5            [11]  544 	push	hl
+   0264 AF            [ 4]  545 	xor	a, a
+   0265 F5            [11]  546 	push	af
+   0266 33            [ 6]  547 	inc	sp
+   0267 CDr00r00      [17]  548 	call	_fdcMount
+   026A F1            [10]  549 	pop	af
+   026B F1            [10]  550 	pop	af
+   026C 33            [ 6]  551 	inc	sp
+   026D 18 D6         [12]  552 	jr	00101$
+   026F                     553 00105$:
+                     026F   554 	C$main.c$154$2$167	= .
+                            555 	.globl	C$main.c$154$2$167
+                            556 ;../src/main.c:154: if( c == 'm' ) { fdcMount(FDC_A, 0, NULL); continue; }	// Mount existing disk
+   026F DD 7E FF      [19]  557 	ld	a, -1 (ix)
+   0272 D6 6D         [ 7]  558 	sub	a, #0x6d
+   0274 20 12         [12]  559 	jr	NZ,00107$
+   0276 21 00 00      [10]  560 	ld	hl, #0x0000
+   0279 E5            [11]  561 	push	hl
+   027A 2E 00         [ 7]  562 	ld	l, #0x00
+   027C E5            [11]  563 	push	hl
+   027D AF            [ 4]  564 	xor	a, a
+   027E F5            [11]  565 	push	af
+   027F 33            [ 6]  566 	inc	sp
+   0280 CDr00r00      [17]  567 	call	_fdcMount
+   0283 F1            [10]  568 	pop	af
+   0284 F1            [10]  569 	pop	af
+   0285 33            [ 6]  570 	inc	sp
+   0286 18 BD         [12]  571 	jr	00101$
+   0288                     572 00107$:
+                     0288   573 	C$main.c$155$2$167	= .
+                            574 	.globl	C$main.c$155$2$167
+                            575 ;../src/main.c:155: if( c == 'u' ) { fdcUnmount(FDC_A); continue; }
+   0288 DD 7E FF      [19]  576 	ld	a, -1 (ix)
+   028B D6 75         [ 7]  577 	sub	a, #0x75
+   028D 20 09         [12]  578 	jr	NZ,00109$
+   028F AF            [ 4]  579 	xor	a, a
+   0290 F5            [11]  580 	push	af
+   0291 33            [ 6]  581 	inc	sp
+   0292 CDr00r00      [17]  582 	call	_fdcUnmount
+   0295 33            [ 6]  583 	inc	sp
+   0296 18 AD         [12]  584 	jr	00101$
+   0298                     585 00109$:
+                     0298   586 	C$main.c$156$2$167	= .
+                            587 	.globl	C$main.c$156$2$167
+                            588 ;../src/main.c:156: if( c == '?' ) { console(fdcMounted(FDC_A)?"Mounted":"Unmounted"); continue; }
+   0298 DD 7E FF      [19]  589 	ld	a, -1 (ix)
+   029B D6 3F         [ 7]  590 	sub	a, #0x3f
+   029D 20 1A         [12]  591 	jr	NZ,00111$
+   029F AF            [ 4]  592 	xor	a, a
+   02A0 F5            [11]  593 	push	af
+   02A1 33            [ 6]  594 	inc	sp
+   02A2 CDr00r00      [17]  595 	call	_fdcMounted
+   02A5 33            [ 6]  596 	inc	sp
+   02A6 7D            [ 4]  597 	ld	a, l
+   02A7 B7            [ 4]  598 	or	a, a
+   02A8 28 05         [12]  599 	jr	Z,00163$
+   02AA 11r97r08      [10]  600 	ld	de, #___str_10+0
+   02AD 18 03         [12]  601 	jr	00164$
+   02AF                     602 00163$:
+   02AF 11r9Fr08      [10]  603 	ld	de, #___str_11+0
+   02B2                     604 00164$:
+   02B2 D5            [11]  605 	push	de
+   02B3 CDr00r00      [17]  606 	call	_console
+   02B6 F1            [10]  607 	pop	af
+   02B7 18 8C         [12]  608 	jr	00101$
+   02B9                     609 00111$:
+                     02B9   610 	C$main.c$157$2$167	= .
+                            611 	.globl	C$main.c$157$2$167
+                            612 ;../src/main.c:157: if( c == 'c' ) { console(fdcChanged(FDC_A)?"Changed":"Unchanged"); continue; }
+   02B9 DD 7E FF      [19]  613 	ld	a, -1 (ix)
+   02BC D6 63         [ 7]  614 	sub	a, #0x63
+   02BE 20 1B         [12]  615 	jr	NZ,00113$
+   02C0 AF            [ 4]  616 	xor	a, a
+   02C1 F5            [11]  617 	push	af
+   02C2 33            [ 6]  618 	inc	sp
+   02C3 CDr00r00      [17]  619 	call	_fdcChanged
+   02C6 33            [ 6]  620 	inc	sp
+   02C7 7D            [ 4]  621 	ld	a, l
+   02C8 B7            [ 4]  622 	or	a, a
+   02C9 28 05         [12]  623 	jr	Z,00165$
+   02CB 01rA9r08      [10]  624 	ld	bc, #___str_12+0
+   02CE 18 03         [12]  625 	jr	00166$
+   02D0                     626 00165$:
+   02D0 01rB1r08      [10]  627 	ld	bc, #___str_13+0
+   02D3                     628 00166$:
+   02D3 C5            [11]  629 	push	bc
+   02D4 CDr00r00      [17]  630 	call	_console
+   02D7 F1            [10]  631 	pop	af
+   02D8 C3r45r02      [10]  632 	jp	00101$
+   02DB                     633 00113$:
+                     02DB   634 	C$main.c$158$2$167	= .
+                            635 	.globl	C$main.c$158$2$167
+                            636 ;../src/main.c:158: if( c == 'r' ) { cpcReset(); continue; }
+   02DB DD 7E FF      [19]  637 	ld	a, -1 (ix)
+   02DE D6 72         [ 7]  638 	sub	a, #0x72
+   02E0 20 06         [12]  639 	jr	NZ,00115$
+   02E2 CDr00r00      [17]  640 	call	_cpcReset
+   02E5 C3r45r02      [10]  641 	jp	00101$
+   02E8                     642 00115$:
+                     02E8   643 	C$main.c$159$2$167	= .
+                            644 	.globl	C$main.c$159$2$167
+                            645 ;../src/main.c:159: if( c == 'R' ) { __asm__("jp 0"); }
+   02E8 DD 7E FF      [19]  646 	ld	a, -1 (ix)
+   02EB D6 52         [ 7]  647 	sub	a, #0x52
+   02ED CA 00 00      [10]  648 	jp	Z,0
+   02F0 18 03         [12]  649 	jr	00117$
+   02F2 C3 00 00      [10]  650 	jp	0
+   02F5                     651 00117$:
+                     02F5   652 	C$main.c$160$2$167	= .
+                            653 	.globl	C$main.c$160$2$167
+                            654 ;../src/main.c:160: if( c == 'k' ) { keyCapture(); continue; }
+   02F5 DD 7E FF      [19]  655 	ld	a, -1 (ix)
+   02F8 D6 6B         [ 7]  656 	sub	a, #0x6b
+   02FA 20 06         [12]  657 	jr	NZ,00119$
+   02FC CDr00r00      [17]  658 	call	_keyCapture
+   02FF C3r45r02      [10]  659 	jp	00101$
+   0302                     660 00119$:
+                     0302   661 	C$main.c$161$2$167	= .
+                            662 	.globl	C$main.c$161$2$167
+                            663 ;../src/main.c:161: if( c == 'l' ) {
+   0302 DD 7E FF      [19]  664 	ld	a, -1 (ix)
+   0305 D6 6C         [ 7]  665 	sub	a, #0x6c
+   0307 20 0F         [12]  666 	jr	NZ,00121$
+                     0309   667 	C$main.c$162$3$176	= .
+                            668 	.globl	C$main.c$162$3$176
+                            669 ;../src/main.c:162: x=sdcGetLastBlk();
+   0309 CDr00r00      [17]  670 	call	_sdcGetLastBlk
+   030C DD 75 F3      [19]  671 	ld	-13 (ix), l
+   030F DD 74 F4      [19]  672 	ld	-12 (ix), h
+   0312 DD 73 F5      [19]  673 	ld	-11 (ix), e
+   0315 DD 72 F6      [19]  674 	ld	-10 (ix), d
+   0318                     675 00121$:
+                     0318   676 	C$main.c$164$2$167	= .
+                            677 	.globl	C$main.c$164$2$167
+                            678 ;../src/main.c:164: if( c == 'n' ) {
+   0318 DD 7E FF      [19]  679 	ld	a, -1 (ix)
+   031B D6 6E         [ 7]  680 	sub	a, #0x6e
+   031D 20 34         [12]  681 	jr	NZ,00123$
+                     031F   682 	C$main.c$165$3$177	= .
+                            683 	.globl	C$main.c$165$3$177
+                            684 ;../src/main.c:165: x = globals()->fat.section_ptr[FAT_BLKID_DISKDESC];
+   031F CDr00r00      [17]  685 	call	_globals
+   0322 DD 74 F2      [19]  686 	ld	-14 (ix), h
+   0325 DD 75 F1      [19]  687 	ld	-15 (ix), l
+   0328 7D            [ 4]  688 	ld	a, l
+   0329 C6 D7         [ 7]  689 	add	a, #0xd7
+   032B DD 77 F1      [19]  690 	ld	-15 (ix), a
+   032E DD 7E F2      [19]  691 	ld	a, -14 (ix)
+   0331 CE 08         [ 7]  692 	adc	a, #0x08
+   0333 DD 77 F2      [19]  693 	ld	-14 (ix), a
+   0336 DD 6E F1      [19]  694 	ld	l, -15 (ix)
+   0339 DD 66 F2      [19]  695 	ld	h, -14 (ix)
+   033C 11 21 06      [10]  696 	ld	de, #0x0621
+   033F 19            [11]  697 	add	hl, de
+   0340 7E            [ 7]  698 	ld	a, (hl)
+   0341 DD 77 F3      [19]  699 	ld	-13 (ix), a
+   0344 23            [ 6]  700 	inc	hl
+   0345 7E            [ 7]  701 	ld	a, (hl)
+   0346 DD 77 F4      [19]  702 	ld	-12 (ix), a
+   0349 23            [ 6]  703 	inc	hl
+   034A 7E            [ 7]  704 	ld	a, (hl)
+   034B DD 77 F5      [19]  705 	ld	-11 (ix), a
+   034E 23            [ 6]  706 	inc	hl
+   034F 7E            [ 7]  707 	ld	a, (hl)
+   0350 DD 77 F6      [19]  708 	ld	-10 (ix), a
+                     0353   709 	C$main.c$166$2$167	= .
+                            710 	.globl	C$main.c$166$2$167
+                            711 ;../src/main.c:166: DBG("Repositioned over names, go for read");
+   0353                     712 00123$:
+                     0353   713 	C$main.c$168$2$167	= .
+                            714 	.globl	C$main.c$168$2$167
+                            715 ;../src/main.c:168: if( c == '0' ) {
+   0353 DD 7E FF      [19]  716 	ld	a, -1 (ix)
+   0356 D6 30         [ 7]  717 	sub	a, #0x30
+   0358 20 34         [12]  718 	jr	NZ,00125$
+                     035A   719 	C$main.c$169$3$178	= .
+                            720 	.globl	C$main.c$169$3$178
+                            721 ;../src/main.c:169: x = globals()->fat.section_ptr[FAT_BLKID_DISKDATA];
+   035A CDr00r00      [17]  722 	call	_globals
+   035D DD 74 F2      [19]  723 	ld	-14 (ix), h
+   0360 DD 75 F1      [19]  724 	ld	-15 (ix), l
+   0363 7D            [ 4]  725 	ld	a, l
+   0364 C6 D7         [ 7]  726 	add	a, #0xd7
+   0366 DD 77 F1      [19]  727 	ld	-15 (ix), a
+   0369 DD 7E F2      [19]  728 	ld	a, -14 (ix)
+   036C CE 08         [ 7]  729 	adc	a, #0x08
+   036E DD 77 F2      [19]  730 	ld	-14 (ix), a
+   0371 DD 6E F1      [19]  731 	ld	l, -15 (ix)
+   0374 DD 66 F2      [19]  732 	ld	h, -14 (ix)
+   0377 11 25 06      [10]  733 	ld	de, #0x0625
+   037A 19            [11]  734 	add	hl, de
+   037B 7E            [ 7]  735 	ld	a, (hl)
+   037C DD 77 F3      [19]  736 	ld	-13 (ix), a
+   037F 23            [ 6]  737 	inc	hl
+   0380 7E            [ 7]  738 	ld	a, (hl)
+   0381 DD 77 F4      [19]  739 	ld	-12 (ix), a
+   0384 23            [ 6]  740 	inc	hl
+   0385 7E            [ 7]  741 	ld	a, (hl)
+   0386 DD 77 F5      [19]  742 	ld	-11 (ix), a
+   0389 23            [ 6]  743 	inc	hl
+   038A 7E            [ 7]  744 	ld	a, (hl)
+   038B DD 77 F6      [19]  745 	ld	-10 (ix), a
+                     038E   746 	C$main.c$170$2$167	= .
+                            747 	.globl	C$main.c$170$2$167
+                            748 ;../src/main.c:170: DBG("Repositioned over data, go for read");
+   038E                     749 00125$:
+                     038E   750 	C$main.c$172$2$167	= .
+                            751 	.globl	C$main.c$172$2$167
+                            752 ;../src/main.c:172: if( c == '1' ) {
+   038E DD 7E FF      [19]  753 	ld	a, -1 (ix)
+   0391 D6 31         [ 7]  754 	sub	a, #0x31
+   0393 20 63         [12]  755 	jr	NZ,00130$
+                     0395   756 	C$main.c$174$3$179	= .
+                            757 	.globl	C$main.c$174$3$179
+                            758 ;../src/main.c:174: memset( buffer, 0, 512 );
+   0395 21 00 00      [10]  759 	ld	hl, #0x0000
+   0398 39            [11]  760 	add	hl, sp
+   0399 DD 75 F1      [19]  761 	ld	-15 (ix), l
+   039C DD 74 F2      [19]  762 	ld	-14 (ix), h
+   039F 36 00         [10]  763 	ld	(hl), #0x00
+   03A1 5D            [ 4]  764 	ld	e, l
+   03A2 54            [ 4]  765 	ld	d, h
+   03A3 13            [ 6]  766 	inc	de
+   03A4 01 FF 01      [10]  767 	ld	bc, #0x01ff
+   03A7 ED B0         [21]  768 	ldir
+                     03A9   769 	C$main.c$175$3$179	= .
+                            770 	.globl	C$main.c$175$3$179
+                            771 ;../src/main.c:175: if( sdcReadBlock(&globals()->sd_buf, x, buffer) )
+   03A9 DD 4E F1      [19]  772 	ld	c, -15 (ix)
+   03AC DD 46 F2      [19]  773 	ld	b, -14 (ix)
+   03AF C5            [11]  774 	push	bc
+   03B0 CDr00r00      [17]  775 	call	_globals
+   03B3 EB            [ 4]  776 	ex	de,hl
+   03B4 C1            [10]  777 	pop	bc
+   03B5 21 04 08      [10]  778 	ld	hl, #0x0804
+   03B8 19            [11]  779 	add	hl, de
+   03B9 EB            [ 4]  780 	ex	de, hl
+   03BA C5            [11]  781 	push	bc
+   03BB DD 6E F5      [19]  782 	ld	l, -11 (ix)
+   03BE DD 66 F6      [19]  783 	ld	h, -10 (ix)
+   03C1 E5            [11]  784 	push	hl
+   03C2 DD 6E F3      [19]  785 	ld	l, -13 (ix)
+   03C5 DD 66 F4      [19]  786 	ld	h, -12 (ix)
+   03C8 E5            [11]  787 	push	hl
+   03C9 D5            [11]  788 	push	de
+   03CA CDr00r00      [17]  789 	call	_sdcReadBlock
+   03CD F1            [10]  790 	pop	af
+   03CE F1            [10]  791 	pop	af
+   03CF F1            [10]  792 	pop	af
+   03D0 F1            [10]  793 	pop	af
+   03D1 7D            [ 4]  794 	ld	a, l
+   03D2 B7            [ 4]  795 	or	a, a
+   03D3 28 0D         [12]  796 	jr	Z,00127$
+                     03D5   797 	C$main.c$176$3$179	= .
+                            798 	.globl	C$main.c$176$3$179
+                            799 ;../src/main.c:176: dumpdata(buffer); else {
+   03D5 DD 4E F1      [19]  800 	ld	c, -15 (ix)
+   03D8 DD 46 F2      [19]  801 	ld	b, -14 (ix)
+   03DB C5            [11]  802 	push	bc
+   03DC CDr26r01      [17]  803 	call	_dumpdata
+   03DF F1            [10]  804 	pop	af
+   03E0 18 03         [12]  805 	jr	00128$
+   03E2                     806 00127$:
+                     03E2   807 	C$main.c$177$4$180	= .
+                            808 	.globl	C$main.c$177$4$180
+                            809 ;../src/main.c:177: DBG("Error %08lx", globals()->sd_buf.last_response);
+   03E2 CDr00r00      [17]  810 	call	_globals
+   03E5                     811 00128$:
+                     03E5   812 	C$main.c$179$3$179	= .
+                            813 	.globl	C$main.c$179$3$179
+                            814 ;../src/main.c:179: memset( buffer, 0xff, 512 ); continue;
+   03E5 DD 6E F1      [19]  815 	ld	l, -15 (ix)
+   03E8 DD 66 F2      [19]  816 	ld	h, -14 (ix)
+   03EB 36 FF         [10]  817 	ld	(hl), #0xff
+   03ED 5D            [ 4]  818 	ld	e, l
+   03EE 54            [ 4]  819 	ld	d, h
+   03EF 13            [ 6]  820 	inc	de
+   03F0 01 FF 01      [10]  821 	ld	bc, #0x01ff
+   03F3 ED B0         [21]  822 	ldir
+   03F5 C3r45r02      [10]  823 	jp	00101$
+   03F8                     824 00130$:
+                     03F8   825 	C$main.c$181$2$167	= .
+                            826 	.globl	C$main.c$181$2$167
+                            827 ;../src/main.c:181: if( c == '-' ) {
+   03F8 DD 7E FF      [19]  828 	ld	a, -1 (ix)
+   03FB D6 2D         [ 7]  829 	sub	a, #0x2d
+   03FD 20 23         [12]  830 	jr	NZ,00132$
+                     03FF   831 	C$main.c$182$3$181	= .
+                            832 	.globl	C$main.c$182$3$181
+                            833 ;../src/main.c:182: x -= 1;
+   03FF DD 7E F3      [19]  834 	ld	a, -13 (ix)
+   0402 C6 FF         [ 7]  835 	add	a, #0xff
+   0404 DD 77 F3      [19]  836 	ld	-13 (ix), a
+   0407 DD 7E F4      [19]  837 	ld	a, -12 (ix)
+   040A CE FF         [ 7]  838 	adc	a, #0xff
+   040C DD 77 F4      [19]  839 	ld	-12 (ix), a
+   040F DD 7E F5      [19]  840 	ld	a, -11 (ix)
+   0412 CE FF         [ 7]  841 	adc	a, #0xff
+   0414 DD 77 F5      [19]  842 	ld	-11 (ix), a
+   0417 DD 7E F6      [19]  843 	ld	a, -10 (ix)
+   041A CE FF         [ 7]  844 	adc	a, #0xff
+   041C DD 77 F6      [19]  845 	ld	-10 (ix), a
+                     041F   846 	C$main.c$184$3$181	= .
+                            847 	.globl	C$main.c$184$3$181
+                            848 ;../src/main.c:184: continue;
+   041F C3r45r02      [10]  849 	jp	00101$
+   0422                     850 00132$:
+                     0422   851 	C$main.c$186$2$167	= .
+                            852 	.globl	C$main.c$186$2$167
+                            853 ;../src/main.c:186: if( c == '+' ) {
+   0422 DD 7E FF      [19]  854 	ld	a, -1 (ix)
+   0425 D6 2B         [ 7]  855 	sub	a, #0x2b
+   0427 20 18         [12]  856 	jr	NZ,00134$
+                     0429   857 	C$main.c$187$3$182	= .
+                            858 	.globl	C$main.c$187$3$182
+                            859 ;../src/main.c:187: x += 1;
+   0429 DD 34 F3      [23]  860 	inc	-13 (ix)
+   042C C2r45r02      [10]  861 	jp	NZ,00101$
+   042F DD 34 F4      [23]  862 	inc	-12 (ix)
+   0432 C2r45r02      [10]  863 	jp	NZ,00101$
+   0435 DD 34 F5      [23]  864 	inc	-11 (ix)
+   0438 C2r45r02      [10]  865 	jp	NZ,00101$
+   043B DD 34 F6      [23]  866 	inc	-10 (ix)
+                     043E   867 	C$main.c$189$3$182	= .
+                            868 	.globl	C$main.c$189$3$182
+                            869 ;../src/main.c:189: continue;
+   043E C3r45r02      [10]  870 	jp	00101$
+   0441                     871 00134$:
+                     0441   872 	C$main.c$191$2$167	= .
+                            873 	.globl	C$main.c$191$2$167
+                            874 ;../src/main.c:191: if( c == '2' ) {
+   0441 DD 7E FF      [19]  875 	ld	a, -1 (ix)
+   0444 D6 32         [ 7]  876 	sub	a, #0x32
+   0446 20 5E         [12]  877 	jr	NZ,00139$
+                     0448   878 	C$main.c$193$3$183	= .
+                            879 	.globl	C$main.c$193$3$183
+                            880 ;../src/main.c:193: memset( buffer, 0xff, 512 );
+   0448 21 00 00      [10]  881 	ld	hl, #0x0000
+   044B 39            [11]  882 	add	hl, sp
+   044C EB            [ 4]  883 	ex	de, hl
+   044D 6B            [ 4]  884 	ld	l, e
+   044E 62            [ 4]  885 	ld	h, d
+   044F D5            [11]  886 	push	de
+   0450 36 FF         [10]  887 	ld	(hl), #0xff
+   0452 5D            [ 4]  888 	ld	e, l
+   0453 54            [ 4]  889 	ld	d, h
+   0454 13            [ 6]  890 	inc	de
+   0455 01 FF 01      [10]  891 	ld	bc, #0x01ff
+   0458 ED B0         [21]  892 	ldir
+   045A D1            [10]  893 	pop	de
+                     045B   894 	C$main.c$194$3$183	= .
+                            895 	.globl	C$main.c$194$3$183
+                            896 ;../src/main.c:194: sprintf(buffer, "Hello world");
+   045B 21r47r09      [10]  897 	ld	hl, #___str_20+0
+   045E 4B            [ 4]  898 	ld	c, e
+   045F 42            [ 4]  899 	ld	b, d
+   0460 D5            [11]  900 	push	de
+   0461 E5            [11]  901 	push	hl
+   0462 C5            [11]  902 	push	bc
+   0463 CDr00r00      [17]  903 	call	_sprintf
+   0466 F1            [10]  904 	pop	af
+   0467 F1            [10]  905 	pop	af
+   0468 D1            [10]  906 	pop	de
+                     0469   907 	C$main.c$195$3$183	= .
+                            908 	.globl	C$main.c$195$3$183
+                            909 ;../src/main.c:195: sprintf(buffer+(512-11),"end of sec");
+   0469 01r53r09      [10]  910 	ld	bc, #___str_21+0
+   046C 21 F5 01      [10]  911 	ld	hl, #0x01f5
+   046F 19            [11]  912 	add	hl, de
+   0470 D5            [11]  913 	push	de
+   0471 C5            [11]  914 	push	bc
+   0472 E5            [11]  915 	push	hl
+   0473 CDr00r00      [17]  916 	call	_sprintf
+   0476 F1            [10]  917 	pop	af
+   0477 F1            [10]  918 	pop	af
+   0478 CDr00r00      [17]  919 	call	_globals
+   047B 4D            [ 4]  920 	ld	c, l
+   047C 44            [ 4]  921 	ld	b, h
+   047D D1            [10]  922 	pop	de
+   047E 21 04 08      [10]  923 	ld	hl, #0x0804
+   0481 09            [11]  924 	add	hl, bc
+   0482 4D            [ 4]  925 	ld	c, l
+   0483 44            [ 4]  926 	ld	b, h
+   0484 D5            [11]  927 	push	de
+   0485 DD 6E F5      [19]  928 	ld	l, -11 (ix)
+   0488 DD 66 F6      [19]  929 	ld	h, -10 (ix)
+   048B E5            [11]  930 	push	hl
+   048C DD 6E F3      [19]  931 	ld	l, -13 (ix)
+   048F DD 66 F4      [19]  932 	ld	h, -12 (ix)
+   0492 E5            [11]  933 	push	hl
+   0493 C5            [11]  934 	push	bc
+   0494 CDr00r00      [17]  935 	call	_sdcWriteBlock
+   0497 F1            [10]  936 	pop	af
+   0498 F1            [10]  937 	pop	af
+   0499 F1            [10]  938 	pop	af
+   049A F1            [10]  939 	pop	af
+   049B 7D            [ 4]  940 	ld	a, l
+   049C B7            [ 4]  941 	or	a, a
+   049D C2r45r02      [10]  942 	jp	NZ, 00101$
+                     04A0   943 	C$main.c$200$4$185	= .
+                            944 	.globl	C$main.c$200$4$185
+                            945 ;../src/main.c:200: DBG("Error %08lx", globals()->sd_buf.last_response);
+   04A0 CDr00r00      [17]  946 	call	_globals
+                     04A3   947 	C$main.c$202$3$183	= .
+                            948 	.globl	C$main.c$202$3$183
+                            949 ;../src/main.c:202: continue;
+   04A3 C3r45r02      [10]  950 	jp	00101$
+   04A6                     951 00139$:
+                     04A6   952 	C$main.c$204$2$167	= .
+                            953 	.globl	C$main.c$204$2$167
+                            954 ;../src/main.c:204: if( c == 'T' ) {
+   04A6 DD 7E FF      [19]  955 	ld	a, -1 (ix)
+   04A9 D6 54         [ 7]  956 	sub	a, #0x54
+   04AB C2rA7r05      [10]  957 	jp	NZ,00145$
+                     04AE   958 	C$main.c$206$3$186	= .
+                            959 	.globl	C$main.c$206$3$186
+                            960 ;../src/main.c:206: DBG("Finding free : %d", x = fatFindFree(&globals()->fat, FAT_ROM));
+   04AE CDr00r00      [17]  961 	call	_globals
+   04B1 01 D7 08      [10]  962 	ld	bc, #0x08d7
+   04B4 09            [11]  963 	add	hl, bc
+   04B5 AF            [ 4]  964 	xor	a, a
+   04B6 F5            [11]  965 	push	af
+   04B7 33            [ 6]  966 	inc	sp
+   04B8 E5            [11]  967 	push	hl
+   04B9 CDr00r00      [17]  968 	call	_fatFindFree
+   04BC F1            [10]  969 	pop	af
+   04BD 33            [ 6]  970 	inc	sp
+                     04BE   971 	C$main.c$207$3$186	= .
+                            972 	.globl	C$main.c$207$3$186
+                            973 ;../src/main.c:207: DBG("Populate :%d", fatSetContent(&globals()->fat,FAT_ROM, x, "Debug ROM" ));
+   04BE E5            [11]  974 	push	hl
+   04BF CDr00r00      [17]  975 	call	_globals
+   04C2 C1            [10]  976 	pop	bc
+   04C3 11 D7 08      [10]  977 	ld	de, #0x08d7
+   04C6 19            [11]  978 	add	hl, de
+   04C7 C5            [11]  979 	push	bc
+   04C8 11rA9r09      [10]  980 	ld	de, #___str_26
+   04CB D5            [11]  981 	push	de
+   04CC C5            [11]  982 	push	bc
+   04CD AF            [ 4]  983 	xor	a, a
+   04CE F5            [11]  984 	push	af
+   04CF 33            [ 6]  985 	inc	sp
+   04D0 E5            [11]  986 	push	hl
+   04D1 CDr00r00      [17]  987 	call	_fatSetContent
+   04D4 21 07 00      [10]  988 	ld	hl, #7
+   04D7 39            [11]  989 	add	hl, sp
+   04D8 F9            [ 6]  990 	ld	sp, hl
+   04D9 CDr00r00      [17]  991 	call	_globals
+   04DC C1            [10]  992 	pop	bc
+   04DD 11 D7 08      [10]  993 	ld	de, #0x08d7
+   04E0 19            [11]  994 	add	hl, de
+   04E1 3E 01         [ 7]  995 	ld	a, #0x01
+   04E3 F5            [11]  996 	push	af
+   04E4 33            [ 6]  997 	inc	sp
+   04E5 C5            [11]  998 	push	bc
+   04E6 AF            [ 4]  999 	xor	a, a
+   04E7 F5            [11] 1000 	push	af
+   04E8 33            [ 6] 1001 	inc	sp
+   04E9 E5            [11] 1002 	push	hl
+   04EA CDr00r00      [17] 1003 	call	_fatOpen
+   04ED 21 06 00      [10] 1004 	ld	hl, #6
+   04F0 39            [11] 1005 	add	hl, sp
+   04F1 F9            [ 6] 1006 	ld	sp, hl
+                     04F2  1007 	C$main.c$209$3$186	= .
+                           1008 	.globl	C$main.c$209$3$186
+                           1009 ;../src/main.c:209: DBG("Ptr:%08lx, cnt: %u", globals()->fat.open_file_ptr, globals()->fat.open_file_cntr);
+   04F2 CDr00r00      [17] 1010 	call	_globals
+   04F5 CDr00r00      [17] 1011 	call	_globals
+                     04F8  1012 	C$main.c$212$5$188	= .
+                           1013 	.globl	C$main.c$212$5$188
+                           1014 ;../src/main.c:212: for( x=0; x<32; x++)
+   04F8 DD 36 F9 00   [19] 1015 	ld	-7 (ix), #0x00
+   04FC DD 36 FA 00   [19] 1016 	ld	-6 (ix), #0x00
+   0500 AF            [ 4] 1017 	xor	a, a
+   0501 DD 77 FB      [19] 1018 	ld	-5 (ix), a
+   0504 DD 77 FC      [19] 1019 	ld	-4 (ix), a
+   0507 DD 77 FD      [19] 1020 	ld	-3 (ix), a
+   050A DD 77 FE      [19] 1021 	ld	-2 (ix), a
+   050D                    1022 00159$:
+                     050D  1023 	C$main.c$214$5$188	= .
+                           1024 	.globl	C$main.c$214$5$188
+                           1025 ;../src/main.c:214: if( y < sizeof(rom_data) ) memcpy(globals()->fat.buffer, &rom_data[y], 512);
+   050D DD 7E F9      [19] 1026 	ld	a, -7 (ix)
+   0510 D6 3B         [ 7] 1027 	sub	a, #0x3b
+   0512 DD 7E FA      [19] 1028 	ld	a, -6 (ix)
+   0515 DE 01         [ 7] 1029 	sbc	a, #0x01
+   0517 30 1C         [12] 1030 	jr	NC,00141$
+   0519 CDr00r00      [17] 1031 	call	_globals
+   051C 01 D7 08      [10] 1032 	ld	bc, #0x08d7
+   051F 09            [11] 1033 	add	hl, bc
+   0520 23            [ 6] 1034 	inc	hl
+   0521 EB            [ 4] 1035 	ex	de,hl
+   0522 3Er00         [ 7] 1036 	ld	a, #<(_rom_data)
+   0524 DD 86 F9      [19] 1037 	add	a, -7 (ix)
+   0527 6F            [ 4] 1038 	ld	l, a
+   0528 3Es00         [ 7] 1039 	ld	a, #>(_rom_data)
+   052A DD 8E FA      [19] 1040 	adc	a, -6 (ix)
+   052D 67            [ 4] 1041 	ld	h, a
+   052E 01 00 02      [10] 1042 	ld	bc, #0x0200
+   0531 ED B0         [21] 1043 	ldir
+   0533 18 12         [12] 1044 	jr	00142$
+   0535                    1045 00141$:
+                     0535  1046 	C$main.c$215$5$188	= .
+                           1047 	.globl	C$main.c$215$5$188
+                           1048 ;../src/main.c:215: else memset( globals()->fat.buffer, 255, 512 );
+   0535 CDr00r00      [17] 1049 	call	_globals
+   0538 01 D7 08      [10] 1050 	ld	bc, #0x08d7
+   053B 09            [11] 1051 	add	hl, bc
+   053C 23            [ 6] 1052 	inc	hl
+   053D 36 FF         [10] 1053 	ld	(hl), #0xff
+   053F 5D            [ 4] 1054 	ld	e, l
+   0540 54            [ 4] 1055 	ld	d, h
+   0541 13            [ 6] 1056 	inc	de
+   0542 01 FF 01      [10] 1057 	ld	bc, #0x01ff
+   0545 ED B0         [21] 1058 	ldir
+   0547                    1059 00142$:
+                     0547  1060 	C$main.c$216$5$188	= .
+                           1061 	.globl	C$main.c$216$5$188
+                           1062 ;../src/main.c:216: y += 512;
+   0547 DD 7E F9      [19] 1063 	ld	a, -7 (ix)
+   054A DD 77 F9      [19] 1064 	ld	-7 (ix), a
+   054D DD 7E FA      [19] 1065 	ld	a, -6 (ix)
+   0550 C6 02         [ 7] 1066 	add	a, #0x02
+   0552 DD 77 FA      [19] 1067 	ld	-6 (ix), a
+                     0555  1068 	C$main.c$217$5$188	= .
+                           1069 	.globl	C$main.c$217$5$188
+                           1070 ;../src/main.c:217: fatWriteBlock( &globals()->fat, (char*) globals()->fat.buffer);
+   0555 CDr00r00      [17] 1071 	call	_globals
+   0558 01 D7 08      [10] 1072 	ld	bc, #0x08d7
+   055B 09            [11] 1073 	add	hl, bc
+   055C 23            [ 6] 1074 	inc	hl
+   055D E5            [11] 1075 	push	hl
+   055E CDr00r00      [17] 1076 	call	_globals
+   0561 C1            [10] 1077 	pop	bc
+   0562 11 D7 08      [10] 1078 	ld	de, #0x08d7
+   0565 19            [11] 1079 	add	hl, de
+   0566 C5            [11] 1080 	push	bc
+   0567 E5            [11] 1081 	push	hl
+   0568 CDr00r00      [17] 1082 	call	_fatWriteBlock
+   056B F1            [10] 1083 	pop	af
+   056C F1            [10] 1084 	pop	af
+                     056D  1085 	C$main.c$212$4$187	= .
+                           1086 	.globl	C$main.c$212$4$187
+                           1087 ;../src/main.c:212: for( x=0; x<32; x++)
+   056D DD 34 FB      [23] 1088 	inc	-5 (ix)
+   0570 20 0D         [12] 1089 	jr	NZ,00321$
+   0572 DD 34 FC      [23] 1090 	inc	-4 (ix)
+   0575 20 08         [12] 1091 	jr	NZ,00321$
+   0577 DD 34 FD      [23] 1092 	inc	-3 (ix)
+   057A 20 03         [12] 1093 	jr	NZ,00321$
+   057C DD 34 FE      [23] 1094 	inc	-2 (ix)
+   057F                    1095 00321$:
+   057F DD 7E FB      [19] 1096 	ld	a, -5 (ix)
+   0582 D6 20         [ 7] 1097 	sub	a, #0x20
+   0584 DD 7E FC      [19] 1098 	ld	a, -4 (ix)
+   0587 DE 00         [ 7] 1099 	sbc	a, #0x00
+   0589 DD 7E FD      [19] 1100 	ld	a, -3 (ix)
+   058C DE 00         [ 7] 1101 	sbc	a, #0x00
+   058E DD 7E FE      [19] 1102 	ld	a, -2 (ix)
+   0591 DE 00         [ 7] 1103 	sbc	a, #0x00
+   0593 DAr0Dr05      [10] 1104 	jp	C, 00159$
+                     0596  1105 	C$main.c$220$1$166	= .
+                           1106 	.globl	C$main.c$220$1$166
+                           1107 ;../src/main.c:220: continue;
+   0596 21 02 02      [10] 1108 	ld	hl, #514
+   0599 39            [11] 1109 	add	hl, sp
+   059A EB            [ 4] 1110 	ex	de, hl
+   059B 21 0A 02      [10] 1111 	ld	hl, #522
+   059E 39            [11] 1112 	add	hl, sp
+   059F 01 04 00      [10] 1113 	ld	bc, #4
+   05A2 ED B0         [21] 1114 	ldir
+   05A4 C3r45r02      [10] 1115 	jp	00101$
+   05A7                    1116 00145$:
+                     05A7  1117 	C$main.c$222$2$167	= .
+                           1118 	.globl	C$main.c$222$2$167
+                           1119 ;../src/main.c:222: if( c == 't' ) {
+   05A7 DD 7E FF      [19] 1120 	ld	a, -1 (ix)
+   05AA D6 74         [ 7] 1121 	sub	a, #0x74
+   05AC C2r72r06      [10] 1122 	jp	NZ,00147$
+                     05AF  1123 	C$main.c$224$3$189	= .
+                           1124 	.globl	C$main.c$224$3$189
+                           1125 ;../src/main.c:224: DBG("Get descr :%d", fatGetDescription(&globals()->fat,FAT_ROM, 0, buffer ));
+   05AF 21 00 00      [10] 1126 	ld	hl, #0x0000
+   05B2 39            [11] 1127 	add	hl, sp
+   05B3 DD 75 F1      [19] 1128 	ld	-15 (ix), l
+   05B6 DD 74 F2      [19] 1129 	ld	-14 (ix), h
+   05B9 CDr00r00      [17] 1130 	call	_globals
+   05BC DD 74 F8      [19] 1131 	ld	-8 (ix), h
+   05BF DD 75 F7      [19] 1132 	ld	-9 (ix), l
+   05C2 7D            [ 4] 1133 	ld	a, l
+   05C3 C6 D7         [ 7] 1134 	add	a, #0xd7
+   05C5 DD 77 F7      [19] 1135 	ld	-9 (ix), a
+   05C8 DD 7E F8      [19] 1136 	ld	a, -8 (ix)
+   05CB CE 08         [ 7] 1137 	adc	a, #0x08
+   05CD DD 77 F8      [19] 1138 	ld	-8 (ix), a
+   05D0 DD 6E F1      [19] 1139 	ld	l, -15 (ix)
+   05D3 DD 66 F2      [19] 1140 	ld	h, -14 (ix)
+   05D6 E5            [11] 1141 	push	hl
+   05D7 21 00 00      [10] 1142 	ld	hl, #0x0000
+   05DA E5            [11] 1143 	push	hl
+   05DB AF            [ 4] 1144 	xor	a, a
+   05DC F5            [11] 1145 	push	af
+   05DD 33            [ 6] 1146 	inc	sp
+   05DE DD 6E F7      [19] 1147 	ld	l, -9 (ix)
+   05E1 DD 66 F8      [19] 1148 	ld	h, -8 (ix)
+   05E4 E5            [11] 1149 	push	hl
+   05E5 CDr00r00      [17] 1150 	call	_fatGetDescription
+   05E8 21 07 00      [10] 1151 	ld	hl, #7
+   05EB 39            [11] 1152 	add	hl, sp
+   05EC F9            [ 6] 1153 	ld	sp, hl
+                     05ED  1154 	C$main.c$226$3$189	= .
+                           1155 	.globl	C$main.c$226$3$189
+                           1156 ;../src/main.c:226: CONFIG.roms[33] = (uint16_t) -1;
+   05ED CDr00r00      [17] 1157 	call	_globals
+   05F0 DD 74 F8      [19] 1158 	ld	-8 (ix), h
+   05F3 DD 75 F7      [19] 1159 	ld	-9 (ix), l
+   05F6 7D            [ 4] 1160 	ld	a, l
+   05F7 C6 0E         [ 7] 1161 	add	a, #0x0e
+   05F9 DD 77 F7      [19] 1162 	ld	-9 (ix), a
+   05FC DD 7E F8      [19] 1163 	ld	a, -8 (ix)
+   05FF CE 0F         [ 7] 1164 	adc	a, #0x0f
+   0601 DD 77 F8      [19] 1165 	ld	-8 (ix), a
+   0604 DD 7E F7      [19] 1166 	ld	a, -9 (ix)
+   0607 C6 47         [ 7] 1167 	add	a, #0x47
+   0609 DD 77 F7      [19] 1168 	ld	-9 (ix), a
+   060C 30 03         [12] 1169 	jr	NC,00324$
+   060E DD 34 F8      [23] 1170 	inc	-8 (ix)
+   0611                    1171 00324$:
+   0611 DD 6E F7      [19] 1172 	ld	l, -9 (ix)
+   0614 DD 66 F8      [19] 1173 	ld	h, -8 (ix)
+   0617 36 FF         [10] 1174 	ld	(hl), #0xff
+   0619 23            [ 6] 1175 	inc	hl
+   061A 36 FF         [10] 1176 	ld	(hl), #0xff
+                     061C  1177 	C$main.c$227$3$189	= .
+                           1178 	.globl	C$main.c$227$3$189
+                           1179 ;../src/main.c:227: CONFIG.roms[63] = ROMMGR_SDC | 0;
+   061C CDr00r00      [17] 1180 	call	_globals
+   061F DD 74 F8      [19] 1181 	ld	-8 (ix), h
+   0622 DD 75 F7      [19] 1182 	ld	-9 (ix), l
+   0625 7D            [ 4] 1183 	ld	a, l
+   0626 C6 0E         [ 7] 1184 	add	a, #0x0e
+   0628 DD 77 F7      [19] 1185 	ld	-9 (ix), a
+   062B DD 7E F8      [19] 1186 	ld	a, -8 (ix)
+   062E CE 0F         [ 7] 1187 	adc	a, #0x0f
+   0630 DD 77 F8      [19] 1188 	ld	-8 (ix), a
+   0633 DD 7E F7      [19] 1189 	ld	a, -9 (ix)
+   0636 C6 83         [ 7] 1190 	add	a, #0x83
+   0638 DD 77 F7      [19] 1191 	ld	-9 (ix), a
+   063B 30 03         [12] 1192 	jr	NC,00325$
+   063D DD 34 F8      [23] 1193 	inc	-8 (ix)
+   0640                    1194 00325$:
+   0640 DD 6E F7      [19] 1195 	ld	l, -9 (ix)
+   0643 DD 66 F8      [19] 1196 	ld	h, -8 (ix)
+   0646 36 00         [10] 1197 	ld	(hl), #0x00
+   0648 23            [ 6] 1198 	inc	hl
+   0649 36 80         [10] 1199 	ld	(hl), #0x80
+                     064B  1200 	C$main.c$228$3$189	= .
+                           1201 	.globl	C$main.c$228$3$189
+                           1202 ;../src/main.c:228: CONFIG_UPDATE;
+   064B CDr00r00      [17] 1203 	call	_globals
+   064E DD 74 F8      [19] 1204 	ld	-8 (ix), h
+   0651 DD 75 F7      [19] 1205 	ld	-9 (ix), l
+   0654 7D            [ 4] 1206 	ld	a, l
+   0655 C6 0E         [ 7] 1207 	add	a, #0x0e
+   0657 DD 77 F7      [19] 1208 	ld	-9 (ix), a
+   065A DD 7E F8      [19] 1209 	ld	a, -8 (ix)
+   065D CE 0F         [ 7] 1210 	adc	a, #0x0f
+   065F DD 77 F8      [19] 1211 	ld	-8 (ix), a
+   0662 21 87 00      [10] 1212 	ld	hl, #0x0087
+   0665 E5            [11] 1213 	push	hl
+   0666 DD 6E F7      [19] 1214 	ld	l, -9 (ix)
+   0669 DD 66 F8      [19] 1215 	ld	h, -8 (ix)
+   066C E5            [11] 1216 	push	hl
+   066D CDr00r00      [17] 1217 	call	_fatPutConfig
+   0670 F1            [10] 1218 	pop	af
+   0671 F1            [10] 1219 	pop	af
+   0672                    1220 00147$:
+                     0672  1221 	C$main.c$231$2$167	= .
+                           1222 	.globl	C$main.c$231$2$167
+                           1223 ;../src/main.c:231: if( c == 'X' ) {
+   0672 DD 7E FF      [19] 1224 	ld	a, -1 (ix)
+   0675 D6 58         [ 7] 1225 	sub	a, #0x58
+   0677 20 36         [12] 1226 	jr	NZ,00149$
+                     0679  1227 	C$main.c$232$3$190	= .
+                           1228 	.globl	C$main.c$232$3$190
+                           1229 ;../src/main.c:232: configNew( &globals()->config );
+   0679 CDr00r00      [17] 1230 	call	_globals
+   067C 01 0E 0F      [10] 1231 	ld	bc, #0x0f0e
+   067F 09            [11] 1232 	add	hl, bc
+   0680 E5            [11] 1233 	push	hl
+   0681 CDr00r00      [17] 1234 	call	_configNew
+   0684 F1            [10] 1235 	pop	af
+                     0685  1236 	C$main.c$233$3$190	= .
+                           1237 	.globl	C$main.c$233$3$190
+                           1238 ;../src/main.c:233: CONFIG_UPDATE;
+   0685 CDr00r00      [17] 1239 	call	_globals
+   0688 DD 74 F8      [19] 1240 	ld	-8 (ix), h
+   068B DD 75 F7      [19] 1241 	ld	-9 (ix), l
+   068E 7D            [ 4] 1242 	ld	a, l
+   068F C6 0E         [ 7] 1243 	add	a, #0x0e
+   0691 DD 77 F7      [19] 1244 	ld	-9 (ix), a
+   0694 DD 7E F8      [19] 1245 	ld	a, -8 (ix)
+   0697 CE 0F         [ 7] 1246 	adc	a, #0x0f
+   0699 DD 77 F8      [19] 1247 	ld	-8 (ix), a
+   069C 21 87 00      [10] 1248 	ld	hl, #0x0087
+   069F E5            [11] 1249 	push	hl
+   06A0 DD 6E F7      [19] 1250 	ld	l, -9 (ix)
+   06A3 DD 66 F8      [19] 1251 	ld	h, -8 (ix)
+   06A6 E5            [11] 1252 	push	hl
+   06A7 CDr00r00      [17] 1253 	call	_fatPutConfig
+   06AA F1            [10] 1254 	pop	af
+   06AB F1            [10] 1255 	pop	af
+                     06AC  1256 	C$main.c$235$3$190	= .
+                           1257 	.globl	C$main.c$235$3$190
+                           1258 ;../src/main.c:235: continue;
+   06AC C3r45r02      [10] 1259 	jp	00101$
+   06AF                    1260 00149$:
+                     06AF  1261 	C$main.c$238$2$167	= .
+                           1262 	.globl	C$main.c$238$2$167
+                           1263 ;../src/main.c:238: if( c == 'x' ) {
+   06AF DD 7E FF      [19] 1264 	ld	a, -1 (ix)
+   06B2 D6 78         [ 7] 1265 	sub	a, #0x78
+   06B4 C2r36r08      [10] 1266 	jp	NZ,00151$
+                     06B7  1267 	C$main.c$239$3$191	= .
+                           1268 	.globl	C$main.c$239$3$191
+                           1269 ;../src/main.c:239: configNew( &globals()->config );
+   06B7 CDr00r00      [17] 1270 	call	_globals
+   06BA 01 0E 0F      [10] 1271 	ld	bc, #0x0f0e
+   06BD 09            [11] 1272 	add	hl, bc
+   06BE E5            [11] 1273 	push	hl
+   06BF CDr00r00      [17] 1274 	call	_configNew
+   06C2 F1            [10] 1275 	pop	af
+                     06C3  1276 	C$main.c$240$3$191	= .
+                           1277 	.globl	C$main.c$240$3$191
+                           1278 ;../src/main.c:240: CONFIG.roms[ROM_LOWER] = ROMMGR_ASMI | ROM_6128;
+   06C3 CDr00r00      [17] 1279 	call	_globals
+   06C6 DD 74 F8      [19] 1280 	ld	-8 (ix), h
+   06C9 DD 75 F7      [19] 1281 	ld	-9 (ix), l
+   06CC 7D            [ 4] 1282 	ld	a, l
+   06CD C6 0E         [ 7] 1283 	add	a, #0x0e
+   06CF DD 77 F7      [19] 1284 	ld	-9 (ix), a
+   06D2 DD 7E F8      [19] 1285 	ld	a, -8 (ix)
+   06D5 CE 0F         [ 7] 1286 	adc	a, #0x0f
+   06D7 DD 77 F8      [19] 1287 	ld	-8 (ix), a
+   06DA DD 7E F7      [19] 1288 	ld	a, -9 (ix)
+   06DD C6 85         [ 7] 1289 	add	a, #0x85
+   06DF DD 77 F7      [19] 1290 	ld	-9 (ix), a
+   06E2 30 03         [12] 1291 	jr	NC,00330$
+   06E4 DD 34 F8      [23] 1292 	inc	-8 (ix)
+   06E7                    1293 00330$:
+   06E7 DD 6E F7      [19] 1294 	ld	l, -9 (ix)
+   06EA DD 66 F8      [19] 1295 	ld	h, -8 (ix)
+   06ED 36 01         [10] 1296 	ld	(hl), #0x01
+   06EF 23            [ 6] 1297 	inc	hl
+   06F0 36 00         [10] 1298 	ld	(hl), #0x00
+                     06F2  1299 	C$main.c$241$3$191	= .
+                           1300 	.globl	C$main.c$241$3$191
+                           1301 ;../src/main.c:241: CONFIG.roms[0] = ROMMGR_ASMI | ROM_BASIC11;
+   06F2 CDr00r00      [17] 1302 	call	_globals
+   06F5 DD 74 F8      [19] 1303 	ld	-8 (ix), h
+   06F8 DD 75 F7      [19] 1304 	ld	-9 (ix), l
+   06FB 7D            [ 4] 1305 	ld	a, l
+   06FC C6 0E         [ 7] 1306 	add	a, #0x0e
+   06FE DD 77 F7      [19] 1307 	ld	-9 (ix), a
+   0701 DD 7E F8      [19] 1308 	ld	a, -8 (ix)
+   0704 CE 0F         [ 7] 1309 	adc	a, #0x0f
+   0706 DD 77 F8      [19] 1310 	ld	-8 (ix), a
+   0709 DD 7E F7      [19] 1311 	ld	a, -9 (ix)
+   070C C6 05         [ 7] 1312 	add	a, #0x05
+   070E DD 77 F7      [19] 1313 	ld	-9 (ix), a
+   0711 30 03         [12] 1314 	jr	NC,00331$
+   0713 DD 34 F8      [23] 1315 	inc	-8 (ix)
+   0716                    1316 00331$:
+   0716 DD 6E F7      [19] 1317 	ld	l, -9 (ix)
+   0719 DD 66 F8      [19] 1318 	ld	h, -8 (ix)
+   071C 36 03         [10] 1319 	ld	(hl), #0x03
+   071E 23            [ 6] 1320 	inc	hl
+   071F 36 00         [10] 1321 	ld	(hl), #0x00
+                     0721  1322 	C$main.c$242$3$191	= .
+                           1323 	.globl	C$main.c$242$3$191
+                           1324 ;../src/main.c:242: CONFIG.roms[7] = ROMMGR_ASMI | ROM_AMSDOS;
+   0721 CDr00r00      [17] 1325 	call	_globals
+   0724 DD 74 F8      [19] 1326 	ld	-8 (ix), h
+   0727 DD 75 F7      [19] 1327 	ld	-9 (ix), l
+   072A 7D            [ 4] 1328 	ld	a, l
+   072B C6 0E         [ 7] 1329 	add	a, #0x0e
+   072D DD 77 F7      [19] 1330 	ld	-9 (ix), a
+   0730 DD 7E F8      [19] 1331 	ld	a, -8 (ix)
+   0733 CE 0F         [ 7] 1332 	adc	a, #0x0f
+   0735 DD 77 F8      [19] 1333 	ld	-8 (ix), a
+   0738 DD 7E F7      [19] 1334 	ld	a, -9 (ix)
+   073B C6 13         [ 7] 1335 	add	a, #0x13
+   073D DD 77 F7      [19] 1336 	ld	-9 (ix), a
+   0740 30 03         [12] 1337 	jr	NC,00332$
+   0742 DD 34 F8      [23] 1338 	inc	-8 (ix)
+   0745                    1339 00332$:
+   0745 DD 6E F7      [19] 1340 	ld	l, -9 (ix)
+   0748 DD 66 F8      [19] 1341 	ld	h, -8 (ix)
+   074B 36 04         [10] 1342 	ld	(hl), #0x04
+   074D 23            [ 6] 1343 	inc	hl
+   074E 36 00         [10] 1344 	ld	(hl), #0x00
+                     0750  1345 	C$main.c$243$3$191	= .
+                           1346 	.globl	C$main.c$243$3$191
+                           1347 ;../src/main.c:243: CONFIG.roms[6] = ROMMGR_ASMI | ROM_MAXAM;
+   0750 CDr00r00      [17] 1348 	call	_globals
+   0753 DD 74 F8      [19] 1349 	ld	-8 (ix), h
+   0756 DD 75 F7      [19] 1350 	ld	-9 (ix), l
+   0759 7D            [ 4] 1351 	ld	a, l
+   075A C6 0E         [ 7] 1352 	add	a, #0x0e
+   075C DD 77 F7      [19] 1353 	ld	-9 (ix), a
+   075F DD 7E F8      [19] 1354 	ld	a, -8 (ix)
+   0762 CE 0F         [ 7] 1355 	adc	a, #0x0f
+   0764 DD 77 F8      [19] 1356 	ld	-8 (ix), a
+   0767 DD 7E F7      [19] 1357 	ld	a, -9 (ix)
+   076A C6 11         [ 7] 1358 	add	a, #0x11
+   076C DD 77 F7      [19] 1359 	ld	-9 (ix), a
+   076F 30 03         [12] 1360 	jr	NC,00333$
+   0771 DD 34 F8      [23] 1361 	inc	-8 (ix)
+   0774                    1362 00333$:
+   0774 DD 6E F7      [19] 1363 	ld	l, -9 (ix)
+   0777 DD 66 F8      [19] 1364 	ld	h, -8 (ix)
+   077A 36 05         [10] 1365 	ld	(hl), #0x05
+   077C 23            [ 6] 1366 	inc	hl
+   077D 36 00         [10] 1367 	ld	(hl), #0x00
+                     077F  1368 	C$main.c$244$3$191	= .
+                           1369 	.globl	C$main.c$244$3$191
+                           1370 ;../src/main.c:244: CONFIG.roms[5] = ROMMGR_ASMI | ROM_PROTEXT;
+   077F CDr00r00      [17] 1371 	call	_globals
+   0782 DD 74 F8      [19] 1372 	ld	-8 (ix), h
+   0785 DD 75 F7      [19] 1373 	ld	-9 (ix), l
+   0788 7D            [ 4] 1374 	ld	a, l
+   0789 C6 0E         [ 7] 1375 	add	a, #0x0e
+   078B DD 77 F7      [19] 1376 	ld	-9 (ix), a
+   078E DD 7E F8      [19] 1377 	ld	a, -8 (ix)
+   0791 CE 0F         [ 7] 1378 	adc	a, #0x0f
+   0793 DD 77 F8      [19] 1379 	ld	-8 (ix), a
+   0796 DD 7E F7      [19] 1380 	ld	a, -9 (ix)
+   0799 C6 0F         [ 7] 1381 	add	a, #0x0f
+   079B DD 77 F7      [19] 1382 	ld	-9 (ix), a
+   079E 30 03         [12] 1383 	jr	NC,00334$
+   07A0 DD 34 F8      [23] 1384 	inc	-8 (ix)
+   07A3                    1385 00334$:
+   07A3 DD 6E F7      [19] 1386 	ld	l, -9 (ix)
+   07A6 DD 66 F8      [19] 1387 	ld	h, -8 (ix)
+   07A9 36 0E         [10] 1388 	ld	(hl), #0x0e
+   07AB 23            [ 6] 1389 	inc	hl
+   07AC 36 00         [10] 1390 	ld	(hl), #0x00
+                     07AE  1391 	C$main.c$245$3$191	= .
+                           1392 	.globl	C$main.c$245$3$191
+                           1393 ;../src/main.c:245: CONFIG.roms[4] = ROMMGR_ASMI | ROM_RODOS;
+   07AE CDr00r00      [17] 1394 	call	_globals
+   07B1 DD 74 F8      [19] 1395 	ld	-8 (ix), h
+   07B4 DD 75 F7      [19] 1396 	ld	-9 (ix), l
+   07B7 7D            [ 4] 1397 	ld	a, l
+   07B8 C6 0E         [ 7] 1398 	add	a, #0x0e
+   07BA DD 77 F7      [19] 1399 	ld	-9 (ix), a
+   07BD DD 7E F8      [19] 1400 	ld	a, -8 (ix)
+   07C0 CE 0F         [ 7] 1401 	adc	a, #0x0f
+   07C2 DD 77 F8      [19] 1402 	ld	-8 (ix), a
+   07C5 DD 7E F7      [19] 1403 	ld	a, -9 (ix)
+   07C8 C6 0D         [ 7] 1404 	add	a, #0x0d
+   07CA DD 77 F7      [19] 1405 	ld	-9 (ix), a
+   07CD 30 03         [12] 1406 	jr	NC,00335$
+   07CF DD 34 F8      [23] 1407 	inc	-8 (ix)
+   07D2                    1408 00335$:
+   07D2 DD 6E F7      [19] 1409 	ld	l, -9 (ix)
+   07D5 DD 66 F8      [19] 1410 	ld	h, -8 (ix)
+   07D8 36 0F         [10] 1411 	ld	(hl), #0x0f
+   07DA 23            [ 6] 1412 	inc	hl
+   07DB 36 00         [10] 1413 	ld	(hl), #0x00
+                     07DD  1414 	C$main.c$246$3$191	= .
+                           1415 	.globl	C$main.c$246$3$191
+                           1416 ;../src/main.c:246: CONFIG.roms[3] = ROMMGR_ASMI | ROM_HARVEY;
+   07DD CDr00r00      [17] 1417 	call	_globals
+   07E0 DD 74 F8      [19] 1418 	ld	-8 (ix), h
+   07E3 DD 75 F7      [19] 1419 	ld	-9 (ix), l
+   07E6 7D            [ 4] 1420 	ld	a, l
+   07E7 C6 0E         [ 7] 1421 	add	a, #0x0e
+   07E9 DD 77 F7      [19] 1422 	ld	-9 (ix), a
+   07EC DD 7E F8      [19] 1423 	ld	a, -8 (ix)
+   07EF CE 0F         [ 7] 1424 	adc	a, #0x0f
+   07F1 DD 77 F8      [19] 1425 	ld	-8 (ix), a
+   07F4 DD 7E F7      [19] 1426 	ld	a, -9 (ix)
+   07F7 C6 0B         [ 7] 1427 	add	a, #0x0b
+   07F9 DD 77 F7      [19] 1428 	ld	-9 (ix), a
+   07FC 30 03         [12] 1429 	jr	NC,00336$
+   07FE DD 34 F8      [23] 1430 	inc	-8 (ix)
+   0801                    1431 00336$:
+   0801 DD 6E F7      [19] 1432 	ld	l, -9 (ix)
+   0804 DD 66 F8      [19] 1433 	ld	h, -8 (ix)
+   0807 36 0B         [10] 1434 	ld	(hl), #0x0b
+   0809 23            [ 6] 1435 	inc	hl
+   080A 36 00         [10] 1436 	ld	(hl), #0x00
+                     080C  1437 	C$main.c$247$3$191	= .
+                           1438 	.globl	C$main.c$247$3$191
+                           1439 ;../src/main.c:247: CONFIG_UPDATE;
+   080C CDr00r00      [17] 1440 	call	_globals
+   080F DD 74 F8      [19] 1441 	ld	-8 (ix), h
+   0812 DD 75 F7      [19] 1442 	ld	-9 (ix), l
+   0815 7D            [ 4] 1443 	ld	a, l
+   0816 C6 0E         [ 7] 1444 	add	a, #0x0e
+   0818 DD 77 F7      [19] 1445 	ld	-9 (ix), a
+   081B DD 7E F8      [19] 1446 	ld	a, -8 (ix)
+   081E CE 0F         [ 7] 1447 	adc	a, #0x0f
+   0820 DD 77 F8      [19] 1448 	ld	-8 (ix), a
+   0823 21 87 00      [10] 1449 	ld	hl, #0x0087
+   0826 E5            [11] 1450 	push	hl
+   0827 DD 6E F7      [19] 1451 	ld	l, -9 (ix)
+   082A DD 66 F8      [19] 1452 	ld	h, -8 (ix)
+   082D E5            [11] 1453 	push	hl
+   082E CDr00r00      [17] 1454 	call	_fatPutConfig
+   0831 F1            [10] 1455 	pop	af
+   0832 F1            [10] 1456 	pop	af
+                     0833  1457 	C$main.c$249$3$191	= .
+                           1458 	.globl	C$main.c$249$3$191
+                           1459 ;../src/main.c:249: continue;
+   0833 C3r45r02      [10] 1460 	jp	00101$
+   0836                    1461 00151$:
+                     0836  1462 	C$main.c$252$2$167	= .
+                           1463 	.globl	C$main.c$252$2$167
+                           1464 ;../src/main.c:252: if( c == 'E' ) { fatReformat(&globals()->fat, 0xdeadbeef); continue; }
+   0836 DD 7E FF      [19] 1465 	ld	a, -1 (ix)
+   0839 D6 45         [ 7] 1466 	sub	a, #0x45
+   083B 20 1C         [12] 1467 	jr	NZ,00153$
+   083D CDr00r00      [17] 1468 	call	_globals
+   0840 01 D7 08      [10] 1469 	ld	bc,#0x08d7
+   0843 09            [11] 1470 	add	hl,bc
+   0844 EB            [ 4] 1471 	ex	de, hl
+   0845 21 AD DE      [10] 1472 	ld	hl, #0xdead
+   0848 E5            [11] 1473 	push	hl
+   0849 21 EF BE      [10] 1474 	ld	hl, #0xbeef
+   084C E5            [11] 1475 	push	hl
+   084D D5            [11] 1476 	push	de
+   084E CDr00r00      [17] 1477 	call	_fatReformat
+   0851 21 06 00      [10] 1478 	ld	hl, #6
+   0854 39            [11] 1479 	add	hl, sp
+   0855 F9            [ 6] 1480 	ld	sp, hl
+   0856 C3r45r02      [10] 1481 	jp	00101$
+   0859                    1482 00153$:
+                     0859  1483 	C$main.c$254$2$167	= .
+                           1484 	.globl	C$main.c$254$2$167
+                           1485 ;../src/main.c:254: if( c == 'h' ) {
+   0859 DD 7E FF      [19] 1486 	ld	a, -1 (ix)
+   085C D6 68         [ 7] 1487 	sub	a, #0x68
+   085E C2r45r02      [10] 1488 	jp	NZ,00101$
+                     0861  1489 	C$main.c$255$3$193	= .
+                           1490 	.globl	C$main.c$255$3$193
+                           1491 ;../src/main.c:255: hdmi_write(0x96,0);
+   0861 21 96 00      [10] 1492 	ld	hl, #0x0096
+   0864 E5            [11] 1493 	push	hl
+   0865 CDr00r00      [17] 1494 	call	_hdmi_write
+                     0868  1495 	C$main.c$256$3$193	= .
+                           1496 	.globl	C$main.c$256$3$193
+                           1497 ;../src/main.c:256: DBG("CTS Calculated : %02x %02x %02x INT:%02x\n", hdmi_read(0x04),hdmi_read(0x05),hdmi_read(0x06),hdmi_read(0x96));
+   0868 26 04         [ 7] 1498 	ld	h,#0x04
+   086A E3            [19] 1499 	ex	(sp),hl
+   086B 33            [ 6] 1500 	inc	sp
+   086C CDr00r00      [17] 1501 	call	_hdmi_read
+   086F 33            [ 6] 1502 	inc	sp
+   0870 3E 05         [ 7] 1503 	ld	a, #0x05
+   0872 F5            [11] 1504 	push	af
+   0873 33            [ 6] 1505 	inc	sp
+   0874 CDr00r00      [17] 1506 	call	_hdmi_read
+   0877 33            [ 6] 1507 	inc	sp
+   0878 3E 06         [ 7] 1508 	ld	a, #0x06
+   087A F5            [11] 1509 	push	af
+   087B 33            [ 6] 1510 	inc	sp
+   087C CDr00r00      [17] 1511 	call	_hdmi_read
+   087F 33            [ 6] 1512 	inc	sp
+   0880 3E 96         [ 7] 1513 	ld	a, #0x96
+   0882 F5            [11] 1514 	push	af
+   0883 33            [ 6] 1515 	inc	sp
+   0884 CDr00r00      [17] 1516 	call	_hdmi_read
+   0887 33            [ 6] 1517 	inc	sp
+                     0888  1518 	C$main.c$257$3$193	= .
+                           1519 	.globl	C$main.c$257$3$193
+                           1520 ;../src/main.c:257: HALT();//while(1) processEvents();
+   0888 76            [ 4] 1521 	halt
+                     0889  1522 	C$main.c$261$1$166	= .
+                           1523 	.globl	C$main.c$261$1$166
+                           1524 ;../src/main.c:261: }
+                     0889  1525 	C$main.c$261$1$166	= .
+                           1526 	.globl	C$main.c$261$1$166
+                     0889  1527 	XG$main$0$0	= .
+                           1528 	.globl	XG$main$0$0
+   0889 C3 05 00      [10] 1529 	jp	5
+                     088C  1530 Fmain$__str_9$0$0 == .
+   088C                    1531 ___str_9:
+   088C 45 6D 70 74 79 20  1532 	.ascii "Empty 2S82"
+        32 53 38 32
+   0896 00                 1533 	.db 0x00
+                     0897  1534 Fmain$__str_10$0$0 == .
+   0897                    1535 ___str_10:
+   0897 4D 6F 75 6E 74 65  1536 	.ascii "Mounted"
+        64
+   089E 00                 1537 	.db 0x00
+                     089F  1538 Fmain$__str_11$0$0 == .
+   089F                    1539 ___str_11:
+   089F 55 6E 6D 6F 75 6E  1540 	.ascii "Unmounted"
+        74 65 64
+   08A8 00                 1541 	.db 0x00
+                     08A9  1542 Fmain$__str_12$0$0 == .
+   08A9                    1543 ___str_12:
+   08A9 43 68 61 6E 67 65  1544 	.ascii "Changed"
+        64
+   08B0 00                 1545 	.db 0x00
+                     08B1  1546 Fmain$__str_13$0$0 == .
+   08B1                    1547 ___str_13:
+   08B1 55 6E 63 68 61 6E  1548 	.ascii "Unchanged"
+        67 65 64
+   08BA 00                 1549 	.db 0x00
+                     08BB  1550 Fmain$__str_14$0$0 == .
+   08BB                    1551 ___str_14:
+   08BB 52 65 70 6F 73 69  1552 	.ascii "Repositioned over names, go for read"
+        74 69 6F 6E 65 64
+        20 6F 76 65 72 20
+        6E 61 6D 65 73 2C
+        20 67 6F 20 66 6F
+        72 20 72 65 61 64
+   08DF 00                 1553 	.db 0x00
+                     08E0  1554 Fmain$__str_15$0$0 == .
+   08E0                    1555 ___str_15:
+   08E0 52 65 70 6F 73 69  1556 	.ascii "Repositioned over data, go for read"
+        74 69 6F 6E 65 64
+        20 6F 76 65 72 20
+        64 61 74 61 2C 20
+        67 6F 20 66 6F 72
+        20 72 65 61 64
+   0903 00                 1557 	.db 0x00
+                     0904  1558 Fmain$__str_16$0$0 == .
+   0904                    1559 ___str_16:
+   0904 53 74 61 72 74 69  1560 	.ascii "Starting read %lu"
+        6E 67 20 72 65 61
+        64 20 25 6C 75
+   0915 00                 1561 	.db 0x00
+                     0916  1562 Fmain$__str_17$0$0 == .
+   0916                    1563 ___str_17:
+   0916 45 72 72 6F 72 20  1564 	.ascii "Error %08lx"
+        25 30 38 6C 78
+   0921 00                 1565 	.db 0x00
+                     0922  1566 Fmain$__str_18$0$0 == .
+   0922                    1567 ___str_18:
+   0922 4E 65 77 20 62 6C  1568 	.ascii "New block ID: %ld"
+        6F 63 6B 20 49 44
+        3A 20 25 6C 64
+   0933 00                 1569 	.db 0x00
+                     0934  1570 Fmain$__str_19$0$0 == .
+   0934                    1571 ___str_19:
+   0934 53 74 61 72 74 69  1572 	.ascii "Starting write %lu"
+        6E 67 20 77 72 69
+        74 65 20 25 6C 75
+   0946 00                 1573 	.db 0x00
+                     0947  1574 Fmain$__str_20$0$0 == .
+   0947                    1575 ___str_20:
+   0947 48 65 6C 6C 6F 20  1576 	.ascii "Hello world"
+        77 6F 72 6C 64
+   0952 00                 1577 	.db 0x00
+                     0953  1578 Fmain$__str_21$0$0 == .
+   0953                    1579 ___str_21:
+   0953 65 6E 64 20 6F 66  1580 	.ascii "end of sec"
+        20 73 65 63
+   095D 00                 1581 	.db 0x00
+                     095E  1582 Fmain$__str_22$0$0 == .
+   095E                    1583 ___str_22:
+   095E 57 72 69 74 74 65  1584 	.ascii "Written new sector"
+        6E 20 6E 65 77 20
+        73 65 63 74 6F 72
+   0970 00                 1585 	.db 0x00
+                     0971  1586 Fmain$__str_23$0$0 == .
+   0971                    1587 ___str_23:
+   0971 54 65 73 74 69 6E  1588 	.ascii "Testing function - WRITE"
+        67 20 66 75 6E 63
+        74 69 6F 6E 20 2D
+        20 57 52 49 54 45
+   0989 00                 1589 	.db 0x00
+                     098A  1590 Fmain$__str_24$0$0 == .
+   098A                    1591 ___str_24:
+   098A 46 69 6E 64 69 6E  1592 	.ascii "Finding free : %d"
+        67 20 66 72 65 65
+        20 3A 20 25 64
+   099B 00                 1593 	.db 0x00
+                     099C  1594 Fmain$__str_25$0$0 == .
+   099C                    1595 ___str_25:
+   099C 50 6F 70 75 6C 61  1596 	.ascii "Populate :%d"
+        74 65 20 3A 25 64
+   09A8 00                 1597 	.db 0x00
+                     09A9  1598 Fmain$__str_26$0$0 == .
+   09A9                    1599 ___str_26:
+   09A9 44 65 62 75 67 20  1600 	.ascii "Debug ROM"
+        52 4F 4D
+   09B2 00                 1601 	.db 0x00
+                     09B3  1602 Fmain$__str_27$0$0 == .
+   09B3                    1603 ___str_27:
+   09B3 4F 70 65 6E 20 66  1604 	.ascii "Open file %d"
+        69 6C 65 20 25 64
+   09BF 00                 1605 	.db 0x00
+                     09C0  1606 Fmain$__str_28$0$0 == .
+   09C0                    1607 ___str_28:
+   09C0 50 74 72 3A 25 30  1608 	.ascii "Ptr:%08lx, cnt: %u"
+        38 6C 78 2C 20 63
+        6E 74 3A 20 25 75
+   09D2 00                 1609 	.db 0x00
+                     09D3  1610 Fmain$__str_29$0$0 == .
+   09D3                    1611 ___str_29:
+   09D3 44 6F 6E 65        1612 	.ascii "Done"
+   09D7 00                 1613 	.db 0x00
+                     09D8  1614 Fmain$__str_30$0$0 == .
+   09D8                    1615 ___str_30:
+   09D8 54 65 73 74 69 6E  1616 	.ascii "Testing function - READ"
+        67 20 66 75 6E 63
+        74 69 6F 6E 20 2D
+        20 52 45 41 44
+   09EF 00                 1617 	.db 0x00
+                     09F0  1618 Fmain$__str_31$0$0 == .
+   09F0                    1619 ___str_31:
+   09F0 47 65 74 20 64 65  1620 	.ascii "Get descr :%d"
+        73 63 72 20 3A 25
+        64
+   09FD 00                 1621 	.db 0x00
+                     09FE  1622 Fmain$__str_32$0$0 == .
+   09FE                    1623 ___str_32:
+   09FE 52 65 73 75 6C 74  1624 	.ascii "Result: >%s<"
+        3A 20 3E 25 73 3C
+   0A0A 00                 1625 	.db 0x00
+                     0A0B  1626 Fmain$__str_33$0$0 == .
+   0A0B                    1627 ___str_33:
+   0A0B 52 65 73 65 74 20  1628 	.ascii "Reset config"
+        63 6F 6E 66 69 67
+   0A17 00                 1629 	.db 0x00
+                     0A18  1630 Fmain$__str_34$0$0 == .
+   0A18                    1631 ___str_34:
+   0A18 41 64 64 65 64 20  1632 	.ascii "Added ROMs to config"
+        52 4F 4D 73 20 74
+        6F 20 63 6F 6E 66
+        69 67
+   0A2C 00                 1633 	.db 0x00
+                     0A2D  1634 Fmain$__str_35$0$0 == .
+   0A2D                    1635 ___str_35:
+   0A2D 43 54 53 20 43 61  1636 	.ascii "CTS Calculated : %02x %02x %02x INT:%02x"
         6C 63 75 6C 61 74
         65 64 20 3A 20 25
         30 32 78 20 25 30
         32 78 20 25 30 32
         78 20 49 4E 54 3A
         25 30 32 78
-   0125 0A                  249 	.db 0x0a
-   0126 00                  250 	.db 0x00
-                            251 	.area _CODE
-                            252 	.area _INITIALIZER
-                            253 	.area _CABS (ABS)
+   0A55 0A                 1637 	.db 0x0a
+   0A56 00                 1638 	.db 0x00
+                           1639 	.area _CODE
+                           1640 	.area _INITIALIZER
+                     0000  1641 Fmain$__xinit_rom_data$0$0 == .
+   0000                    1642 __xinit__rom_data:
+   0000 01                 1643 	.db #0x01	; 1
+   0001 01                 1644 	.db #0x01	; 1
+   0002 01                 1645 	.db #0x01	; 1
+   0003 00                 1646 	.db #0x00	; 0
+   0004 09                 1647 	.db #0x09	; 9
+   0005 C0                 1648 	.db #0xc0	; 192
+   0006 C3                 1649 	.db #0xc3	; 195
+   0007 1B                 1650 	.db #0x1b	; 27
+   0008 C0                 1651 	.db #0xc0	; 192
+   0009 45                 1652 	.db #0x45	; 69	'E'
+   000A 6D                 1653 	.db #0x6d	; 109	'm'
+   000B 62                 1654 	.db #0x62	; 98	'b'
+   000C 65                 1655 	.db #0x65	; 101	'e'
+   000D 64                 1656 	.db #0x64	; 100	'd'
+   000E 64                 1657 	.db #0x64	; 100	'd'
+   000F 65                 1658 	.db #0x65	; 101	'e'
+   0010 64                 1659 	.db #0x64	; 100	'd'
+   0011 20                 1660 	.db #0x20	; 32
+   0012 52                 1661 	.db #0x52	; 82	'R'
+   0013 4F                 1662 	.db #0x4f	; 79	'O'
+   0014 4D                 1663 	.db #0x4d	; 77	'M'
+   0015 20                 1664 	.db #0x20	; 32
+   0016 54                 1665 	.db #0x54	; 84	'T'
+   0017 65                 1666 	.db #0x65	; 101	'e'
+   0018 73                 1667 	.db #0x73	; 115	's'
+   0019 F4                 1668 	.db #0xf4	; 244
+   001A 00                 1669 	.db #0x00	; 0
+   001B D5                 1670 	.db #0xd5	; 213
+   001C E5                 1671 	.db #0xe5	; 229
+   001D C5                 1672 	.db #0xc5	; 197
+   001E F5                 1673 	.db #0xf5	; 245
+   001F 21                 1674 	.db #0x21	; 33
+   0020 22                 1675 	.db #0x22	; 34
+   0021 C1                 1676 	.db #0xc1	; 193
+   0022 CD                 1677 	.db #0xcd	; 205
+   0023 41                 1678 	.db #0x41	; 65	'A'
+   0024 C0                 1679 	.db #0xc0	; 192
+   0025 CD                 1680 	.db #0xcd	; 205
+   0026 12                 1681 	.db #0x12	; 18
+   0027 B9                 1682 	.db #0xb9	; 185
+   0028 E6                 1683 	.db #0xe6	; 230
+   0029 0F                 1684 	.db #0x0f	; 15
+   002A CD                 1685 	.db #0xcd	; 205
+   002B FB                 1686 	.db #0xfb	; 251
+   002C C0                 1687 	.db #0xc0	; 192
+   002D 21                 1688 	.db #0x21	; 33
+   002E 29                 1689 	.db #0x29	; 41
+   002F C1                 1690 	.db #0xc1	; 193
+   0030 CD                 1691 	.db #0xcd	; 205
+   0031 41                 1692 	.db #0x41	; 65	'A'
+   0032 C0                 1693 	.db #0xc0	; 192
+   0033 21                 1694 	.db #0x21	; 33
+   0034 00                 1695 	.db #0x00	; 0
+   0035 FF                 1696 	.db #0xff	; 255
+   0036 CD                 1697 	.db #0xcd	; 205
+   0037 41                 1698 	.db #0x41	; 65	'A'
+   0038 C0                 1699 	.db #0xc0	; 192
+   0039 CD                 1700 	.db #0xcd	; 205
+   003A 07                 1701 	.db #0x07	; 7
+   003B C1                 1702 	.db #0xc1	; 193
+   003C CD                 1703 	.db #0xcd	; 205
+   003D 07                 1704 	.db #0x07	; 7
+   003E C1                 1705 	.db #0xc1	; 193
+   003F 18                 1706 	.db #0x18	; 24
+   0040 0D                 1707 	.db #0x0d	; 13
+   0041 7E                 1708 	.db #0x7e	; 126
+   0042 23                 1709 	.db #0x23	; 35
+   0043 FE                 1710 	.db #0xfe	; 254
+   0044 00                 1711 	.db #0x00	; 0
+   0045 C8                 1712 	.db #0xc8	; 200
+   0046 FE                 1713 	.db #0xfe	; 254
+   0047 FF                 1714 	.db #0xff	; 255
+   0048 C8                 1715 	.db #0xc8	; 200
+   0049 CD                 1716 	.db #0xcd	; 205
+   004A 5A                 1717 	.db #0x5a	; 90	'Z'
+   004B BB                 1718 	.db #0xbb	; 187
+   004C 18                 1719 	.db #0x18	; 24
+   004D F3                 1720 	.db #0xf3	; 243
+   004E 11                 1721 	.db #0x11	; 17
+   004F 00                 1722 	.db #0x00	; 0
+   0050 40                 1723 	.db #0x40	; 64
+   0051 21                 1724 	.db #0x21	; 33
+   0052 00                 1725 	.db #0x00	; 0
+   0053 C0                 1726 	.db #0xc0	; 192
+   0054 01                 1727 	.db #0x01	; 1
+   0055 00                 1728 	.db #0x00	; 0
+   0056 40                 1729 	.db #0x40	; 64
+   0057 ED                 1730 	.db #0xed	; 237
+   0058 B0                 1731 	.db #0xb0	; 176
+   0059 21                 1732 	.db #0x21	; 33
+   005A 00                 1733 	.db #0x00	; 0
+   005B 40                 1734 	.db #0x40	; 64
+   005C 06                 1735 	.db #0x06	; 6
+   005D 40                 1736 	.db #0x40	; 64
+   005E CD                 1737 	.db #0xcd	; 205
+   005F D1                 1738 	.db #0xd1	; 209
+   0060 C0                 1739 	.db #0xc0	; 192
+   0061 CD                 1740 	.db #0xcd	; 205
+   0062 07                 1741 	.db #0x07	; 7
+   0063 C1                 1742 	.db #0xc1	; 193
+   0064 21                 1743 	.db #0x21	; 33
+   0065 00                 1744 	.db #0x00	; 0
+   0066 40                 1745 	.db #0x40	; 64
+   0067 01                 1746 	.db #0x01	; 1
+   0068 C4                 1747 	.db #0xc4	; 196
+   0069 7A                 1748 	.db #0x7a	; 122	'z'
+   006A ED                 1749 	.db #0xed	; 237
+   006B 49                 1750 	.db #0x49	; 73	'I'
+   006C 36                 1751 	.db #0x36	; 54	'6'
+   006D 1A                 1752 	.db #0x1a	; 26
+   006E 01                 1753 	.db #0x01	; 1
+   006F C5                 1754 	.db #0xc5	; 197
+   0070 7B                 1755 	.db #0x7b	; 123
+   0071 ED                 1756 	.db #0xed	; 237
+   0072 49                 1757 	.db #0x49	; 73	'I'
+   0073 36                 1758 	.db #0x36	; 54	'6'
+   0074 2B                 1759 	.db #0x2b	; 43
+   0075 01                 1760 	.db #0x01	; 1
+   0076 C6                 1761 	.db #0xc6	; 198
+   0077 7C                 1762 	.db #0x7c	; 124
+   0078 ED                 1763 	.db #0xed	; 237
+   0079 49                 1764 	.db #0x49	; 73	'I'
+   007A 36                 1765 	.db #0x36	; 54	'6'
+   007B 3C                 1766 	.db #0x3c	; 60
+   007C 01                 1767 	.db #0x01	; 1
+   007D C7                 1768 	.db #0xc7	; 199
+   007E 7D                 1769 	.db #0x7d	; 125
+   007F ED                 1770 	.db #0xed	; 237
+   0080 49                 1771 	.db #0x49	; 73	'I'
+   0081 36                 1772 	.db #0x36	; 54	'6'
+   0082 4D                 1773 	.db #0x4d	; 77	'M'
+   0083 01                 1774 	.db #0x01	; 1
+   0084 CC                 1775 	.db #0xcc	; 204
+   0085 7E                 1776 	.db #0x7e	; 126
+   0086 ED                 1777 	.db #0xed	; 237
+   0087 49                 1778 	.db #0x49	; 73	'I'
+   0088 36                 1779 	.db #0x36	; 54	'6'
+   0089 5E                 1780 	.db #0x5e	; 94
+   008A 01                 1781 	.db #0x01	; 1
+   008B CD                 1782 	.db #0xcd	; 205
+   008C 7F                 1783 	.db #0x7f	; 127
+   008D ED                 1784 	.db #0xed	; 237
+   008E 49                 1785 	.db #0x49	; 73	'I'
+   008F 36                 1786 	.db #0x36	; 54	'6'
+   0090 6F                 1787 	.db #0x6f	; 111	'o'
+   0091 21                 1788 	.db #0x21	; 33
+   0092 00                 1789 	.db #0x00	; 0
+   0093 40                 1790 	.db #0x40	; 64
+   0094 01                 1791 	.db #0x01	; 1
+   0095 C4                 1792 	.db #0xc4	; 196
+   0096 7A                 1793 	.db #0x7a	; 122	'z'
+   0097 ED                 1794 	.db #0xed	; 237
+   0098 49                 1795 	.db #0x49	; 73	'I'
+   0099 CD                 1796 	.db #0xcd	; 205
+   009A E1                 1797 	.db #0xe1	; 225
+   009B C0                 1798 	.db #0xc0	; 192
+   009C 01                 1799 	.db #0x01	; 1
+   009D C5                 1800 	.db #0xc5	; 197
+   009E 7B                 1801 	.db #0x7b	; 123
+   009F ED                 1802 	.db #0xed	; 237
+   00A0 49                 1803 	.db #0x49	; 73	'I'
+   00A1 CD                 1804 	.db #0xcd	; 205
+   00A2 E1                 1805 	.db #0xe1	; 225
+   00A3 C0                 1806 	.db #0xc0	; 192
+   00A4 01                 1807 	.db #0x01	; 1
+   00A5 C6                 1808 	.db #0xc6	; 198
+   00A6 7C                 1809 	.db #0x7c	; 124
+   00A7 ED                 1810 	.db #0xed	; 237
+   00A8 49                 1811 	.db #0x49	; 73	'I'
+   00A9 CD                 1812 	.db #0xcd	; 205
+   00AA E1                 1813 	.db #0xe1	; 225
+   00AB C0                 1814 	.db #0xc0	; 192
+   00AC 01                 1815 	.db #0x01	; 1
+   00AD C7                 1816 	.db #0xc7	; 199
+   00AE 7D                 1817 	.db #0x7d	; 125
+   00AF ED                 1818 	.db #0xed	; 237
+   00B0 49                 1819 	.db #0x49	; 73	'I'
+   00B1 CD                 1820 	.db #0xcd	; 205
+   00B2 E1                 1821 	.db #0xe1	; 225
+   00B3 C0                 1822 	.db #0xc0	; 192
+   00B4 01                 1823 	.db #0x01	; 1
+   00B5 CC                 1824 	.db #0xcc	; 204
+   00B6 7E                 1825 	.db #0x7e	; 126
+   00B7 ED                 1826 	.db #0xed	; 237
+   00B8 49                 1827 	.db #0x49	; 73	'I'
+   00B9 CD                 1828 	.db #0xcd	; 205
+   00BA E1                 1829 	.db #0xe1	; 225
+   00BB C0                 1830 	.db #0xc0	; 192
+   00BC 01                 1831 	.db #0x01	; 1
+   00BD CD                 1832 	.db #0xcd	; 205
+   00BE 7F                 1833 	.db #0x7f	; 127
+   00BF ED                 1834 	.db #0xed	; 237
+   00C0 49                 1835 	.db #0x49	; 73	'I'
+   00C1 CD                 1836 	.db #0xcd	; 205
+   00C2 E1                 1837 	.db #0xe1	; 225
+   00C3 C0                 1838 	.db #0xc0	; 192
+   00C4 01                 1839 	.db #0x01	; 1
+   00C5 C0                 1840 	.db #0xc0	; 192
+   00C6 7F                 1841 	.db #0x7f	; 127
+   00C7 ED                 1842 	.db #0xed	; 237
+   00C8 49                 1843 	.db #0x49	; 73	'I'
+   00C9 CD                 1844 	.db #0xcd	; 205
+   00CA 07                 1845 	.db #0x07	; 7
+   00CB C1                 1846 	.db #0xc1	; 193
+   00CC F1                 1847 	.db #0xf1	; 241
+   00CD C1                 1848 	.db #0xc1	; 193
+   00CE E1                 1849 	.db #0xe1	; 225
+   00CF D1                 1850 	.db #0xd1	; 209
+   00D0 C9                 1851 	.db #0xc9	; 201
+   00D1 7E                 1852 	.db #0x7e	; 126
+   00D2 23                 1853 	.db #0x23	; 35
+   00D3 CD                 1854 	.db #0xcd	; 205
+   00D4 E1                 1855 	.db #0xe1	; 225
+   00D5 C0                 1856 	.db #0xc0	; 192
+   00D6 3E                 1857 	.db #0x3e	; 62
+   00D7 20                 1858 	.db #0x20	; 32
+   00D8 CD                 1859 	.db #0xcd	; 205
+   00D9 5A                 1860 	.db #0x5a	; 90	'Z'
+   00DA BB                 1861 	.db #0xbb	; 187
+   00DB CD                 1862 	.db #0xcd	; 205
+   00DC 5A                 1863 	.db #0x5a	; 90	'Z'
+   00DD BB                 1864 	.db #0xbb	; 187
+   00DE 10                 1865 	.db #0x10	; 16
+   00DF F1                 1866 	.db #0xf1	; 241
+   00E0 C9                 1867 	.db #0xc9	; 201
+   00E1 E5                 1868 	.db #0xe5	; 229
+   00E2 F5                 1869 	.db #0xf5	; 245
+   00E3 7E                 1870 	.db #0x7e	; 126
+   00E4 F5                 1871 	.db #0xf5	; 245
+   00E5 CB                 1872 	.db #0xcb	; 203
+   00E6 1F                 1873 	.db #0x1f	; 31
+   00E7 CB                 1874 	.db #0xcb	; 203
+   00E8 1F                 1875 	.db #0x1f	; 31
+   00E9 CB                 1876 	.db #0xcb	; 203
+   00EA 1F                 1877 	.db #0x1f	; 31
+   00EB CB                 1878 	.db #0xcb	; 203
+   00EC 1F                 1879 	.db #0x1f	; 31
+   00ED E6                 1880 	.db #0xe6	; 230
+   00EE 0F                 1881 	.db #0x0f	; 15
+   00EF CD                 1882 	.db #0xcd	; 205
+   00F0 FB                 1883 	.db #0xfb	; 251
+   00F1 C0                 1884 	.db #0xc0	; 192
+   00F2 F1                 1885 	.db #0xf1	; 241
+   00F3 E6                 1886 	.db #0xe6	; 230
+   00F4 0F                 1887 	.db #0x0f	; 15
+   00F5 CD                 1888 	.db #0xcd	; 205
+   00F6 FB                 1889 	.db #0xfb	; 251
+   00F7 C0                 1890 	.db #0xc0	; 192
+   00F8 F1                 1891 	.db #0xf1	; 241
+   00F9 E1                 1892 	.db #0xe1	; 225
+   00FA C9                 1893 	.db #0xc9	; 201
+   00FB 11                 1894 	.db #0x11	; 17
+   00FC 12                 1895 	.db #0x12	; 18
+   00FD C1                 1896 	.db #0xc1	; 193
+   00FE 26                 1897 	.db #0x26	; 38
+   00FF 00                 1898 	.db #0x00	; 0
+   0100 6F                 1899 	.db #0x6f	; 111	'o'
+   0101 19                 1900 	.db #0x19	; 25
+   0102 7E                 1901 	.db #0x7e	; 126
+   0103 CD                 1902 	.db #0xcd	; 205
+   0104 5A                 1903 	.db #0x5a	; 90	'Z'
+   0105 BB                 1904 	.db #0xbb	; 187
+   0106 C9                 1905 	.db #0xc9	; 201
+   0107 3E                 1906 	.db #0x3e	; 62
+   0108 0A                 1907 	.db #0x0a	; 10
+   0109 CD                 1908 	.db #0xcd	; 205
+   010A 5A                 1909 	.db #0x5a	; 90	'Z'
+   010B BB                 1910 	.db #0xbb	; 187
+   010C 3E                 1911 	.db #0x3e	; 62
+   010D 0D                 1912 	.db #0x0d	; 13
+   010E CD                 1913 	.db #0xcd	; 205
+   010F 5A                 1914 	.db #0x5a	; 90	'Z'
+   0110 BB                 1915 	.db #0xbb	; 187
+   0111 C9                 1916 	.db #0xc9	; 201
+   0112 30                 1917 	.db #0x30	; 48	'0'
+   0113 31                 1918 	.db #0x31	; 49	'1'
+   0114 32                 1919 	.db #0x32	; 50	'2'
+   0115 33                 1920 	.db #0x33	; 51	'3'
+   0116 34                 1921 	.db #0x34	; 52	'4'
+   0117 35                 1922 	.db #0x35	; 53	'5'
+   0118 36                 1923 	.db #0x36	; 54	'6'
+   0119 37                 1924 	.db #0x37	; 55	'7'
+   011A 38                 1925 	.db #0x38	; 56	'8'
+   011B 39                 1926 	.db #0x39	; 57	'9'
+   011C 41                 1927 	.db #0x41	; 65	'A'
+   011D 42                 1928 	.db #0x42	; 66	'B'
+   011E 43                 1929 	.db #0x43	; 67	'C'
+   011F 44                 1930 	.db #0x44	; 68	'D'
+   0120 45                 1931 	.db #0x45	; 69	'E'
+   0121 46                 1932 	.db #0x46	; 70	'F'
+   0122 20                 1933 	.db #0x20	; 32
+   0123 52                 1934 	.db #0x52	; 82	'R'
+   0124 6F                 1935 	.db #0x6f	; 111	'o'
+   0125 6D                 1936 	.db #0x6d	; 109	'm'
+   0126 20                 1937 	.db #0x20	; 32
+   0127 28                 1938 	.db #0x28	; 40
+   0128 00                 1939 	.db #0x00	; 0
+   0129 29                 1940 	.db #0x29	; 41
+   012A 20                 1941 	.db #0x20	; 32
+   012B 53                 1942 	.db #0x53	; 83	'S'
+   012C 74                 1943 	.db #0x74	; 116	't'
+   012D 61                 1944 	.db #0x61	; 97	'a'
+   012E 72                 1945 	.db #0x72	; 114	'r'
+   012F 74                 1946 	.db #0x74	; 116	't'
+   0130 20                 1947 	.db #0x20	; 32
+   0131 76                 1948 	.db #0x76	; 118	'v'
+   0132 32                 1949 	.db #0x32	; 50	'2'
+   0133 32                 1950 	.db #0x32	; 50	'2'
+   0134 36                 1951 	.db #0x36	; 54	'6'
+   0135 35                 1952 	.db #0x35	; 53	'5'
+   0136 0D                 1953 	.db #0x0d	; 13
+   0137 0A                 1954 	.db #0x0a	; 10
+   0138 0A                 1955 	.db #0x0a	; 10
+   0139 00                 1956 	.db #0x00	; 0
+   013A 00                 1957 	.db #0x00	; 0
+                           1958 	.area _CABS (ABS)

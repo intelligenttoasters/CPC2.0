@@ -1,6 +1,6 @@
                               1 ;--------------------------------------------------------
                               2 ; File Created by SDCC : free open source ANSI-C Compiler
-                              3 ; Version 3.6.0 #9615 (Linux)
+                              3 ; Version 3.7.0 #10231 (Linux)
                               4 ;--------------------------------------------------------
                               5 	.module interrupt
                               6 	.optsdcc -mz80
@@ -10,7 +10,7 @@
                              10 ;--------------------------------------------------------
                              11 	.globl _int_handler
                              12 	.globl _nmi_handler
-                             13 	.globl _IN
+                             13 	.globl _IN_
                              14 ;--------------------------------------------------------
                              15 ; special function registers
                              16 ;--------------------------------------------------------
@@ -44,46 +44,49 @@
                              44 	.area _CODE
                      0000    45 	G$nmi_handler$0$0	= .
                              46 	.globl	G$nmi_handler$0$0
-                     0000    47 	C$interrupt.c$27$0$0	= .
-                             48 	.globl	C$interrupt.c$27$0$0
+                     0000    47 	C$interrupt.c$27$0$130	= .
+                             48 	.globl	C$interrupt.c$27$0$130
                              49 ;../src/interrupt.c:27: void nmi_handler(void)
                              50 ;	---------------------------------
                              51 ; Function nmi_handler
                              52 ; ---------------------------------
    0000                      53 _nmi_handler::
-                     0000    54 	C$interrupt.c$30$0$0	= .
-                             55 	.globl	C$interrupt.c$30$0$0
+                     0000    54 	C$interrupt.c$30$0$130	= .
+                             55 	.globl	C$interrupt.c$30$0$130
                              56 ;../src/interrupt.c:30: }
-                     0000    57 	C$interrupt.c$30$0$0	= .
-                             58 	.globl	C$interrupt.c$30$0$0
+                     0000    57 	C$interrupt.c$30$0$130	= .
+                             58 	.globl	C$interrupt.c$30$0$130
                      0000    59 	XG$nmi_handler$0$0	= .
                              60 	.globl	XG$nmi_handler$0$0
    0000 C9            [10]   61 	ret
                      0001    62 	G$int_handler$0$0	= .
                              63 	.globl	G$int_handler$0$0
-                     0001    64 	C$interrupt.c$35$0$0	= .
-                             65 	.globl	C$interrupt.c$35$0$0
+                     0001    64 	C$interrupt.c$35$0$132	= .
+                             65 	.globl	C$interrupt.c$35$0$132
                              66 ;../src/interrupt.c:35: void int_handler(void)
                              67 ;	---------------------------------
                              68 ; Function int_handler
                              69 ; ---------------------------------
    0001                      70 _int_handler::
-                     0001    71 	C$interrupt.c$39$1$46	= .
-                             72 	.globl	C$interrupt.c$39$1$46
+                     0001    71 	C$interrupt.c$39$1$132	= .
+                             72 	.globl	C$interrupt.c$39$1$132
                              73 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
-   0001 3E 10         [ 7]   74 	ld	a,#0x10
+   0001 3E 10         [ 7]   74 	ld	a, #0x10
    0003 F5            [11]   75 	push	af
    0004 33            [ 6]   76 	inc	sp
-   0005 CDr00r00      [17]   77 	call	_IN
+   0005 CDr00r00      [17]   77 	call	_IN_
    0008 33            [ 6]   78 	inc	sp
-                     0009    79 	C$interrupt.c$41$1$46	= .
-                             80 	.globl	C$interrupt.c$41$1$46
+                     0009    79 	C$interrupt.c$41$1$132	= .
+                             80 	.globl	C$interrupt.c$41$1$132
                              81 ;../src/interrupt.c:41: if( int_src & INT_UART )
-                     0009    82 	C$interrupt.c$44$1$46	= .
-                             83 	.globl	C$interrupt.c$44$1$46
-                     0009    84 	XG$int_handler$0$0	= .
-                             85 	.globl	XG$int_handler$0$0
-   0009 C9            [10]   86 	ret
-                             87 	.area _CODE
-                             88 	.area _INITIALIZER
-                             89 	.area _CABS (ABS)
+                     0009    82 	C$interrupt.c$44$1$132	= .
+                             83 	.globl	C$interrupt.c$44$1$132
+                             84 ;../src/interrupt.c:44: }
+                     0009    85 	C$interrupt.c$44$1$132	= .
+                             86 	.globl	C$interrupt.c$44$1$132
+                     0009    87 	XG$int_handler$0$0	= .
+                             88 	.globl	XG$int_handler$0$0
+   0009 C9            [10]   89 	ret
+                             90 	.area _CODE
+                             91 	.area _INITIALIZER
+                             92 	.area _CABS (ABS)

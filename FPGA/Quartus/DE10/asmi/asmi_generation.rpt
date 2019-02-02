@@ -1,0 +1,17 @@
+Info: Starting: Create HDL design files for synthesis
+Info: ip-generate --project-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10 --output-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/synthesis --file-set=QUARTUS_SYNTH --report-file=html:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/asmi.html --report-file=sopcinfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi.sopcinfo --report-file=cmp:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/asmi.cmp --report-file=qip:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/synthesis/asmi.qip --report-file=svd:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/synthesis/asmi.svd --report-file=regmap:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/synthesis/asmi.regmap --report-file=xml:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/asmi.xml --report-file=debuginfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi/synthesis/asmi.debuginfo --system-info=DEVICE_FAMILY="Cyclone V" --system-info=DEVICE=5CSEBA6U23I7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/asmi.qsys --language=VERILOG
+Progress: Loading DE10/asmi.qsys
+Progress: Reading input file
+Progress: Adding asmi_parallel_0 [altera_asmi_parallel 14.0]
+Progress: Parameterizing module asmi_parallel_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: asmi.asmi: There are recommended upgrades for: asmi_parallel_0
+Info: asmi: Generating asmi "asmi" for QUARTUS_SYNTH
+Info: asmi_parallel_0: generating top-level entity asmi_asmi_parallel_0
+Info: asmi_parallel_0: "asmi" instantiated altera_asmi_parallel "asmi_parallel_0"
+Info: asmi: Done "asmi" with 2 modules, 2 files
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

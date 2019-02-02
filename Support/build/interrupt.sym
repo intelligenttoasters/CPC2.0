@@ -13,18 +13,18 @@ Symbol Table
   0 A$interrupt$76                                                 0004 GR
   0 A$interrupt$77                                                 0005 GR
   0 A$interrupt$78                                                 0008 GR
-  0 A$interrupt$86                                                 0009 GR
-  0 C$interrupt.c$27$0$0                                        =  0000 GR
-  0 C$interrupt.c$30$0$0                                        =  0000 GR
-  0 C$interrupt.c$35$0$0                                        =  0001 GR
-  0 C$interrupt.c$39$1$46                                       =  0001 GR
-  0 C$interrupt.c$41$1$46                                       =  0009 GR
-  0 C$interrupt.c$44$1$46                                       =  0009 GR
+  0 A$interrupt$89                                                 0009 GR
+  0 C$interrupt.c$27$0$130                                      =  0000 GR
+  0 C$interrupt.c$30$0$130                                      =  0000 GR
+  0 C$interrupt.c$35$0$132                                      =  0001 GR
+  0 C$interrupt.c$39$1$132                                      =  0001 GR
+  0 C$interrupt.c$41$1$132                                      =  0009 GR
+  0 C$interrupt.c$44$1$132                                      =  0009 GR
   0 G$int_handler$0$0                                           =  0001 GR
   0 G$nmi_handler$0$0                                           =  0000 GR
   0 XG$int_handler$0$0                                          =  0009 GR
   0 XG$nmi_handler$0$0                                          =  0000 GR
-    _IN                                                            **** GX
+    _IN_                                                           **** GX
   0 _int_handler                                                   0001 GR
   0 _nmi_handler                                                   0000 GR
 

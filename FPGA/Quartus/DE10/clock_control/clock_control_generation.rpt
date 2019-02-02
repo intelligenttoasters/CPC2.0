@@ -1,0 +1,18 @@
+Info: Starting: Create HDL design files for synthesis
+Info: ip-generate --project-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10 --output-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis --file-set=QUARTUS_SYNTH --report-file=html:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/clock_control.html --report-file=sopcinfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control.sopcinfo --report-file=cmp:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/clock_control.cmp --report-file=qip:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/clock_control.qip --report-file=svd:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/clock_control.svd --report-file=regmap:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/clock_control.regmap --report-file=xml:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/clock_control.xml --report-file=debuginfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/clock_control.debuginfo --system-info=DEVICE_FAMILY="Cyclone V" --system-info=DEVICE=5CSEBA6U23I7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control.qsys --language=VERILOG
+Progress: Loading DE10/clock_control.qsys
+Progress: Reading input file
+Progress: Adding altclkctrl_0 [altclkctrl 14.0]
+Progress: Parameterizing module altclkctrl_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+: clock_control.altclkctrl_0: Targeting device family: Cyclone V.
+: clock_control.altclkctrl_0: Selecting AUTO allows the compiler to pick the best clock buffer to use, while other values restrict usage to only the given clock buffer.
+Info: clock_control: Generating clock_control "clock_control" for QUARTUS_SYNTH
+Info: altclkctrl_0: Generating top-level entity clock_control_altclkctrl_0.
+Info: altclkctrl_0: "clock_control" instantiated altclkctrl "altclkctrl_0"
+Info: clock_control: Done "clock_control" with 2 modules, 2 files
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

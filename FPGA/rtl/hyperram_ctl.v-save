@@ -1,0 +1,325 @@
+/*
+ * hyperram_ctl.v - HyperRam Controller 
+ *
+ * This module provides a generic memory interface to a HyperRam module 
+ *
+ * Part of the CPC2 project: http://intelligenttoasters.blog
+ *
+ * Copyright (C)2018  Intelligent.Toasters@gmail.com
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, you can find a copy here:
+ * https://www.gnu.org/licenses/gpl-3.0.en.html
+ *
+ */
+ 
+`timescale 1 ns/1 ns
+`default_nettype none
+
+module hyperram_ctl(
+	// System core signals
+	input wire 			clk_i,
+	input wire			rst_i,
+	output reg			ready_o, 
+	
+	// Memory  bus signals / asynchronous edge triggered bus
+	input wire [23:0]	A_i,		// 24 bit address space, for 16 bit words (max 32MB)
+	input wire [15:0]	D_i,
+	output wire [15:0]	D_o,
+	// 000 - write single high, 001 - write single low, 
+	// 010 - read mem, 011 - read mem - ** or if there's something in cache, read from cache **
+	// 101 - write ctl, 111 - read ctl
+	// 100 Write Cache, 110 - cache flush to mem
+	input wire [2:0]	cmd_i,		
+	input wire			go_i,		// Edge triggered action signal
+	output wire			busy_o,		// Busy signal
+	
+	// HyperRAM hardware interface
+	input wire [7:0]	dq_i,
+	output reg [7:0]	dq_o,
+	output reg			dq_oe,
+	input wire			rwds_i,
+	output reg			rwds_o,
+	output reg			rwds_oe,
+	output reg			csn_o,
+	output reg			ck_o,
+	output reg			resetn_o
+    );
+
+	`define MEMSIZE64
+	//`define MEMSIZE128
+	//`define MEMSIZE256
+	
+	// Constants ==================================================================================
+	parameter INIT1 = 4'd0, INIT2 = 4'd1, IDLE = 4'd2, CMD1 = 4'd3, CMD2 = 4'd4, RD1 = 4'd5, RD2 = 4'd6,
+				CSWAIT = 4'd7, WR1 = 4'd8, WR2 = 4'd9, WR0 = 4'd10, LOOP = 4'd11;
+	
+	// Wire definitions ===========================================================================
+	wire [47:0] cmd_bits;
+	wire go_rising, cache_command, cmd_rd, cmd_ctl;
+	
+	// Registers ==================================================================================
+	
+	// State machine registers
+	reg [3:0]	state;			// FSM state
+	reg [15:0]	large_counter;	// Large general counter
+	reg [3:0]	small_counter;	// Small general counter
+	reg [7:0]	cmd_bytes[0:5];	// 6 Command bytes
+	reg 		in_rw_cycle;	// Denotes RWDS active
+	
+	// Data Cache
+	reg [15:0]	data_cache[0:7];	// 8 words, 16 bytes cache space
+	reg [7:0]	cache_pop;			// Cache population;
+	reg [2:0]	cache_ptr;			// Points to active cache item
+	
+	// Buffered input signals that hold data stable
+	reg [23:0]	A_b = 24'd0;
+	reg [15:0]	D_b = 16'd0;
+	reg [2:0]	cmd_b = 3'd0;
+
+	// Signal level tracking
+	reg [2:0]	track_go = 3'd0;
+	
+	// Assignments ================================================================================
+	`ifdef MEMSIZE64
+	assign cmd_bits = {cmd_i[1], cmd_i[2], 1'd0, 10'd0, A_i[21:3], 13'd0, A_i[2:0]};
+	`endif
+	`ifdef MEMSIZE128
+	assign cmd_bits = {~we_i, tga_i, 1'd0, 9'd0, adr_i[22:3], 13'd0, adr_i[2:0]};
+	`endif
+	`ifdef MEMSIZE256
+	assign cmd_bits = {~we_i, tga_i, 1'd0, 8'd0, adr_i[23:3], 13'd0, adr_i[2:0]};
+	`endif
+	// Post trigger wire assignments - only valid after cmd is buffered
+	assign cmd_rd = cmd_b[1];
+	assign cmd_ctl = cmd_b[2];
+
+	// Tracks the rising go trigger 
+	assign go_rising = (track_go[2:1] == 2'b01);
+	// Is the FSM busy?
+	assign busy_o = (state != IDLE);
+	// Signals the CMD_I is a cache command 
+	assign cache_command = (cmd_i[2] & ~cmd_i[0]);
+	// Assign D_o asynchronously to be quickest
+	assign D_o = data_cache[0];
+
+	// Module connections =========================================================================
+
+	// Simulation branches and control ============================================================
+	`ifdef SIM
+	wire [7:0] b0 = cmd_bytes[0];	
+	wire [7:0] b1 = cmd_bytes[1];	
+	wire [7:0] b2 = cmd_bytes[2];	
+	wire [7:0] b3 = cmd_bytes[3];	
+	wire [7:0] b4 = cmd_bytes[4];	
+	wire [7:0] b5 = cmd_bytes[5];	
+	wire [15:0] cache0 = data_cache[0];
+	wire [15:0] cache1 = data_cache[1];
+	`endif
+	// Functions and tasks ========================================================================
+	
+	// Signal level tracking ======================================================================
+	always @(posedge clk_i) track_go <= {track_go[1:0],go_i};
+	
+	// Core logic =================================================================================
+		
+	always @(posedge clk_i or posedge rst_i) 
+	begin
+		// Reset circuitry
+		if( rst_i ) begin
+			state <= INIT1;
+			large_counter = 16'd30000;
+		end else case(state)
+			// Initialisation of signals and FSM
+			// Two goes around, one for power up and one for reset release
+			INIT1, INIT2: begin
+				dq_o <= 8'd0;
+				dq_oe <= 1'b0;
+				rwds_o <= 1'b0;
+				rwds_oe <= 1'b0;
+				csn_o <= 1'b1;
+				ck_o <= 1'b0;
+				in_rw_cycle <= 1'b0;
+				ready_o <= 1'b0;
+				resetn_o = ( state != INIT1 );
+				cache_ptr <= 3'd0;
+				// Initial config - program config 1
+				cmd_bytes[0] <= 8'h60;
+				cmd_bytes[1] <= 8'h00;
+				cmd_bytes[2] <= 8'h01;
+				cmd_bytes[3] <= 8'h00;
+				cmd_bytes[4] <= 8'h00;
+				cmd_bytes[5] <= 8'h00;
+//				data_cache[0] <= 16'h8fe6;	// Variable latency
+				data_cache[0] <= 16'h8fee;	// Fixed latency
+				cache_pop <= 8'b00000001;
+				cache_ptr <= 3'd0;
+				// End initial config
+				
+				if( large_counter == 0 ) 
+				begin
+					large_counter <= 16'd20000;
+					if( state == INIT1 ) state <= INIT2;
+					//else state <= IDLE;
+					else begin
+						small_counter <= 4'd2;
+						csn_o <= 1'b0;
+						dq_oe <= 1'b1;
+						cmd_b <= 8'b101;
+						state <= CSWAIT;						
+					end
+				end
+				else large_counter <= large_counter - 1'b1;
+			end
+			IDLE: begin
+				// Signal core ready
+				ready_o <= 1'b1;
+				// Has the data cycle started
+				in_rw_cycle <= 1'b0;
+				// Reset the cache
+				cache_ptr <= 3'd0;
+				cache_pop <= 8'd0;
+				// Reset RWDS OE signal from previous write
+				rwds_oe = 1'b0;
+
+				if( go_rising ) begin
+					// Cache mainly used for streaming data, like the video module
+					if( cache_command ) begin
+						if( cmd_i[1] ) begin // If Cache flush, then initiate write
+							small_counter <= 4'd2;
+							csn_o <= 1'b0;
+							dq_oe <= 1'b1;
+							state <= CSWAIT;							
+						end else begin	// Store data in cache registers
+							data_cache[cache_ptr] <= D_i;
+							cache_ptr <= cache_ptr + 1'b1;
+							cache_pop <= cache_pop | (1<<cache_ptr); 
+						end
+					end else begin	// Single byte write
+						// Copy cmd bits to cmd bytes
+						cmd_bytes[0] <= cmd_bits[47:40];		
+						cmd_bytes[1] <= cmd_bits[39:32];		
+						cmd_bytes[2] <= cmd_bits[31:24];		
+						cmd_bytes[3] <= cmd_bits[23:16];		
+						cmd_bytes[4] <= cmd_bits[15:08];		
+						cmd_bytes[5] <= cmd_bits[07:00];
+						if(cmd_i[0]) data_cache[3'd0][15:8] <= D_i;
+						else data_cache[3'd0][7:0] <= D_i;
+						small_counter <= 4'd2;
+						csn_o <= 1'b0;
+						dq_oe <= 1'b1;
+						state <= CSWAIT;
+					end
+					A_b <= A_i;
+					D_b <= D_i;
+					cmd_b <= cmd_i;
+				end
+				else begin
+					csn_o <= 1'b1;
+				end
+			end
+			CSWAIT: begin
+				if(small_counter == 4'd0) state <= CMD1;
+				else small_counter <= small_counter - 1'b1;
+			end
+			CMD1: begin
+				dq_o <= cmd_bytes[small_counter];
+				state <= CMD2;
+			end
+			CMD2: begin
+				ck_o <= ~ck_o;
+				if( small_counter == 4'd5 ) begin
+					small_counter <= 4'd0;
+					if( cmd_rd ) state <= RD1;
+					else begin
+						if( cmd_b[2:1] == 2'd0 ) begin
+							state <= WR0;	// TODO: bulk data?
+							large_counter <= 1'b0;
+						end else state <= WR1;	// Control
+					end
+				end
+				else begin
+					small_counter <= small_counter + 1'b1;
+					state <= CMD1;
+				end
+			end
+			RD1: begin
+				dq_oe <= 1'b0;
+				if( rwds_i ) in_rw_cycle <= 1'b1;					
+				// Capture bytes
+				if( small_counter[0] )
+					data_cache[small_counter[3:1]][7:0] <= dq_i;
+				else
+					data_cache[small_counter[3:1]][15:8] <= dq_i;
+				state <= RD2;
+			end
+			RD2: begin
+				if( small_counter == 4'd15 ) state <= IDLE;
+				else begin
+					ck_o <= ~ck_o;
+					if( in_rw_cycle ) small_counter <= small_counter + 1'b1;
+					state <= RD1;
+				end
+			end
+			WR0: begin	// Write latency
+				if( large_counter[0] ) ck_o <= ~ck_o;
+				if( large_counter == 5'd19) begin
+					rwds_o = 1'b0;
+					rwds_oe = 1'b1;
+					state <= WR1;
+				end else begin
+					large_counter <= large_counter + 1'b1;
+				end
+			end
+			WR1: begin
+				if( cache_command )
+					dq_o <= ( small_counter[0] ) ? data_cache[small_counter[3:1]][7:0] : data_cache[small_counter[3:1]][15:8];
+				else
+					dq_o <= ( cmd_b[0] ) ? D_b[15:8] : D_b[7:0];	// TODO: feels like wrong byte order?
+				rwds_o <= (small_counter[0] == cmd_b[0] ); 
+				state <= WR2;
+			end
+			WR2: begin
+				ck_o <= ~ck_o;
+				// If we only did one byte, or the cache population flag shows another byte-pair
+				if( cache_pop[small_counter[3:1]+1] | ~small_counter[0] )
+				begin
+					small_counter <= small_counter + 1'b1;
+					state <= WR1;				
+				end else begin
+					cache_pop <= 8'b00000000;
+					cache_ptr <= 3'd0;
+					state <= IDLE;
+				end
+			end
+			/*
+			LOOP: begin
+				large_counter <= large_counter - 1'b1;
+				if( ~large_counter[0] ) begin
+					ck_o <= ~ck_o;
+				end else dq_o <= dq_o + 1'b1;
+				
+				if( large_counter == 5'd1 ) 
+				begin
+					rwds_oe = 1'b0;
+					state <= IDLE;
+				end
+			end
+			*/
+			default: state <= INIT1;
+		endcase
+	end
+
+endmodule
+
+

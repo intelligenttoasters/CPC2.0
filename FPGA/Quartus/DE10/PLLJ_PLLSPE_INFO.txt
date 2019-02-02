@@ -1,29 +1,49 @@
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~FRACTIONAL_PLL
-PLLJITTER	53
+PLL_Name	CPC2:cpc2_inst|audio_clock:audio_clk|audio_clock_0002:audio_clock_inst|altera_pll:altera_pll_i|general[0].gpll~FRACTIONAL_PLL
+PLLJITTER	95
 PLLSPEmax	100
 PLLSPEmin	-100
 
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
+PLL_Name	CPC2:cpc2_inst|audio_clock:audio_clk|audio_clock_0002:audio_clock_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA
 
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER
+PLL_Name	CPC2:cpc2_inst|cpc_clks:cpc_clocks|cpc_clks_0002:cpc_clks_inst|altera_pll:altera_pll_i|general[0].gpll~FRACTIONAL_PLL
+PLLJITTER	94
+PLLSPEmax	100
+PLLSPEmin	-100
+
+PLL_Name	CPC2:cpc2_inst|cpc_clks:cpc_clocks|cpc_clks_0002:cpc_clks_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA
 
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER
+PLL_Name	CPC2:cpc2_inst|cpc_clks:cpc_clocks|cpc_clks_0002:cpc_clks_inst|altera_pll:altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA
 
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[3].gpll~PLL_OUTPUT_COUNTER
+PLL_Name	CPC2:cpc2_inst|cpc_clks:cpc_clocks|cpc_clks_0002:cpc_clks_inst|altera_pll:altera_pll_i|general[2].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA
 
-PLL_Name	CPC2:cpc|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[4].gpll~PLL_OUTPUT_COUNTER
+PLL_Name	CPC2:cpc2_inst|cpc_clks:cpc_clocks|cpc_clks_0002:cpc_clks_inst|altera_pll:altera_pll_i|general[3].gpll~PLL_OUTPUT_COUNTER
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	CPC2:cpc2_inst|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~FRACTIONAL_PLL
+PLLJITTER	26
+PLLSPEmax	100
+PLLSPEmin	-100
+
+PLL_Name	CPC2:cpc2_inst|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[0].gpll~PLL_OUTPUT_COUNTER
+PLLJITTER	NA
+PLLSPEmax	NA
+PLLSPEmin	NA
+
+PLL_Name	CPC2:cpc2_inst|master_clock:master_clk|master_clock_0002:master_clock_inst|altera_pll:altera_pll_i|general[1].gpll~PLL_OUTPUT_COUNTER
 PLLJITTER	NA
 PLLSPEmax	NA
 PLLSPEmin	NA

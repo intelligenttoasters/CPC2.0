@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy
+ date="2018.11.25.16:10:58"
+ outputDirectory="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/">
+ <perimeter>
+  <parameter
+     name="AUTO_GENERATION_ID"
+     type="Integer"
+     defaultValue="0"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_UNIQUE_ID"
+     type="String"
+     defaultValue=""
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE_FAMILY"
+     type="String"
+     defaultValue="Cyclone V"
+     onHdl="0"
+     affectsHdl="1" />
+  <parameter
+     name="AUTO_DEVICE"
+     type="String"
+     defaultValue="5CSEBA6U23I7"
+     onHdl="0"
+     affectsHdl="1" />
+  <interface name="altclkctrl_input" kind="conduit" start="0">
+   <property name="allowMultipleExportRoles" value="true" />
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="inclk" direction="input" role="inclk" width="1" />
+   <port name="ena" direction="input" role="ena" width="1" />
+  </interface>
+  <interface name="altclkctrl_output" kind="conduit" start="0">
+   <property name="allowMultipleExportRoles" value="true" />
+   <property name="associatedClock" value="" />
+   <property name="associatedReset" value="" />
+   <port name="outclk" direction="output" role="outclk" width="1" />
+  </interface>
+ </perimeter>
+ <entity
+   path=""
+   parameterizationKey="clock_control:1.0:AUTO_DEVICE=5CSEBA6U23I7,AUTO_DEVICE_FAMILY=Cyclone V,AUTO_GENERATION_ID=1543122658,AUTO_UNIQUE_ID=(altclkctrl:14.0:CLOCK_TYPE=0,DEVICE_FAMILY=Cyclone V,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false)"
+   instancePathKey="clock_control"
+   kind="clock_control"
+   version="1.0"
+   name="clock_control">
+  <parameter name="AUTO_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="AUTO_UNIQUE_ID" value="" />
+  <parameter name="AUTO_DEVICE" value="5CSEBA6U23I7" />
+  <parameter name="AUTO_GENERATION_ID" value="1543122658" />
+  <generatedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/clock_control.v"
+       type="VERILOG" />
+  </generatedFiles>
+  <childGeneratedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/submodules/clock_control_altclkctrl_0.v"
+       type="VERILOG"
+       attributes="" />
+  </childGeneratedFiles>
+  <sourceFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control.qsys" />
+  </sourceFiles>
+  <childSourceFiles>
+   <file
+       path="/opt/altera/14.0/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </childSourceFiles>
+  <messages>
+   <message level="Debug" culprit="clock_control">queue size: 0 starting:clock_control "clock_control"</message>
+   <message level="Progress" culprit="min"></message>
+   <message level="Progress" culprit="max"></message>
+   <message level="Progress" culprit="current"></message>
+   <message level="Debug">Transform: CustomInstructionTransform</message>
+   <message level="Debug">No custom instruction connections, skipping transform </message>
+   <message level="Debug" culprit="merlin_custom_instruction_transform"><![CDATA[After transform: <b>1</b> modules, <b>0</b> connections]]></message>
+   <message level="Debug">Transform: MMTransform</message>
+   <message level="Debug">Transform: InterruptMapperTransform</message>
+   <message level="Debug">Transform: InterruptSyncTransform</message>
+   <message level="Debug">Transform: InterruptFanoutTransform</message>
+   <message level="Debug">Transform: AvalonStreamingTransform</message>
+   <message level="Debug">Transform: ResetAdaptation</message>
+   <message level="Debug" culprit="clock_control"><![CDATA["<b>clock_control</b>" reuses <b>altclkctrl</b> "<b>submodules/clock_control_altclkctrl_0</b>"]]></message>
+   <message level="Debug" culprit="clock_control">queue size: 0 starting:altclkctrl "submodules/clock_control_altclkctrl_0"</message>
+   <message level="Info" culprit="altclkctrl_0">Generating top-level entity clock_control_altclkctrl_0.</message>
+   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: /opt/altera/14.0/quartus/linux64/.</message>
+   <message level="Info" culprit="altclkctrl_0"><![CDATA["<b>clock_control</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_0</b>"]]></message>
+  </messages>
+ </entity>
+ <entity
+   path="submodules/"
+   parameterizationKey="altclkctrl:14.0:CLOCK_TYPE=0,DEVICE_FAMILY=Cyclone V,ENA_REGISTER_MODE=1,GUI_USE_ENA=true,NUMBER_OF_CLOCKS=1,USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION=false"
+   instancePathKey="clock_control:.:altclkctrl_0"
+   kind="altclkctrl"
+   version="14.0"
+   name="clock_control_altclkctrl_0">
+  <parameter name="CLOCK_TYPE" value="0" />
+  <parameter name="DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="GUI_USE_ENA" value="true" />
+  <parameter name="USE_GLITCH_FREE_SWITCH_OVER_IMPLEMENTATION" value="false" />
+  <parameter name="ENA_REGISTER_MODE" value="1" />
+  <parameter name="NUMBER_OF_CLOCKS" value="1" />
+  <generatedFiles>
+   <file
+       path="/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/clock_control/synthesis/submodules/clock_control_altclkctrl_0.v"
+       type="VERILOG"
+       attributes="" />
+  </generatedFiles>
+  <childGeneratedFiles/>
+  <sourceFiles>
+   <file
+       path="/opt/altera/14.0/ip/altera/megafunctions/altclkctrl/altclkctrl_hw.tcl" />
+  </sourceFiles>
+  <childSourceFiles/>
+  <instantiator instantiator="clock_control" as="altclkctrl_0" />
+  <messages>
+   <message level="Debug" culprit="clock_control">queue size: 0 starting:altclkctrl "submodules/clock_control_altclkctrl_0"</message>
+   <message level="Info" culprit="altclkctrl_0">Generating top-level entity clock_control_altclkctrl_0.</message>
+   <message level="Debug" culprit="altclkctrl_0">Current quartus bindir: /opt/altera/14.0/quartus/linux64/.</message>
+   <message level="Info" culprit="altclkctrl_0"><![CDATA["<b>clock_control</b>" instantiated <b>altclkctrl</b> "<b>altclkctrl_0</b>"]]></message>
+  </messages>
+ </entity>
+</deploy>

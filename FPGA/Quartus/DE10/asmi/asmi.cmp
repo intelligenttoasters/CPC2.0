@@ -1,0 +1,13 @@
+	component asmi is
+		port (
+			clkin      : in  std_logic                     := 'X';             -- clk
+			read       : in  std_logic                     := 'X';             -- read
+			rden       : in  std_logic                     := 'X';             -- rden
+			addr       : in  std_logic_vector(23 downto 0) := (others => 'X'); -- addr
+			reset      : in  std_logic                     := 'X';             -- reset
+			dataout    : out std_logic_vector(7 downto 0);                     -- dataout
+			busy       : out std_logic;                                        -- busy
+			data_valid : out std_logic                                         -- data_valid
+		);
+	end component asmi;
+

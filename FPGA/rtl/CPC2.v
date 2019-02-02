@@ -27,12 +27,11 @@
 
 module CPC2(
 		input CLK_50,
-		// Control Ports
-		output DATA7,				// Heartbeat
-		input DATA6,				// Unassigned
-		// Hard coded de-assert data lines, a high on this line prevents data 6+7 from being asserted
-		// Avoids potential conflicts on the lines during power up switch over from FPGA FPP
-		input DATA5,				// Soft reset
+		input CLK2_50,
+		input CLK_12,
+		// Soft reset
+		input reset_i,
+		// I2C Control Ports
 		inout I2C_SCL,
 		inout I2C_SDA,
 		// Disk/activity LED
@@ -52,48 +51,66 @@ module CPC2(
 		// Uart port
 		input uart_rx_i,
 		output uart_tx_o,
+		// SDCard Port
+		output mmcclk_o,
+		input mmccmd_i,
+		output mmccmd_o,
+		output mmccmd_oe,
+		input [3:0] mmcdata_i,
+		output [3:0] mmcdata_o,
+		output mmcdata_oe,
+		// HyperRAM1 hardware interface
+		inout wire [7:0]	hyper_dq,
+		inout wire			hyper_rwds,
+		output wire			hyper_csn_o,
+		output wire			hyper_ck_o,
+		output wire			hyper_resetn_o,
+		// HyperRAM2 hardware interface
+		inout wire [7:0]	hyper2_dq,
+		inout wire			hyper2_rwds,
+		output wire			hyper2_csn_o,
+		output wire			hyper2_ck_o,
+		output wire			hyper2_resetn_o,
 		// USB port
-		output usb_mode,
-		output usb_suspend,
-		input usb_vm,
-		input usb_vp,
-		input usb_rcv,
-		output usb_vpo,
-		output usb_vmo,
-		output usb_speed,
-		output usb_oen,
-		// SDRAM interface
-		inout [15:0] 	sdram_Dq, 
-		output [11:0] 	sdram_Addr, 
-		output [1:0] 	sdram_Ba, 
-		output     		sdram_Clk, 
-		output 	     	sdram_Cke, 
-		output 			sdram_Cs_n, 
-		output 			sdram_Ras_n, 
-		output 			sdram_Cas_n, 
-		output 			sdram_We_n, 
-		output [1 : 0] sdram_Dqm
+		input usb_clkin,
+		input usb_dir,
+		input usb_nxt,
+		output usb_stp,
+		output usb_reset,
+		input [7:0] usb_data_i,
+		output [7:0] usb_data_o,
+		output usb_data_oe
 		);
- 
+
+	// Register definitions
+	reg [3:0] romram_sync;
+	
+	// ASMI Registers
+	reg [31:0] asmi_A;
+	reg asmi_read = 1'b0;
+		
 	// Wire definitions ===========================================================================
 	wire			global_reset_n, limited_reset_n, heartbeat;
-	wire			clock_160, clock_120, clock_48, clock_40, clock_16, clock_4, clock_1, clock_audio;
+	wire			clock_74_25, clock_48, clock_40, clock_16, clock_4, clock_1, clock_audio;
+	`ifndef SIM
+	wire clock_mem;
+	`endif
 	
 	// support cpu wiring
-	wire [15:0]	support_address, sys_address;
+	wire [15:0]	support_address, ipl_address;
 	wire [7:0]	support_dout, support_din, support_mem, support_io, io_data, fdc_dout;
-	wire [7:0]	sys_data;
-	wire			support_mreq, support_m1, support_iorq, support_rd, support_wr;
-	wire			sys_rd, sys_wr, dma_rd;
+	wire [7:0]	ipl_data;
+	wire			support_mreq, support_m1, support_iorq, support_rd, support_wr, support_wait, support_wait2;
+	wire			sys_rd, ipl_wr;
 	wire [7:0]	write_protect_high;
 
 	// Support IO Wires
 	wire [15:0] io_nwr, io_nrd, wb_we, wb_stb;
 	wire [7:0]	wb_adr, wb_dat;
-	wire [7:0]	uart_dout, intmgr_dout, i2c_dout, kbd_dout, usb_dout, memctl_dout;
+	wire [7:0]	uart_dout, intmgr_dout, i2c_dout, kbd_dout, memctl_dout, sram_dout, sram2_dout, usb_dout, cpcctl_dout, sdc_dout, brs_dout;
 	wire [3:0]	io_a;
 	wire			io_clk;
-	wire			i2c_ack, usb_ack;
+	wire			i2c_ack;
 	wire			uart_interrupt, cpu_interrupt, i2c_interrupt, fdc_interrupt;
 	
 	// Video wiring
@@ -106,44 +123,58 @@ module CPC2(
 	wire [79:0] keyboard_data;
 
 	// Shared ROM lines
-	wire [14:0] shared_rom_addr;
-	wire [7:0] shared_rom_data;
+	wire [23:0] romram_addr;
+	wire [7:0] romram_data2cpc;
+	wire [7:0] romram_data2mem;
+	wire romram_rd, romram_wr, romram_enable, romram_enable_rise;
+	wire [63:0] rom_flags;
+	
+	// ASMI Interface
+	wire [7:0] asmi_data, asmi_dout;
+	wire asmi_busy, asmi_ready;
 	
 	// FDC
 	wire fdc_motor, fdc_activity;
 	
-	// Registers
-reg [7:0] usb_rdout = 0; 
-
-	// Assignments	
-	assign usb_suspend = 0;
-	assign usb_mode = 1;
+	wire [23:0] tfr_A;
+	wire [7:0] tfr_D;
 	
-	// Prevent assertion when deassert active - note it only happens AFTER the FPGA is configured
-	assign DATA7 = (!DATA5) ? heartbeat : 1'bz;
+	// Registers
+	reg support_enable = 0;
+	
+	// Assignments
+	assign romram_enable_rise = (romram_sync[3:2] == 2'b01);
 	
 	// Simulation branches and control ===========================================================
 	`ifndef SIM
 	master_clock master_clk (
 		.refclk(CLK_50),   		//  refclk.clk
 		.rst(!limited_reset_n),	//  reset.reset
-		.outclk_0(clock_160),
-		.outclk_1(clock_120),
-		.outclk_2(clock_48),
-		.outclk_3(clock_40),
-		.outclk_4(clock_16),
-		.outclk_5(clock_4),
-		.outclk_6(clock_1),
-		.outclk_7(clock_audio)
+		.outclk_0(clock_mem),
+		.outclk_1(clock_40)
 	);
-	/*
+
+	// HDMI Audio clock
 	audio_clock audio_clk (
-		.refclk(cascade_clock),   		//  refclk.clk
+		.refclk(CLK_12),   		//  refclk.clk
 		.rst(!limited_reset_n),	//  reset.reset
 		.outclk_0(clock_audio)
 	);
-	*/
+	// Slow clocks
+	cpc_clks cpc_clocks (
+		.refclk(CLK2_50),   		//  refclk.clk
+		.rst(!limited_reset_n),	//  reset.reset
+		.outclk_0(clock_48),
+		.outclk_1(clock_16),
+		.outclk_2(clock_4),
+		.outclk_3(clock_1)
+	);	
 	`else
+		reg clock_mem = 0;
+		always begin
+		#4 clock_mem <= ~clock_mem;
+		end
+		
 		reg clk48 = 0;
 		assign clock_48 = clk48;
 		always begin
@@ -170,28 +201,30 @@ reg [7:0] usb_rdout = 0;
 		assign clock_16 = clk16;
 		always begin
 			#31 clk16 = ~clk16;
+			#31 clk16 = ~clk16;
+			#31 clk16 = ~clk16;
 			#32 clk16 = ~clk16;
-			#31 clk16 = ~clk16;
-			#31 clk16 = ~clk16;
 		end
-		reg [3:0] xcntr = 0;
-		always @(posedge clock_16) xcntr <= xcntr + 1'b1;
-		assign clock_4 = xcntr[1];
-		assign clock_1 = xcntr[3];
+		reg clk4 = 0;
+		assign clock_4 = clk4;
+		always begin
+			#125 clk4 = ~clk4;
+		end
+		reg clk1 = 0;
+		assign clock_1 = clk1;
+		always begin
+			#500 clk1 = ~clk1;
+		end
 	`endif
 	// Module connections ========================================================================
-	
-	led_driver led( clock_48, fdc_motor, fdc_activity, LED );
-	// Dummy LED driver
-//	led_driver led( clock_48, !uart_rx_i, LED );
-//	led_driver2 led( clock_16, LED );
-//	led_driver3 led( clock_audio, LED );
 
+	// Disk Drive LED
+	led_driver led( clock_48, fdc_motor, fdc_activity, LED );
 
 	// Global reset
 	global_reset global_reset( 
 		.clock_i( CLK_50 ), 
-		.forced_reset_i( DATA5 ),
+		.forced_reset_i( reset_i ),
 		.n_reset_o(global_reset_n),
 		.n_limited_reset_o(limited_reset_n)
 	);
@@ -200,7 +233,7 @@ reg [7:0] usb_rdout = 0;
 	tv80n supportcpu (
 		.reset_n(global_reset_n), 
 		.clk(clock_48), 
-		.wait_n(1'b1),
+		.wait_n(~(support_wait|support_wait2)),
 		.m1_n(), 
 		.mreq_n(support_mreq), 
 		.iorq_n(support_iorq), 
@@ -232,13 +265,209 @@ reg [7:0] usb_rdout = 0;
 		// Interrupt signal
 		.interrupt_o(uart_interrupt),
 		// DMA connection to memory for IPL
-		.dma_en_i( DATA5 ),
-		.dma_adr_o( sys_address ),
-		.dma_dat_o( sys_data ),
-		.dma_wr_o( sys_wr )
+		.dma_en_i( reset_i ),
+		.dma_adr_o( ipl_address ),
+		.dma_dat_o( ipl_data ),
+		.dma_wr_o( ipl_wr )
 	);
 	// End UART Module ====================================================
 
+	// HyperRam Memory Module =============================================
+	wire [7:0] hyper_dq_i, hyper_dq_o;
+	wire [15:0] hyper2sram, sram2hyper;
+	wire hyper_dq_oe, hyper_rwds_o, hyper_rwds_i, hyper_rwds_oe, hyper_go, hyper_valid, hyper_busy, hyper_ready;
+	wire [23:0] hyper_A;
+	wire [2:0] hyper_cmd;
+	
+	// Bidirectional buffers
+	assign hyper_dq = (hyper_dq_oe) ? hyper_dq_o : 8'bzzzzzzzz;
+	assign hyper_dq_i = hyper_dq;
+	assign hyper_rwds = (hyper_rwds_oe) ? hyper_rwds_o : 1'bz;
+	assign hyper_rwds_i = hyper_rwds;
+
+	hyperram_ctl hyperram (
+		// System core signals
+		.clk_i(clock_mem),
+		.rst_i(~global_reset_n),
+		.ready_o(hyper_ready),
+		// Memory  bus signals / asynchronous edge triggered bus
+		.A_i(hyper_A),		// 24 bit address space, for 16 bit words (max 32MB)
+		.D_i(sram2hyper),
+		.D_o(hyper2sram),
+		.D_valid(hyper_valid),
+		.cmd_i(hyper_cmd),
+		.go_i(hyper_go),		// Edge triggered action signal
+		.busy_o(hyper_busy),		// Busy signal
+		// HyperRAM hardware interface
+		.dq_i(hyper_dq_i),
+		.dq_o(hyper_dq_o),
+		.dq_oe(hyper_dq_oe),
+		.rwds_i(hyper_rwds_i),
+		.rwds_o(hyper_rwds_o),
+		.rwds_oe(hyper_rwds_oe),
+		.csn_o(hyper_csn_o),
+		.ck_o(hyper_ck_o),
+		.resetn_o(hyper_resetn_o)
+    );	
+	
+	// End HyperRam Memory Module =========================================
+	
+	// HyperRam multiplexor support CPU and CPC ===========================
+	wire sram_loopback;
+	sram_ctl sram ( 
+	// Control signals
+	.clk_i(clock_48),
+	.reset_i(~global_reset_n),
+	// Support Bus signals
+	.A_i(io_a),
+	.D_i(io_data),
+	.D_o(sram_dout),
+	.rd_i(~io_nrd[7]),
+	.wr_i(~io_nwr[7]),
+	.wait_o(support_wait),
+	// CPC Signals/RAMROM signals
+	.cpc_pause_o(sram_loopback),
+	.cpc_pause_ack_i(sram_loopback),
+	.cpc_A_i(romram_addr),
+	.cpc_D_i(romram_data2mem),
+	.cpc_D_o(romram_data2cpc),
+	.cpc_en_i(romram_enable_rise),
+	.cpc_rd_i(romram_rd),
+	.cpc_wr_i(romram_wr),
+	.cpc_romflags_o(rom_flags),
+	// Memory signals
+	.mem_A_o(hyper_A),
+	.mem_D_i(hyper2sram),
+	.mem_D_o(sram2hyper),
+	.mem_cmd_o(hyper_cmd),
+	.mem_go_o(hyper_go),
+	.mem_busy_i(hyper_busy),
+	.mem_valid_i(hyper_valid)
+	);
+	// HyperRam multiplexor support CPU and CPC ===========================
+
+	// HyperRam 2 Memory Module =============================================
+	wire [7:0] hyper2_dq_i, hyper2_dq_o;
+	wire [15:0] hyper2sram2, sram2hyper2;
+	wire hyper2_dq_oe, hyper2_rwds_o, hyper2_rwds_i, hyper2_rwds_oe, hyper2_go, hyper2_valid, hyper2_busy, hyper2_ready;
+	wire [23:0] hyper2_A;
+	wire [2:0] hyper2_cmd;
+	
+	// Bidirectional buffers
+	assign hyper2_dq = (hyper2_dq_oe) ? hyper2_dq_o : 8'bzzzzzzzz;
+	assign hyper2_dq_i = hyper2_dq;
+	assign hyper2_rwds = (hyper2_rwds_oe) ? hyper2_rwds_o : 1'bz;
+	assign hyper2_rwds_i = hyper2_rwds;
+
+	hyperram_ctl hyperram2 (
+		// System core signals
+		.clk_i(clock_mem),
+		.rst_i(~global_reset_n),
+		.ready_o(hyper2_ready),
+		// Memory  bus signals / asynchronous edge triggered bus
+		.A_i(hyper2_A),		// 24 bit address space, for 16 bit words (max 32MB)
+		.D_i(sram2hyper2),
+		.D_o(hyper2sram2),
+		.D_valid(hyper2_valid),
+		.cmd_i(hyper2_cmd),
+		.go_i(hyper2_go),		// Edge triggered action signal
+		.busy_o(hyper2_busy),		// Busy signal
+		// HyperRAM hardware interface
+		.dq_i(hyper2_dq_i),
+		.dq_o(hyper2_dq_o),
+		.dq_oe(hyper2_dq_oe),
+		.rwds_i(hyper2_rwds_i),
+		.rwds_o(hyper2_rwds_o),
+		.rwds_oe(hyper2_rwds_oe),
+		.csn_o(hyper2_csn_o),
+		.ck_o(hyper2_ck_o),
+		.resetn_o(hyper2_resetn_o)
+    );
+	// End HyperRam 2 Memory Module =========================================
+
+	// HyperRam2 multiplexor support Controller CPU and Video ===========================
+	wire sram2_loopback;
+	sram_ctl sram2 ( 
+	// Control signals
+	.clk_i(clock_48),
+	.reset_i(~global_reset_n),
+	// Support Bus signals
+	.A_i(io_a),
+	.D_i(io_data),
+	.D_o(sram2_dout),
+	.rd_i(~io_nrd[8]),
+	.wr_i(~io_nwr[8]),
+	.wait_o(support_wait2),
+	// Video Signals
+	.cpc_pause_o(sram2_loopback),			// Support CPU bus access RQ
+	.cpc_pause_ack_i(sram2_loopback),	// Video logic bus ack
+	// Video Addr/Dat/Ctl
+	.cpc_A_i(),
+	.cpc_D_i(),
+	.cpc_D_o(),
+	.cpc_en_i(),
+	.cpc_rd_i(),
+	.cpc_wr_i(),
+	.cpc_romflags_o(),						// Not required
+	// Memory signals
+	.mem_A_o(hyper2_A),
+	.mem_D_i(hyper2sram2),
+	.mem_D_o(sram2hyper2),
+	.mem_cmd_o(hyper2_cmd),
+	.mem_go_o(hyper2_go),
+	.mem_busy_i(hyper2_busy),
+	.mem_valid_i(hyper2_valid)
+	);
+	// HyperRam2 multiplexor support CPU and CPC ===========================
+	
+	// Synchronizer on romram_enable (clk4 domain -> mem domain)
+	always @(posedge clock_mem) romram_sync <= {romram_sync[2:0],romram_enable};
+
+//	assign support_wait = ~support_enable;
+	
+	// ASMI Interface for ROM Images (0 data/read trigger 8:11 address, 15 read status/trigger read
+	`ifndef SIM
+	asmi asmi0 (
+		.clkin      (clock_48),      				//      clkin.clk
+		.read       (asmi_read),      			//       read.read
+		.rden       (asmi_read), 					//       rden.rden
+		.addr       (asmi_A[23:0]),  				//       addr.addr[24]
+		.reset      (~global_reset_n),      	//      reset.reset
+		.dataout    (asmi_data),    				//    dataout.dataout[8]
+		.busy       (asmi_busy),       			//       busy.busy
+		.data_valid (asmi_ready)  					// data_valid.data_valid
+	);	
+	`endif
+	// Store ASMI Address
+	always @(posedge clock_48 or negedge global_reset_n)
+	if( ~global_reset_n)
+	begin
+		asmi_A <= 32'd0;
+	end else begin
+		//if(asmi_track_busy == 2'b10) asmi_A <= asmi_A + 1'b1;		// Falling edge of busy increment address
+		if( asmi_ready ) asmi_A <= asmi_A + 1'b1;
+		else
+		if( ~io_nwr[9] ) begin
+			// Write to registers requires bit 3 of address set
+			if( io_a[3:2] == 2'b10 ) case(io_a[1:0])
+				2'd0 : asmi_A[7:0] <= io_data;
+				2'd1 : asmi_A[15:8] <= io_data;
+				2'd2 : asmi_A[23:16] <= io_data;
+				2'd3 : asmi_A[31:24] <= io_data;
+			endcase
+			else
+			if(io_a == 4'd15 ) asmi_read <= 1'b1;
+		end
+		else asmi_read <= 1'b0;
+	end
+	assign asmi_dout = (io_a == 4'd0) ? asmi_data : 
+							 (io_a == 4'd8) ? asmi_A[7:0] :
+							 (io_a == 4'd9) ? asmi_A[15:8] :
+							 (io_a == 4'd10) ? asmi_A[23:16] :
+							 (io_a == 4'd11) ? asmi_A[31:24] :
+							 {asmi_ready,6'd0,asmi_busy};
+	// End ASMI Interface
+	
 	// Keyboard Data Module================================================
 	keyboard kbd_if ( 
 				.keyboard_o(keyboard_data),
@@ -261,7 +490,6 @@ reg [7:0] usb_rdout = 0;
 	);
 	
 	// Interface to support memory, write protect except for data area
-//	support_memory_if #( .wp_address(16'hc000) ) memif (
 	support_memory_if memif (
 		.clk(clock_48),
 		.wp_address(write_protect_high),
@@ -271,24 +499,29 @@ reg [7:0] usb_rdout = 0;
 		.support_Dout(support_mem),
 		.support_wr(!support_wr && !support_mreq),
 		// System memory interface
-		.sys_en(DATA5),		// If the soft reset is active, then enable the system memory interface
-		.sys_A(sys_address),
-		.sys_data(sys_data),
-		.sys_wr(sys_wr),
-		// Shared ROM data
-		.rom_A(shared_rom_addr),
-		.rom_D(shared_rom_data)
+		.sys_en(reset_i),		// If the soft reset is active, then enable the system memory interface
+		.sys_A(ipl_address),
+		.sys_data(ipl_data),
+		.sys_wr(ipl_wr)
 	);
 	
+	// Support Memory Write Control
 	memctl memory_control(
 		.clk_i(io_clk),
 		.reset_i(~global_reset_n),
 		.wr_i( ~io_nwr[5] ),
 		.rd_i( ~io_nrd[5] ),
-		.A_i(io_a),
 		.D_i(io_data),
 		.D_o(memctl_dout),
 		.wp_o(write_protect_high)
+	);
+	
+	cpcctl cpc_control(
+		.clk_i(io_clk),
+		.reset_i(~global_reset_n),
+		.wr_i( ~io_nwr[15] ),
+		.D_i(io_data),
+		.D_o(cpcctl_dout)
 	);
 	
 	// Switching IO interface
@@ -313,19 +546,19 @@ reg [7:0] usb_rdout = 0;
 				i2c_dout,		// Port 0x20 - 0x2f	I2C interface
 				kbd_dout,		// Port 0x30 - 0x3f	Keyboard interface
 				fdc_dout,		// Port 0x40 - 0x4f	FDC Interface
-				memctl_dout,	// Port 0x50 - 0x5f	Memory control space
+				memctl_dout,	// Port 0x50 - 0x5f	Memory protect control space
+				usb_dout,		// Port 0x60 - 0x6f	USB2 Controller space
+				sram_dout,		// Port 0x70 - 0x7f	SRAM interface1 - CPC
+				sram2_dout,		// Port 0x80 - 0x8f	SRAM interface2 - Video
+				asmi_dout,		// Port 0x90 - 0x9f	ASMI Flash memory
+				sdc_dout,		// Port 0xa0 - 0xaf	SDC Controller, through uP to WB
+				brs_dout,		// Port 0xb0 - 0xbf	Block RAM Spooler for SD Card
 				8'd0,
 				8'd0,
 				8'd0,
-				8'd0,
-				8'd0,
-				usb_dout,		// Port 0xB0 - 0xBF USB control
-				usb_dout,		// Port 0xC0 - 0xCF USB control
-				usb_dout,		// Port 0xD0 - 0xDF USB control
-				usb_dout,		// Port 0xE0 - 0xEF USB control
-				8'd0				// Port 0xF0 - 0xFF Unused
+				{hyper_ready,hyper2_ready,cpcctl_dout[5:0]}		// Port 0xf0 - 0xff	CPC Control signals, bit7-sram rdy, bit6-sram2 rdy, bit0-reset
 				}),				// Merged data path - 16 streams
-		.ack_i(i2c_ack | usb_ack),		// WB Ack in wire-or'ed
+		.ack_i(i2c_ack /*| usb_ack*/),		// WB Ack in wire-or'ed
 		.we_o(wb_we),			// WB Write out
 		.stb_o(wb_stb),		// WB Strobe out
 		.adr_o(wb_adr),		// WB Registered addr
@@ -334,7 +567,7 @@ reg [7:0] usb_rdout = 0;
 	
 	// Interrupt manager, address 0x10-0x1f
 	interrupt_manager intmgr (
-		.fast_clock_i(clock_40),
+		.fast_clock_i(clock_48),
 		.interrupt_lines_i({5'd0,fdc_interrupt,i2c_interrupt,uart_interrupt}),
 		.rd_i(!io_nrd[1]),
 		.n_int_o(cpu_interrupt),
@@ -368,50 +601,6 @@ reg [7:0] usb_rdout = 0;
 		.sda_padoen_o(sdaoen) 
 	);
 
-	// USB Interface
-	wire usb_oe_p;
-	assign usb_oen = !usb_oe_p;
-
-	// Strobe - limit to 1 clock cycle
-	wire usb_stb = wb_stb[11] | wb_stb[12] | wb_stb[13] | wb_stb[14];
-	reg [1:0] track_stb = 2'd0;
-	reg altedge_stb = 0;
-	
-	always @(posedge io_clk) track_stb <= {track_stb[0],usb_stb};
-//	always @(posedge io_clk) if( {track_stb[0],usb_stb} == 2'b01) usb_rdout <= usb_dout;	// Register data out
-	always @(negedge io_clk) altedge_stb <= ({track_stb,usb_stb} == 3'b001);
-
-	wire usb_we = wb_we[11] | wb_we[12] | wb_we[13] | wb_we[14];
-	reg track_we = 1'd0;
-	reg altedge_we = 0;
-	always @(posedge io_clk) track_we <= usb_we;
-	always @(negedge io_clk) altedge_we <= ({track_we,usb_we} == 2'b01);	
-
-	usbHost usb(
-		.clk_i(io_clk),         	//Wishbone bus clock. Maximum 5*usbClk=240MHz
-		.rst_i(!global_reset_n), 	//Wishbone bus sync reset. Synchronous to 'clk_i'. Resets all logic
-		.address_i({
-						(wb_adr[7:4] == 4'd14) ? 4'hE :
-						(wb_adr[7:4] == 4'd13) ? 4'h3 :
-						(wb_adr[7:4] == 4'd12) ? 4'h2 :
-						(wb_adr[7:4] == 4'd11) ? 4'h0 :
-						4'hF, wb_adr[3:0]}),   //Wishbone bus address in
-		.data_i(wb_dat),           //Wishbone bus data in
-		.data_o(usb_dout),  	      //Wishbone bus data out
-		.we_i(altedge_we),                //Wishbone bus write enable in
-		.strobe_i(altedge_stb),            //Wishbone bus strobe in
-		.ack_o(usb_ack),          //Wishbone bus acknowledge out
-		.usbClk(clock_48),        //usb clock. 48Mhz +/-0.25%
-		.hostSOFSentIntOut(), 
-		.hostConnEventIntOut(), 
-		.hostResumeIntOut(), 
-		.hostTransDoneIntOut(),
-		.USBWireDataIn({usb_vp, usb_vm}),
-		.USBWireDataOut({usb_vpo, usb_vmo}),
-		.USBWireCtrlOut(usb_oe_p),
-		.USBFullSpeed(usb_speed)
-	);
-
 	// Dummy SYNC general
 	video fake_video( 
 		// Clocking in
@@ -432,43 +621,164 @@ reg [7:0] usb_rdout = 0;
 	);
 
 	// Dummy I2S audio driver
+	reg [7:0] audio_sync[0:4];
+	always @(negedge clock_audio)
+	begin
+		audio_sync[4] <= audio_sync[3];
+		audio_sync[3] <= audio_sync[2];
+		audio_sync[2] <= audio_sync[1];
+		audio_sync[1] <= audio_sync[0];
+		audio_sync[0] <= audio_signal;
+	end
+	
 	i2s_audio audio(
 		.clk_i(clock_audio),
-		.left_i({audio_signal,8'd0}),
-		.right_i({audio_signal,8'd0}),
+		.left_i({audio_sync[4],8'd0}),
+		.right_i({audio_sync[4],8'd0}),
 		.i2s_o(I2S),
 		.lrclk_o(LRCLK),
 		.sclk_o(ASCLK)
 	);
 
-	// SDRAM BIG Memory ==============================================================
-	wire [15:0] 	sdram_Dq_sw;
-	wire 				sdram_oe;
+	// uP to WB Master I/F for SDCard controller
+	wire [31:0] sdc_adr, sdc_dati, sdc_dato;
+	wire [3:0] sdc_sel;
+	wire sdc_we, sdc_stb, sdc_cyc, sdc_ack;
+	up2wb sdc_if (
+		// Master Signals
+		.clk_i(clock_48),
+		.reset_i(~global_reset_n),
+		// uP Interface
+		.A_i(io_a),
+		.D_i(io_data),
+		.D_o(sdc_dout),
+		.wr_i(~io_nwr[4'ha]),
+		.rd_i(~io_nrd[4'ha]),
+		// WB Interface
+		.adr_o(sdc_adr),
+		.dat_o(sdc_dato),
+		.dat_i(sdc_dati),
+		.we_o(sdc_we),
+		.sel_o(sdc_sel),
+		.stb_o(sdc_stb),
+		.cyc_o(sdc_cyc),
+		.ack_i(sdc_ack)
+	);
 	
-	sdram ram (
-		// Control Signals
-		.memclk_i(clock_160), .reset_i(~global_reset_n),
-		// Logical Interface (8M words of 16 bits)
-		.enable_i(1'b1), .rd_i(), .wr_i(), .A_i(), .D_i(),
-		.Dm_i(2'b00), .D_o(), .D_valid(),
-		// Physical SDRAM Interface
-		.Dq_in(sdram_Dq),
-		.Dq_out(sdram_Dq_sw),
-		.Dq_oe(sdram_oe),
-		.Addr(sdram_Addr), 
-		.Ba(sdram_Ba), 
-		.Clk(sdram_Clk), 
-		.Cke(sdram_Cke), 
-		.Cs_n(sdram_Cs_n), 
-		.Ras_n(sdram_Ras_n), 
-		.Cas_n(sdram_Cas_n), 
-		.We_n(sdram_We_n), 
-		.Dqm(sdram_Dqm)
-		);
-	// Switchable data bus
-	assign sdram_Dq = (sdram_oe) ? sdram_Dq_sw : 16'bz;
+	wire [31:0] sd_ma, sd_mdi,sd_mdo;
+	wire sd_sel, sd_we, sd_cyc, sd_stb, sd_ack;
 	
-	// END SDRAM BIG Memory ==========================================================
+	// SDCard Controller
+	sdc_controller sdmmc (
+           // WISHBONE common
+           .wb_clk_i(clock_48), 
+           .wb_rst_i(~global_reset_n), 
+           // WISHBONE slave
+           .wb_dat_i(sdc_dato), 
+           .wb_dat_o(sdc_dati),
+           .wb_adr_i(sdc_adr[7:0]), 
+           .wb_sel_i(sdc_sel), 
+           .wb_we_i(sdc_we), 
+           .wb_cyc_i(sdc_cyc), 
+           .wb_stb_i(sdc_stb), 
+           .wb_ack_o(sdc_ack),
+           // WISHBONE master
+           .m_wb_dat_o(sd_mdo),
+           .m_wb_dat_i(sd_mdi),
+           .m_wb_adr_o(sd_ma), 
+           .m_wb_sel_o(sd_sel), 
+           .m_wb_we_o(sd_we),
+           .m_wb_cyc_o(sd_cyc),
+           .m_wb_stb_o(sd_stb), 
+           .m_wb_ack_i(sd_ack),
+           .m_wb_cti_o(), 
+           .m_wb_bte_o(),
+           //SD BUS
+           .sd_cmd_dat_i(mmccmd_i), 
+           .sd_cmd_out_o(mmccmd_o), 
+           .sd_cmd_oe_o(mmccmd_oe), 
+           .sd_dat_dat_i(mmcdata_i), 
+           .sd_dat_out_o(mmcdata_o), 
+           .sd_dat_oe_o(mmcdata_oe), 
+           .sd_clk_o_pad(mmcclk_o),
+           .sd_clk_i_pad(clock_48),
+			  // Interrupts
+           .int_cmd(), 
+           .int_data()
+       );	
+		 
+	reg sd_last_stb = 1'b0;
+	always @(posedge clock_48) sd_last_stb <= sd_stb;
+	wire stb_rise = ({sd_last_stb, sd_stb} == 2'b01);
+	
+	reg [1:0] ack_counter;	
+	always @(posedge clock_48)
+	begin
+		if( ~sd_stb ) ack_counter = 2'd0;
+		else ack_counter = (ack_counter == 2'd2) ? 2'd0 : ack_counter + 1'b1;
+	end	
+	
+	// Ack only every third cycle for read to allow data through the blockram registers
+	assign sd_ack = (sd_we) ? sd_stb : (ack_counter == 2'd2);		
+	
+	wire [15:0] SD_A;
+	wire [7:0] SD_D, SD_Q;
+	wire SD_WE;
+	
+	// Buffers data to/from SD card
+	sdcard_buffer sd_buffer (
+		.aclr_a(~global_reset_n),
+		.aclr_b(~global_reset_n),
+		.address_a(sd_ma[9:2]),		// Word aligned
+		.address_b(SD_A[9:0]),
+		.clock_a(clock_48),
+		.clock_b(clock_48),
+		.data_a({sd_mdo[7:0], sd_mdo[15:8], sd_mdo[23:16],sd_mdo[31:24]}),	// Quartus mangles byte order 32-8 conversion
+		.data_b(SD_D),				
+		.wren_a(sd_we & stb_rise),	// One write cycle
+		.wren_b(SD_WE),
+		.q_a({sd_mdi[7:0],sd_mdi[15:8],sd_mdi[23:16],sd_mdi[31:24]}),			// Quartus mangles byte order 32-8 conversion
+		.q_b(SD_Q)
+	);
+	// Buffer In/Out Data for SD Card
+	blockram_spool brs (
+		// System signals
+		.clk_i(clock_48),
+		.areset_i(~global_reset_n),
+		// Blockram Interface
+		.address_o(SD_A[9:0]),		// Only 1024 bytes in buffer
+		.data_o(SD_D),
+		.q_i(SD_Q),
+		.wren_o(SD_WE),
+		// CPC Interface
+		.A_i(io_a),
+		.D_i(io_data),
+		.D_o(brs_dout),
+		.rd_i(~io_nrd[4'hb]),
+		.wr_i(~io_nwr[4'hb])
+		);	
+	// End of SDCard controller
+	
+	// USB ULPI
+	usb_ulpi usb (
+		// Bus Interface
+		.clk_i(io_clk),
+		.reset_i(~global_reset_n),
+		.A(io_a),
+		.D_i(io_data),
+		.D_o(usb_dout),
+		.wr_i( ~io_nwr[6] ),
+		.rd_i( ~io_nrd[6] ),	
+		// Phy Interface
+		.usb_clkin(usb_clkin),
+		.usb_dir(usb_dir),
+		.usb_nxt(usb_nxt),
+		.usb_stp(usb_stp),
+		.usb_reset(usb_reset),
+		.usb_data_i(usb_data_i),
+		.usb_data_o(usb_data_o),
+		.usb_data_oe(usb_data_oe)
+	);
 	
 	// ===============================================================================
 	// ======== This is the real CPC Core ============================================
@@ -477,7 +787,7 @@ reg [7:0] usb_rdout = 0;
 		.clk_16(clock_16),
 		.clk_4(clock_4),
 		.clk_1(clock_1),
-		.nreset_i(global_reset_n),
+		.nreset_i(~cpcctl_dout[0]),
 		// Video memory access here
 		.video_clk_i(clock_40),
 		.video_A_o(vram_A),
@@ -486,13 +796,19 @@ reg [7:0] usb_rdout = 0;
 		.keyboard_i(keyboard_data),
 		.audio_o(audio_signal),
 		// Shared ROM
-		.shared_rom_addr_o(shared_rom_addr),
-		.shared_rom_data_i(shared_rom_data),
+		.romram_addr_o(romram_addr),
+		.romram_data_i(romram_data2cpc),
+		.romram_data_o(romram_data2mem),
+		.romram_enable_o(romram_enable),
+		.romram_rd_o(romram_rd),
+		.romram_wr_o(romram_wr),
+		.romram_valid_i(hyper_valid),
+		.romflags_i(rom_flags),
 		// FDC Interface
 		.fdc_motor(fdc_motor),
 		.fdc_activity(fdc_activity),
 		.S_clk_i(clock_48),
-		.S_A_i(io_a[3:0]),
+		.S_A_i(io_a),
 		.S_D_i(support_dout),
 		.S_D_o(fdc_dout),
 		.S_rd_i(~io_nrd[4]),
@@ -535,34 +851,40 @@ module led_driver(
 	// Duty cycle for motor
 	always @(posedge clk_i)	cycle <= cycle + 1'b1;
 	
-	// 50% duty cycle when motor is on, or full intensity when reading
-	assign led_o = (cntr > 0) | (fdc_motor_i && (cycle[0] == 2'd0));
+	// 25% duty cycle when motor is on, or full intensity when reading
+	assign led_o = (cntr > 0) | (fdc_motor_i && (cycle == 2'd0));
 	
 endmodule
 
+// Sets and stores the write protect address
 module memctl(
 	input clk_i,
 	input reset_i,
 	input rd_i,
 	input wr_i,
-	input [3:0] A_i,
 	input [7:0] D_i,
 	output reg [7:0] D_o,
-	output reg [7:0] wp_o = 8'h00
+	output reg [7:0] wp_o = 7'h00
 );
-	always @(posedge clk_i)
-	if( reset_i )
-	begin
-		wp_o <= 8'd0;
+	always @(posedge clk_i or posedge reset_i)
+	if( reset_i ) wp_o <= 8'd0;
+	else begin 
+		if( wr_i ) wp_o <= D_i[7:0];
+		if( rd_i ) D_o <= wp_o;
 	end
-	else
-	begin 
-		case( A_i )
-			0: begin
-				if( wr_i ) wp_o <= D_i;
-				if( rd_i ) D_o <= wp_o;
-			end
-			default: ;
-		endcase
-	end
+endmodule
+
+// Sets and stores the write protect address
+// Bit 0 - Reset CPC
+// Bit 1 - Inhibit Clock
+module cpcctl(
+	input clk_i,
+	input reset_i,
+	input wr_i,
+	input [7:0] D_i,
+	output reg [7:0] D_o
+);
+	always @(posedge clk_i or posedge reset_i)
+	if( reset_i ) D_o <= 8'd1;				// Hold in reset when in system reset
+	else if( wr_i ) D_o <= D_i[7:0];
 endmodule

@@ -22,11 +22,11 @@
  */
 `timescale 1ns/1ns
 
-`define BAUD 468750	// Counter 16 in SAM4S
+`define BAUD 115200
 `define CLOCK 48000000
 //(`CLOCK/`BAUD)
-`define SPAN 103 
-
+//`define SPAN 103 
+`define SPAN (`CLOCK/`BAUD)
 
 module usart #(
 	parameter fifo_log2 = 9,

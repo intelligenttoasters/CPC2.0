@@ -24,8 +24,7 @@
 	.area _VECT0 (ABS)
 	.org	0x0000
 
-;	ld sp,#0h0000	; Stack is top of memory
-	ld sp,#0h8000	; Stack is before shared memory space
+	ld sp,#0h0000	; Stack is top of memory
 	jp BOOTSYS
 ;	jp debug
 
@@ -105,7 +104,7 @@ _CODE_START = .
 s__INITIALIZER = .
 	.area	_END_INITIALIZER
 e__INITIALIZER = .
-;	.ds		256				; Ensure we're in a new page for write-protect
+	.ds		256				; Ensure we're in a new page for write-protect
 	.area	_DATA
 s__DATA = .
 	.area	_INITIALIZED
@@ -143,16 +142,24 @@ gsinit_next:
 	.area   _SYSTEM_CODE
 
 BOOTSYS:
+	di
+
 	; Write protect the memory
 	ld a,#(s__DATA>>8)
 	out(0x50),a				; Memory controller write protect boundary
+
+	; Clear the interrupt register
+	ld bc, #0x0010
+	in a,(c)
 
 	; Now initialize
 	call CLRREG
 	im 1
 	call gsinit
-	ld c, #0x10	; Clear the interrupt register
-	in a,(c)
+
+	; Hold CPC in Reset
+	ld bc, #0x03ff
+	out(c),b
 
 	; Start main process
 ;	ei
@@ -179,7 +186,7 @@ CLRREG:
 
 ; This is a native routine to do proper I/O
 ; First parameter is address, second is data
-_OUT:
+_OUT_:
         push af
         push bc
         push ix
@@ -196,7 +203,7 @@ _OUT:
 
 ; This is a native route to do proper I/O
 ; First parameter is the port, returning data
-_IN:
+_IN_:
         push af
         push bc
         push ix
@@ -313,19 +320,178 @@ mem_done:
 
 	.globl debug
 debug:
-		ld bc, #0x03e0
+		; Set the memory write protect address
+		ld bc,#0xe050
+		out(c),b
+
+		; Hold CPC in reset
+		ld bc,#0x01ff
+		out(c),b
+
+		; Release reset
+		ld b,#0x00
+		out(c),b
+
+		; Clear USB buffer register
+		ld bc,#0x806f
+		out(c),b
+
+		ld bc,#0x4168
+		out(c),b
+		inc b
+		out(c),b
+		inc b
+		out(c),b
+		inc b
+		out(c),b
+
+		; Set PID
+		ld bc,#0xaa6c
+		out(c),b
+
+		; Transmit
+		ld bc,#0x106f
+		out(c),b
+
+		halt
+usb1:	; Wait for op to complete
+		in a,(c)
+		bit 4,a
+		jr z,usb1
+
+		; What was the result?
+		in a,(#0x60)
+
+		; Write USB-PHY register
+		ld bc,#0x1661
+		out(c),b
+		ld bc,#0x5a60
+		out(c),b
+		ld bc,#0x016f
+		out(c),b
+
+usb2:	; Wait for op to complete
+		in a,(c)
+		bit 4,a
+		jr z,usb2
+
+		halt
+
+debug_old:
+		; Set the memory write protect address
+		ld bc,#0x7c00
+		out(c),b
+
+		; Hold CPC in reset
+		ld bc,#0x01ff
+		out(c),b
+
+		; Wait for SDRAM to become ready
+		ld c,#0xff
+		in a,(c)
+		bit 7,a
+		jr z, debug
+
+		; Release reset
+		ld bc,#0x00ff
+		out(c),b
+
+		halt
+
+		; Populate the memory with something
+		ld de, #0x8050
+		ld hl, #0x7e00
+		ld bc, #0x0200
+debug_loop:
+		ld (hl),e
+		inc hl
+		dec bc
+		ld (hl),d
+		inc hl
+		dec bc
+		inc d
+		dec e
+		ld a,b
+		or c
+		jr nz,debug_loop
+
+
+		; Mem Source address
+		ld bc,#0x0064
 		out (c),b
-		nop
-		nop
+		ld bc,#0x7e65
+		out (c),b
+		; SD Destination address
+		ld bc,#0x5060
+		out (c),b
+		ld bc,#0x3461
+		out (c),b
+		ld bc,#0x1262
+		out (c),b
+		ld bc,#0x0063
+		out (c),b
+		; Length
+		ld bc, #0x0068	; Size-Lo
+		out (c),b
+		ld bc, #0x0269	; Size-Hi
+		out (c),b
+		; Now start the DMA M->S
+		ld bc, #0x026f
+		out (c),b
 debug1:
-		in a,(0xbe)
-		jr debug1
+		in a,(0x6f)
+		bit 1,a
+		jr z, debug1
+		; DMA working now
+		nop
+		nop
+		nop
+		nop
+		ld bc,#0x046f	; Abort
+		out(c),b
+debug2:
+		; Wait for error state
+		in a,(0x6f)
+		bit 0,a
+		jr z, debug2
+
+		; Now restart the DMA M->S
+		ld bc, #0x026f
+		out (c),b
+
+		; Wait for complete state
+debug3:
+		in a,(0x6f)
+		bit 2,a
+		jr z, debug3
+
+		nop
+		nop
+		nop
+
+		; Mem Dest address - put back to 0x7c00-0x7dff
+		ld bc,#0x7c65
+		out (c),b
+
+		; Read back memory from SDRAM to mem
+		; Now restart the DMA M->S
+		ld bc, #0x016f
+		out (c),b
+
+		; Wait for complete state
+debug4:
+		in a,(0x6f)
+		bit 2,a
+		jr z, debug4
+
+		; finish sim
+		halt
 
 ; Export/Import global functions
 	.globl _main
-	.globl _OUT
+	.globl _OUT_
 	.globl _OUTI
-	.globl _IN
+	.globl _IN_
 	.globl _INI
 	.globl _memset
 	.globl _memcpy

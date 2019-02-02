@@ -1,7 +1,7 @@
 /*
- * <file> <desc> 
+ * i2s_audio - Convert PCM to i2s
  *
- * <fulldesc>
+ * Converts PCM to i2s
  *
  * Part of the CPC2 project: http://intelligenttoasters.blog
  *
@@ -34,7 +34,6 @@ module i2s_audio (
 	);
 
 	// Wire definitions ===========================================================================
-	wire squelch_l, squelch_r;
 	
 	// Registers ==================================================================================
   reg [5:0] bit_cntr = 0;
@@ -44,10 +43,6 @@ module i2s_audio (
   // Synchronizer chain
   reg [15:0] left_buffer[0:2];
   reg [15:0] right_buffer[0:2];
-  // Audio squelch
-	reg [15:0] last_l = 0, last_r = 0;
-	reg [8:0] squelch_timeout_l;	// 46.875Hz cut-off
-	reg [8:0] squelch_timeout_r;	// 46.875Hz cut-off
 	
 	// Assignments ================================================================================
   assign sclk_o = clk_i;
@@ -69,8 +64,6 @@ module i2s_audio (
   // Repeatedly counts 0-63 bits out
   always @(posedge clk_i)
       bit_cntr <= bit_cntr + 1'b1;
-//  always @(negedge clk_i)
-//	bit_cntr_delayed <= bit_cntr;
  
   // Shift the bits out
   always @(negedge clk_i)
@@ -93,40 +86,11 @@ module i2s_audio (
 	// Synchronizer for input
 	always @(posedge clk_i)
 	begin
-		{left_buffer[0],left_buffer[1],left_buffer[2]} <= {left_buffer[1],left_buffer[2],(!squelch_l) ? left_i : 16'd0};
-		{right_buffer[0],right_buffer[1],right_buffer[2]} <= {right_buffer[1],right_buffer[2],(!squelch_r) ? right_i : 16'd0};
+		{left_buffer[0],left_buffer[1],left_buffer[2]} <= {left_buffer[1],left_buffer[2],left_i};
+		{right_buffer[0],right_buffer[1],right_buffer[2]} <= {right_buffer[1],right_buffer[2],right_i};
 	end
 
 	// Other logic ================================================================================
-	// Audio squelch
-	assign squelch_l = (squelch_timeout_l == 0);
-	always @(negedge clk_i)
-	begin
-		if( last_l == left_i )
-		begin
-			if( !squelch_l )
-				squelch_timeout_l <= (squelch_timeout_l != 0) ? squelch_timeout_l - 1'b1 : 0;
-		end
-		else
-		begin
-			last_l <= left_i;
-			squelch_timeout_l <= 9'h1ff;
-		end	
-	end
-	
-	assign squelch_r = (squelch_timeout_r == 0);
-	always @(negedge clk_i)
-	begin
-		if( last_r == left_i )
-		begin
-			if( !squelch_r )
-				squelch_timeout_r <= (squelch_timeout_r != 0) ? squelch_timeout_r - 1'b1 : 0;
-		end
-		else
-		begin
-			last_r <= left_i;
-			squelch_timeout_r <= 9'h1ff;
-		end	
-	end
+
 endmodule
 	

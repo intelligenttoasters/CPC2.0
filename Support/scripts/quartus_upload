@@ -9,13 +9,22 @@ proc setup_blaster {} {
                         set usbblaster_name $hardware_name
                 }
         }
+        foreach hardware_name [get_hardware_names] {
+                if { [string match "DE-SoC*" $hardware_name] } {
+                        set usbblaster_name $hardware_name
+                }
+        }
 
 	puts "Connecting to $usbblaster_name"
 
         foreach device_name [get_device_names -hardware_name $usbblaster_name] {
-                if { [string match "@1*" $device_name] } {
+                if { [string match "@2*" $device_name] } {
                         set test_device $device_name
-                }
+                } else {
+	                if { [string match "@1*" $device_name] } {
+       		                 set test_device $device_name
+			}
+		}
         }
         puts "Selected device: $test_device.";
 

@@ -30,6 +30,7 @@ module cache_byte (
 	// Control
 	input wire clock_i,
 	input wire reset_i,
+	output wire	busy_o,
 	// Byte interface - ack now needed as this is exclusive
 	input wire	 		benable_i,
 	input wire			brd_i,
@@ -53,7 +54,7 @@ module cache_byte (
 
 	// Constants ==================================================================================
 	parameter IDLE = 0, INIT1 = 1, INIT2 = 2, SEARCH = 3, READ1 = 4, READ2 = 5, READ3 = 6, OUTPUT1 = 7, 
-				WRITE1 = 8, XXXXXX = 9, OUTPUT2 = 10, FLUSH1 = 11, FLUSH2 = 12, FLUSH3 = 13, FLUSH4 = 14; 
+				WRITE1 = 8, XXXXXX = 9, OUTPUT2 = 10, FLUSH1 = 11, FLUSH2 = 12, FLUSH3 = 13; 
 		
 	// Wire definitions ===========================================================================
 	// Convenience wires
@@ -73,8 +74,8 @@ module cache_byte (
 	`endif
 	
 	// Registers ==================================================================================
-	reg [13:0] 	way0_tags 	[0:127];	// Way 0 tags (addresses) 14-bits
-	reg [13:0] 	way1_tags 	[0:127]; 	// Way 1 tags (addresses) 14-bits
+	reg [12:0] 	way0_tags 	[0:127];	// Way 0 tags (addresses) 14-bits
+	reg [12:0] 	way1_tags 	[0:127]; 	// Way 1 tags (addresses) 14-bits
 	reg [1:0] 	way0_flags 	[0:127];	// Way 0 Flags
 	reg [1:0] 	way1_flags 	[0:127];	// Way 1 Flags
 	reg 		mru			[0:127];	// Most recently used flags for victim selection
@@ -91,7 +92,9 @@ module cache_byte (
 	reg		[7:0]	bdato;
 	// Word (SDRAM) output fifo buffer
 	reg		[15:0]	wdat_fifo[0:1];
-
+	// Alternate edge SDRAM data capture (read data is on posedge SDRAM_CLK but NEGEDGE of memory logic clock)
+	reg		[15:0]	mem_dat_alt;
+	
 	// Captured instruction
 	reg		[23:0]	badr;			// Byte address is full 24-bit range (16MB)
 	reg		[7:0]	bdati;			// Input data from the byte port to be stored 
@@ -125,6 +128,9 @@ module cache_byte (
 	assign fifo0 = wdat_fifo[0];		// Allows debug/GTKWave on fifo array
 	`endif
 
+	// Busy Flag
+	assign busy_o = (state != IDLE);
+	
 	// Module connections =========================================================================
 	// This is an altera module to the block ram for the cache data. Port A is the byte port and
 	// port B is the word port, so the address lines are one bit bigger on the A port
@@ -139,7 +145,7 @@ module cache_byte (
 			// Port A data comes from the byte port
 			.data_a ( bdati ),
 			// Port B data comes from the SDRAM port
-			.data_b ( wdat_i ),
+			.data_b ( mem_dat_alt/*wdat_i TODO: Check */),
 			// Port A is write then the byte port requests it
 			.wren_a ( write_ctl ),
 			// Port B is write when we're in a read mode (write enable signalled) and the SDRAM signals it's outputting data
@@ -241,7 +247,7 @@ module cache_byte (
 				else begin 
 					// Calculate victim way
 					hit_way <= ~mru[calc_row];	// Select the way least recently used (not (~) most recent used)
-					$display("At %08d Row replacement for %d, 0x%06x, victim way %d", $time, calc_row, badr, ~mru[calc_row]);
+					$display("At %08d Row replacement for %d, 0x%06x, victim way %d, victim tag: 0x%04x", $time, calc_row, badr, ~mru[calc_row], ~mru[calc_row] ? way1_tags[calc_row] : way0_tags[calc_row]);
 					// If way is clean (no writes, so way is consistent with underlying SDRAM) then just discard way data
 					if( ( way0_flag == 2'b01 ) && mru[calc_row] ) state <= READ1;
 					else
@@ -257,13 +263,16 @@ module cache_byte (
 		// Reading from memory is a multi-state operation, first set the word (SDRAM) read signals
 		// This work in conjunction with the 2-clock R-C delay in the SDRAM
 		READ1 : begin
-			wenable <= 1'b1;			// Enable the word port
-//			wwe <= 1'b1;				// Write enable the cache data block ram
-			wrd <= 1'b1;				// Signal a read from the word port 
-			// Discard LSB because we're reading words not bytes, but start from the first address needed, 
-			// so we can immediately output the required byte after the first word is read from the SDRAM
-			wadr <= badr[23:1]; 
-			state <= READ2;
+			if( ~wack_i )					// If ACK is high then still ACKing a previous cycle(such as a flush), so wait
+			begin
+				wenable <= 1'b1;			// Enable the word port
+	//			wwe <= 1'b1;				// Write enable the cache data block ram
+				wrd <= 1'b1;				// Signal a read from the word port 
+				// Discard LSB because we're reading words not bytes, but start from the first address needed, 
+				// so we can immediately output the required byte after the first word is read from the SDRAM
+				wadr <= badr[23:1];
+				state <= READ2;
+			end
 		end
 		// Wait for the arbiter ack signal. If the SDRAM bus is in use, then we have to wait for the operation to complete
 		// before we can assert our request. The ACK input from the arbiter gives us that signal
@@ -278,10 +287,11 @@ module cache_byte (
 		end
 		// Wait for the valid signal from the SDRAM controller, indicating data is available on the word input port
 		READ3 : if( wvalid_i ) begin
-			$display("Read %04x in to cache word memory location %x", wdat_i, block_ptr);
+			$display("Read %04x in to cache word memory location %x", mem_dat_alt/*wdat_i*/, block_ptr);
 			// Return the first byte immediately, for performance reasons
 			if( general_cntr == 3'd7 ) begin
-				bdato <= badr[0] ? wdat_i[7:0] : wdat_i[15:8];	// Return the correct byte from the word
+//				bdato <= badr[0] ? wdat_i[7:0] : wdat_i[15:8];	// Return the correct byte from the word
+				bdato <= badr[0] ? mem_dat_alt[7:0] : mem_dat_alt[15:8];	// Return the correct byte from the word
 				if( brd ) bvalid <= 1'b1;		// Signal to the byte port that the data on the output is valid
 			end
 			// Update the flags and tag with the read data upon completion
@@ -339,31 +349,25 @@ module cache_byte (
 			wwr <= 1'b1;
 			// Output the address to the SDRAM port
 			wadr <= {(hit_way) ? way1_tag : way0_tag, calc_row, block_ptr }; // 23 bits of word address
-			// Counter advance starts because we're populating the FIFO, even if the SDRAM isn't ready
-			advance_cntr <= 1'b1;
 			// Move to the next step
 			state <= FLUSH2;
 		end
 		// This state waits for the SDRAM controller to indicate it's accepted the command
 		FLUSH2 : begin
 			if( wack_i ) begin
-				// Deassert the enable and write signals, but even while this is happening, the data is 
-				// being queued through the FIFO 
+				// Deassert the enable and write signals, but even while we're waiting, 
+				// the data is being queued through the FIFO 
 				wenable <= 1'b0;
 				wwr <= 1'b0;
+				advance_cntr <= 1'b0;
 				state <= FLUSH3;
 			end
-			// Otherwise stop the counter advance after two words are queued
-			else advance_cntr <= 1'b0;
 		end
 		// By now two bytes are queued in the FIFO, we wait for the valid signal before queuing any more
 		FLUSH3 : begin
 			advance_cntr <= wvalid_i;					// Advance the counter if the SDRAM is ready
-			if( general_cntr == 7'd0 ) state <= FLUSH4;	// Flushed finished, wait write time
+			if( general_cntr == 7'd0 ) state <= READ1;	// Flushed finished, go to read process
 		end
-		// When we get to here, the counter is zero, and starts to count up again, so when bit 1 is set, 
-		// the SDRAM has had 2 cycles to settle the write. When done go back to read the required cache row
-		FLUSH4 : if( general_cntr[1] ) state <= READ1;
 		// Default operation just in case of a corruption - default is to reinitialise controller
 		default: state <= INIT1;		// Self reset on unknown
 	endcase
@@ -371,6 +375,9 @@ module cache_byte (
 	// Update output signals on falling edge
 	always @(negedge clock_i)
 	begin
+		// Store memory line state for reading
+		mem_dat_alt <= wdat_i;
+	
 		// Take action based on state
 		case( state )
 			// This state prepares to fill the arrays
@@ -383,7 +390,11 @@ module cache_byte (
 				write_ctl <= 1'b0;
 			end
 			// This state prepares to read 8 words
-			READ1: general_cntr <= 3'd7;
+			READ1: begin
+				general_cntr <= 3'd7;
+				// Move data through the FIFO - just in case the last operation was a flush - takes an extra clock cycle to output
+				wdat_fifo[0] <= wdat_fifo[1];			
+			end
 			// This state prepares the cache line pointer
 			READ2: block_ptr <= wadr[2:0];
 			// This state will advance the counter if the SDRAM has signalled it's ready
@@ -396,30 +407,25 @@ module cache_byte (
 			end
 			// Write signal for the byte cache memory, it's reset automatically on idle
 			WRITE1 : write_ctl <= 1'b1;
-			// Flush 8 words, 1 is pre-loaded in FLUSH2 state, so counter is 6 rather than 7
+			// Flush 8 words, 2 is pre-loaded in FLUSH2 state, so counter is 6 rather than 8
 			FLUSH1 : begin
 				general_cntr <= 3'd6;
 				block_ptr <= 0;
 			end
-			// Fill top of cache
-			FLUSH2 : begin
-				wdat_fifo[1] <= wdato_wire;
-				wdat_fifo[0] <= wdat_fifo[1];
+			// Fill top of cache, BUT only 2 bytes - if WACK takes a while we dont want to overflow the fifo! 
+			FLUSH2 : if(block_ptr != 3'd2) begin
+				{wdat_fifo[0],wdat_fifo[1]} <= {wdat_fifo[1], wdato_wire}; 
 				block_ptr <= block_ptr + 1'b1;
 			end
 			// If the advance cntr flag is set, then we can continue to fill the FIFO
 			FLUSH3 : if( advance_cntr ) begin
 				// fill the fifo from the top
-				wdat_fifo[1] <= wdato_wire;
+				{wdat_fifo[0],wdat_fifo[1]} <= {wdat_fifo[1], wdato_wire}; 
 				// Adjust the address to the next location - this wraps if reading from a the middle of 8 word block
 				block_ptr <= block_ptr + 1'b1;
 				// Count down from 7 to 0
 				general_cntr <= general_cntr - 1'b1;
-				// Move data through the FIFO
-				wdat_fifo[0] <= wdat_fifo[1];
 			end
-			// This state is waiting for the write settle (2 clocks for our SDRAM)
-			FLUSH4 : general_cntr <= general_cntr + 1'b1;
 		endcase
 		// Always update these output state signals for the word port
 		wenable_o 	<= wenable;

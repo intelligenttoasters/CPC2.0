@@ -7,108 +7,264 @@ Symbol Table
     .__.ABS.                                                    =  0000 G
     .__.CPU.                                                    =  0000 L
     .__.H$L.                                                    =  0000 L
-  0 A$library$104                                                  000D GR
-  0 A$library$114                                                  0010 GR
-  0 A$library$115                                                  0012 GR
-  0 A$library$116                                                  0016 GR
-  0 A$library$117                                                  0018 GR
-  0 A$library$118                                                  0019 GR
-  0 A$library$122                                                  001A GR
-  0 A$library$123                                                  001D GR
-  0 A$library$124                                                  001E GR
-  0 A$library$125                                                  001F GR
-  0 A$library$126                                                  0022 GR
-  0 A$library$127                                                  0025 GR
-  0 A$library$128                                                  0027 GR
-  0 A$library$129                                                  002B GR
-  0 A$library$130                                                  002E GR
-  0 A$library$131                                                  0030 GR
-  0 A$library$132                                                  0033 GR
-  0 A$library$133                                                  0035 GR
-  0 A$library$134                                                  0038 GR
-  0 A$library$135                                                  003A GR
-  0 A$library$137                                                  003D GR
-  0 A$library$138                                                  0040 GR
-  0 A$library$139                                                  0043 GR
-  0 A$library$140                                                  0044 GR
-  0 A$library$141                                                  0047 GR
-  0 A$library$142                                                  004A GR
-  0 A$library$143                                                  004B GR
-  0 A$library$144                                                  004E GR
-  0 A$library$145                                                  0051 GR
-  0 A$library$146                                                  0052 GR
-  0 A$library$147                                                  0055 GR
-  0 A$library$148                                                  0056 GR
-  0 A$library$149                                                  0059 GR
-  0 A$library$150                                                  005C GR
-  0 A$library$151                                                  005D GR
-  0 A$library$152                                                  005E GR
-  0 A$library$153                                                  0060 GR
-  0 A$library$158                                                  0062 GR
-  0 A$library$176                                                  006F GR
-  0 A$library$178                                                  0072 GR
-  0 A$library$179                                                  0073 GR
-  0 A$library$180                                                  0075 GR
-  0 A$library$181                                                  0076 GR
-  0 A$library$182                                                  0077 GR
-  0 A$library$183                                                  007A GR
-  0 A$library$184                                                  007B GR
-  0 A$library$185                                                  007C GR
-  0 A$library$186                                                  007D GR
-  0 A$library$187                                                  007E GR
-  0 A$library$188                                                  0080 GR
-  0 A$library$189                                                  0081 GR
+  0 A$library$101                                                  0007 GR
+  0 A$library$105                                                  000A GR
+  0 A$library$109                                                  000D GR
+  0 A$library$120                                                  0010 GR
+  0 A$library$133                                                  0013 GR
+  0 A$library$144                                                  0016 GR
+  0 A$library$154                                                  0019 GR
+  0 A$library$155                                                  001B GR
+  0 A$library$156                                                  001F GR
+  0 A$library$157                                                  0021 GR
+  0 A$library$158                                                  0022 GR
+  0 A$library$162                                                  0023 GR
+  0 A$library$163                                                  0026 GR
+  0 A$library$164                                                  0027 GR
+  0 A$library$165                                                  0028 GR
+  0 A$library$166                                                  002B GR
+  0 A$library$167                                                  002E GR
+  0 A$library$168                                                  0030 GR
+  0 A$library$169                                                  0034 GR
+  0 A$library$170                                                  0037 GR
+  0 A$library$171                                                  0039 GR
+  0 A$library$172                                                  003C GR
+  0 A$library$173                                                  003E GR
+  0 A$library$174                                                  0041 GR
+  0 A$library$175                                                  0043 GR
+  0 A$library$177                                                  0046 GR
+  0 A$library$178                                                  0049 GR
+  0 A$library$179                                                  004C GR
+  0 A$library$180                                                  004D GR
+  0 A$library$181                                                  0050 GR
+  0 A$library$182                                                  0053 GR
+  0 A$library$183                                                  0054 GR
+  0 A$library$184                                                  0057 GR
+  0 A$library$185                                                  005A GR
+  0 A$library$186                                                  005B GR
+  0 A$library$187                                                  005E GR
+  0 A$library$188                                                  005F GR
+  0 A$library$189                                                  0062 GR
+  0 A$library$190                                                  0065 GR
+  0 A$library$191                                                  0066 GR
+  0 A$library$195                                                  0067 GR
+  0 A$library$196                                                  0069 GR
+  0 A$library$201                                                  006B GR
+  0 A$library$219                                                  0078 GR
+  0 A$library$221                                                  007B GR
+  0 A$library$222                                                  007C GR
+  0 A$library$223                                                  007F GR
+  0 A$library$224                                                  0080 GR
+  0 A$library$225                                                  0083 GR
+  0 A$library$226                                                  0084 GR
+  0 A$library$227                                                  0085 GR
 ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 2.
 Hexadecimal [16-Bits]
 
 Symbol Table
 
-  0 A$library$190                                                  0082 GR
-  0 A$library$191                                                  0083 GR
-  0 A$library$192                                                  0084 GR
-  0 A$library$193                                                  0086 GR
-  0 A$library$197                                                  0088 GR
-  0 A$library$198                                                  008A GR
-  0 A$library$199                                                  008B GR
-  0 A$library$200                                                  008C GR
-  0 A$library$201                                                  008F GR
-  0 A$library$206                                                  0090 GR
-  0 A$library$70                                                   0000 GR
-  0 A$library$75                                                   0003 GR
-  0 A$library$88                                                   0004 GR
-  0 A$library$92                                                   0007 GR
-  0 A$library$96                                                   000A GR
-  0 C$library.c$34$0$0                                          =  0000 GR
-  0 C$library.c$36$1$53                                         =  0000 GR
-  0 C$library.c$37$1$53                                         =  0003 GR
-  0 C$library.c$39$1$53                                         =  0004 GR
-  0 C$library.c$41$1$54                                         =  0004 GR
-  0 C$library.c$42$1$54                                         =  0007 GR
-  0 C$library.c$43$1$54                                         =  000A GR
-  0 C$library.c$44$1$54                                         =  000D GR
-  0 C$library.c$45$1$54                                         =  000D GR
-  0 C$library.c$48$1$54                                         =  0010 GR
-  0 C$library.c$50$1$56                                         =  001A GR
-  0 C$library.c$51$1$56                                         =  0062 GR
-  0 C$library.c$54$1$56                                         =  006F GR
-  0 C$library.c$57$1$57                                         =  006F GR
-  0 C$library.c$58$1$57                                         =  0088 GR
-  0 C$library.c$59$1$57                                         =  0090 GR
-  0 Flibrary$__str_0$0$0                                        =  0063 GR
+  0 A$library$228                                                  0086 GR
+  0 A$library$229                                                  0087 GR
+  0 A$library$230                                                  0089 GR
+  0 A$library$231                                                  008A GR
+  0 A$library$232                                                  008B GR
+  0 A$library$233                                                  008C GR
+  0 A$library$234                                                  008D GR
+  0 A$library$235                                                  008F GR
+  0 A$library$239                                                  0091 GR
+  0 A$library$240                                                  0094 GR
+  0 A$library$241                                                  0095 GR
+  0 A$library$242                                                  0098 GR
+  0 A$library$250                                                  0099 GR
+  0 A$library$260                                                  009A GR
+  0 A$library$261                                                  009C GR
+  0 A$library$262                                                  00A0 GR
+  0 A$library$263                                                  00A2 GR
+  0 A$library$267                                                  00A3 GR
+  0 A$library$268                                                  00A6 GR
+  0 A$library$270                                                  00A9 GR
+  0 A$library$271                                                  00AC GR
+  0 A$library$272                                                  00AF GR
+  0 A$library$276                                                  00B1 GR
+  0 A$library$277                                                  00B3 GR
+  0 A$library$278                                                  00B6 GR
+  0 A$library$279                                                  00B8 GR
+  0 A$library$280                                                  00BB GR
+  0 A$library$281                                                  00BD GR
+  0 A$library$282                                                  00BE GR
+  0 A$library$283                                                  00C1 GR
+  0 A$library$284                                                  00C4 GR
+  0 A$library$285                                                  00C7 GR
+  0 A$library$286                                                  00CA GR
+  0 A$library$287                                                  00CB GR
+  0 A$library$288                                                  00CD GR
+  0 A$library$289                                                  00D0 GR
+  0 A$library$291                                                  00D2 GR
+  0 A$library$293                                                  00D3 GR
+  0 A$library$294                                                  00D4 GR
+  0 A$library$295                                                  00D5 GR
+  0 A$library$296                                                  00D6 GR
+  0 A$library$297                                                  00D7 GR
+  0 A$library$298                                                  00D8 GR
+  0 A$library$299                                                  00D9 GR
+  0 A$library$300                                                  00DC GR
+  0 A$library$301                                                  00DD GR
+  0 A$library$302                                                  00DE GR
+  0 A$library$303                                                  00E1 GR
+  0 A$library$304                                                  00E2 GR
+  0 A$library$305                                                  00E3 GR
+  0 A$library$306                                                  00E4 GR
+  0 A$library$310                                                  00E5 GR
+  0 A$library$311                                                  00E8 GR
+  0 A$library$312                                                  00E9 GR
+  0 A$library$313                                                  00EB GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$library$315                                                  00EE GR
+  0 A$library$316                                                  00F1 GR
+  0 A$library$317                                                  00F2 GR
+  0 A$library$318                                                  00F5 GR
+  0 A$library$319                                                  00F8 GR
+  0 A$library$320                                                  00F9 GR
+  0 A$library$324                                                  00FC GR
+  0 A$library$325                                                  00FF GR
+  0 A$library$326                                                  0100 GR
+  0 A$library$327                                                  0101 GR
+  0 A$library$328                                                  0102 GR
+  0 A$library$333                                                  0104 GR
+  0 A$library$334                                                  0105 GR
+  0 A$library$339                                                  0107 GR
+  0 A$library$349                                                  0108 GR
+  0 A$library$350                                                  010A GR
+  0 A$library$351                                                  010E GR
+  0 A$library$352                                                  0110 GR
+  0 A$library$356                                                  0111 GR
+  0 A$library$357                                                  0114 GR
+  0 A$library$359                                                  0117 GR
+  0 A$library$360                                                  011A GR
+  0 A$library$361                                                  011D GR
+  0 A$library$365                                                  011F GR
+  0 A$library$366                                                  0121 GR
+  0 A$library$367                                                  0124 GR
+  0 A$library$368                                                  0126 GR
+  0 A$library$369                                                  0129 GR
+  0 A$library$370                                                  012B GR
+  0 A$library$371                                                  012C GR
+  0 A$library$372                                                  012F GR
+  0 A$library$373                                                  0132 GR
+  0 A$library$374                                                  0135 GR
+  0 A$library$375                                                  0138 GR
+  0 A$library$376                                                  0139 GR
+  0 A$library$377                                                  013B GR
+  0 A$library$378                                                  013E GR
+  0 A$library$380                                                  0140 GR
+  0 A$library$382                                                  0141 GR
+  0 A$library$383                                                  0142 GR
+  0 A$library$384                                                  0143 GR
+  0 A$library$385                                                  0144 GR
+  0 A$library$386                                                  0145 GR
+  0 A$library$387                                                  0146 GR
+  0 A$library$388                                                  0147 GR
+  0 A$library$389                                                  014A GR
+  0 A$library$390                                                  014B GR
+  0 A$library$391                                                  014C GR
+  0 A$library$392                                                  014F GR
+  0 A$library$393                                                  0150 GR
+  0 A$library$394                                                  0151 GR
+  0 A$library$395                                                  0152 GR
+  0 A$library$399                                                  0153 GR
+  0 A$library$400                                                  0156 GR
+  0 A$library$401                                                  0157 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 A$library$402                                                  0159 GR
+  0 A$library$404                                                  015C GR
+  0 A$library$405                                                  015F GR
+  0 A$library$406                                                  0160 GR
+  0 A$library$407                                                  0163 GR
+  0 A$library$408                                                  0166 GR
+  0 A$library$409                                                  0167 GR
+  0 A$library$413                                                  016A GR
+  0 A$library$414                                                  016D GR
+  0 A$library$415                                                  016E GR
+  0 A$library$416                                                  016F GR
+  0 A$library$417                                                  0170 GR
+  0 A$library$422                                                  0172 GR
+  0 A$library$423                                                  0173 GR
+  0 A$library$428                                                  0175 GR
+  0 A$library$76                                                   0000 GR
+  0 A$library$84                                                   0003 GR
+  0 A$library$97                                                   0004 GR
+  0 C$library.c$34$0$138                                        =  0000 GR
+  0 C$library.c$36$1$138                                        =  0000 GR
+  0 C$library.c$37$1$138                                        =  0003 GR
+  0 C$library.c$39$1$139                                        =  0004 GR
+  0 C$library.c$41$1$139                                        =  0004 GR
+  0 C$library.c$42$1$139                                        =  0007 GR
+  0 C$library.c$44$1$139                                        =  000A GR
+  0 C$library.c$45$1$139                                        =  000D GR
+  0 C$library.c$46$1$139                                        =  0010 GR
+  0 C$library.c$47$1$139                                        =  0010 GR
+  0 C$library.c$49$1$140                                        =  0013 GR
+  0 C$library.c$51$1$140                                        =  0013 GR
+  0 C$library.c$52$1$140                                        =  0016 GR
+  0 C$library.c$53$1$140                                        =  0016 GR
+  0 C$library.c$56$1$142                                        =  0019 GR
+  0 C$library.c$58$1$142                                        =  0023 GR
+  0 C$library.c$59$1$142                                        =  006B GR
+  0 C$library.c$62$1$143                                        =  0078 GR
+  0 C$library.c$65$1$143                                        =  0078 GR
+  0 C$library.c$66$1$143                                        =  0091 GR
+  0 C$library.c$67$1$143                                        =  0099 GR
+  0 C$library.c$70$1$146                                        =  009A GR
+  0 C$library.c$72$1$146                                        =  00A3 GR
+  0 C$library.c$74$1$146                                        =  00B1 GR
+  0 C$library.c$75$2$147                                        =  00E5 GR
+  0 C$library.c$76$2$147                                        =  00FC GR
+  0 C$library.c$78$1$146                                        =  0107 GR
+  0 C$library.c$80$1$149                                        =  0108 GR
+  0 C$library.c$82$1$149                                        =  0111 GR
+  0 C$library.c$84$1$149                                        =  011F GR
+  0 C$library.c$85$2$150                                        =  0153 GR
+  0 C$library.c$86$2$150                                        =  016A GR
+  0 C$library.c$88$1$149                                        =  0175 GR
+  0 Flibrary$__str_0$0$0                                        =  006C GR
   7 Flibrary$__xinit_msgno$0$0                                  =  0000 GR
   1 Flibrary$global_variables$0$0                               =  0000 GR
   2 Flibrary$msgno$0$0                                          =  0000 GR
-  0 G$console$0$0                                               =  0010 GR
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 5.
+Hexadecimal [16-Bits]
+
+Symbol Table
+
+  0 G$INIe$0$0                                                  =  0108 GR
+  0 G$OUTIe$0$0                                                 =  009A GR
+  0 G$console$0$0                                               =  0019 GR
+  0 G$earlyEvents$0$0                                           =  0013 GR
   0 G$globals$0$0                                               =  0000 GR
   0 G$processEvents$0$0                                         =  0004 GR
-  0 G$ul$0$0                                                    =  006F GR
-  0 XG$console$0$0                                              =  0062 GR
+  0 G$ul$0$0                                                    =  0078 GR
+  0 XG$INIe$0$0                                                 =  0175 GR
+  0 XG$OUTIe$0$0                                                =  0107 GR
+  0 XG$console$0$0                                              =  006B GR
+  0 XG$earlyEvents$0$0                                          =  0016 GR
   0 XG$globals$0$0                                              =  0003 GR
-  0 XG$processEvents$0$0                                        =  000D GR
-  0 XG$ul$0$0                                                   =  0090 GR
-  0 ___str_0                                                       0063 R
+  0 XG$processEvents$0$0                                        =  0010 GR
+  0 XG$ul$0$0                                                   =  0099 GR
+    _INI                                                           **** GX
+  0 _INIe                                                          0108 GR
+    _OUTI                                                          **** GX
+  0 _OUTIe                                                         009A GR
+  0 ___str_0                                                       006C R
   7 __xinit__msgno                                                 0000 R
-  0 _console                                                       0010 GR
+  0 _console                                                       0019 GR
+  0 _earlyEvents                                                   0013 GR
     _fdcProcessEvents                                              **** GX
   1 _global_variables                                              0000 R
   0 _globals                                                       0000 GR
@@ -118,22 +274,18 @@ Symbol Table
     _printf                                                        **** GX
   0 _processEvents                                                 0004 GR
     _putchar                                                       **** GX
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 3.
-Hexadecimal [16-Bits]
-
-Symbol Table
-
+    _sdcProcessEvents                                              **** GX
     _uartProcessEvents                                             **** GX
-  0 _ul                                                            006F GR
+  0 _ul                                                            0078 GR
 
 
-ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 4.
+ASxxxx Assembler V02.00 + NoICE + SDCC mods  (Zilog Z80 / Hitachi HD64180), page 6.
 Hexadecimal [16-Bits]
 
 Area Table
 
-   0 _CODE                                      size   91   flags    0
-   1 _DATA                                      size   88   flags    0
+   0 _CODE                                      size  176   flags    0
+   1 _DATA                                      size  F95   flags    0
    2 _INITIALIZED                               size    4   flags    0
    3 _DABS                                      size    0   flags    8
    4 _HOME                                      size    0   flags    0

@@ -3,6 +3,7 @@
 	<name>CPC-Supervisor</name>
 	<comment></comment>
 	<projects>
+		<project>Custom-ROM</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

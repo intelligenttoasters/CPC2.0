@@ -1,0 +1,19 @@
+Info: Starting: Create HDL design files for synthesis
+Info: ip-generate --project-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10 --output-directory=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/synthesis --file-set=QUARTUS_SYNTH --report-file=html:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/HPS.html --report-file=sopcinfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS.sopcinfo --report-file=cmp:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/HPS.cmp --report-file=qip:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/synthesis/HPS.qip --report-file=svd:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/synthesis/HPS.svd --report-file=regmap:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/synthesis/HPS.regmap --report-file=xml:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/HPS.xml --report-file=debuginfo:/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS/synthesis/HPS.debuginfo --system-info=DEVICE_FAMILY="Cyclone V" --system-info=DEVICE=5CSEBA6U23I7 --system-info=DEVICE_SPEEDGRADE=7 --component-file=/home/intelligent/Desktop/Ongoing_Projects/CPC2/Quartus/Quartus/DE10/HPS.qsys --language=VERILOG
+Progress: Loading DE10/HPS.qsys
+Progress: Reading input file
+Progress: Adding hps_0 [altera_hps 14.0]
+Progress: Parameterizing module hps_0
+Progress: Building connections
+Progress: Parameterizing connections
+Progress: Validating
+Progress: Done reading input file
+Info: HPS: Generating HPS "HPS" for QUARTUS_SYNTH
+Info: hps_0: "Running  for module: hps_0"
+Info: hps_0: "HPS" instantiated altera_hps "hps_0"
+Info: fpga_interfaces: "hps_0" instantiated altera_interface_generator "fpga_interfaces"
+Info: hps_io: "hps_0" instantiated altera_hps_io "hps_io"
+Info: border: "hps_io" instantiated altera_interface_generator "border"
+Info: HPS: Done "HPS" with 5 modules, 46 files
+Info: ip-generate succeeded.
+Info: Finished: Create HDL design files for synthesis

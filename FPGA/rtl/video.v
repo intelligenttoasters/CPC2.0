@@ -136,8 +136,13 @@ module video(
 	// Use 648 as the last pixel location because pipeline needs 8 bits to read the memory
 	// So the end of the display is 8 pixels after the last pixel set has been obtained
 	wire en = de && (pixel_x < 10'd648) && (pixel_y < 10'd400);
-	
+
 	assign r = (en) ? ((pixels[0]) ? 8'hf8 : 8'h0) : 8'd0;
 	assign g = (en) ? ((pixels[0]) ? 8'hf8 : 8'h0) : 8'd0;
 	assign b = (en) ? ((pixels[0]) ? 8'h00 : 8'h7d) : 8'd0;
+/*
+	assign r = (en) ? ((pixels[0]) ? 8'h00 : 8'hff) : 8'd0;
+	assign g = (en) ? ((pixels[0]) ? 8'h00 : 8'hff) : 8'd0;
+	assign b = (en) ? ((pixels[0]) ? 8'h00 : 8'hff) : 8'd0;
+*/	
 endmodule

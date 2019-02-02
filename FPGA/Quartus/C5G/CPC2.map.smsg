@@ -1,0 +1,7 @@
+Warning (10268): Verilog HDL information at cache_byte.v(163): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at a40010.v(261): always construct contains both blocking and non-blocking assignments
+Warning (10273): Verilog HDL warning at tv80_core.v(302): extended using "x" or "z"
+Warning (10268): Verilog HDL information at video.v(74): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at keyboard.v(53): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at fifo.v(74): always construct contains both blocking and non-blocking assignments
+Info (10281): Verilog HDL Declaration information at CPC2.v(41): object "LED" differs only in case from object "led" in the same scope

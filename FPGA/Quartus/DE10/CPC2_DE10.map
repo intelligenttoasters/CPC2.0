@@ -1,0 +1,12 @@
+BLOCK		START ADDRESS		END ADDRESS
+
+CPCApp		0x00000000		0x0027C7F2
+consolidated.hex		0x00800000		0x00853FFF
+
+
+
+Notes:
+
+- Data checksum for this conversion is 0xDD10A93C
+
+- All the addresses in this file are byte addresses

@@ -1,0 +1,232 @@
+Flow report for CPC2
+Sun Jul  8 20:47:06 2018
+Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++------------------------------------------------------------------------------+
+; Flow Summary                                                                 ;
++---------------------------------+--------------------------------------------+
+; Flow Status                     ; Successful - Sun Jul  8 20:47:06 2018      ;
+; Quartus II 64-Bit Version       ; 14.0.0 Build 200 06/17/2014 SJ Web Edition ;
+; Revision Name                   ; CPC2                                       ;
+; Top-level Entity Name           ; CPC2_C5G                                   ;
+; Family                          ; Cyclone V                                  ;
+; Device                          ; 5CGXFC5C6F27C7                             ;
+; Timing Models                   ; Final                                      ;
+; Logic utilization (in ALMs)     ; 6,157 / 29,080 ( 21 % )                    ;
+; Total registers                 ; 7473                                       ;
+; Total pins                      ; 159 / 364 ( 44 % )                         ;
+; Total virtual pins              ; 0                                          ;
+; Total block memory bits         ; 1,099,008 / 4,567,040 ( 24 % )             ;
+; Total DSP Blocks                ; 0 / 150 ( 0 % )                            ;
+; Total HSSI RX PCSs              ; 0 / 6 ( 0 % )                              ;
+; Total HSSI PMA RX Deserializers ; 0 / 6 ( 0 % )                              ;
+; Total HSSI TX PCSs              ; 0 / 6 ( 0 % )                              ;
+; Total HSSI PMA TX Serializers   ; 0 / 6 ( 0 % )                              ;
+; Total PLLs                      ; 2 / 12 ( 17 % )                            ;
+; Total DLLs                      ; 0 / 4 ( 0 % )                              ;
++---------------------------------+--------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 07/08/2018 20:42:03 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; CPC2                ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                                                                        ;
++-------------------------------------+--------------------------------------------------------------+---------------+-------------------+--------------------------------+
+; Assignment Name                     ; Value                                                        ; Default Value ; Entity Name       ; Section Id                     ;
++-------------------------------------+--------------------------------------------------------------+---------------+-------------------+--------------------------------+
+; COMPILER_SIGNATURE_ID               ; 0.153104652318330                                            ; --            ; --                ; --                             ;
+; EDA_BOARD_BOUNDARY_SCAN_OPERATION   ; POST_CONFIG                                                  ; --            ; --                ; eda_board_design_boundary_scan ;
+; EDA_BOARD_DESIGN_BOUNDARY_SCAN_TOOL ; BSDL (Boundary Scan)                                         ; <None>        ; --                ; --                             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Bsdl                                                         ; --            ; --                ; eda_board_design_boundary_scan ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; audio_clock       ; --                             ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; master_clock      ; --                             ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; video720          ; --                             ;
+; IP_COMPONENT_AUTHOR                 ; QWx0ZXJhIENvcnBvcmF0aW9u                                     ; --            ; video720_0002     ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; audio_clock       ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; master_clock      ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; video720          ; --                             ;
+; IP_COMPONENT_DESCRIPTION            ; QWx0ZXJhIFBoYXNlLUxvY2tlZCBMb29wIChBTFRFUkFfUExMKQ==         ; --            ; video720_0002     ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; audio_clock       ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; master_clock      ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; video720          ; --                             ;
+; IP_COMPONENT_DISPLAY_NAME           ; QWx0ZXJhIFBMTA==                                             ; --            ; video720_0002     ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; audio_clock       ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; master_clock      ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; video720          ; --                             ;
+; IP_COMPONENT_INTERNAL               ; Off                                                          ; Off           ; video720_0002     ; --                             ;
+; IP_COMPONENT_NAME                   ; YXVkaW9fY2xvY2s=                                             ; --            ; audio_clock       ; --                             ;
+; IP_COMPONENT_NAME                   ; YXVkaW9fY2xvY2tfMDAwMg==                                     ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_NAME                   ; bWFzdGVyX2Nsb2Nr                                             ; --            ; master_clock      ; --                             ;
+; IP_COMPONENT_NAME                   ; bWFzdGVyX2Nsb2NrXzAwMDI=                                     ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_NAME                   ; dmlkZW83MjA=                                                 ; --            ; video720          ; --                             ;
+; IP_COMPONENT_NAME                   ; dmlkZW83MjBfMDAwMg==                                         ; --            ; video720_0002     ; --                             ;
+; IP_COMPONENT_PARAMETER              ; QVVUT19SRUZDTEtfQ0xPQ0tfUkFURQ==::LTE=::QXV0byBDTE9DS19SQVRF ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_PARAMETER              ; QVVUT19SRUZDTEtfQ0xPQ0tfUkFURQ==::LTE=::QXV0byBDTE9DS19SQVRF ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_PARAMETER              ; QVVUT19SRUZDTEtfQ0xPQ0tfUkFURQ==::LTE=::QXV0byBDTE9DS19SQVRF ; --            ; video720_0002     ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; audio_clock       ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; master_clock      ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; video720          ; --                             ;
+; IP_COMPONENT_REPORT_HIERARCHY       ; Off                                                          ; Off           ; video720_0002     ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; audio_clock       ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; audio_clock_0002  ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; master_clock      ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; master_clock_0002 ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; video720          ; --                             ;
+; IP_COMPONENT_VERSION                ; MTQuMA==                                                     ; --            ; video720_0002     ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; --                ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; --                ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; --                ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; --                ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; --                ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; audio_clock       ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; master_clock      ; --                             ;
+; IP_GENERATED_DEVICE_FAMILY          ; {Cyclone V}                                                  ; --            ; video720          ; --                             ;
+; IP_QSYS_MODE                        ; UNKNOWN                                                      ; --            ; audio_clock       ; --                             ;
+; IP_QSYS_MODE                        ; UNKNOWN                                                      ; --            ; master_clock      ; --                             ;
+; IP_QSYS_MODE                        ; UNKNOWN                                                      ; --            ; video720          ; --                             ;
+; IP_TARGETED_DEVICE_FAMILY           ; Cyclone V                                                    ; --            ; audio_clock       ; --                             ;
+; IP_TARGETED_DEVICE_FAMILY           ; Cyclone V                                                    ; --            ; master_clock      ; --                             ;
+; IP_TARGETED_DEVICE_FAMILY           ; Cyclone V                                                    ; --            ; video720          ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; audio_clock       ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; audio_clock_0002  ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; master_clock      ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; master_clock_0002 ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; video720          ; --                             ;
+; IP_TOOL_ENV                         ; mwpim                                                        ; --            ; video720_0002     ; --                             ;
+; IP_TOOL_NAME                        ; RAM: 2-PORT                                                  ; --            ; --                ; --                             ;
+; IP_TOOL_NAME                        ; RAM: 1-PORT                                                  ; --            ; --                ; --                             ;
+; IP_TOOL_NAME                        ; RAM: 2-PORT                                                  ; --            ; --                ; --                             ;
+; IP_TOOL_NAME                        ; ALTIOBUF                                                     ; --            ; --                ; --                             ;
+; IP_TOOL_NAME                        ; RAM: 2-PORT                                                  ; --            ; --                ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; audio_clock       ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; audio_clock_0002  ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; master_clock      ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; master_clock_0002 ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; video720          ; --                             ;
+; IP_TOOL_NAME                        ; altera_pll                                                   ; --            ; video720_0002     ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; --                ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; --                ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; --                ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; --                ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; --                ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; audio_clock       ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; audio_clock_0002  ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; master_clock      ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; master_clock_0002 ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; video720          ; --                             ;
+; IP_TOOL_VERSION                     ; 14.0                                                         ; --            ; video720_0002     ; --                             ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                                                           ; --            ; --                ; --                             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                                                            ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/video720.cmp                                ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/rom_builtin_inst.v                          ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/rom_builtin_bb.v                            ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/master_clock.cmp                            ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/cache_d_inst.v                              ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/cache_d_bb.v                                ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/bidirbuf_bb.v                               ; --            ; --                ; --                             ;
+; MISC_FILE                           ; ../../rtl/Altera/audio_clock.cmp                             ; --            ; --                ; --                             ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                            ; --            ; --                ; --                             ;
+; OUTPUT_IO_TIMING_FAR_END_VMEAS      ; Half Signal Swing                                            ; --            ; --                ; --                             ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                   ; --            ; --                ; --                             ;
+; OUTPUT_IO_TIMING_NEAR_END_VMEAS     ; Half Vccio                                                   ; --            ; --                ; --                             ;
+; PARTITION_COLOR                     ; 16764057                                                     ; --            ; CPC2_C5G          ; Top                            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                                        ; --            ; CPC2_C5G          ; Top                            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                                       ; --            ; CPC2_C5G          ; Top                            ;
+; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                                          ; --            ; --                ; --                             ;
+; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW                        ; --            ; --                ; --                             ;
+; SEARCH_PATH                         ; ../../rtl/usb/include                                        ; --            ; --                ; --                             ;
+; SEARCH_PATH                         ; ../../rtl                                                    ; --            ; --                ; --                             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                           ; --            ; --                ; --                             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                           ; --            ; --                ; --                             ;
+; SYNTHESIS_ONLY_QIP                  ; On                                                           ; --            ; --                ; --                             ;
+; TOP_LEVEL_ENTITY                    ; CPC2_C5G                                                     ; CPC2          ; --                ; --                             ;
++-------------------------------------+--------------------------------------------------------------+---------------+-------------------+--------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                        ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis ; 00:00:41     ; 2.3                     ; 1270 MB             ; 00:01:23                           ;
+; Fitter               ; 00:02:47     ; 2.3                     ; 2314 MB             ; 00:05:28                           ;
+; Assembler            ; 00:00:15     ; 1.0                     ; 1217 MB             ; 00:00:14                           ;
+; Total                ; 00:03:43     ; --                      ; --                  ; 00:07:05                           ;
++----------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++--------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                      ;
++----------------------+------------------+-------------+-------------+----------------+
+; Module Name          ; Machine Hostname ; OS Name     ; OS Version  ; Processor type ;
++----------------------+------------------+-------------+-------------+----------------+
+; Analysis & Synthesis ; hp               ; Fedora Core ; Fedora Core ; x86_64         ;
+; Fitter               ; hp               ; Fedora Core ; Fedora Core ; x86_64         ;
+; Assembler            ; hp               ; Fedora Core ; Fedora Core ; x86_64         ;
++----------------------+------------------+-------------+-------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off CPC2 -c CPC2
+quartus_fit --read_settings_files=off --write_settings_files=off CPC2 -c CPC2
+quartus_asm --read_settings_files=off --write_settings_files=off CPC2 -c CPC2
+
+
+

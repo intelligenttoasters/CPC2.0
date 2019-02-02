@@ -7,3 +7,4 @@ c5_pin_model_dump.txt
 CPC2_nativelink_simulation.rpt
 *.bak
 CPC2.srf
+base_rom_images/*

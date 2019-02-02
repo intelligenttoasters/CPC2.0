@@ -26,7 +26,7 @@
 
 #define KEY_IO 0x30
 #define KEY_CR (KEY_IO | 0xf)
-#define KEY_CR_RESET (1<<7)
+#define KEY_CR_RESET ((unsigned char)(1<<7))
 #define KEY_CR_APPLY (1)
 
 #define KEY_MOD_CTRL (1<<9)
@@ -55,5 +55,9 @@ typedef enum state_t state;
 
 void kbdProcessEvents(void);
 void kbdInit(void);
+void kbdBS(void);
+void setLReport(char *);
+void keyCapture(void);
+void kbdClear(void);
 
 #endif /* INCLUDE_KEYBOARD_H_ */

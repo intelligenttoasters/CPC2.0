@@ -17,7 +17,8 @@ module a40010(
 	input nM1,
 	output nint_o,
 	output nROMEN_o,
-	output [3:0] romsel_o,
+	output [5:0] romsel_o,
+	output [8:0] ramsel_o,
 	input [2:0] video_pixel_i,
 	input border_i,
 	output [23:0] color_dat_o,
@@ -37,7 +38,7 @@ module a40010(
 	reg [7:0]	rmr;			// RMR Register
 	reg [4:0]	penr;			// PENR Register
 	reg [4:0]	inkr[0:16];	// Ink register
-	reg [5:0]	mmr;			// MMR Register
+	reg [8:0]	mmr;			// MMR Register - expanded for 4M
 	reg [7:0]	rom_select;	// Selected ROM
 	wire [1:0]	crtc_mode = rmr[1:0];
 	
@@ -58,8 +59,10 @@ module a40010(
 								)
 							) : `HI;
 	
-	assign romsel_o = rom_select[3:0];
-
+	assign romsel_o = rom_select[5:0];
+	
+	assign ramsel_o = {mmr[2],mmr[8:3],mmr[1:0]};
+	
 //=======================================================
 //  Structural coding
 //=======================================================
@@ -177,13 +180,13 @@ assign color_dat_o =
 					rmr <= d_i;
 				end			
 			end
-			else // PAL addressed?
+			// PAL addressed?
 			if( a_i[15] == `LO && niowr == `LO )
 			begin
 				// Handle MMR
 				if( d_i[7:6] == 2'b11)
 				begin
-					mmr <= d_i[5:0];
+					mmr <= {a_i[10:8],d_i[5:0]};	// Extended 4M page
 				end
 			end
 			/* This is not correct - SOFT968 Low Kernel Jumpblock says #38 can be patched

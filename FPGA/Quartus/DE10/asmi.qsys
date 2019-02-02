@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<system name="$${FILENAME}">
+ <component
+   name="$${FILENAME}"
+   displayName="$${FILENAME}"
+   version="1.0"
+   description=""
+   tags="INTERNAL_COMPONENT=true"
+   categories="" />
+ <parameter name="bonusData"><![CDATA[bonusData 
+{
+   element $${FILENAME}
+   {
+   }
+   element asmi_parallel_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+}
+]]></parameter>
+ <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
+ <parameter name="device" value="5CSEBA6U23I7" />
+ <parameter name="deviceFamily" value="Cyclone V" />
+ <parameter name="deviceSpeedGrade" value="7" />
+ <parameter name="fabricMode" value="QSYS" />
+ <parameter name="generateLegacySim" value="false" />
+ <parameter name="generationId" value="0" />
+ <parameter name="globalResetBus" value="false" />
+ <parameter name="hdlLanguage" value="VERILOG" />
+ <parameter name="hideFromIPCatalog" value="true" />
+ <parameter name="maxAdditionalLatency" value="1" />
+ <parameter name="projectName" value="" />
+ <parameter name="sopcBorderPoints" value="false" />
+ <parameter name="systemHash" value="0" />
+ <parameter name="testBenchDutName" value="" />
+ <parameter name="timeStamp" value="0" />
+ <parameter name="useTestBenchNamingPattern" value="false" />
+ <instanceScript></instanceScript>
+ <interface name="clkin" internal="asmi_parallel_0.clkin" type="clock" dir="end">
+  <port name="clkin" internal="clkin" />
+ </interface>
+ <interface name="read" internal="asmi_parallel_0.read" type="conduit" dir="end">
+  <port name="read" internal="read" />
+ </interface>
+ <interface name="rden" internal="asmi_parallel_0.rden" type="conduit" dir="end">
+  <port name="rden" internal="rden" />
+ </interface>
+ <interface name="addr" internal="asmi_parallel_0.addr" type="conduit" dir="end">
+  <port name="addr" internal="addr" />
+ </interface>
+ <interface name="reset" internal="asmi_parallel_0.reset" type="reset" dir="end">
+  <port name="reset" internal="reset" />
+ </interface>
+ <interface
+   name="dataout"
+   internal="asmi_parallel_0.dataout"
+   type="conduit"
+   dir="end">
+  <port name="dataout" internal="dataout" />
+ </interface>
+ <interface name="busy" internal="asmi_parallel_0.busy" type="conduit" dir="end">
+  <port name="busy" internal="busy" />
+ </interface>
+ <interface
+   name="data_valid"
+   internal="asmi_parallel_0.data_valid"
+   type="conduit"
+   dir="end">
+  <port name="data_valid" internal="data_valid" />
+ </interface>
+ <interface name="read_status" internal="asmi_parallel_0.read_status" />
+ <interface name="status_out" internal="asmi_parallel_0.status_out" />
+ <module
+   kind="altera_asmi_parallel"
+   version="14.0"
+   enabled="1"
+   name="asmi_parallel_0"
+   autoexport="1">
+  <parameter name="DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="INTENDED_DEVICE_FAMILY" value="Cyclone V" />
+  <parameter name="CBX_AUTO_BLACKBOX" value="ALL" />
+  <parameter name="EPCS_TYPE" value="EPCS128" />
+  <parameter name="gui_read_sid" value="false" />
+  <parameter name="gui_read_rdid" value="false" />
+  <parameter name="gui_read_status" value="false" />
+  <parameter name="gui_read_address" value="false" />
+  <parameter name="gui_fast_read" value="false" />
+  <parameter name="DATA_WIDTH" value="STANDARD" />
+  <parameter name="gui_read_dummyclk" value="false" />
+  <parameter name="gui_write" value="false" />
+  <parameter name="gui_wren" value="false" />
+  <parameter name="gui_single_write" value="false" />
+  <parameter name="gui_page_write" value="false" />
+  <parameter name="PAGE_SIZE" value="1" />
+  <parameter name="gui_use_eab" value="false" />
+  <parameter name="gui_bulk_erase" value="false" />
+  <parameter name="gui_die_erase" value="false" />
+  <parameter name="gui_sector_erase" value="false" />
+  <parameter name="gui_sector_protect" value="false" />
+  <parameter name="gui_ex4b_addr" value="false" />
+  <parameter name="gui_use_asmiblock" value="false" />
+  <parameter name="WRITE_DUMMY_CLK" value="0" />
+  <parameter name="ENABLE_SIM" value="false" />
+ </module>
+ <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
+ <interconnectRequirement for="$system" name="qsys_mm.maxAdditionalLatency" value="1" />
+ <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />
+</system>

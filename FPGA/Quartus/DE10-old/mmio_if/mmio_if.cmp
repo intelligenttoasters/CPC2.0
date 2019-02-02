@@ -1,0 +1,27 @@
+	component mmio_if is
+		port (
+			clk_i_clk            : in    std_logic                     := 'X';             -- clk
+			hps_ddr3_mem_a       : out   std_logic_vector(14 downto 0);                    -- mem_a
+			hps_ddr3_mem_ba      : out   std_logic_vector(2 downto 0);                     -- mem_ba
+			hps_ddr3_mem_ck      : out   std_logic;                                        -- mem_ck
+			hps_ddr3_mem_ck_n    : out   std_logic;                                        -- mem_ck_n
+			hps_ddr3_mem_cke     : out   std_logic;                                        -- mem_cke
+			hps_ddr3_mem_cs_n    : out   std_logic;                                        -- mem_cs_n
+			hps_ddr3_mem_ras_n   : out   std_logic;                                        -- mem_ras_n
+			hps_ddr3_mem_cas_n   : out   std_logic;                                        -- mem_cas_n
+			hps_ddr3_mem_we_n    : out   std_logic;                                        -- mem_we_n
+			hps_ddr3_mem_reset_n : out   std_logic;                                        -- mem_reset_n
+			hps_ddr3_mem_dq      : inout std_logic_vector(31 downto 0) := (others => 'X'); -- mem_dq
+			hps_ddr3_mem_dqs     : inout std_logic_vector(3 downto 0)  := (others => 'X'); -- mem_dqs
+			hps_ddr3_mem_dqs_n   : inout std_logic_vector(3 downto 0)  := (others => 'X'); -- mem_dqs_n
+			hps_ddr3_mem_odt     : out   std_logic;                                        -- mem_odt
+			hps_ddr3_mem_dm      : out   std_logic_vector(3 downto 0);                     -- mem_dm
+			hps_ddr3_oct_rzqin   : in    std_logic                     := 'X';             -- oct_rzqin
+			cpc_keys_keys        : out   std_logic_vector(79 downto 0);                    -- keys
+			uart_tx_o            : out   std_logic;                                        -- tx_o
+			uart_rx_i            : in    std_logic                     := 'X';             -- rx_i
+			uart_reset_o         : out   std_logic;                                        -- reset_o
+			uart_clk_i_clk       : in    std_logic                     := 'X'              -- clk
+		);
+	end component mmio_if;
+

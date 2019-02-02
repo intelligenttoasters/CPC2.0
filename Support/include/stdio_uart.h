@@ -32,7 +32,7 @@
 
 // Control register (WRITE)
 #define UART_CR				0x01
-#define UART_FLUSH			(1<<7)
+#define UART_FLUSH			((unsigned char)(1<<7))
 
 // Start of connection / End of Transmission for the STDIO
 #define UART_START 			15	// CTRL-O
@@ -61,10 +61,11 @@ inline volatile unsigned char spiStatus(void)
 
 void stdioInit(void);
 //void spi_puts( void * string);
-void putchar( char );
-char getchar(void);
+int putchar( int );
+int getchar(void);
 unsigned char uartAvail(void);
 void inboundFlush(void);
+void outboundFlush(void);
 void uartProcessEvents(void);
 
 #endif /* INCLUDE_STDIO_UART_H_ */

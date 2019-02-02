@@ -23,12 +23,14 @@
 
 #include "include.h"
 #include "stdio.h"
+#include "string.h"
 
-unsigned char lastReport[8];
+unsigned char lastReport[8], buffer[8], unreadReport = 0;
 
-unsigned char usbInit(void)
+void usbInit(void)
 {
 	unsigned char cntr;
+	unsigned char vernum;
 
 	// Reset core and set to host mode, next statement gives enough time to initialise core
 	OUT(HOST_CONTROL,3);
@@ -40,8 +42,12 @@ unsigned char usbInit(void)
 	// Reset all interrupts
 	OUT(HOST_INTERRUPT_STATUS, 0xf);	// Clear all interrupts
 
-	// Return host version
-	return IN(HOST_VERSION);
+	vernum = IN(HOST_VERSION);
+	sprintf(CB,"USB core version %d.%d", vernum>>4, vernum&0xf);
+	console(CB);
+
+	// Reset HID report buffer
+	unreadReport = 0;
 }
 
 void deviceReset(void)
@@ -367,9 +373,31 @@ uint8_t enumerate()
 	return true;
 }
 
-unsigned char * getReport(unsigned char * buffer)
+unsigned char * getReport(unsigned char * buf)
+{
+	if( ~unreadReport ) return NULL;
+	memcpy(buf,buffer,8);
+	unreadReport = 0;
+	return buf;
+}
+
+void usbProcessEvents()
 {
 	unsigned int cntr;
+
+	// If we don't think USB is plugged in, check
+	if( !globals()->usb_connected )
+	{
+		if( !( globals()->usb_connected = usbProcessConnection() ) )
+			globals()->usb_enumerated = false;
+			return;
+	}
+
+	// OK, connected low speed device, so enumerate it
+	if( !globals()->usb_enumerated )
+		// If not enumerated properly then return
+		if( !( globals()->usb_enumerated = enumerate() ) ) return;
+
 	if( usbIn( USB_DEVICE_ADDRESS, 0x1, buffer ) != 0 )
 	{
 		if( buffer[0] != lastReport[0] ||
@@ -382,10 +410,8 @@ unsigned char * getReport(unsigned char * buffer)
 			buffer[7] != lastReport[7] )
 		{
 			for(cntr=0; cntr<8; cntr++) lastReport[cntr] = buffer[cntr];
-			return buffer;
+			unreadReport = 1;
 		}
-		else
-			return 0;
 	}
 	else {
 		// Is RX timed out
@@ -402,6 +428,5 @@ unsigned char * getReport(unsigned char * buffer)
 			globals()->usb_enumerated = false;
 			globals()->usb_timeout = 0;
 		}
-		return 0;
 	}
 }

@@ -25,7 +25,7 @@
 #include "string.h"
 
 // Local static variables
-static unsigned char stdio_inbound_buffer[8];
+static unsigned char stdio_inbound_buffer[128];
 static unsigned char inbuffer_entries;
 
 //
@@ -33,16 +33,18 @@ static unsigned char inbuffer_entries;
 //
 void uartProcessEvents()
 {
-	// Repeat until buffer space is full
-	while( inbuffer_entries <= 8 )
-	{
+	// Repeat until no more characters
+	while (1) {
 		// Is there any more received data?
 		if( IN(UART_SR) & UART_IN_EMPTY ) return;
 
-		// Store data
-		stdio_inbound_buffer[inbuffer_entries++] = IN(UART_DATA);
-
-	}
+		if( inbuffer_entries <= 127 )
+			// Store data
+			stdio_inbound_buffer[inbuffer_entries++] = IN(UART_DATA);
+		else
+			// Discard in data
+			IN(UART_DATA);
+	};
 }
 //
 // Initialise the SPI STDIO module
@@ -55,12 +57,13 @@ void stdioInit()
 //
 // Send a single character to the STDIO
 //
-void putchar( char data )
+int putchar( int data )
 {
 	while( IN(UART_SR) & UART_OUT_FULL);	// Wait if buffer full
 	uartWrite( data );
 	// Translate LF to CR+LF
 	if( data == 10 ) putchar( 13 );
+	return 0;
 }
 //
 // How many bytes are available in the input buffer?
@@ -72,7 +75,7 @@ unsigned char uartAvail()
 //
 // Get a single character from the input buffer
 //
-char getchar()
+int getchar()
 {
 	// Get the first character from the buffer
 	char r = stdio_inbound_buffer[0];
@@ -82,7 +85,7 @@ char getchar()
 
 	// If there is more than one character in the inbound buffer, then shift everything up
 	if( inbuffer_entries > 1 )
-		memcpy( stdio_inbound_buffer, stdio_inbound_buffer + 1, inbuffer_entries);
+		memcpy( stdio_inbound_buffer, stdio_inbound_buffer + 1, 7 /*inbuffer_entries*/);
 
 	// Reduce the count of characters in the buffer
 	inbuffer_entries--;
@@ -98,4 +101,9 @@ void inboundFlush()
 {
 	uartFlush();
 	inbuffer_entries = 0;
+}
+
+void outboundFlush()
+{
+	while( ! (IN(UART_SR) & UART_OUT_EMPTY)) processEvents();	// Wait if buffer not empty
 }

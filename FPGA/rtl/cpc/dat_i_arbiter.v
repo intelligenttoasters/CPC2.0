@@ -23,8 +23,11 @@
 `timescale 1ns/1ns
 
 module dat_i_arbiter(
+		// Clock
+		input wire clock_i,
+
 		// Output
-		output [7:0] D,
+		output wire [7:0] D,
 		
 		// Lower Rom module
 		input [7:0] l_rom,
@@ -37,6 +40,10 @@ module dat_i_arbiter(
 		// Ram module
 		input [7:0] ram,
 		input ram_e,
+
+		// Extended Ram modules
+		input [7:0] eram,
+		input u_ram_e,
 		
 		// Standard 8255 PIO
 		input [7:0] pio8255,
@@ -54,17 +61,19 @@ module dat_i_arbiter(
 	// Wire definitions ===========================================================================
 
 	// Registers ==================================================================================
-	
-	// Assignments ================================================================================
 
+	// Assignments ================================================================================
+	
 	// Module connections =========================================================================
 	
 	// Simulation branches and control ============================================================
 	
 	// Other logic ================================================================================
 	
-	assign D =  (l_rom_e) ? l_rom :
+	//always @(negedge clock_i)
+	assign D =	(l_rom_e) ? l_rom :
 					(u_rom_e) ? u_rom :
+					(u_ram_e) ? eram :
 					(ram_e) ? ram :
 					(pio8255_e) ? pio8255 :
 					(io_e) ? io :

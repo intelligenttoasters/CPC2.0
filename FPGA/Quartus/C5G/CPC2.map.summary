@@ -1,0 +1,17 @@
+Analysis & Synthesis Status : Successful - Sun Jul  8 20:42:45 2018
+Quartus II 64-Bit Version : 14.0.0 Build 200 06/17/2014 SJ Web Edition
+Revision Name : CPC2
+Top-level Entity Name : CPC2_C5G
+Family : Cyclone V
+Logic utilization (in ALMs) : N/A
+Total registers : 7299
+Total pins : 158
+Total virtual pins : 0
+Total block memory bits : 1,099,008
+Total DSP Blocks : 0
+Total HSSI RX PCSs : 0
+Total HSSI PMA RX Deserializers : 0
+Total HSSI TX PCSs : 0
+Total HSSI PMA TX Serializers : 0
+Total PLLs : 2
+Total DLLs : 0

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$1" == "" ]
+then
+	echo "Must specify a filename make_hex <file> excluding extension"
+	exit 1;
+fi
+
+exec > $1.hex
+
+od -tx2 -w2 -Ax -v --endian=big $1.bin  | awk '{print $2}'

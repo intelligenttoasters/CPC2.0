@@ -1,0 +1,7 @@
+#!/bin/bash
+
+exec > rom1.h
+
+echo "char rom_data[] = {"
+od -tx1 -w1 -v rom.bin | awk '{if(length($2)>0) { print "0x"$2","} else { print "0" }}'
+echo "};";

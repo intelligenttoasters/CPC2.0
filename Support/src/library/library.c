@@ -36,12 +36,20 @@ inline struct global_vars * globals()
 	return &global_variables;
 }
 // Process events - add events to this list as required
-inline void processEvents()
+void processEvents()
 {
 	uartProcessEvents();
 	hdmiProcessEvents();
+	//usbProcessEvents();
 	kbdProcessEvents();
+	sdcProcessEvents();
 	fdcProcessEvents();
+}
+// Just used in early start
+void earlyEvents()
+{
+	uartProcessEvents();
+	sdcProcessEvents();
 }
 
 // Log a console message
@@ -56,4 +64,25 @@ void ul()
 	int cntr;
 	for( cntr=0; cntr<_STD_WIDTH_ - 1; cntr++) putchar('=');
 	putchar('\n');
+}
+
+// Extended OUTI, more than 255 bytes
+void OUTIe( char port, char * buffer, uint16_t size)
+{
+	while( size > 0 )
+	{
+		OUTI( port, buffer, (size>255) ? 255 : size );
+		size -= (size>255) ? 255 : size;
+		buffer += 255;
+	}
+}
+// Extended INI, more than 255 bytes
+void INIe( char port, char * buffer, uint16_t size)
+{
+	while( size > 0 )
+	{
+		INI( port, buffer, (size>255) ? 255 : size );
+		size -= (size>255) ? 255 : size;
+		buffer += 255;
+	}
 }

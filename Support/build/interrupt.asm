@@ -1,6 +1,6 @@
 ;--------------------------------------------------------
 ; File Created by SDCC : free open source ANSI-C Compiler
-; Version 3.6.0 #9615 (Linux)
+; Version 3.7.0 #10231 (Linux)
 ;--------------------------------------------------------
 	.module interrupt
 	.optsdcc -mz80
@@ -10,7 +10,7 @@
 ;--------------------------------------------------------
 	.globl _int_handler
 	.globl _nmi_handler
-	.globl _IN
+	.globl _IN_
 ;--------------------------------------------------------
 ; special function registers
 ;--------------------------------------------------------
@@ -44,43 +44,46 @@
 	.area _CODE
 	G$nmi_handler$0$0	= .
 	.globl	G$nmi_handler$0$0
-	C$interrupt.c$27$0$0	= .
-	.globl	C$interrupt.c$27$0$0
+	C$interrupt.c$27$0$130	= .
+	.globl	C$interrupt.c$27$0$130
 ;../src/interrupt.c:27: void nmi_handler(void)
 ;	---------------------------------
 ; Function nmi_handler
 ; ---------------------------------
 _nmi_handler::
-	C$interrupt.c$30$0$0	= .
-	.globl	C$interrupt.c$30$0$0
+	C$interrupt.c$30$0$130	= .
+	.globl	C$interrupt.c$30$0$130
 ;../src/interrupt.c:30: }
-	C$interrupt.c$30$0$0	= .
-	.globl	C$interrupt.c$30$0$0
+	C$interrupt.c$30$0$130	= .
+	.globl	C$interrupt.c$30$0$130
 	XG$nmi_handler$0$0	= .
 	.globl	XG$nmi_handler$0$0
 	ret
 	G$int_handler$0$0	= .
 	.globl	G$int_handler$0$0
-	C$interrupt.c$35$0$0	= .
-	.globl	C$interrupt.c$35$0$0
+	C$interrupt.c$35$0$132	= .
+	.globl	C$interrupt.c$35$0$132
 ;../src/interrupt.c:35: void int_handler(void)
 ;	---------------------------------
 ; Function int_handler
 ; ---------------------------------
 _int_handler::
-	C$interrupt.c$39$1$46	= .
-	.globl	C$interrupt.c$39$1$46
+	C$interrupt.c$39$1$132	= .
+	.globl	C$interrupt.c$39$1$132
 ;../src/interrupt.c:39: int_src = IN(INTERRUPT_CONTROLLER_BASE);
-	ld	a,#0x10
+	ld	a, #0x10
 	push	af
 	inc	sp
-	call	_IN
+	call	_IN_
 	inc	sp
-	C$interrupt.c$41$1$46	= .
-	.globl	C$interrupt.c$41$1$46
+	C$interrupt.c$41$1$132	= .
+	.globl	C$interrupt.c$41$1$132
 ;../src/interrupt.c:41: if( int_src & INT_UART )
-	C$interrupt.c$44$1$46	= .
-	.globl	C$interrupt.c$44$1$46
+	C$interrupt.c$44$1$132	= .
+	.globl	C$interrupt.c$44$1$132
+;../src/interrupt.c:44: }
+	C$interrupt.c$44$1$132	= .
+	.globl	C$interrupt.c$44$1$132
 	XG$int_handler$0$0	= .
 	.globl	XG$int_handler$0$0
 	ret

@@ -48,7 +48,7 @@ module fdc (
 	);
 
 	// States
-	parameter IDLE = 0, PARAM = 1, READ_WRITE = 2, EXEC = 3, PRERESULT = 4, RESULT = 5, REPEAT = 6;
+	parameter IDLE = 6'd0, PARAM = 6'd1, READ_WRITE = 6'd2, EXEC = 6'd3, PRERESULT = 6'd4, RESULT = 6'd5, REPEAT = 6'd6;
 
 	// Parameter table width
 	parameter PT_WIDTH = 18;
@@ -136,7 +136,7 @@ module fdc (
 			5'h19: param_table = {	1'b0,	5'd8,	1'b0,	1'b1, 4'd7, 1'b0,	3'd3,	2'd2 };
 			5'h1d: param_table = {	1'b0,	5'd8,	1'b0,	1'b1, 4'd7, 1'b0,	3'd3,	2'd2 };
 			5'h1f: param_table = {	1'b1,	5'd0,	1'b0,	1'b0, 4'd1, 1'b0,	3'd7,	2'd0 };	// Invalid opcode structure
-			default: param_table = (2**PT_WIDTH)-1;	// Invalid
+			default: param_table = ((2**PT_WIDTH)-1);	// Invalid
 		endcase
 	endfunction
 
@@ -279,7 +279,7 @@ module fdc (
 	assign track0 = (HU[1:0] == 2'd0) ? (current_track0 == 8'd0) :
 						(HU[1:0] == 2'd1) ? (current_track1 == 8'd0) :
 						(HU[1:0] == 2'd2) ? (current_track2 == 8'd0) :
-						(HU[1:0] == 2'd3) ? (current_track3 == 8'd0) : 0;
+						(HU[1:0] == 2'd3) ? (current_track3 == 8'd0) : 1'b0;
 						
 	// Module connections =========================================================================
 	// FIFO buffers
@@ -350,7 +350,7 @@ module fdc (
 						// Set data counter, for if it's needed
 						data_cntr <= (p_rd|p_wr) ? 10'd512 : 1'b0;	// What about format?
 						// Set wait timeout for if it's needed
-						wait_timeout <= (2**P_WAIT_TO)-1;						
+						wait_timeout <= ((2**P_WAIT_TO)-1);
 					end
 					// Invalid Opcode
 					else state <= PRERESULT;
@@ -475,8 +475,8 @@ module fdc (
 							HU[2:0]
 						};
 				// 	End-of-track, ----, Write prot, sector id not found
-				S1 <= {(p_rd|p_wr), 5'd0, HRESULT[3], HRESULT[2]};
-				S2 <= {8'd0};	// TODO: Add these
+				S1 <= {(p_rd|p_wr), 4'd0, HRESULT[2], HRESULT[3], HRESULT[2]};
+				S2 <= 8'd0;	//{3'd0,HRESULT[2],1'b0,HRESULT[2],HRESULT[2],HRESULT[2]};
 				S3 <= {1'b0, HRESULT[3], 1'b1, track0, 1'b0, HU[2:0]};
 			end
 			RESULT:

@@ -33,8 +33,11 @@
 #define max( x, y ) (( x>=y ) ? x : y)
 
 inline struct global_vars * globals(void);
-inline void processEvents(void);
+void processEvents(void);
+void earlyEvents(void);
 void console(char *);
 void ul(void);
+void OUTIe( char port, char * buffer, uint16_t size);
+void INIe( char port, char * buffer, uint16_t size);
 
 #endif /* INCLUDE_LIBRARY_H_ */

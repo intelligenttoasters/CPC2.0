@@ -36,6 +36,7 @@ module mem_arbiter (
 	output reg		rd_o,
 	output reg		wr_o,
 	output reg		enable_o,
+	input				busy_i,
 	input			valid_i,
 	// Port 1
 	input 		 	req1_i,
@@ -84,7 +85,7 @@ module mem_arbiter (
 	
 	// Assignments ================================================================================
 	assign dat_o = (ack1_o) ? dat1_i : (ack2_o) ? dat2_i : (ack3_o) ? dat3_i : (ack4_o) ? dat4_i : 16'd0; 
-	assign dm_o = (ack1_o) ? dm1_i : (ack2_o) ? dm2_i : (ack3_o) ? dm3_i : (ack4_o) ? dm4_i : 16'd0; 
+	assign dm_o = (ack1_o) ? dm1_i : (ack2_o) ? dm2_i : (ack3_o) ? dm3_i : (ack4_o) ? dm4_i : 2'd0; 
 	
 	// Module connections =========================================================================
 	
@@ -162,7 +163,7 @@ module mem_arbiter (
 		end
 		ACTIVE : if( valid_i ) begin
  			state <= INCYCLE;
- 			cntr <= 3'd6;
+ 			cntr <= 3'd7;	// Ensures all 8 words are visible for the duration of the tSU+tH
 		end
 		INCYCLE : begin
 			ack1 <= 0;
@@ -175,8 +176,7 @@ module mem_arbiter (
 		default: state <= IDLE; 
 	endcase
 	
-	wire signal = (state == ACTIVE) && (last_state == IDLE);
-	always @(negedge clock_i) last_state <= state;
+	reg pending_acknowledgement = 0;
 	
 	// Change RAM signals
 	always @(negedge clock_i)
@@ -189,10 +189,12 @@ module mem_arbiter (
 				ack4_o <= 0;
 				rd_o <= 0;
 				wr_o <= 0;
-				enable_o <= 0;				
+				enable_o <= 0;
+				last_state <= IDLE;
+				pending_acknowledgement <= 1'b1;
 			end
-			ACTIVE: begin
-				if( signal ) begin
+			ACTIVE: begin	// It remains in this state until the valid_i signal goes active indicating an active in/out
+				if( pending_acknowledgement ) begin
 					ack1_o <= ack1;
 					ack2_o <= ack2;
 					ack3_o <= ack3;
@@ -200,6 +202,8 @@ module mem_arbiter (
 					rd_o <= rd;
 					wr_o <= wr;
 					enable_o <= 1;
+					// If the SDRAM controller accepted our command, then reset the control lines
+					if( busy_i ) pending_acknowledgement <= 1'b0;
 				end
 				else
 				begin
@@ -207,6 +211,11 @@ module mem_arbiter (
 					rd_o <= 0;
 					wr_o <= 0;
 				end
+			end
+			INCYCLE : begin
+				enable_o <= 0;
+				rd_o <= 0;
+				wr_o <= 0;
 			end
 		endcase
 	end

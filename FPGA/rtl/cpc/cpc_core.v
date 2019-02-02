@@ -44,8 +44,14 @@ module cpc_core (
 		input	[79:0] keyboard_i,
 		output [7:0] audio_o,
 		// Shared ROM data
-		input [7:0] shared_rom_data_i,
-		output [14:0] shared_rom_addr_o,
+		input [7:0] romram_data_i,
+		output [7:0] romram_data_o,
+		output /*reg*/ [23:0] romram_addr_o,
+		output romram_enable_o,
+		output romram_rd_o,
+		output romram_wr_o,
+		input romram_valid_i,
+		input [63:0] romflags_i,	// Which ROMs are populated?
 		// FDC Interface
 		output reg fdc_motor = 0,
 		output fdc_activity,
@@ -57,20 +63,24 @@ module cpc_core (
 		input				S_rd_i,
 		input				S_wr_i,
 		input				S_enable_i,
-		output			S_fdc_int_o
+		output			S_fdc_int_o,
+		// Debug trigger connection
+		output [7:0] debug_trigger_o
 	);
 
 	// Wire definitions ===========================================================================
 	wire [15:0] A;
-	wire [7:0] DO, DI, l_rom_o, u_rom_o, u_rom0_o, ram_o, vram_o, Dpio, D8255_o, Dfdc;
+	wire [7:0] DO, DI, u_rom_o, u_rom0_o, ram_o, vram_o, Dpio, D8255_o, Dfdc;
 	wire [7:0] ppia_o, ppia_i, ppic_o, u_rom5_o, u_rom6_o, u_rom7_o, fdc_o;
-	wire nWR, nRD, nMREQ, nIORQ, nROMEN, nM1, cpu_int, l_rom_e, u_rom_e, ram_e, fdc_e;
+	wire nWR, nRD, nMREQ, nIORQ, nROMEN, nM1, cpu_int, l_rom_e, u_rom_e, ram_e, u_ram_e, fdc_e;
 	wire vsync_signal, hsync_signal;
 	wire nIORD = (nIORQ | nRD);
 	wire nIOWR = (nIORQ | nWR);
 	wire nMEMRD = (nMREQ | nRD);
 	wire nMEMWR = (nMREQ | nWR);
-	wire [3:0] romsel_o;
+	wire [5:0] romsel_o;				// TODO: Expanded by 1 bit to 64 pages of rom (1M)
+	wire [8:0] ramsel_o;				// Expanded by 3 bits to 256 pages of ram (4M)
+	wire [7:0] ram_page;				// Mapping to actual ram page
 	// CRTC / Video data
 	wire [13:0]MA;
 	wire [4:0]RA;
@@ -84,16 +94,39 @@ module cpc_core (
 	wire D8255_e = ( A[11] == `LO );
 	
 	// Registers ==================================================================================
+//	reg BUSWAIT = 1'b1;
+	reg [4:0] clockdiv = 0;
+	reg [7:0] ramrom_D_store;
 	
 	// Assignments ================================================================================
+	assign romram_data_o = DO;
+	assign romram_enable_o = ~nMREQ & ((u_rom_e & romflags_i[romsel_o]) | l_rom_e | u_ram_e);
+	assign romram_rd_o = ~nMEMRD;
+	assign romram_wr_o = ~nMEMWR;
+	
+	// Extended RAM, including 4M expansion	
+	assign ram_page = ( ramsel_o[8] ) ? ramsel_o[7:0] : 
+							5'd0;	// TODO: More!!!
+	// Rules for paging in extended RAM
+	assign u_ram_e = ~nMREQ & 
+						(ramsel_o[8] & (A[15:14] == 2'b01));
 
 	// Module connections =========================================================================
 	
 	// Simulation branches and control ============================================================
 	
 	// Other logic ================================================================================
-
-	tv80s cpu(
+//	always @(negedge clk_16)
+//		BUSWAIT <= (u_rom_e & ~romram_valid_i) && (romsel_o != 5'd0) && romflags_i[romsel_o];	// TODO: Removed
+	
+	// Record the ROM address
+	//always @(negedge clk_16)
+	assign	romram_addr_o = {1'd0, u_rom_e | l_rom_e, (u_rom_e) ? {2'b00, romsel_o} : (l_rom_e) ? 8'h40 : ram_page, A[13:0]};
+// TODO:WAS		romram_addr_o <= {1'd0, u_rom_e, (u_rom_e) ? {2'b00, romsel_o} : ram_page, A[13:0]};
+//TODO:HERE - LOOK AT ME - LAST CHANGE 20181125
+	
+//	tv80s cpu(
+	tv80n cpu(
 		// Clock and reset control
 		.clk(clk_4),
 		.reset_n( nreset_i ),
@@ -101,7 +134,7 @@ module cpc_core (
 		.int_n(cpu_int),
 		.nmi_n(1'b1),
 		.busrq_n(1'b1),
-		.wait_n(1'b1),
+		.wait_n(1'b1/*~BUSWAIT*/),	// TODO: Removed wait - will this work?????
 		// Data and address lines
 		.di(DI),
 		.dout(DO),
@@ -116,16 +149,48 @@ module cpc_core (
 		.halt_n(),
 		.busak_n()
 		);
+/*
+// TODO: Debug module - check romram stability
+wire mrq = ~nMREQ & ~nRD;
+reg [15:0] startA;
+reg [7:0] startD;
+reg faultA = 0, faultD = 0;
+always @(negedge nMREQ) startA <= A;
+always @(posedge romram_valid_i) startD <= DI;
 
-	// Data bus arbiter
+assign debug_trigger_o[0] = faultA;
+assign debug_trigger_o[1] = faultD;
+
+always @(posedge nMREQ) if(startA != A) faultA = 1'b1; else faultA = 1'b0;
+always @(negedge mrq) if(startD != DI) faultD = 1'b1; else faultD = 1'b0;
+// END TODO		
+*/		/*
+	reg track_memrd, track_valid;
+	wire memrd_rise, valid_rise;
+	wire memrd = ~nMREQ & ~nRD;
+	assign memrd_rise = ({track_memrd,memrd} == 2'b01);
+	assign valid_rise = ({track_valid,(memrd_rise) ? 1'b0 : romram_valid_i } == 2'b01);
+	
+	always @(posedge clk_16) track_memrd <= memrd;
+	always @(posedge clk_16) track_valid <= (memrd_rise) ? 1'b0 : romram_valid_i;
+		
+	always @(negedge clk_16) if( valid_rise ) ramrom_D_store <= romram_data_i;
+assign debug_trigger_o[0] = memrd_rise;
+assign debug_trigger_o[1] = valid_rise;
+	*/
+	// Data bus arbiter, data latched on falling edge
 	dat_i_arbiter di_arbiter(
+		.clock_i( clk_16 ),
 		.D( DI ),
 		// LROM
-		.l_rom(l_rom_o),
+		.l_rom(/*ramrom_D_store*/romram_data_i),
 		.l_rom_e(l_rom_e),
 		// UROM
 		.u_rom(u_rom_o),
 		.u_rom_e(u_rom_e),
+		// Extended RAM
+		.eram(/*ramrom_D_store*/romram_data_i),
+		.u_ram_e(u_ram_e),
 		// RAM
 		.ram(ram_o),
 		.ram_e(ram_e),
@@ -141,7 +206,7 @@ module cpc_core (
 		);
 		
 	// Arbiter rules
-	assign ram_e = !nMEMRD;
+	assign ram_e = ~nMREQ; //~nMEMRD;
 	assign l_rom_e = (A[15:14] == 2'b00) && (nROMEN == 0) && ram_e;
 	assign u_rom_e = (A[15:14] == 2'b11) && (nROMEN == 0) && ram_e;
 	assign fdc_e = (A[15:1] == (16'hfb7f>>1)) && ~nIORD;
@@ -159,50 +224,22 @@ module cpc_core (
 		.q_a(ram_o),
 		.q_b(video_D_o)
 		);	
-		
-	rom #(
-		.init_file("../../../roms/cpc6128.mif"),
-		.ram_type("AUTO")
-		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = lrom")
-		) 
-	lower_rom(
-		.address(A[13:0]),
-		.clock(clk_16),
-		.q(l_rom_o));	
-
-	rom #(
-		.init_file("../../../roms/basic1-1.mif"),
- 		.ram_type("AUTO")
-		//.lpm_hint("ENABLE_RUNTIME_MOD = YES, INSTANCE_NAME = ur00")
-		) 
-	upper_rom0(
-		.address(A[13:0]),
-		.clock(clk_16),
-		.q(u_rom0_o));	
-
-	assign shared_rom_addr_o = {(romsel_o == 4'd7) ? 1'b1 : 1'b0, A[13:0]};
-		
-	romsel romsel(
-		.selector_i(romsel_o),
-		.d_o( u_rom_o ),
-		.d0_i( u_rom0_o ),
-		.d1_i( 8'hff ),
-		.d2_i( 8'hff ),
-		.d3_i( 8'hff ),
-		.d4_i( 8'hff ),
-		.d5_i( 8'hff ),
-		.d6_i( shared_rom_data_i ),
-		.d7_i( shared_rom_data_i ),
-		.d8_i( 8'hff ),
-		.d9_i( 8'hff ),
-		.d10_i( 8'hff ),
-		.d11_i( 8'hff ),
-		.d12_i( 8'hff ),
-		.d13_i( 8'hff ),
-		.d14_i( 8'hff ),
-		.d15_i( 8'hff )
-		);
-
+/*
+	// Fast ROM - Default to CPC464+Basic1.0
+	rom_builtin	rom_builtin (
+	.rdclock ( clk_16 ),
+	.rdaddress ( {~l_rom_e,A[13:0]} ),
+	.q ( l_rom_o ),
+	// Write port for replacement of ROM - TODO: Write New Rom
+	.wrclock ( 1'b0 ),
+	.wraddress ( 15'd0 ),
+	.wren ( 1'b0 ),
+	.data ( )
+	);
+*/	
+	// Rom data if not rom zero
+	assign u_rom_o = 	(romflags_i[romsel_o]) ? /*ramrom_D_store*/romram_data_i : 8'hff; 
+	
 	// CRTC 6845
 	reg crtc_e = 1'b1;
 	always @(negedge clk_1) crtc_e <= (nIORD & nIOWR);
@@ -238,7 +275,8 @@ module cpc_core (
 		.nM1(nM1),			// TODO: Added to enable lower rom on int ack
 		.nint_o(cpu_int),
 		.nROMEN_o(nROMEN),
-		.romsel_o(romsel_o),
+		.romsel_o(romsel_o[5:0]),
+		.ramsel_o(ramsel_o),
 		.video_pixel_i(pixel_num),
 		.border_i(video_border),
 		.color_dat_o(color_dat),

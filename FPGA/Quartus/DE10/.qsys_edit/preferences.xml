@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <preferences>
  <debug showDebugMenu="0" />
- <systemtable>
+ <systemtable filter="All Interfaces">
   <columns>
    <connections preferredWidth="47" />
    <irq preferredWidth="34" />
-   <inputclock preferredWidth="177" />
   </columns>
  </systemtable>
  <library expandedCategories="Library,Project" />
- <window width="1920" height="1071" x="-10" y="19" />
- <generation path="mmio_if" simulation="NONE" block_symbol_file="0" />
+ <window width="1940" height="1071" x="-10" y="19" />
+ <generation block_symbol_file="0" path="_PROJECT_NAME_" />
 </preferences>
